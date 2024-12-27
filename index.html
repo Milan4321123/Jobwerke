@@ -4,26 +4,27 @@
   <meta charset="UTF-8" />
   <title>Job Werke d.o.o. – Startseite</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Link to the home CSS -->
+  <!-- Link to your CSS -->
   <link rel="stylesheet" href="./css/index.css" />
 </head>
 <body>
-  <!-- ======== NAVBAR ======== -->
+  <!-- ===== NAVBAR ===== -->
   <header class="navbar" id="mainNavbar">
-    <!-- LOGO -->
     <div class="navbar__logo">
-      <!-- Replace with your real logo path -->
-      <img src="./assets/img/jobwerke-logo.png" alt="Job Werke Logo" />
+      <!-- Adjust to your real logo path -->
+      <img src="./assets/img/jobwerke-logo.png" alt="Logo" />
       <span>Job Werke d.o.o.</span>
     </div>
-    <!-- HAMBURGER ICON for mobile -->
-    <div class="navbar__toggle" id="navToggle">
+
+    <!-- HAMBURGER ICON (shown on mobile) -->
+    <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Menü öffnen">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
+
     <!-- NAV LINKS -->
-    <nav class="navbar__menu" id="navMenu">
+    <nav class="navbar__menu" id="navbarMenu">
       <ul>
         <li><a href="index.html" class="active-link">Home</a></li>
         <li><a href="uber-uns.html">Über uns</a></li>
@@ -34,9 +35,10 @@
     </nav>
   </header>
 
-  <!-- ======== HERO SECTION (Video Background) ======== -->
+  <!-- ===== HERO SECTION (VIDEO) ===== -->
   <section class="hero fade-section">
-    <div class="hero__bg" id="parallaxBg">
+    <div class="hero__bg">
+      <!-- Use your actual video and fallback poster image -->
       <video
         id="heroVideo"
         autoplay
@@ -46,27 +48,25 @@
         poster="./assets/img/hero-bg-1.jpg"
       >
         <source src="./assets/videos/rrrrr.mp4" type="video/mp4" />
-        <!-- optional .webm fallback -->
+        <!-- optional fallback -->
         <!-- <source src="./assets/videos/hero-bg.webm" type="video/webm" /> -->
         Ihr Browser unterstützt kein HTML5-Video.
       </video>
     </div>
-  
-    <!-- We'll place our text around the bottom-middle for desktop, 
-         slightly more top for mobile if we want. -->
+    <!-- (Optional) Dark overlay for readability -->
+    <div class="hero__overlay"></div>
+
     <div class="hero__content">
-      <h1 class="hero-title">
-        Willkommen bei Job Werke d.o.o.
-      </h1>
+      <h1 class="hero-title">Willkommen bei JobWerke d.o.o.</h1>
       <p class="hero-subtitle">
-        Wir bringen Unternehmer<br />
+        Wir bringen Unternehmer<br>
         und qualifizierte Arbeitskräfte zusammen
       </p>
-      <a href="#intro-section" class="btn-hero">Mehr erfahren</a>
+      <a href="#intro" class="btn-hero">Mehr erfahren</a>
     </div>
   </section>
 
-  <!-- ======== WAVE SEPARATOR 1 ======== -->
+  <!-- WAVE SEPARATOR -->
   <div class="wave-separator flip" aria-hidden="true">
     <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
       <path
@@ -76,8 +76,8 @@
     </svg>
   </div>
 
-  <!-- ======== INTRO SECTION ======== -->
-  <section class="intro-section fade-section" id="intro-section">
+  <!-- ===== INTRO SECTION ===== -->
+  <section class="intro-section fade-section" id="intro">
     <h2>Warum Job Werke?</h2>
     <p>
       Wir sind Ihr kompetenter Partner für Personalvermittlung in Nepal,
@@ -102,7 +102,7 @@
         </p>
       </div>
       <div class="intro-card">
-        <img src="./assets/img/6e43835c-4060-4962-a739-4177c972dbde.jpg" alt="Innovation" />
+        <img src="./assets/img/hero-bg-2.jpg" alt="Innovation" />
         <h3>Innovative Lösungen</h3>
         <p>
           Wir setzen auf moderne Technologien und Ansätze,<br/>
@@ -112,7 +112,7 @@
     </div>
   </section>
 
-  <!-- ======== WAVE SEPARATOR 2 ======== -->
+  <!-- WAVE SEPARATOR -->
   <div class="wave-separator" aria-hidden="true">
     <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
       <path
@@ -122,39 +122,30 @@
     </svg>
   </div>
 
-  <!-- ======== SERVICES TEASER ======== -->
+  <!-- ===== SERVICES TEASER ===== -->
   <section class="services fade-section">
     <h2>Unsere Leistungen</h2>
     <div class="services-items">
       <div class="services-item">
-        <img src="./assets/img/8ab7c141-3b70-4d16-b0af-1784894ec3c9.jpg" alt="Service1" />
+        <img src="./assets/img/8ab7c141.jpg" alt="Service1" />
         <h4>Personalvermittlung</h4>
-        <p>
-          Wir übernehmen den gesamten Rekrutierungsprozess,
-          von der Suche bis zur Integration.
-        </p>
+        <p>Wir übernehmen den gesamten Rekrutierungsprozess, von der Suche bis zur Integration.</p>
       </div>
       <div class="services-item">
-        <img src="./assets/img/53b204a5-1cd3-401c-b055-8a5d2da1c40f.jpg" alt="Service2" />
+        <img src="./assets/img/53b204a5.jpg" alt="Service2" />
         <h4>Beratung &amp; Support</h4>
-        <p>
-          Unser Team unterstützt Sie, Ihre Anforderungen
-          präzise zu definieren und umzusetzen.
-        </p>
+        <p>Unser Team unterstützt Sie, Ihre Anforderungen präzise zu definieren und umzusetzen.</p>
       </div>
       <div class="services-item">
         <img src="./assets/img/hero-bg-2.jpg" alt="Service3" />
         <h4>Maßgeschneiderte Lösungen</h4>
-        <p>
-          Für temporäre Einsätze oder langfristige Kooperationen –
-          wir haben die passende Lösung.
-        </p>
+        <p>Für temporäre Einsätze oder langfristige Kooperationen – wir haben die passende Lösung.</p>
       </div>
     </div>
     <a href="dienstleistungen.html" class="btn-more">Alle Leistungen</a>
   </section>
 
-  <!-- ======== WAVE SEPARATOR 3 ======== -->
+  <!-- WAVE SEPARATOR -->
   <div class="wave-separator flip" aria-hidden="true">
     <svg viewBox="0 0 1440 150" preserveAspectRatio="none">
       <path
@@ -164,7 +155,7 @@
     </svg>
   </div>
 
-  <!-- ======== CTA SECTION ======== -->
+  <!-- ===== CTA SECTION ===== -->
   <section class="cta fade-section">
     <h2>Bereit für das Nächste?</h2>
     <p>
@@ -174,15 +165,15 @@
     <a href="kontakt.html" class="btn-cta">Kontakt aufnehmen</a>
   </section>
 
-  <!-- ======== FOOTER ======== -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer fade-section">
     <p class="footer__text">
-      Impressum • Datenschutz • Cookie-Einstellungen<br />
+      Impressum &bull; Datenschutz &bull; Cookie-Einstellungen
     </p>
     <p class="footer__text">&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- ========== JS ========== -->
+  <!-- JS -->
   <script src="./js/index.js"></script>
 </body>
 </html>

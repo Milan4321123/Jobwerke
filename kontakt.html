@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Job Werke d.o.o. – Kontakt (WOW design)</title>
+  <title>Job Werke d.o.o. – Kontakt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Link to your contact CSS -->
+  <!-- Link to Kontakt CSS -->
   <link rel="stylesheet" href="./css/kontakt.css" />
 </head>
 <body>
@@ -15,7 +15,15 @@
       <img src="./assets/img/jobwerke-logo.png" alt="Job Werke Logo" />
       <span>Job Werke d.o.o.</span>
     </div>
-    <nav class="navbar__menu">
+
+    <!-- HAMBURGER ICON (for mobile) -->
+    <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Menü öffnen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="navbar__menu" id="navbarMenu">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="uber-uns.html">Über uns</a></li>
@@ -26,10 +34,10 @@
     </nav>
   </header>
 
-  <!-- ========== ANGLED HERO WITH PARALLAX ========== -->
+  <!-- ========== ANGLED HERO WITH (PARALLAX optional) ========== -->
   <section class="hero-section fade-section">
     <div class="hero-bg" id="parallaxHero">
-      <!-- Large banner image for Kontakt page, e.g. office or handshake photo -->
+      <!-- Large banner image for Kontakt page -->
       <img src="./assets/img/hero-bg-2.jpg" alt="Kontakt Banner" />
       <div class="hero-overlay"></div>
     </div>
@@ -60,23 +68,29 @@
 
   <!-- ========== ANGLED SEPARATOR ========== -->
   <svg class="angled-separator" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
-    <polygon fill="#f9f9fc" points="0,0 100,10 0,10"/>
+    <polygon fill="#f9f9fc" points="0,0 100,10 0,10"></polygon>
   </svg>
 
   <!-- ========== CONTACT INFO & FORM SECTION ========== -->
   <section class="contact-section fade-section">
+    <!-- LEFT: CONTACT INFO -->
     <div class="contact-info">
       <h3>Adresse</h3>
-      <p>Job-Werke o.o.d.<br/>
-         Industriestraße 27<br/>
-         61381 Friedrichsdorf<br/>
-         Deutschland
+      <p>
+        Job-Werke o.o.d.<br/>
+        Industriestraße 27<br/>
+        61381 Friedrichsdorf<br/>
+        Deutschland
       </p>
-
       <h3>E-Mail</h3>
-      <p><a href="mailto:job.werke1@gmail.com">job.werke@webmail.de</a></p>
+      <p>
+        <a href="mailto:job.werke1@gmail.com">job.werke1@gmail.com</a>
+      </p>
+      <h3>Telefon</h3>
+      <p>+35 (51) 360 219</p>
     </div>
 
+    <!-- RIGHT: CONTACT FORM -->
     <div class="contact-form-container">
       <h3>Schreiben Sie uns</h3>
       <form class="contact-form">
@@ -97,18 +111,17 @@
     </div>
   </section>
 
-  <!-- ========== CTA or MAP (optional) ========== -->
-  <!-- For instance, a map embed or final CTA. Omitted for brevity, but you can add. -->
-
   <!-- ========== FOOTER ========== -->
   <footer class="footer fade-section">
     <p class="footer__text">
-      Impressum • Datenschutz • Cookie-Einstellungen<br />
+      Impressum • Datenschutz • Cookie-Einstellungen
     </p>
-    <p class="footer__text">&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
+    <p class="footer__text">
+      &copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.
+    </p>
   </footer>
 
-  <!-- ========== JS ========== -->
+  <!-- ========== JAVASCRIPT ========== -->
   <script src="./js/kontakt.js"></script>
 </body>
 </html>

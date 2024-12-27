@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Job Werke d.o.o. – Mit uns arbeiten (WOW design)</title>
+  <title>Job Werke d.o.o. – Mit uns arbeiten (WOW Design + Mobile Nav)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Link to the CSS for Arbeiten -->
   <link rel="stylesheet" href="./css/arbeiten.css" />
@@ -11,11 +11,19 @@
   <!-- ========== NAVBAR ========== -->
   <header class="navbar" id="mainNavbar">
     <div class="navbar__logo">
-      <!-- Replace the path with your real logo image -->
+      <!-- Replace with your real logo path -->
       <img src="./assets/img/jobwerke-logo.png" alt="Job Werke Logo" />
       <span>Job Werke d.o.o.</span>
     </div>
-    <nav class="navbar__menu">
+
+    <!-- Hamburger button (for mobile) -->
+    <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Menü öffnen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="navbar__menu" id="navbarMenu">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="uber-uns.html">Über uns</a></li>
@@ -27,7 +35,6 @@
   </header>
 
   <!-- ========== ANGLED HERO SECTION ========== -->
-  <!-- We use angled background layering for a more dynamic vibe -->
   <section class="hero-section fade-section">
     <div class="hero-bg">
       <!-- Provide a large banner image for the "Arbeiten" page (1920x1080 or bigger) -->
