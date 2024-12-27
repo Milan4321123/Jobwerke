@@ -9,7 +9,7 @@ body {
   line-height: 1.5;
   background: linear-gradient(135deg, #eef6ff 0%, #fefeff 100%);
   color: #333;
-  overflow-x: hidden;
+  overflow-x: hidden; /* no horizontal scroll */
 }
 a {
   text-decoration: none;
@@ -20,18 +20,14 @@ img, video {
   width: 100%;
   height: auto;
 }
-button {
-  cursor: pointer;
-}
 
 /* ========== NAVBAR ========== */
 .navbar {
   position: fixed;
-  top: 0; 
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
-  padding: 0.8rem 1.2rem;
-  background: rgba(238,246,255, 0.8);
+  padding: 0.8rem 2rem;
+  background: rgba(238,246,255,0.8);
   backdrop-filter: blur(5px);
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   display: flex;
@@ -55,25 +51,9 @@ button {
   font-size: 1.2rem;
   color: #2e2e2e;
 }
-/* Toggle (Hamburger) */
-.navbar__toggle {
-  width: 30px;
-  height: 24px;
-  display: none; /* hidden by default, shown on mobile */
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-  z-index: 1100; /* above nav */
-}
-.navbar__toggle span {
-  display: block;
-  height: 3px;
-  background: #333;
-  border-radius: 2px;
-}
-/* The Nav Menu */
+/* NAV MENU */
 .navbar__menu {
-  display: flex;
+  transition: max-height 0.3s ease;
 }
 .navbar__menu ul {
   list-style: none;
@@ -88,93 +68,92 @@ button {
 }
 .navbar__menu a:hover,
 .navbar__menu a.active-link {
-  color: #4f2ca4;
+  color: #4f2ca4; /* accent color */
   border-color: #4f2ca4;
 }
 .navbar-scrolled {
-  background: rgba(238,246,255, 0.95);
+  background: rgba(238,246,255,0.95);
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
-/* space so content isn't behind the navbar */
+/* HAMBURGER (hidden by default on desktop) */
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 35px;
+  height: 26px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.navbar__hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #4e4e4e;
+  border-radius: 2px;
+}
+
+/* Because the navbar is fixed, space out content so it doesn't hide behind nav */
 body::before {
   content: "";
   display: block;
-  height: 70px;
-}
-/* ========== MOBILE NAV ========== */
-/* On smaller screens we switch to hamburger. */
-@media (max-width: 768px) {
-  .navbar__menu {
-    position: fixed;
-    top: 70px; /* just below navbar */
-    right: 0;
-    width: 200px;
-    background: rgba(238,246,255, 0.98);
-    backdrop-filter: blur(5px);
-    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-  }
-  .navbar__menu ul {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .navbar__menu.show-menu {
-    transform: translateX(0%);
-  }
-  /* show the hamburger */
-  .navbar__toggle {
-    display: flex;
-  }
+  height: 70px; 
 }
 
-/* ========== HERO (Video) ========== */
+/* ========== HERO (VIDEO) ========== */
 .hero {
   position: relative;
   min-height: 100vh;
-  color: #fff; /* text over video is white */
+  overflow: hidden;
   text-align: center;
+  color: #fff;
 }
 .hero__bg {
   position: absolute;
-  top: 0; 
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: -1;
   overflow: hidden;
 }
 .hero__bg video {
   width: 100%;
   height: 100%;
-  object-fit: cover; 
+  object-fit: cover;
+}
+.hero__overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 0;
 }
 .hero__content {
   position: absolute;
-  bottom: 12%;
+  bottom: 15%;
   left: 50%;
   transform: translateX(-50%);
   max-width: 600px;
   padding: 1rem;
+  text-align: center;
+  z-index: 1;
 }
 .hero-title {
-  font-size: 2rem;
-  margin-bottom: 0.6rem;
-  line-height: 1.2;
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 .hero-subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 1.4rem;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
   line-height: 1.4;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 .btn-hero {
   display: inline-block;
-  padding: 0.7rem 1.2rem;
+  padding: 0.8rem 1.4rem;
   background: #66C7F4;
   color: #1D2D45;
   border-radius: 4px;
@@ -203,16 +182,16 @@ body::before {
   transform-origin: center;
 }
 
-/* ========== Intro Section ========== */
+/* ========== INTRO SECTION ========== */
 .intro-section {
-  padding: 3rem 1.5rem;
+  padding: 4rem 2rem;
   background: #f6faff;
   text-align: center;
   color: #333;
 }
 .intro-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.2rem;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
   color: #2f2f2f;
 }
 .intro-section p {
@@ -220,6 +199,7 @@ body::before {
   margin: 0 auto 2rem;
   line-height: 1.7;
   font-size: 1rem;
+  color: #555;
 }
 .intro-grid {
   display: flex;
@@ -233,8 +213,8 @@ body::before {
   width: 300px;
   border-radius: 6px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-  transition: transform 0.2s;
   overflow: hidden;
+  transition: transform 0.2s;
 }
 .intro-card:hover {
   transform: translateY(-5px);
@@ -255,15 +235,15 @@ body::before {
   line-height: 1.6;
 }
 
-/* ========== Services Section ========== */
+/* ========== SERVICES SECTION ========== */
 .services {
-  padding: 3rem 1.5rem;
+  padding: 4rem 2rem;
   background: #fff;
   text-align: center;
   color: #333;
 }
 .services h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 2rem;
 }
 .services-items {
@@ -286,6 +266,7 @@ body::before {
   transform: translateY(-5px);
 }
 .services-item img {
+  width: 100%;
   height: 160px;
   object-fit: cover;
   margin-bottom: 1rem;
@@ -313,19 +294,19 @@ body::before {
   color: #fafafa;
 }
 
-/* ========== CTA Section ========== */
+/* ========== CTA SECTION ========== */
 .cta {
   text-align: center;
-  padding: 3rem 1.5rem;
+  padding: 4rem 2rem;
   background: linear-gradient(135deg, #ffffff 0%, #f6faff 100%);
   color: #333;
 }
 .cta h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 .cta p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 2rem;
   line-height: 1.6;
 }
@@ -339,10 +320,10 @@ body::before {
 }
 .btn-cta:hover {
   background: #3e2382;
-  color: #fff;
+  color: #fafafa;
 }
 
-/* ========== Footer ========== */
+/* ========== FOOTER ========== */
 .footer {
   background: #f6faff;
   text-align: center;
@@ -354,7 +335,7 @@ body::before {
   line-height: 1.4;
 }
 
-/* ========== Fade In Sections ========== */
+/* ========== FADE IN SECTIONS ========== */
 .fade-section {
   opacity: 0;
   transform: translateY(20px);
@@ -365,28 +346,36 @@ body::before {
   transform: translateY(0);
 }
 
-/* ========== MEDIA QUERIES ========== */
-@media (min-width: 769px) {
-  /* Larger screens can have a bigger hero title, etc. */
-  .hero-title {
-    font-size: 2.4rem;
-  }
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
-  .intro-section h2, .services h2, .cta h2 {
-    font-size: 2rem;
-  }
+/* ================== MEDIA QUERIES ================== */
+/* Example: Hide normal nav and show hamburger on smaller screens. */
+@media (max-width: 768px) {
   .navbar__menu {
-    position: static;
-    width: auto;
-    background: none;
-    box-shadow: none;
-    transform: none;
-    flex-direction: row;
-    padding: 0;
+    position: absolute;
+    top: 70px; 
+    right: 0;
+    background: #eef6ff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-height: 0;
+    overflow: hidden;
+    width: 200px;
   }
   .navbar__menu ul {
-    flex-direction: row;
+    flex-direction: column;
+    gap: 0;
   }
+  .navbar__menu li {
+    border-bottom: 1px solid #ddd;
+  }
+  .navbar__menu a {
+    display: block;
+    padding: 0.8rem 1rem;
+  }
+  .navbar__hamburger {
+    display: flex; /* show hamburger on mobile */
+  }
+}
+
+/* When menu is toggled open on mobile, let it expand. */
+.nav-open {
+  max-height: 300px !important; /* or something big enough for your links */
 }

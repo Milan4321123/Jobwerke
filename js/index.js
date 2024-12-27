@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Index (Home) JS loaded!");
 
-  // ====== 1) Fade-in on scroll (Intersection Observer) ======
+  // ===== FADE-IN ON SCROLL (Intersection Observer) =====
   const fadeSections = document.querySelectorAll(".fade-section");
   const observerOptions = { threshold: 0.1 };
   
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fadeSections.forEach(section => observer.observe(section));
 
-  // ====== 2) Sticky Navbar color change on scroll ======
+  // ===== STICKY NAVBAR COLOR CHANGE ON SCROLL =====
   const navbar = document.getElementById("mainNavbar");
   window.addEventListener("scroll", () => {
     if (window.scrollY > 40) {
@@ -26,7 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ====== 3) Smooth scroll for anchor links (optional) ======
+  // ===== MOBILE NAV TOGGLE =====
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const navbarMenu = document.getElementById("navbarMenu");
+
+  hamburgerBtn.addEventListener("click", () => {
+    // toggles the nav menu
+    navbarMenu.classList.toggle("nav-open");
+  });
+
+  // ===== SMOOTH SCROLL FOR ANCHOR LINKS (OPTIONAL) =====
   const anchorLinks = document.querySelectorAll('a[href^="#"]');
   anchorLinks.forEach(link => {
     link.addEventListener("click", (e) => {
@@ -40,14 +49,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-
-  // ====== 4) Mobile Hamburger Menu Toggle ======
-  const navToggle = document.getElementById("navToggle");
-  const navMenu = document.getElementById("navMenu");
-
-  if (navToggle && navMenu) {
-    navToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("show-menu");
-    });
-  }
 });

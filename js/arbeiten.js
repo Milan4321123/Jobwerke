@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("WOW Arbeiten JS loaded!");
 
-  // ========== 1) Fade in on scroll using Intersection Observer ========== 
+  // ========== 1) Fade in on scroll using Intersection Observer ==========
   const fadeSections = document.querySelectorAll(".fade-section");
   const obsOptions = { threshold: 0.1 };
   const obs = new IntersectionObserver((entries, observer) => {
@@ -38,17 +38,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const centerY = this.offsetTop + offsetHeight / 2;
     const mouseX = e.pageX - centerX;
     const mouseY = e.pageY - centerY;
-    const rotateX = (+1 * mouseY / offsetHeight) * 8; // adjust tilt strength
-    const rotateY = (-1 * mouseX / offsetWidth) * 8;
+    const rotateX = (mouseY / offsetHeight) * 8;  // tilt strength
+    const rotateY = (-mouseX / offsetWidth) * 8;
     this.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   }
 
   function resetTilt() {
     this.style.transform = "rotateX(0deg) rotateY(0deg)";
     this.style.transition = "transform 0.6s ease";
-    // remove the transition after end:
     setTimeout(() => {
       this.style.transition = "";
     }, 600);
   }
+
+  // ========== 4) Hamburger Toggle for Mobile Navigation ==========
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const navbarMenu = document.getElementById("navbarMenu");
+
+  hamburgerBtn.addEventListener("click", () => {
+    navbarMenu.classList.toggle("menu-open");
+    hamburgerBtn.classList.toggle("active");
+  });
 });

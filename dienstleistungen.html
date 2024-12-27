@@ -8,28 +8,37 @@
   <link rel="stylesheet" href="./css/dienstleistungen.css" />
 </head>
 <body>
-  <!-- ======== NAVBAR ======== -->
-  <header class="navbar" id="mainNavbar">
-    <div class="navbar__logo">
-      <!-- Replace with your real logo path -->
-      <img src="./assets/img/jobwerke-logo.png" alt="Logo" />
-      <span>Job Werke d.o.o.</span>
-    </div>
-    <nav class="navbar__menu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="uber-uns.html">Über uns</a></li>
-        <li><a href="dienstleistungen.html" class="active-link">Dienstleistungen</a></li>
-        <li><a href="arbeiten.html">Mit uns arbeiten</a></li>
-        <li><a href="kontakt.html">Kontakt</a></li>
-      </ul>
-    </nav>
-  </header>
+<!-- ===== NAVBAR ===== -->
+<header class="navbar" id="mainNavbar">
+  <div class="navbar__logo">
+    <!-- Adjust to your real logo path -->
+    <img src="./assets/img/jobwerke-logo.png" alt="Logo" />
+    <span>Job Werke d.o.o.</span>
+  </div>
+
+  <!-- HAMBURGER ICON (shown on mobile) -->
+  <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Menü öffnen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- NAV LINKS -->
+  <nav class="navbar__menu" id="navbarMenu">
+    <ul>
+      <li><a href="index.html" class="active-link">Home</a></li>
+      <li><a href="uber-uns.html">Über uns</a></li>
+      <li><a href="dienstleistungen.html">Dienstleistungen</a></li>
+      <li><a href="arbeiten.html">Mit uns arbeiten</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+  </nav>
+</header>
 
   <!-- ======== LARGE HERO SECTION ======== -->
-  <section class="services-hero fade-section">
+  <section class="services-hero fade-section" id="heroSection">
     <div class="services-hero__bg">
-      <!-- Provide a large, eye-catching hero image (1920x1080 or bigger) -->
+      <!-- Provide a large, eye-catching hero image (1920×1080 or bigger) -->
       <img src="./assets/img/about-placeholder.jpg" alt="Dienstleistungen Banner" />
     </div>
     <div class="services-hero__overlay"></div>
@@ -63,7 +72,8 @@
     </div>
     <div class="services-intro__img">
       <!-- A large supporting image that complements the text -->
-      <img src="./assets/img/6e43835c-4060-4962-a739-4177c972dbde.jpg" alt="Maßgeschneiderte Lösungen" />
+      <img src="./assets/img/6e43835c-4060-4962-a739-4177c972dbde.jpg" 
+           alt="Maßgeschneiderte Lösungen" />
     </div>
   </section>
 
@@ -72,8 +82,9 @@
     <!-- Card 1: Personalvermittlung -->
     <article class="service-card">
       <div class="card-img">
-        <!-- Provide a bigger image ~600x400 or bigger -->
-        <img src="./assets/img/8ab7c141-3b70-4d16-b0af-1784894ec3c9.jpg" alt="Personalvermittlung" />
+        <!-- Provide a bigger image (e.g., 600×400 or bigger) -->
+        <img src="./assets/img/8ab7c141-3b70-4d16-b0af-1784894ec3c9.jpg" 
+             alt="Personalvermittlung" />
       </div>
       <div class="card-content">
         <h3>Personalvermittlung</h3>
@@ -84,10 +95,11 @@
       </div>
     </article>
 
-    <!-- Card 2: Bereitstellung von Arbeitskräften -->
+    <!-- Card 2: Bereitstellung von Arbeitskräften (reversed layout) -->
     <article class="service-card reverse">
       <div class="card-img">
-        <img src="./assets/img/cta-placeholde.jpg" alt="Bereitstellung von Arbeitskräften" />
+        <img src="./assets/img/cta-placeholde.jpg" 
+             alt="Bereitstellung von Arbeitskräften" />
       </div>
       <div class="card-content">
         <h3>Bereitstellung von Arbeitskräften</h3>
@@ -108,10 +120,10 @@
       <div class="card-content">
         <h3>Qualifikationen der Kandidaten</h3>
         <p>
-          Unsere Kandidaten bringen wertvolle Fachkenntnisse und Fähigkeiten mit, 
-          die auf die Anforderungen Ihres Unternehmens abgestimmt sind. Wir stellen 
-          sicher, dass alle Mitarbeiter über die erforderlichen Qualifikationen verfügen, 
-          um ihre Aufgaben effizient und erfolgreich zu erfüllen.
+          Unsere Kandidaten bringen wertvolle Fachkenntnisse und Fähigkeiten mit,
+          die auf die Anforderungen Ihres Unternehmens abgestimmt sind. Wir stellen
+          sicher, dass alle Mitarbeiter über die erforderlichen Qualifikationen
+          verfügen, um ihre Aufgaben effizient und erfolgreich zu erfüllen.
         </p>
       </div>
     </article>
@@ -123,28 +135,36 @@
     <div class="advantages-grid">
       <div class="adv-item">
         <h4>Minimaler Aufwand</h4>
-        <p>Da wir den gesamten Rekrutierungsprozess übernehmen und die Leiharbeitnehmer:innen
-           anstellen, haben Sie deutlich weniger Verwaltungsaufwand bei der Mitarbeitersuche.</p>
+        <p>
+          Da wir den gesamten Rekrutierungsprozess übernehmen und die Leiharbeitnehmer:innen
+          anstellen, haben Sie deutlich weniger Verwaltungsaufwand bei der Mitarbeitersuche.
+        </p>
       </div>
       <div class="adv-item">
         <h4>Flexibilität</h4>
-        <p>Sie bleiben wettbewerbsfähig, indem Sie flexibel auf Veränderungen oder Auftragsspitzen
-           reagieren können.</p>
+        <p>
+          Sie bleiben wettbewerbsfähig, indem Sie flexibel auf Veränderungen oder
+          Auftragsspitzen reagieren können.
+        </p>
       </div>
       <div class="adv-item">
         <h4>Vielfältiger Bewerberpool</h4>
-        <p>Wir arbeiten stets an verschiedenen Projekten – immer mit dem Ziel, das Beste zu erreichen.
-           Manchmal experimentieren wir sogar mit neuen Konzepten & Ideen.</p>
+        <p>
+          Wir arbeiten stets an verschiedenen Projekten – immer mit dem Ziel, das 
+          Beste zu erreichen. Manchmal experimentieren wir mit neuen Konzepten & Ideen.
+        </p>
       </div>
       <div class="adv-item">
         <h4>Zeitersparnis</h4>
-        <p>Durch die Arbeitnehmerüberlassung sparen Sie nicht nur Zeit bei der Mitarbeitersuche,
-           sondern reduzieren auch den gesamten Aufwand erheblich.</p>
+        <p>
+          Durch die Arbeitnehmerüberlassung sparen Sie nicht nur Zeit bei der 
+          Mitarbeitersuche, sondern reduzieren auch den gesamten Aufwand erheblich.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ======== LEGAL / RECHTLICHE INFO ======== -->
+  <!-- ========== LEGAL / RECHTLICHE INFO ========== -->
   <section class="legal-info fade-section">
     <h2>Rechtliche Rahmenbedingungen</h2>
     <div class="legal-wrapper">
@@ -155,14 +175,12 @@
         die eine reibungslose und rechtssichere Beschäftigung in Ihrem Unternehmen ermöglicht.
       </p>
       <p>
-        Diese Bescheinigung stellt sicher, dass alle arbeitsrechtlichen Vorschriften eingehalten 
-        werden und Sie sich auf eine transparente Zusammenarbeit verlassen können. Alternativ 
-        bieten wir Ihnen die Möglichkeit der Mitarbeiterüberlassung, um flexibel auf Ihre 
-        Bedürfnisse reagieren zu können.
+        Diese Bescheinigung stellt sicher, dass alle arbeitsrechtlichen Vorschriften eingehalten werden
+        und Sie sich auf eine transparente Zusammenarbeit verlassen können. Alternativ bieten wir Ihnen
+        die Möglichkeit der Mitarbeiterüberlassung, um flexibel auf Ihre Bedürfnisse reagieren zu können.
       </p>
       <p>
-        Wir kümmern uns um alle notwendigen Formalitäten, damit Sie sich auf Ihr Kerngeschäft
-        konzentrieren können.
+        Wir kümmern uns um alle notwendigen Formalitäten, damit Sie sich auf Ihr Kerngeschäft konzentrieren können.
       </p>
     </div>
   </section>
@@ -170,9 +188,11 @@
   <!-- ======== FOOTER ======== -->
   <footer class="footer fade-section">
     <p class="footer__text">
-      Impressum • Datenschutz • Cookie-Einstellungen<br />
+      Impressum • Datenschutz • Cookie-Einstellungen
     </p>
-    <p class="footer__text">&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
+    <p class="footer__text">
+      &copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.
+    </p>
   </footer>
 
   <!-- ======== JS ======== -->
