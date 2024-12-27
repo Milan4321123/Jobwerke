@@ -10,12 +10,20 @@
 <body>
   <!-- ======== NAVBAR ======== -->
   <header class="navbar" id="mainNavbar">
+    <!-- LOGO -->
     <div class="navbar__logo">
       <!-- Replace with your real logo path -->
-      <img src="./assets/img/jobwerke-logo.png" alt="Logo" />
+      <img src="./assets/img/jobwerke-logo.png" alt="Job Werke Logo" />
       <span>Job Werke d.o.o.</span>
     </div>
-    <nav class="navbar__menu">
+    <!-- HAMBURGER ICON for mobile -->
+    <div class="navbar__toggle" id="navToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- NAV LINKS -->
+    <nav class="navbar__menu" id="navMenu">
       <ul>
         <li><a href="index.html" class="active-link">Home</a></li>
         <li><a href="uber-uns.html">Über uns</a></li>
@@ -38,22 +46,23 @@
         poster="./assets/img/hero-bg-1.jpg"
       >
         <source src="./assets/videos/rrrrr.mp4" type="video/mp4" />
-        <!-- optional .webm fallback
-        <source src="../assets/videos/hero-bg.webm" type="video/webm" /> -->
+        <!-- optional .webm fallback -->
+        <!-- <source src="./assets/videos/hero-bg.webm" type="video/webm" /> -->
         Ihr Browser unterstützt kein HTML5-Video.
       </video>
     </div>
   
-    <!-- We'll place our text at the bottom middle -->
+    <!-- We'll place our text around the bottom-middle for desktop, 
+         slightly more top for mobile if we want. -->
     <div class="hero__content">
       <h1 class="hero-title">
-        Willkommen bei JobWorkerke.d.o.o
+        Willkommen bei Job Werke d.o.o.
       </h1>
       <p class="hero-subtitle">
         Wir bringen Unternehmer<br />
         und qualifizierte Arbeitskräfte zusammen
       </p>
-      <a href="#section-intro" class="btn-hero">Mehr erfahren</a>
+      <a href="#intro-section" class="btn-hero">Mehr erfahren</a>
     </div>
   </section>
 
@@ -127,7 +136,7 @@
       </div>
       <div class="services-item">
         <img src="./assets/img/53b204a5-1cd3-401c-b055-8a5d2da1c40f.jpg" alt="Service2" />
-        <h4>Beratung & Support</h4>
+        <h4>Beratung &amp; Support</h4>
         <p>
           Unser Team unterstützt Sie, Ihre Anforderungen
           präzise zu definieren und umzusetzen.

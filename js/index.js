@@ -40,4 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // ====== 4) Mobile Hamburger Menu Toggle ======
+  const navToggle = document.getElementById("navToggle");
+  const navMenu = document.getElementById("navMenu");
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("show-menu");
+    });
+  }
 });
