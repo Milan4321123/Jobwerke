@@ -1,0 +1,334 @@
+/* ========== Reset & Base Styles ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  /* We'll use a subtle background that goes from light blue to almost white. */
+  background: linear-gradient(135deg, #eef6ff 0%, #fefeff 100%);
+  color: #333;
+  overflow-x: hidden;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img, video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ========== Navbar ========== */
+.navbar {
+  position: fixed;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  padding: 0.8rem 2rem;
+  background: rgba(238, 246, 255, 0.8);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.navbar__logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+.navbar__logo span {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2e2e2e;
+}
+.navbar__menu ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.navbar__menu a {
+  font-weight: 500;
+  color: #4e4e4e;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+.navbar__menu a:hover,
+.navbar__menu a.active-link {
+  color: #4f2ca4; /* subtle purple accent for hover/active */
+  border-color: #4f2ca4;
+}
+.navbar-scrolled {
+  background: rgba(238, 246, 255, 0.95);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+body::before {
+  content: "";
+  display: block;
+  height: 70px; 
+}
+
+/* ========== Hero (Video) ========== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  color: #fff; /* text over video is white */
+}
+.hero__bg {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+.hero__bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+.hero__overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 0;
+}
+.hero__content {
+  position: absolute;
+  /* No top here, we'll use bottom to anchor at the bottom portion */
+  bottom: 15%;  /* You can adjust this percentage to push it up or down */
+  
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* Provide some side padding or a max-width so it doesn't stretch too wide. */
+  max-width: 600px;
+  padding: 1rem;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Optionally, to ensure text is visible if video is dark or bright, 
+   you could give .hero__content a subtle background or text-shadow. */
+.hero__content h1.hero-title {
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+.hero__content p.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+/* The button styling might remain the same. */
+.btn-hero {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  background: #66C7F4;
+  color: #1D2D45;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-hero:hover {
+  background: #48aedf;
+  color: #fff;
+}
+
+/* ========== Wave Separator ========== */
+.wave-separator {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+}
+.wave-separator svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.wave-separator.flip svg path {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+/* ========== Intro Section ========== */
+.intro-section {
+  padding: 4rem 2rem;
+  background: #f6faff;
+  text-align: center;
+  color: #333;
+}
+.intro-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #2f2f2f;
+}
+.intro-section p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+.intro-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.intro-card {
+  background: #fff;
+  width: 300px;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.intro-card:hover {
+  transform: translateY(-5px);
+}
+.intro-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.intro-card h3 {
+  font-size: 1.2rem;
+  margin: 1rem 1rem 0.5rem;
+  color: #2f2f2f;
+}
+.intro-card p {
+  margin: 0 1rem 1.5rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* ========== Services Section ========== */
+.services {
+  padding: 4rem 2rem;
+  background: #fff;
+  text-align: center;
+  color: #333;
+}
+.services h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.services-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.services-item {
+  background: #f9f9f9;
+  width: 280px;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+.services-item:hover {
+  transform: translateY(-5px);
+}
+.services-item img {
+  height: 160px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+.services-item h4 {
+  margin-bottom: 0.5rem;
+  color: #2f2f2f;
+}
+.services-item p {
+  color: #666;
+  line-height: 1.6;
+}
+.btn-more {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  background: #4f2ca4;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-more:hover {
+  background: #3e2382;
+  color: #fafafa;
+}
+
+/* ========== CTA Section ========== */
+.cta {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #ffffff 0%, #f6faff 100%);
+  color: #333;
+}
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.cta p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+.btn-cta {
+  padding: 0.8rem 1.5rem;
+  background: #4f2ca4;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-cta:hover {
+  background: #3e2382;
+  color: #fafafa;
+}
+
+/* ========== Footer ========== */
+.footer {
+  background: #f6faff;
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #333;
+}
+.footer__text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* ========== Fade In Sections ========== */
+.fade-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
