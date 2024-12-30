@@ -3,84 +3,445 @@
 <head>
   <meta charset="UTF-8" />
   <title>Job Werke d.o.o. – Kontakt</title>
+  <meta 
+    name="description" 
+    content="Kontaktieren Sie Job Werke d.o.o. – Ihr Partner für internationales Recruiting. Schreiben Sie uns eine Nachricht oder vereinbaren Sie einen Termin.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/kontakt.css" />
+
+  <!-- Google Font -->
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" 
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       1) RESET & BASE STYLES
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fafafa;
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      position: relative;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #6e00c2;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    h1, h2, h3 {
+      margin-bottom: 0.8rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* Fade-in for sections */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in-view {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       2) NAVBAR (SLIDE-DOWN ON MOBILE, LIKE “ÜBER UNS” EXAMPLE)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      z-index: 9999;
+    }
+    .navbar__logo img {
+      width: 80px;
+      height: auto;
+      object-fit: contain;
+    }
+    /* Desktop menu */
+    .navbar__menu {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    .navbar__menu a {
+      font-weight: 500;
+      padding: 0.3rem 0;
+      position: relative;
+    }
+    .navbar__menu a.active-link {
+      border-bottom: 2px solid #6e00c2;
+      color: #6e00c2;
+    }
+
+    /* Reserve space below the fixed navbar */
+    body::before {
+      content: "";
+      display: block;
+      height: 70px;
+    }
+
+    /* HAMBURGER TOGGLE (hidden on desktop) */
+    .navbar__toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .navbar__toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* Slide-down effect on mobile screens */
+    @media (max-width: 768px) {
+      .navbar__toggle {
+        display: flex; /* show hamburger icon */
+      }
+      /* Hide menu off-screen (above) by default */
+      .navbar__menu {
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        padding: 1rem 1.5rem;
+        transform: translateY(-130%);
+      }
+      /* Slide down when nav-open is toggled */
+      .navbar__menu.nav-open {
+        transform: translateY(0);
+      }
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       3) HERO SECTION (ANGLED)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .hero-section {
+      position: relative;
+      width: 100%;
+      height: 50vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: -1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      padding: 1rem;
+      color: #fff;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+    .hero-content p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .hero-angled-bottom {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 60px;
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       4) CONTACT INTRO
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .contact-intro {
+      background: #fff;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .contact-intro .intro-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .contact-intro h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .contact-intro p {
+      color: #555;
+      line-height: 1.5;
+    }
+    .contact-intro .highlight {
+      margin-top: 1.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    /* Optional angled separator or straight line */
+    .angled-separator {
+      width: 100%;
+      height: 40px;
+      display: block;
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       5) CONTACT SECTION (INFO & FORM)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .contact-section {
+      background: #f9f9fc;
+      padding: 4rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .contact-info {
+      flex: 1 1 280px;
+      max-width: 400px;
+    }
+    .contact-info h3 {
+      font-size: 1.2rem; 
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    .contact-info p {
+      margin-bottom: 1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .contact-info a {
+      color: #6e00c2;
+    }
+
+    .contact-form-container {
+      flex: 1 1 400px;
+      max-width: 500px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      padding: 2rem;
+    }
+    .contact-form-container h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      color: #333;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-group label {
+      font-size: 0.95rem;
+      color: #333;
+    }
+    .form-group input,
+    .form-group textarea {
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #6e00c2;
+    }
+    .btn-submit {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 0.8rem 1.4rem;
+      background: #6e00c2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-submit:hover {
+      background: #540090;
+    }
+
+    /* APPOINTMENT FIELDS (hidden if not needed) */
+    #appointment-fields {
+      background: #f1f1f1;
+      border-radius: 6px;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-info, .contact-form-container {
+        max-width: 100%;
+      }
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       6) FOOTER
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .footer {
+      background: #e7e9fc;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .footer p {
+      margin-bottom: 0.5rem;
+    }
+  </style>
 </head>
 <body>
-  <!-- ===== NAVBAR ===== -->
-  <header class="navbar" id="mainNavbar">
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar">
     <div class="navbar__logo">
-      <img src="./assets/img/jobwerke-logo.png" alt="Job Werke Logo" />
-      <span>Job Werke d.o.o.</span>
+      <a href="index.html">
+        <img src="assets/img/jobwerke-logo.png" alt="Job Werke d.o.o. Logo">
+      </a>
     </div>
-    <button class="navbar__hamburger" id="hamburgerBtn" aria-label="Menü öffnen">
+    <!-- Hamburger for mobile -->
+    <div class="navbar__toggle" id="mobileToggle">
       <span></span>
       <span></span>
       <span></span>
-    </button>
+    </div>
+
+    <!-- Menu links -->
     <nav class="navbar__menu" id="navbarMenu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="uber-uns.html">Über uns</a></li>
-        <li><a href="dienstleistungen.html">Dienstleistungen</a></li>
-        <li><a href="arbeiten.html">Mit uns arbeiten</a></li>
-        <li><a href="kontakt.html" class="active-link">Kontakt</a></li>
-      </ul>
+      <a href="index.html">Home</a>
+      <a href="uber-uns.html">Über uns</a>
+      <a href="dienstleistungen.html">Dienstleistungen</a>
+      <a href="arbeiten.html">Mit uns arbeiten</a>
+      <a href="kontakt.html" class="active-link">Kontakt</a>
     </nav>
   </header>
 
-  <!-- ===== HERO ===== -->
+  <!-- ========== HERO (Angled) ========== -->
   <section class="hero-section fade-section">
-    <div class="hero-bg" id="parallaxHero">
-      <img src="./assets/img/hero-bg-2.jpg" alt="Kontakt Banner" />
+    <div class="hero-bg">
+      <img src="assets/img/hero-bg-2.jpg" alt="Kontakt Hero Image">
       <div class="hero-overlay"></div>
     </div>
     <div class="hero-content">
       <h1>Kontakt</h1>
-      <p class="subtitle">Lassen Sie uns über Ihr Anliegen sprechen</p>
+      <p>Wir sind für Sie da – melden Sie sich gerne!</p>
     </div>
+    <!-- Optional angled bottom shape -->
     <svg class="hero-angled-bottom" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
       <polygon fill="#ffffff" points="0,10 100,0 100,10"></polygon>
     </svg>
   </section>
 
-  <!-- ===== CONTACT INTRO ===== -->
+  <!-- ========== CONTACT INTRO ========== -->
   <section class="contact-intro fade-section">
     <div class="intro-container">
       <h2>Kontakt aufnehmen</h2>
       <p>
-        Haben Sie Fragen oder möchten Sie mehr über unsere Dienstleistungen erfahren?
-        Wir stehen Ihnen gerne zur Verfügung! Kontaktieren Sie uns telefonisch, per E-Mail
-        oder über unser Kontaktformular.
+        Ob Sie Fragen zu unseren Dienstleistungen haben oder bereits 
+        konkrete Vorstellungen – wir helfen Ihnen gerne weiter. 
+        Rufen Sie uns an, schreiben Sie uns eine E-Mail oder 
+        nutzen Sie unser Kontaktformular.
       </p>
       <p class="highlight">
-        Wir freuen uns darauf, von Ihnen zu hören und gemeinsam den Erfolg Ihres Unternehmens
-        zu gestalten.
+        Gemeinsam finden wir die beste Lösung für Ihren 
+        Personalbedarf und begleiten Sie dabei Schritt für Schritt.
       </p>
     </div>
   </section>
 
-  <!-- ===== ANGLED SEPARATOR ===== -->
+  <!-- Optional angled-separator here if you like -->
   <svg class="angled-separator" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
     <polygon fill="#f9f9fc" points="0,0 100,10 0,10"></polygon>
   </svg>
 
-  <!-- ===== CONTACT SECTION ===== -->
+  <!-- ========== CONTACT SECTION ========== -->
   <section class="contact-section fade-section">
     <!-- LEFT: CONTACT INFO -->
     <div class="contact-info">
       <h3>Adresse</h3>
-      <p>Job-Werke o.o.d.<br/>Industriestraße 27<br/>61381 Friedrichsdorf<br/>Deutschland</p>
+      <p>
+        Job Werke d.o.o.<br/>
+        Industriestraße 27<br/>
+        61381 Friedrichsdorf<br/>
+        Deutschland
+      </p>
+
       <h3>E-Mail</h3>
       <p><a href="mailto:job.werke1@gmail.com">job.werke1@gmail.com</a></p>
+
       <h3>Telefon</h3>
       <p>+35 (51) 360 219</p>
     </div>
 
-    <!-- RIGHT: CONTACT FORM + APPOINTMENT -->
+    <!-- RIGHT: CONTACT FORM -->
     <div class="contact-form-container">
       <h3>Schreiben Sie uns oder Termin vereinbaren</h3>
-
       <form class="contact-form">
         <!-- NAME -->
         <div class="form-group">
@@ -94,7 +455,7 @@
           <input type="email" id="email" placeholder="Ihre E-Mail-Adresse" required />
         </div>
 
-        <!-- RADIO: MESSAGE ONLY vs. SCHEDULE APPOINTMENT -->
+        <!-- RADIO: MESSAGE vs. APPOINTMENT -->
         <div class="form-group">
           <label style="font-weight:600;">Ihr Anliegen</label>
           <div>
@@ -107,8 +468,8 @@
           </div>
         </div>
 
-        <!-- APPOINTMENT FIELDS (Hidden by default, shown if 'appointment' is chosen) -->
-        <div id="appointment-fields" style="display: none;">
+        <!-- APPOINTMENT FIELDS (Hidden by default) -->
+        <div id="appointment-fields" style="display:none;">
           <div class="form-group">
             <label for="terminDate">Gewünschtes Datum</label>
             <input type="date" id="terminDate" />
@@ -125,10 +486,10 @@
           <textarea id="msg" placeholder="Ihre Nachricht..." rows="5" required></textarea>
         </div>
 
-        <!-- HONEYPOT field -->
-        <div style="display: none;">
+        <!-- Honeypot field (hidden) -->
+        <div style="display:none;">
           <label for="hp">Honeypot:</label>
-          <input type="text" id="hp" name="hp" value="" />
+          <input type="text" id="hp" name="hp" />
         </div>
 
         <!-- SUBMIT BUTTON -->
@@ -137,16 +498,52 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- ========== FOOTER ========== -->
   <footer class="footer fade-section">
-    <p class="footer__text">
-      Impressum • Datenschutz • Cookie-Einstellungen
-    </p>
-    <p class="footer__text">
-      &copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.
-    </p>
+    <p>Impressum &bull; Datenschutz &bull; Cookie-Einstellungen</p>
+    <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <script src="./js/kontakt.js"></script>
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++
+       JS FOR MOBILE NAVBAR TOGGLE & FADE-IN
+  ++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <script>
+    // ============ MOBILE NAV TOGGLE ============
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navbarMenu.classList.toggle('nav-open');
+    });
+
+    // ============ FADE-IN (IntersectionObserver) ============
+    const fadeElems = document.querySelectorAll('.fade-section');
+    const fadeOptions = { threshold: 0.1 };
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, fadeOptions);
+    fadeElems.forEach(elem => fadeObserver.observe(elem));
+
+    // ============ APPOINTMENT FIELDS LOGIC ============
+    const radioMessage = document.getElementById('anliegen-message');
+    const radioAppointment = document.getElementById('anliegen-appointment');
+    const appointmentFields = document.getElementById('appointment-fields');
+
+    function toggleAppointmentFields() {
+      if (radioAppointment.checked) {
+        appointmentFields.style.display = 'block';
+      } else {
+        appointmentFields.style.display = 'none';
+      }
+    }
+
+    radioMessage.addEventListener('change', toggleAppointmentFields);
+    radioAppointment.addEventListener('change', toggleAppointmentFields);
+  </script>
 </body>
 </html>

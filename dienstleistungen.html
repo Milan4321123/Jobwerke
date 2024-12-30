@@ -7,12 +7,14 @@
 
   <!-- Example Google Fonts -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
 
   <style>
-    /* ========== RESET & BASE ========== */
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       1) GLOBAL RESET & BASE STYLES
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     * {
       margin: 0; 
       padding: 0; 
@@ -20,136 +22,176 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fafafa;
       color: #333;
-      overflow-x: hidden;
+      background: #fafafa;
       line-height: 1.6;
+      overflow-x: hidden;
       scroll-behavior: smooth;
       position: relative;
     }
     a {
       color: inherit;
       text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #6e00c2;
     }
     img {
       display: block;
       width: 100%;
       height: auto;
     }
+    h1, h2, h3 {
+      margin-bottom: 0.8rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
 
-    /* ========== NAVBAR ========== */
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       2) NAVBAR (WITH HAMBURGER FOR MOBILE)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .navbar {
       position: fixed;
-      top: 0; left: 0; width: 100%;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2rem;
+      top: 0; left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       background: rgba(255, 255, 255, 0.95);
+      padding: 1rem 2rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       z-index: 9999;
-      transition: background 0.3s, box-shadow 0.3s;
     }
     .navbar__logo img {
-      width: 90px;
+      width: 100px;
       object-fit: contain;
     }
+    /* The desktop menu */
     .navbar__menu {
       display: flex;
       gap: 2rem;
+      align-items: center;
+      transition: transform 0.3s ease;
     }
     .navbar__menu a {
       font-weight: 500;
-      position: relative;
       padding: 0.3rem 0;
-      transition: color 0.3s;
     }
-    .navbar__menu a:hover {
-      color: #6e00c2;
+    .navbar__menu a.active {
+      border-bottom: 2px solid #6e00c2;
     }
-    /* Space below the fixed navbar */
+    /* Offset the page content below the fixed navbar */
     body::before {
       content: "";
       display: block;
-      height: 70px; /* approximate navbar height */
+      height: 70px;
     }
 
-    /* ========== HERO / INTRO (CREATIVE) ========== */
-    .services-hero {
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       3) HAMBURGER TOGGLE (MOBILE NAV)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .navbar__toggle {
+      display: none; /* hidden by default (desktop) */
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .navbar__toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* When screen is <= 768px, show hamburger & hide menu by default */
+    @media (max-width: 768px) {
+      .navbar__toggle {
+        display: flex;
+      }
+      .navbar__menu {
+        position: absolute;
+        top: 70px; 
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        padding: 1rem 1.5rem;
+        transform: translateY(-130%); /* hidden above the top */
+      }
+      /* Slide down when .nav-open is toggled */
+      .navbar__menu.nav-open {
+        transform: translateY(0);
+      }
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       4) HERO SECTION (PARALLAX + TYPING)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .hero {
       position: relative;
       width: 100%;
-      min-height: 80vh; 
-      overflow: hidden;
+      min-height: 80vh;
+      background: url('assets/img/u.jpg') center/cover no-repeat;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #fff;
-      /* Optional background image behind gradient overlay: */
-      background: url("assets/img/u.jpg") center/cover no-repeat;
+      overflow: hidden;
     }
-    /* Gradient overlay angled from top-left to bottom-right */
-    .gradient-overlay {
+    /* Dark gradient overlay for readability */
+    .hero::before {
+      content: "";
       position: absolute;
       top: 0; left: 0;
       width: 100%; 
       height: 100%;
       background: linear-gradient(
-        135deg,
-        rgba(110, 0, 194, 0.8) 0%,
-        rgba(143, 24, 199, 0.6) 100%
+        to bottom right,
+        rgba(110, 0, 194, 0.7),
+        rgba(143, 24, 199, 0.6)
       );
       z-index: 0;
     }
     .hero-content {
       position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 1rem;
-      padding-top: 2rem; 
-      padding-bottom: 4rem; /* extra space above wave */
+      z-index: 1; 
+      padding: 2rem 1rem;
+      max-width: 700px;
+      margin: 0 auto;
     }
     .hero-content h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-    }
-    .typing-text {
-      font-size: 1.4rem;
-      color: #ffd700; /* highlight color */
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.4);
     }
     .hero-subtext {
-      font-size: 1.15rem;
-      margin-top: 1rem;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
       margin-bottom: 2rem;
       line-height: 1.4;
     }
+    .typing-text {
+      display: inline-block;
+      font-size: 1.4rem;
+      color: #ffd700;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      margin-bottom: 1rem;
+    }
     .scroll-prompt {
-      position: absolute;
-      bottom: 20px; 
-      left: 50%;
-      transform: translateX(-50%);
+      margin-top: 2rem;
       font-size: 1rem;
       animation: bounce 2s infinite;
-      z-index: 2;
     }
     @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
-      40% { transform: translate(-50%, -8px); }
-      60% { transform: translate(-50%, -4px); }
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
     }
-    /* Decorative wave at bottom of hero */
-    .hero-wave {
-      position: absolute;
-      bottom: 0; 
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjZmZmIiB2aWV3Qm94PSIwIDAgMTQ0MCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMHYxMjBoMTQ0MFY5Mi43NDljLTEzNy43NTIgNDUuNDU1LTI5MC40NTkgNjcuMjY1LTQ0OC42NDQgNjkuMzE5LTIyOC43MzYgMy4xNTctNDUyLjU0NS0xMDMuNjgxLTk5MS4zNTYtMTE1LjA3NEwwIDB6Ii8+PC9zdmc=") 
-        no-repeat center / cover;
-      z-index: 1;
-      opacity: 0.8;
-    }
-    /* Responsive hero adjustments */
     @media (max-width: 768px) {
       .hero-content h1 {
         font-size: 2rem;
@@ -157,204 +199,294 @@
       .typing-text {
         font-size: 1.1rem;
       }
-      .hero-subtext {
-        font-size: 1rem;
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       5) KERNLEISTUNGEN (ALTERNATING LAYOUT)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .kernleistungen {
+      background: #fff;
+      padding: 4rem 1rem;
+    }
+    .kernleistungen .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .kernleistungen .intro-text {
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .kl-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+    .kl-row:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .kl-image-col, .kl-text-col {
+      flex: 1 1 400px; 
+      padding: 1rem;
+    }
+    .kl-image-col img {
+      border-radius: 6px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      display: block;
+    }
+    .kl-text-col h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .kl-text-col p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .kl-text-col .extra-text {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    .kl-text-col .btn-toggle {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      background: #6e00c2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 0.9rem;
+    }
+    .kl-text-col .btn-toggle:hover {
+      background: #540090;
+    }
+    @media (max-width: 900px) {
+      .kl-row {
+        flex-direction: column !important;
+        text-align: left;
+      }
+      .kl-image-col, .kl-text-col {
+        padding: 1rem 0;
       }
     }
 
-    /* ========== FADE-IN SECTIONS ========== */
-    section {
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       6) ANGLED SECTION (INDUSTRIES EXAMPLE)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .angled-section {
       position: relative;
-      padding: 4rem 2rem;
+      padding: 4rem 1rem;
+      background: #f4f8ff; 
+      z-index: 1;
     }
-    .fade-section {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .fade-in-view {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-
-    /* ========== CORE SERVICES (FLIP CARDS) ========== */
-    .core-services {
+    .angled-section::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      left: 0;
+      width: 100%;
+      height: 60px;
       background: #fff;
+      clip-path: polygon(0 0, 100% 100%, 0 100%);
+      z-index: 2;
+    }
+    .angled-section h2 {
       text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
     }
-    .core-services h2 {
-      font-size: 2rem; margin-bottom: 2rem;
-    }
-    .services-grid {
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem; 
-      max-width: 1100px; 
-      margin: 0 auto;
-    }
-    .flip-card {
-      perspective: 1000px; 
-      border-radius: 8px; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      overflow: hidden;
-      transition: transform 0.3s;
-      height: 360px;
-    }
-    .flip-card:hover {
-      transform: scale(1.02);
-    }
-    .flip-card-inner {
-      position: relative; 
-      width: 100%; 
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 0.8s;
-    }
-    .flip-card:hover .flip-card-inner {
-      transform: rotateY(180deg);
-    }
-    .flip-front,
-    .flip-back {
-      position: absolute; 
-      width: 100%; 
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
+    .angled-section p {
       text-align: center;
-      padding: 1.5rem;
-    }
-    .flip-front {
-      background: #f9f9f9;
-    }
-    .flip-front img {
-      width: 60px; margin-bottom: 1rem;
-    }
-    .flip-front h3 {
-      margin-bottom: 0.5rem; color: #333;
-      font-size: 1.2rem;
-    }
-    .flip-front p {
-      font-size: 0.9rem; color: #555; line-height: 1.4;
-    }
-    .flip-back {
-      background: #6e00c2; 
-      color: #fff;
-      transform: rotateY(180deg);
-      padding: 2rem;
-    }
-    .flip-back h4 {
-      margin-bottom: 0.5rem; font-size: 1.1rem;
-    }
-    .flip-back ul {
-      list-style: disc; 
-      padding: 0; 
-      margin: 0.5rem 1rem;
-      text-align: left;
-    }
-    .flip-back ul li {
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-    }
-
-    /* ========== INDUSTRIES FOCUS ========== */
-    .industries {
-      background: #fff;
-      text-align: center;
-    }
-    .industries h2 {
-      margin-bottom: 2rem; font-size: 2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      color: #555;
     }
     .industry-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 2rem;
-      max-width: 1100px; 
+      max-width: 1100px;
       margin: 0 auto;
     }
     .industry-card {
-      background: #fdfdfd;
+      background: #fff;
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2rem;
+      overflow: hidden;
       transition: transform 0.3s;
     }
     .industry-card:hover {
       transform: translateY(-3px);
     }
     .industry-card img {
-      width: 100%; height: 160px; object-fit: cover; 
-      border-radius: 8px; margin-bottom: 1rem;
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
     }
     .industry-card h3 {
-      font-size: 1.2rem; margin-bottom: 0.5rem; color: #333;
+      font-size: 1.2rem;
+      margin: 1rem;
+      color: #333;
     }
     .industry-card p {
-      font-size: 0.95rem; color: #555; line-height: 1.5;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.5;
+      margin: 0 1rem 1.5rem 1rem;
     }
 
-    /* ========== COMPLIANCE & LEGAL ========== */
-    .compliance {
-      background: #f4f4f4;
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       7) COMPLIANCE & LEGAL (Minimal Style)
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .compliance-section {
+      position: relative;
+      padding: 4rem 1rem;
+      background-color: #f4f4f4;
+      overflow: hidden;
+    }
+    .angled-bg {
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 200px;
+      background: #6e00c2;
+      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+      z-index: -1;
+    }
+    .compliance-content {
+      max-width: 1100px;
+      margin: 0 auto;
       text-align: center;
     }
-    .compliance h2 {
-      margin-bottom: 1.5rem; font-size: 2rem;
+    .compliance-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #333;
     }
-    .compliance p {
-      max-width: 800px; margin: 0 auto 2rem; color: #555; line-height: 1.6;
+    .intro-paragraph {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      color: #555;
+      line-height: 1.6;
+      font-size: 1rem;
     }
-    .compliance-logos {
-      display: flex; flex-wrap: wrap; gap: 2rem; 
-      justify-content: center; max-width: 600px; margin: 0 auto;
+    .compliance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
     }
-    .compliance-logos img {
-      width: 100px; height: auto; opacity: 0.8;
-      transition: opacity 0.3s;
-    }
-    .compliance-logos img:hover {
-      opacity: 1;
-    }
-
-    /* ========== ADVANTAGES ========== */
-    .advantages {
+    .compliance-card {
       background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+      padding: 2rem 1.5rem;
+      transition: transform 0.3s;
       text-align: center;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;
+    }
+    .compliance-card:hover {
+      transform: translateY(-4px);
+    }
+    .compliance-card img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    .compliance-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      color: #333;
+    }
+    .compliance-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.4;
+    }
+    @media (max-width: 768px) {
+      .compliance-content h2 {
+        font-size: 1.8rem;
+      }
+      .compliance-card h3 {
+        font-size: 1.1rem;
+      }
+      .compliance-card p {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       8) ADVANTAGES
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    .advantages {
+      background: #f9f9f9;
+      text-align: center;
+      padding: 4rem 1rem;
     }
     .advantages h2 {
-      margin-bottom: 1.5rem; font-size: 2rem;
+      font-size: 2rem; 
+      margin-bottom: 1.5rem;
+    }
+    .advantages p {
+      max-width: 700px; 
+      margin: 0 auto 2rem; 
+      color: #555; 
+      line-height: 1.6;
     }
     .advantage-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem; 
-      max-width: 1000px; margin: 0 auto;
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1000px; 
+      margin: 0 auto;
     }
     .advantage-item {
-      background: #fdfdfd;
+      background: #fff;
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2rem; 
+      padding: 2rem;
       transition: transform 0.3s;
     }
     .advantage-item:hover {
       transform: translateY(-3px);
     }
     .advantage-item h3 {
-      font-size: 1.1rem; margin-bottom: 0.5rem; color: #333;
+      font-size: 1.1rem; 
+      margin-bottom: 0.5rem;
+      color: #333;
     }
     .advantage-item p {
-      font-size: 0.9rem; color: #555; line-height: 1.5;
+      font-size: 0.9rem; 
+      color: #555; 
+      line-height: 1.5;
     }
 
-    /* ========== CASE STUDIES ========== */
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       9) CASE STUDIES
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .case-studies {
-      background: #f4f8ff;
+      background: #fff;
       text-align: center;
+      padding: 4rem 1rem;
     }
     .case-studies h2 {
-      margin-bottom: 2rem; font-size: 2rem;
+      font-size: 2rem;
+      margin-bottom: 2rem;
     }
     .case-grid {
       display: grid; 
@@ -364,63 +496,77 @@
       margin: 0 auto;
     }
     .case-item {
-      background: #fff; 
+      background: #fdfdfd;
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       padding: 2rem;
       transition: transform 0.3s;
+      text-align: left;
     }
     .case-item:hover {
       transform: translateY(-3px);
     }
     .case-item h3 {
-      font-size: 1.1rem; margin-bottom: 0.5rem; color: #333;
+      font-size: 1.1rem; 
+      margin-bottom: 0.5rem; 
+      color: #333;
     }
     .case-item p {
-      font-size: 0.9rem; color: #555; line-height: 1.4;
+      font-size: 0.9rem; 
+      color: #555; 
+      line-height: 1.4;
       margin-bottom: 0.5rem;
     }
     .client-quote {
       font-style: italic; 
-      margin-top: 1rem;
+      margin-top: 1rem; 
       padding-left: 1rem; 
       border-left: 4px solid #6e00c2;
     }
 
-    /* ========== FAQ SECTION ========== */
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       10) FAQ SECTION
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .faq-section {
-      background: #fff;
+      background: #f5f5f5;       
+      padding: 3rem 1rem;
       text-align: center;
     }
     .faq-section h2 {
-      font-size: 2rem; 
+      font-size: 2rem;
       margin-bottom: 2rem;
     }
     .faq-container {
-      max-width: 800px; 
-      margin: 0 auto; 
-      text-align: left;
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
     .faq-item {
-      background: #fdfdfd; 
-      margin-bottom: 1rem;
-      border-radius: 6px; 
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      overflow: hidden;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      overflow: hidden; 
+      transition: box-shadow 0.3s;
+    }
+    .faq-item:hover {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
     }
     .faq-question {
-      padding: 1rem; 
+      padding: 1rem 1rem;
       cursor: pointer;
-      position: relative; 
-      font-weight: 600; 
+      position: relative;
+      font-size: 1.1rem;
+      font-weight: 600;
       color: #333;
     }
     .faq-question::after {
       content: "+";
-      position: absolute; 
-      right: 1rem; 
+      position: absolute;
+      right: 1rem;
       top: 1rem;
-      font-size: 1.2rem; 
+      font-size: 1.3rem;
       color: #6e00c2;
       transition: transform 0.3s;
     }
@@ -429,19 +575,23 @@
       content: "–";
     }
     .faq-answer {
-      padding: 0 1rem 1rem;
-      max-height: 0; 
+      padding: 0 1rem;
+      max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s ease;
-      font-size: 0.95rem; 
-      color: #555; 
+      font-size: 0.95rem;
+      color: #555;
       line-height: 1.5;
+      margin-bottom: 1rem;
+      margin-top: 0;
     }
     .faq-item.active .faq-answer {
       max-height: 200px;
     }
 
-    /* ========== FINAL CTA ========== */
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       11) FINAL CALL-TO-ACTION
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .cta-section {
       background: #6e00c2;
       color: #fff;
@@ -454,24 +604,26 @@
     }
     .cta-section p {
       max-width: 600px; 
-      margin: 0 auto 2rem; 
+      margin: 0 auto 2rem;
       line-height: 1.4;
     }
     .btn-contact {
       display: inline-block;
-      background: #fff; 
+      background: #fff;
       color: #6e00c2;
       padding: 0.8rem 1.4rem;
-      border-radius: 4px; 
+      border-radius: 4px;
       font-weight: 600;
       transition: background 0.3s, color 0.3s;
     }
     .btn-contact:hover {
-      background: #ebebeb; 
+      background: #ebebeb;
       color: #540090;
     }
 
-    /* ========== FOOTER ========== */
+    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       12) FOOTER
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .footer {
       background: #e7e9fc;
       text-align: center;
@@ -482,17 +634,27 @@
     .footer p {
       margin-bottom: 0.5rem;
     }
-
   </style>
 </head>
+
 <body>
 
-  <!-- ========== NAVBAR ========== -->
+  <!-- ========== NAVBAR (WITH HAMBURGER) ========== -->
   <header class="navbar">
     <div class="navbar__logo">
-      <img src="assets/img/jobwerke-logo.png" alt="Job Werke Logo">
+      <a href="index.html">
+        <img src="assets/img/jobwerke-logo.png" alt="Job Werke Logo">
+      </a>
     </div>
-    <nav class="navbar__menu">
+
+    <!-- Hamburger toggle (hidden on desktop, shown on mobile) -->
+    <div class="navbar__toggle" id="mobileToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="navbar__menu" id="navbarMenu">
       <a href="index.html">Home</a>
       <a href="uber-uns.html">Über uns</a>
       <a href="dienstleistungen.html" class="active">Dienstleistungen</a>
@@ -501,386 +663,258 @@
     </nav>
   </header>
 
-  <!-- ========== HERO / INTRO (CREATIVE) ========== -->
-  <section class="services-hero">
-    <!-- Gradient overlay on top of the background image -->
-    <div class="gradient-overlay"></div>
-
-    <!-- Container for hero content -->
+  <!-- ========== HERO (PARALLAX + TYPED TEXT) ========== -->
+  <section class="hero" id="heroSection">
     <div class="hero-content">
       <h1>Dienstleistungen</h1>
-      <span class="typing-text" id="typingText"></span>
-      <!-- Optional subtext line -->
+      <div class="typing-text" id="typingText"></div>
       <p class="hero-subtext">
-        Erleben Sie unsere internationalen Lösungen, 
-        maßgeschneidert für Ihren Erfolg.
+        Erleben Sie maßgeschneiderte Lösungen – von der Rekrutierung bis zum Onboarding.
       </p>
-      <div class="scroll-prompt">▼ Scroll down ▼</div>
+      <div class="scroll-prompt">▼ Scroll Down ▼</div>
     </div>
-
-    <!-- Decorative wave at bottom -->
-    <div class="hero-wave"></div>
   </section>
 
-  <!-- ========== KERNLEISTUNGEN – ALTERNIERENDES LAYOUT ========== -->
-  <html lang="de">
-  <head>
-    <meta charset="UTF-8">
-    <title>Kernleistungen – Alternierendes Layout</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- (Fonts & resets are already included above) -->
-    <style>
-      /* Additional styles specifically for the split-row layout */
-      .section-wrapper {
-        padding: 4rem 1rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .section-wrapper h2 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-      }
-      .section-wrapper p {
-        font-size: 1rem;
-        color: #555;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-      }
-      .split-row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        margin-bottom: 4rem;
-        opacity: 0; 
-        transform: translateX(-40px); 
-      }
-      .split-row.show {
-        opacity: 1;
-        transform: translateX(0);
-        transition: opacity 1s ease, transform 1s ease;
-      }
-      .split-row:nth-child(even) {
-        background: #f4f8ff;
-        border-radius: 8px; 
-        padding: 2rem 1rem;
-        flex-direction: row-reverse; /* text-col on the right, image-col on the left */
-      }
-      .text-col, .image-col {
-        flex: 1 1 500px;
-        min-width: 300px;
-        padding: 1.5rem;
-      }
-      .text-col h3 {
-        font-size: 1.6rem;
-        margin-bottom: 1rem;
-        color: #333;
-      }
-      .text-col .show-more {
-        display: none;
-        margin-top: 0.5rem;
-      }
-      .image-col img {
-        max-width: 600px; 
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-      }
-      .btn-toggle {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-        font-weight: 500;
-        border: none;
-        border-radius: 4px;
-        background-color: #6e00c2;
-        color: #fff;
-        cursor: pointer;
-        transition: background 0.3s;
-      }
-      .btn-toggle:hover {
-        background-color: #540090;
-      }
-      @media (max-width: 768px) {
-        .split-row {
-          flex-direction: column !important;
-          text-align: left;
-        }
-        .image-col img {
-          max-width: 100%;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <section class="section-wrapper">
-      <h2>Kernleistungen</h2>
-      <p style="max-width:700px;">
-        Wir bieten mehrere Leistungsbereiche – von Personalvermittlung bis Onboarding-Services.
-        Lernen Sie hier unsere Hauptangebote kennen. Für einen Überblick über unsere 
-        Firmenphilosophie besuchen Sie gerne 
-        <strong><a href="uber-uns.html" style="color: #333;">Über uns</a></strong>.
-      </p>
 
-      <!-- Row 1 -->
-      <div class="split-row">
-        <div class="text-col">
-          <h3>Umfassende Beratung ab dem ersten Kontakt</h3>
-          <p>
-            In unserem ersten Gespräch besprechen wir ausführlich Ihre aktuellen 
-            Herausforderungen und langfristigen Ziele. Dabei spielt es keine Rolle, 
-            ob Sie gerade erst Personal aufbauen oder bestimmte Fachkräfte suchen.
-          </p>
-          <p class="show-more">
-            Unser Ansatz ist praxisorientiert: Wir teilen unsere Erfahrungen aus
-            zahlreichen Branchen und geben Ihnen einen transparenten Einblick in
-            unsere Prozesse. So wissen Sie schon vorab, welche Schritte bis zum
-            Einsatz der neuen Mitarbeiter anfallen.
-          </p>
-          <button class="btn-toggle">Mehr anzeigen</button>
-        </div>
-        <div class="image-col">
-          <img src="assets/img/a1be.jpg" alt="Beratungsgespräch">
-        </div>
+  <!-- ========== KERNLEISTUNGEN ========== -->
+  <section class="kernleistungen" id="kernleistungenSection">
+    <h2 class="section-title">Unsere Kernleistungen</h2>
+    <p class="intro-text">
+      Wir unterstützen Sie von der ersten Beratung bis hin zur Integration neuer Mitarbeiter. 
+      Unsere Expertise umfasst Personalvermittlung, rechtliche Formalitäten und 
+      globales Recruiting. Erfahren Sie mehr in den folgenden Bereichen oder besuchen Sie 
+      <strong><a href="uber-uns.html">Über uns</a></strong> für weitere Einblicke.
+    </p>
+
+    <!-- Row 1 -->
+    <div class="kl-row">
+      <div class="kl-image-col">
+        <img src="assets/img/a1be.jpg" alt="Beratungsgespräch">
       </div>
-
-      <!-- Row 2 -->
-      <div class="split-row">
-        <div class="text-col">
-          <h3>Globales Netzwerk & Rekrutierungsprozess</h3>
-          <p>
-            Unser internationales Netzwerk deckt zahlreiche Länder ab. Gemeinsam 
-            mit lokalen Partnern finden wir motivierte Fachkräfte, die genau 
-            Ihren Anforderungen entsprechen.
-          </p>
-          <p class="show-more">
-            Die Vorauswahl treffen unsere erfahrenen Recruiter, die neben 
-            fachlichen Qualifikationen auch Soft Skills prüfen. Bei Bedarf 
-            können Sie sich in Interviews oder Online-Tests einbringen, 
-            um sicherzustellen, dass alles passt.
-          </p>
-          <button class="btn-toggle">Mehr anzeigen</button>
-        </div>
-        <div class="image-col">
-          <img src="assets/img/internationlges.jpg" alt="Internationales Netzwerk">
-        </div>
+      <div class="kl-text-col">
+        <h3>Strategische Beratung</h3>
+        <p>
+          Im ersten Schritt lernen wir Ihre Ziele, Wünsche und Herausforderungen genau kennen. 
+          Gemeinsam klären wir, welche Personalstruktur Sie aktuell benötigen oder zukünftig 
+          aufbauen möchten.
+        </p>
+        <p class="extra-text">
+          Hierbei profitieren Sie von unserem praxisorientierten Ansatz, fundiert durch jahrelange 
+          Erfahrung in verschiedenen Branchen. So erhalten Sie bereits zu Beginn eine klare Roadmap.
+        </p>
+        <button class="btn-toggle">Mehr anzeigen</button>
       </div>
+    </div>
 
-      <!-- Row 3 -->
-      <div class="split-row">
-        <div class="text-col">
-          <h3>Rechtliche Sicherheit & Formalitäten</h3>
-          <p>
-            A1-Bescheinigungen, EU-Richtlinien und Visa-Bestimmungen – 
-            all diese Faktoren können Personalgewinnung komplex machen.
-          </p>
-          <p class="show-more">
-            Wir übernehmen alle bürokratischen Prozesse, damit Sie sich
-            auf Ihr Kerngeschäft konzentrieren können. Ob 
-            Arbeitnehmerüberlassung, direkte Vermittlung oder hybride 
-            Modelle – wir stehen Ihnen zur Seite.
-          </p>
-          <button class="btn-toggle">Mehr anzeigen</button>
-        </div>
-        <div class="image-col">
-          <img src="assets/img/kernlseitung.jpg" alt="Rechtliche Sicherheit">
-        </div>
+    <!-- Row 2 -->
+    <div class="kl-row">
+      <div class="kl-image-col">
+        <img src="assets/img/internationlges.jpg" alt="Internationales Netzwerk">
       </div>
+      <div class="kl-text-col">
+        <h3>Globales Recruiting</h3>
+        <p>
+          Dank eines internationalen Netzwerks finden wir passgenaue Fachkräfte. Gemeinsam 
+          mit lokalen Partnern stellen wir sicher, dass sowohl Qualifikation als auch 
+          Soft Skills stimmen.
+        </p>
+        <p class="extra-text">
+          Unsere Recruiter organisieren Video-Interviews, Eignungstests oder 
+          persönliche Vorstellungsgespräche, damit Sie die Kandidaten 
+          vorab kennenlernen und mitentscheiden können.
+        </p>
+        <button class="btn-toggle">Mehr anzeigen</button>
+      </div>
+    </div>
 
-      <!-- Add more .split-row as needed -->
+    <!-- Row 3 -->
+    <div class="kl-row">
+      <div class="kl-image-col">
+        <img src="assets/img/kernlseitung.jpg" alt="Rechtliche Sicherheit">
+      </div>
+      <div class="kl-text-col">
+        <h3>Rechtliche Formalitäten &amp; Sicherheit</h3>
+        <p>
+          Visa-Anträge, A1-Bescheinigungen und EU-Regularien – wir begleiten Sie durch 
+          sämtliche rechtlichen Anforderungen.
+        </p>
+        <p class="extra-text">
+          Unser Team ist mit den neuesten Bestimmungen vertraut und kümmert sich um 
+          Vertragserstellung, Arbeitserlaubnisse und sonstige Bürokratie. 
+          So bleiben Sie rechtlich auf der sicheren Seite.
+        </p>
+        <button class="btn-toggle">Mehr anzeigen</button>
+      </div>
+    </div>
+  </section>
 
-    </section>
 
-    <script>
-      // ========== SHOW MORE / SHOW LESS ==========
-      const toggleButtons = document.querySelectorAll('.btn-toggle');
-      toggleButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const textCol = btn.parentElement;
-          const showMorePara = textCol.querySelector('.show-more');
-  
-          if (showMorePara.style.display === 'block') {
-            showMorePara.style.display = 'none';
-            btn.textContent = 'Mehr anzeigen';
-          } else {
-            showMorePara.style.display = 'block';
-            btn.textContent = 'Weniger anzeigen';
-          }
-        });
-      });
-
-      // ========== FADE-IN & SLIDE-IN ON SCROLL ==========
-      const rows = document.querySelectorAll('.split-row');
-      const rowOptions = { threshold: 0.1 };
-      const rowObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, rowOptions);
-  
-      rows.forEach(row => {
-        rowObserver.observe(row);
-      });
-    </script>
-  </body>
-  </html>
-
-  <!-- ========== INDUSTRIES FOCUS ========== -->
-  <section class="industries fade-section">
+  <!-- ========== ANGLED SECTION (INDUSTRIES) ========== -->
+  <section class="angled-section" id="industriesSection">
     <h2>Branchen im Fokus</h2>
-    <p style="max-width:700px; margin:0 auto 2rem; color:#555;">
-      Wir setzen unser globales Netzwerk in zahlreichen Branchen ein – 
-      ob Bau, Gastronomie, Pflege oder andere Bereiche. 
-      Werfen Sie einen Blick auf einige Beispiele.
+    <p>
+      Ob Bau, Gastronomie oder IT – wir vermitteln weltweit motivierte Talente 
+      in verschiedenen Branchen. Hier einige Beispiele.
     </p>
     <div class="industry-grid">
+      <!-- Cards ... -->
       <div class="industry-card">
-        <img src="assets/img/6e43835c-4060-4962-a739-4177c972dbde.jpg" alt="Baugewerbe">
-        <h3>Baugewerbe & Logistik</h3>
-        <p>Vom Helfer bis zum Fachmann – wir decken Ihren Bedarf in Bau und Logistik.</p>
+        <img src="assets/img/p.jpg" alt="Baugewerbe">
+        <h3>Baugewerbe &amp; Logistik</h3>
+        <p>Vom Helfer bis zum Fachmann: Unser Netzwerk deckt alle Qualifikationen ab.</p>
       </div>
       <div class="industry-card">
         <img src="assets/img/8ab7c141-3b70-4d16-b0af-1784894ec3c9.jpg" alt="Gastronomie">
-        <h3>Gastronomie & Hotellerie</h3>
-        <p>Servicepersonal, Köche, Housekeeping und mehr – motiviert und zuverlässig.</p>
+        <h3>Gastronomie &amp; Hotellerie</h3>
+        <p>Von Servicepersonal über Köche bis hin zu Housekeeping – wir finden passende Teams.</p>
       </div>
       <div class="industry-card">
         <img src="assets/img/53b204a5-1cd3-401c-b055-8a5d2da1c40f.jpg" alt="Pflege">
-        <h3>Landwirtschaft & Pflege</h3>
-        <p>Pflegehelfer, Erntehilfen, Saisonpersonal – wir bringen die richtigen Leute zu Ihnen.</p>
+        <h3>Landwirtschaft &amp; Pflege</h3>
+        <p>Wir vermitteln nicht nur Erntehelfer, sondern auch qualifizierte Pflegekräfte.</p>
       </div>
       <div class="industry-card">
         <img src="assets/img/services-placeholder.jpg" alt="Weitere Branchen">
-        <h3>Und mehr!</h3>
-        <p>IT, Produktion, Einzelhandel – sprechen Sie uns an, wir helfen gern weiter.</p>
+        <h3>... und mehr!</h3>
+        <p>IT, Einzelhandel, Produktion &amp; mehr: Fragen Sie einfach an, wir helfen gern.</p>
       </div>
     </div>
   </section>
 
   <!-- ========== COMPLIANCE & LEGAL ========== -->
-  <section class="compliance fade-section">
-    <h2>Rechtliche Sicherheit</h2>
-    <p>
-      Von Arbeitsverträgen bis A1-Bescheinigung – wir sorgen für 
-      einen rechtssicheren Ablauf. ISO-Standards und EU-Regularien 
-      sind fest in unseren Prozessen verankert, damit Sie sich 
-      auf Ihr Kerngeschäft konzentrieren können.
-    </p>
-    <div class="compliance-logos">
-      <img src="assets/img/vertrag.gif" alt="ISO-Zertifikat">
-      <img src="assets/img/berietstellung.gif" alt="EU Compliance">
-      <img src="assets/img/counsel.gif" alt="A1 Certificate">
+  <section class="compliance-section">
+    <div class="angled-bg"></div>
+    <div class="compliance-content">
+      <h2>Rechtliche Sicherheit</h2>
+      <p class="intro-paragraph">
+        Wir legen größten Wert auf transparente und konforme Prozesse. 
+        Unsere Erfahrung im Umgang mit A1-Bescheinigungen, EU-Richtlinien 
+        und arbeitsrechtlichen Bestimmungen schützt Ihr Unternehmen 
+        vor unliebsamen Überraschungen.
+      </p>
+  
+      <div class="compliance-grid">
+        <div class="compliance-card">
+          <img src="assets/img/2mVW.gif" alt="Icon">
+          <h3>Gesetzeskonform</h3>
+          <p>
+            Wir behalten sämtliche EU-Regularien stets im Blick und 
+            aktualisieren unsere Prozesse kontinuierlich – damit Sie 
+            rechtlich immer auf der sicheren Seite stehen.
+          </p>
+        </div>
+        <div class="compliance-card">
+          <img src="assets/img/7LDs.gif" alt="Icon">
+          <h3>A1 &amp; Vertragserstellung</h3>
+          <p>
+            Von Arbeitsverträgen bis hin zu A1-Bescheinigungen – wir 
+            kümmern uns um alle Formalitäten, sodass Sie sich auf Ihr 
+            Kerngeschäft konzentrieren können.
+          </p>
+        </div>
+        <div class="compliance-card">
+          <img src="assets/img/gif" alt="Icon">
+          <h3>Internationale Standards</h3>
+          <p>
+            Unsere Abläufe sind ISO-konform und weltweit vernetzt – 
+            perfekt für Unternehmen, die grenzüberschreitend agieren 
+            möchten.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ========== ADVANTAGES ========== -->
-  <section class="advantages fade-section">
+  <section class="advantages" id="advantagesSection">
     <h2>Ihre Vorteile</h2>
-    <p style="max-width:700px; margin:0 auto 2rem; color:#555;">
-      Durch unsere jahrelange Erfahrung und internationale Vernetzung 
-      bieten wir Ihnen zahlreiche Vorzüge – hier ein kurzer Überblick.
+    <p>
+      Mit unseren Services sparen Sie Zeit und Ressourcen, bleiben 
+      flexibel und profitieren von unserer Erfahrung auf internationalem Parkett.
     </p>
     <div class="advantage-grid">
       <div class="advantage-item">
         <h3>Minimaler Aufwand</h3>
-        <p>Wir übernehmen Rekrutierung und Bürokratie, 
-           während Sie Zeit und Ressourcen sparen.</p>
+        <p>Wir übernehmen Rekrutierung, Formalitäten &amp; Onboarding für Sie.</p>
       </div>
       <div class="advantage-item">
-        <h3>Flexibel & Skalierbar</h3>
-        <p>Ob saisonale Schwankungen oder Projektspitzen – 
-           wir reagieren schnell auf Ihren Personalbedarf.</p>
+        <h3>Hohe Flexibilität</h3>
+        <p>Personalbedarf schwankt? Wir sorgen für Skalierbarkeit nach Ihren Anforderungen.</p>
       </div>
       <div class="advantage-item">
-        <h3>Diversität & Innovation</h3>
-        <p>Multikulturelle Teams bringen neue Perspektiven und 
-           fördern Kreativität in Ihrem Unternehmen.</p>
+        <h3>Neue Perspektiven</h3>
+        <p>Internationale Teams bringen frische Ideen und Innovationskraft.</p>
       </div>
       <div class="advantage-item">
-        <h3>Rechtssicherheit</h3>
-        <p>EU-konforme Prozesse, A1-Bescheinigung, ISO – 
-           wir halten alles auf dem neuesten Stand.</p>
+        <h3>Rechtliche Sicherheit</h3>
+        <p>Wir bleiben up-to-date bei EU-Bestimmungen, A1-Bescheinigung &amp; mehr.</p>
       </div>
     </div>
   </section>
 
   <!-- ========== CASE STUDIES ========== -->
-  <section class="case-studies fade-section">
+  <section class="case-studies" id="caseStudiesSection">
     <h2>Erfolgsbeispiele</h2>
     <div class="case-grid">
       <div class="case-item">
-        <h3>Case Study: Logistikzentrum in Berlin</h3>
-        <p>Ein Logistikunternehmen benötigte 15 Fachkräfte binnen weniger Wochen. 
-           Durch unser globales Netzwerk stellten wir schnell passendes Personal bereit.</p>
-        <p class="client-quote">“Professionell, zügig und stets transparent – 
-           wir würden Job Werke jederzeit wieder wählen.” 
-           – Teamleiter Schneider</p>
+        <h3>Logistikzentrum in Berlin</h3>
+        <p>15 Fachkräfte wurden innerhalb weniger Wochen bereitgestellt. Effiziente Abläufe &amp; top-qualifiziertes Personal.</p>
+        <p class="client-quote">“Zuverlässig und schnell – wir würden Job Werke jederzeit wieder wählen.” – Teamleiter Schneider</p>
       </div>
       <div class="case-item">
-        <h3>Case Study: Hotel-Neustart</h3>
-        <p>Service, Küche, Housekeeping – für eine Neueröffnung rekrutierten 
-           wir binnen kürzester Zeit motivierte Mitarbeiter.</p>
-        <p class="client-quote">“Ohne Job Werke hätten wir nicht so rasch 
-           den Betrieb aufnehmen können!” – Hoteldirektorin Krause</p>
+        <h3>Hotel-Neueröffnung</h3>
+        <p>Schnelle Rekrutierung von Service-, Küchen- und Housekeeping-Personal. Nahtloser Start zum Eröffnungstag.</p>
+        <p class="client-quote">“Ohne Job Werke hätten wir nicht so reibungslos eröffnen können!” – Hoteldirektorin Krause</p>
       </div>
       <div class="case-item">
-        <h3>Case Study: Pflegeheim-Erweiterung</h3>
-        <p>Eine Pflegekette benötigte zusätzliche Pflegehelfer und 
-           fand über uns schnell qualifizierte Kräfte aus Nepal.</p>
-        <p class="client-quote">“Endlich Entlastung für unser Personal. 
-           Unsere Bewohner sind begeistert von den neuen Mitarbeitern.” 
-           – Heimleiter Vogel</p>
+        <h3>Pflegeheim-Erweiterung</h3>
+        <p>Pflegekräfte aus Nepal mit hoher Motivation und passenden Sprachkenntnissen. Entlastung des bestehenden Teams.</p>
+        <p class="client-quote">“Unsere Bewohner sind sehr zufrieden – top Integration!” – Heimleiter Vogel</p>
       </div>
     </div>
   </section>
 
   <!-- ========== FAQ SECTION ========== -->
-  <section class="faq-section fade-section">
-    <h2>Häufige Fragen (FAQ)</h2>
+  <section class="faq-section">
+    <h2 class="faq-heading">Häufige Fragen (FAQ)</h2>
     <div class="faq-container">
+      <!-- FAQ Item #1 -->
       <div class="faq-item">
-        <div class="faq-question">Wie lange dauert die Vermittlung?</div>
+        <h3 class="faq-question">Wie lange dauert die Vermittlung?</h3>
         <div class="faq-answer">
-          <p>In der Regel 2–4 Wochen, abhängig von Qualifikationen und 
-             Formalitäten. Wir halten Sie stets auf dem Laufenden.</p>
+          <p>Je nach Qualifikation und Herkunftsland zwischen 2 und 6 Wochen. Wir halten Sie jederzeit auf dem Laufenden.</p>
         </div>
       </div>
+      <!-- FAQ Item #2 -->
       <div class="faq-item">
-        <div class="faq-question">Kann ich Mitarbeiter nach einer Zeit übernehmen?</div>
+        <h3 class="faq-question">Kann ich die Mitarbeiter später übernehmen?</h3>
         <div class="faq-answer">
-          <p>Ja, ein Großteil unserer Kunden übernimmt unser Personal 
-             langfristig. Wir beraten Sie gern zu allen Möglichkeiten.</p>
+          <p>Selbstverständlich. Viele Kunden entscheiden sich für eine Übernahme, sobald sich die Mitarbeiter bewährt haben.</p>
         </div>
       </div>
+      <!-- FAQ Item #3 -->
       <div class="faq-item">
-        <div class="faq-question">Welche Kosten fallen an?</div>
+        <h3 class="faq-question">Wie sieht das Onboarding aus?</h3>
         <div class="faq-answer">
-          <p>Die Kosten richten sich nach Ihrem Bedarf und der Vertragsart. 
-             Kontaktieren Sie uns für ein individuelles Angebot.</p>
+          <p>Wir begleiten Sie bei der Einarbeitung und unterstützen sowohl Arbeitgeber als auch Mitarbeiter bei der Eingliederung.</p>
         </div>
       </div>
+      <!-- FAQ Item #4 -->
       <div class="faq-item">
-        <div class="faq-question">Wie gestaltet sich das Onboarding?</div>
+        <h3 class="faq-question">Was kostet das Ganze?</h3>
         <div class="faq-answer">
-          <p>Wir bieten Unterstützung bei der Einarbeitung und bei 
-             Bedarf kulturelle Trainings. Mehr dazu erfahren Sie 
-             unter <strong><a href="arbeiten.html">Mit uns arbeiten</a></strong>.</p>
+          <p>Die Kosten richten sich nach der Vertragsart und der benötigten Personalanzahl. Kontaktieren Sie uns für ein individuelles Angebot.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== FINAL CTA ========== -->
-  <section class="cta-section fade-section">
-    <h2>Bereit loszulegen?</h2>
+  <!-- ========== FINAL CTA SECTION ========== -->
+  <section class="cta-section" id="ctaSection">
+    <h2>Bereit für den nächsten Schritt?</h2>
     <p>
-      Kontaktieren Sie uns und erfahren Sie, wie wir Ihr Unternehmen mit 
-      qualifizierten Fachkräften stärken können. Möchten Sie noch mehr Einblick 
-      in unsere Philosophie und Kultur? <strong><a href="uber-uns.html" style="color:#fff;">Besuchen Sie Über uns</a></strong> 
-      oder informieren Sie sich darüber, <strong><a href="arbeiten.html" style="color:#fff;">wie unsere Zusammenarbeit</a></strong> 
-      konkret abläuft.
+      Kontaktieren Sie uns und erfahren Sie, wie wir Ihr Team mit hochmotivierten Fachkräften 
+      unterstützen können. Lassen Sie uns gemeinsam Ihre Zukunft gestalten.
     </p>
     <a href="kontakt.html" class="btn-contact">Termin vereinbaren</a>
   </section>
@@ -891,8 +925,18 @@
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- ========== JS FOR TYPING, FADE-IN, FAQ TOGGLE ========== -->
+  <!-- ++++++++++++++++++++++++++++++++++++++++
+       SCRIPTS (TYPING, NAV TOGGLE, FAQ, ETC.)
+  ++++++++++++++++++++++++++++++++++++++++++ -->
   <script>
+    // ====== MOBILE NAV TOGGLE ======
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navbarMenu.classList.toggle('nav-open');
+    });
+
     // ====== TYPING TEXT EFFECT ======
     const textToType = [
       "Schnelle Lösungen.",
@@ -905,7 +949,7 @@
     let charIndex = 0;
     let currentText = textToType[textIndex];
     let isDeleting = false;
-    let delay = 100;
+    let delay = 120;
 
     function typeEffect() {
       if (!isDeleting && charIndex < currentText.length) {
@@ -915,10 +959,9 @@
       } else if (isDeleting && charIndex > 0) {
         typingTextEl.textContent = currentText.substring(0, charIndex - 1);
         charIndex--;
-        setTimeout(typeEffect, 50);
+        setTimeout(typeEffect, 40);
       } else {
         if (!isDeleting && charIndex === currentText.length) {
-          // Pause before deleting
           setTimeout(() => {
             isDeleting = true;
             typeEffect();
@@ -933,18 +976,20 @@
     }
     typeEffect();
 
-    // ====== FADE-IN ON SCROLL (IntersectionObserver) ======
-    const fadeSections = document.querySelectorAll(".fade-section");
-    const fadeOptions = { threshold: 0.1 };
-    const fadeObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in-view");
-          obs.unobserve(entry.target);
+    // ====== SHOW MORE/LESS IN KERNLEISTUNGEN ======
+    const toggleBtns = document.querySelectorAll('.kl-text-col .btn-toggle');
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const extraText = btn.parentElement.querySelector('.extra-text');
+        if (extraText.style.display === 'block') {
+          extraText.style.display = 'none';
+          btn.textContent = 'Mehr anzeigen';
+        } else {
+          extraText.style.display = 'block';
+          btn.textContent = 'Weniger anzeigen';
         }
       });
-    }, fadeOptions);
-    fadeSections.forEach(sec => fadeObserver.observe(sec));
+    });
 
     // ====== FAQ TOGGLE ======
     const faqItems = document.querySelectorAll(".faq-item");

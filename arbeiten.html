@@ -2,20 +2,26 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Mit uns arbeiten – Job Werke d.o.o.</title>
+  <title>Mit uns arbeiten – Job Werke d.o.o. | Internationale Personal-Lösungen</title>
+  <meta
+    name="description"
+    content="Erfahren Sie, wie die Zusammenarbeit mit Job Werke d.o.o. funktioniert. Von Beratung bis Onboarding – wir begleiten Sie bei jedem Schritt mit unserem globalen Netzwerk."
+  />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Example Google Font -->
+  <!-- Google Font -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
 
   <style>
-    /* ========== RESET & BASE ========== */
+    /****************************************
+     1) RESET & BASE STYLES
+    *****************************************/
     * {
-      margin: 0; 
-      padding: 0; 
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
     body {
@@ -39,45 +45,111 @@
       width: 100%;
       height: auto;
     }
+    h1, h2, h3 {
+      margin-bottom: 0.8rem;
+    }
+    p {
+      margin-bottom: 1rem;
+    }
 
-    /* ========== NAVBAR ========== */
+    /****************************************
+     2) NAVBAR (WITH HAMBURGER)
+    *****************************************/
     .navbar {
       position: fixed;
-      top: 0; left: 0; width: 100%;
-      display: flex; 
-      align-items: center; 
+      top: 0; left: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
       background: rgba(255, 255, 255, 0.95);
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       z-index: 9999;
     }
-    .navbar__logo img {
-      width: 90px; 
+    .navbar__logo a img {
+      width: 90px;
       object-fit: contain;
+      transition: transform 0.3s;
     }
+    .navbar__logo a img:hover {
+      transform: scale(1.05);
+    }
+    /* Desktop menu */
     .navbar__menu {
-      display: flex; 
+      display: flex;
       gap: 2rem;
+      align-items: center;
+    }
+    .navbar__menu a {
+      font-weight: 500;
+      position: relative;
+      padding: 0.3rem 0;
+    }
+    .navbar__menu a.active {
+      border-bottom: 2px solid #6e00c2;
     }
 
-    /* Offset page content so it doesn't hide behind navbar */
+    /* Reserve space below the fixed navbar */
     body::before {
       content: "";
       display: block;
-      height: 70px; /* approximate navbar height */
+      height: 70px;
     }
 
-    /* ========== HERO (CREATIVE) ========== */
+    /* Hamburger toggle (hidden by default) */
+    .navbar__toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+    .navbar__toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /****************************************
+     3) MOBILE NAV STYLES
+    *****************************************/
+    @media (max-width: 768px) {
+      /* Show hamburger toggle, hide normal menu by default */
+      .navbar__toggle {
+        display: flex;
+      }
+      .navbar__menu {
+        position: absolute;
+        top: 70px; 
+        left: 0; 
+        width: 100%;
+        flex-direction: column;
+        gap: 1rem;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        padding: 1rem 1.5rem;
+        transform: translateY(-130%);
+        transition: transform 0.3s ease;
+      }
+      .navbar__menu.nav-open {
+        transform: translateY(0);
+      }
+    }
+
+    /****************************************
+     4) HERO SECTION
+    *****************************************/
     .hero {
       position: relative;
       width: 100%;
-      min-height: 85vh; /* slightly taller hero */
+      min-height: 85vh;
       background: url("assets/img/uii.jpg") center/cover no-repeat;
-      display: flex; 
-      align-items: center; 
+      display: flex;
+      align-items: center;
       justify-content: center;
-      text-align: center; 
+      text-align: center;
       color: #fff;
       overflow: hidden;
     }
@@ -85,21 +157,19 @@
     .hero::before {
       content: "";
       position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%; 
+      top: 0; left: 0;
+      width: 100%;
       height: 100%;
       background: linear-gradient(
         135deg,
-        rgba(110, 0, 194, 0.7) 0%,
-        rgba(150, 0, 220, 0.5) 50%,
-        rgba(183, 42, 234, 0.5) 100%
+        rgba(110, 0, 194, 0.7),
+        rgba(150, 0, 220, 0.5),
+        rgba(183, 42, 234, 0.5)
       );
       z-index: 1;
       transform-origin: top left;
-      transform: skewY(-3deg); /* diagonal angle */
+      transform: skewY(-3deg);
     }
-    /* Actual hero content above the overlay */
     .hero-content {
       position: relative;
       z-index: 2;
@@ -115,21 +185,30 @@
       font-size: 1.15rem;
       line-height: 1.4;
     }
-    /* Decorative wave at the bottom of hero */
+    /* Decorative wave at bottom */
     .hero-wave {
       position: absolute;
-      bottom: 0; 
-      left: 0;
+      bottom: 0; left: 0;
       width: 100%;
       height: 120px;
-      background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTQ0MCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTAgMGgxNDR2OTIuNzQ5QzMwMC44MDMgMTM3LjIxNyA1Ny41NyAxMjAuNDU3IDcwMCAxMTkuNzE0YzIwMi4xNy0uNzE1IDQwMy4wMTUgLTMuODkzIDcwMC0xMS44NzVWMTIwSDB6Ii8+PC9zdmc+") 
+      background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTQ0MCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTAgMGgxNDR2OTIuNzQ5QzMwMC44MDMgMTM3LjIxNyA1Ny41NyAxMjAuNDU3IDcwMCAxMTkuNzE0YzIwMi4xNy0uNzE1IDQwMy4wMTUgLTMuODkzIDcwMC0xMS44NzVWMTIwSDB6Ii8+PC9zdmc=")
         no-repeat center / cover;
       z-index: 2;
       opacity: 0.9;
-      transform: translateY(1px); /* small shift to hide seam */
+      transform: translateY(1px);
+    }
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
+      }
     }
 
-    /* ========== SPLIT SECTIONS ========== */
+    /****************************************
+     5) SPLIT SECTIONS
+    *****************************************/
     .split-section {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -140,7 +219,7 @@
       align-items: center;
     }
     .split-section:nth-of-type(even) {
-      background: #f4f8ff; /* slight background color for alternation */
+      background: #f4f8ff;
     }
     .text-area {
       padding: 1rem;
@@ -173,22 +252,33 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
 
-    /* ========== ROLES (AUFGABENVERTEILUNG) ========== */
+    @media (max-width: 768px) {
+      .split-section {
+        grid-template-columns: 1fr;
+      }
+      .split-section .image-area {
+        margin-top: 1rem;
+      }
+    }
+
+    /****************************************
+     6) ROLES SECTION
+    *****************************************/
     .roles {
       background: #fff;
       padding: 4rem 1rem;
-    }
-    .roles h2 {
-      font-size: 2rem; 
-      margin-bottom: 1.5rem;
       text-align: center;
     }
+    .roles h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
     .roles-grid {
-      display: grid; 
+      display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       max-width: 1000px;
-      margin: 0 auto; 
+      margin: 0 auto;
       margin-top: 2rem;
     }
     .role-box {
@@ -202,16 +292,29 @@
       transform: translateY(-3px);
     }
     .role-box h3 {
-      font-size: 1.2rem; margin-bottom: 0.8rem; color: #333;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: #333;
     }
     .role-box ul {
-      list-style: disc; margin-left: 1.2rem; margin-top: 0.5rem;
+      list-style: disc;
+      margin-left: 1.2rem;
+      margin-top: 0.5rem;
     }
     .role-box ul li {
-      margin-bottom: 0.5rem; font-size: 0.9rem; color: #555;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    @media (max-width: 768px) {
+      .roles-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    /* ========== PARTNERS ========== */
+    /****************************************
+     7) PARTNERS SECTION
+    *****************************************/
     .partners {
       background: #f4f8ff;
       text-align: center;
@@ -244,7 +347,9 @@
       opacity: 1;
     }
 
-    /* ========== FAQ SECTION (HÄUFIGE FRAGEN) ========== */
+    /****************************************
+     8) FAQ SECTION (NO ANSWERS SHOWN INITIALLY)
+    *****************************************/
     .faq-section {
       background: #fff;
       text-align: center;
@@ -255,45 +360,64 @@
       margin-bottom: 2rem;
     }
     .faq-container {
-      max-width: 800px; margin: 0 auto; text-align: left;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; /* spacing between items */
     }
     .faq-item {
-      background: #fdfdfd; 
-      margin-bottom: 1rem;
-      border-radius: 6px;
+      background: #fdfdfd;
+      border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      overflow: hidden;
-      transition: background 0.3s;
+      transition: background 0.3s, box-shadow 0.3s;
+      overflow: hidden; /* ensure hidden content stays hidden */
     }
     .faq-item:hover {
       background: #f1efff;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.07);
     }
+    /* Question as a heading for semantics */
     .faq-question {
-      padding: 1rem; cursor: pointer;
-      position: relative; font-weight: 600; color: #333;
+      margin: 0;
+      padding: 1rem;
+      cursor: pointer;
+      position: relative;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #333;
     }
+    /* The plus sign that toggles to minus */
     .faq-question::after {
       content: "+";
-      position: absolute; right: 1rem; top: 1rem;
-      font-size: 1.2rem; color: #6e00c2;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      font-size: 1.3rem;
+      color: #6e00c2;
       transition: transform 0.3s;
     }
     .faq-item.active .faq-question::after {
       transform: rotate(45deg);
       content: "–";
     }
+    /* FAQ answer: fully hidden by default */
     .faq-answer {
+      display: none; /* ensures no partial text is visible initially */
       padding: 0 1rem 1rem;
-      max-height: 0; 
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      font-size: 0.95rem; color: #555; line-height: 1.5;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.5;
     }
+    /* Reveal the answer only when .active is set */
     .faq-item.active .faq-answer {
-      max-height: 200px;
+      display: block;
     }
 
-    /* ========== CTA SECTION ========== */
+    /****************************************
+     9) CTA SECTION
+    *****************************************/
     .cta-section {
       background: #6e00c2;
       color: #fff;
@@ -301,17 +425,20 @@
       padding: 3rem 1rem;
     }
     .cta-section h2 {
-      font-size: 2rem; margin-bottom: 1rem;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
     .cta-section p {
-      max-width: 600px; margin: 0 auto 2rem; line-height: 1.4;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      line-height: 1.4;
     }
     .btn-contact {
       display: inline-block;
       background: #fff;
       color: #6e00c2;
       padding: 0.8rem 1.4rem;
-      border-radius: 4px; 
+      border-radius: 4px;
       font-weight: 600;
       transition: background 0.3s, color 0.3s;
     }
@@ -320,45 +447,42 @@
       color: #540090;
     }
 
-    /* ========== FOOTER ========== */
+    /****************************************
+     10) FOOTER
+    *****************************************/
     .footer {
       background: #e7e9fc;
       text-align: center;
       padding: 2rem 1rem;
-      font-size: 0.9rem; color: #444;
+      font-size: 0.9rem;
+      color: #444;
     }
     .footer p {
       margin-bottom: 0.5rem;
     }
-
-    /* ========== MEDIA QUERIES ========== */
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-      .hero-content p {
-        font-size: 1rem;
-      }
-      .split-section {
-        grid-template-columns: 1fr; /* single column on mobile */
-      }
-      .split-section .image-area {
-        margin-top: 1rem;
-      }
-      .roles-grid {
-        grid-template-columns: 1fr; /* single column on mobile */
-      }
-    }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
+  <!-- ========== NAVBAR ========== -->
   <header class="navbar">
     <div class="navbar__logo">
-      <img src="assets/img/jobwerke-logo.png" alt="Job Werke Logo">
+      <a href="index.html">
+        <img 
+          src="assets/img/jobwerke-logo.png" 
+          alt="Job Werke d.o.o. Logo – Mit uns arbeiten"
+        >
+      </a>
     </div>
-    <nav class="navbar__menu">
+
+    <!-- Hamburger Toggle (mobile) -->
+    <div class="navbar__toggle" id="mobileToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Navbar Menu -->
+    <nav class="navbar__menu" id="navbarMenu">
       <a href="index.html">Home</a>
       <a href="uber-uns.html">Über uns</a>
       <a href="dienstleistungen.html">Dienstleistungen</a>
@@ -367,9 +491,8 @@
     </nav>
   </header>
 
-  <!-- HERO (Creative) -->
+  <!-- ========== HERO SECTION ========== -->
   <section class="hero">
-    <!-- Diagonal gradient overlay is handled by .hero::before -->
     <div class="hero-content">
       <h1>Mit uns arbeiten</h1>
       <p>
@@ -377,27 +500,26 @@
         internationalen Personal-Lösungen profitieren.
       </p>
     </div>
-    <!-- Decorative wave at bottom -->
     <div class="hero-wave"></div>
   </section>
 
-  <!-- SPLIT SECTION 1 -->
+  <!-- ========== SPLIT SECTION #1 ========== -->
   <section class="split-section">
     <div class="text-area">
       <h2>Umfassende Beratung ab dem ersten Kontakt</h2>
       <p>
-        In unserem ersten Gespräch besprechen wir ausführlich Ihre aktuellen 
-        Herausforderungen und langfristigen Ziele. Dabei spielt es keine Rolle, 
-        ob Sie gerade erst Personal aufbauen möchten oder bestimmte Fachkräfte 
-        für ein ambitioniertes Projekt suchen. Wir nehmen uns die Zeit, Ihren 
-        Bedarf genau zu verstehen.
+        In unserem ersten Gespräch besprechen wir ausführlich Ihre 
+        aktuellen Herausforderungen und langfristigen Ziele. 
+        Dabei spielt es keine Rolle, ob Sie gerade erst Personal 
+        aufbauen möchten oder bestimmte Fachkräfte für ein 
+        ambitioniertes Projekt suchen.
       </p>
       <p>
-        Unser Ansatz ist dabei stets praxisorientiert: Wir teilen unsere 
-        Erfahrungen aus zahlreichen Branchen und geben Ihnen einen 
-        transparenten Einblick in unsere Prozesse. So wissen Sie 
-        schon vorab, welche Schritte bis zum Einsatz der neuen Mitarbeiter 
-        anfallen.
+        Unser Ansatz ist praxisorientiert: Wir teilen unsere 
+        Erfahrungen aus zahlreichen Branchen und geben Ihnen 
+        einen transparenten Einblick in unsere Prozesse. 
+        So wissen Sie schon vorab, welche Schritte bis zum 
+        Einsatz der neuen Mitarbeiter anfallen.
       </p>
       <ul>
         <li>Klarer Ablaufplan für Rekrutierung und Onboarding</li>
@@ -406,29 +528,36 @@
       </ul>
     </div>
     <div class="image-area">
-      <img src="assets/img/beratung.jpg" alt="Advisor Discussion">
+      <img 
+        src="assets/img/beratung.jpg" 
+        alt="Beratungsgespräch mit Kunde"
+      >
     </div>
   </section>
 
-  <!-- SPLIT SECTION 2 -->
+  <!-- ========== SPLIT SECTION #2 ========== -->
   <section class="split-section">
     <div class="image-area">
-      <img src="assets/img/recruit.jpg" alt="Interview Process">
+      <img 
+        src="assets/img/recruit.jpg" 
+        alt="Kandidaten-Interview für Rekrutierungsprozess"
+      >
     </div>
     <div class="text-area">
-      <h2>Globales Netzwerk & Rekrutierungsprozess</h2>
+      <h2>Globales Netzwerk &amp; Rekrutierungsprozess</h2>
       <p>
         Unser internationales Netzwerk deckt zahlreiche Länder wie Nepal, 
-        Bangladesch, Vietnam und die Philippinen ab. Gemeinsam mit lokalen 
-        Partnern finden wir motivierte Fachkräfte, die genau Ihren 
-        Anforderungen entsprechen.
+        Bangladesch, Vietnam und die Philippinen ab. Gemeinsam mit 
+        lokalen Partnern finden wir motivierte Fachkräfte, die 
+        genau Ihren Anforderungen entsprechen.
       </p>
       <p>
-        Die Vorauswahl treffen unsere erfahrenen Recruiter, die neben 
-        fachlichen Qualifikationen auch Soft Skills und Sprachkenntnisse 
-        prüfen. Bei Bedarf können Sie sich in Interviews oder Online-Tests 
-        einbringen, um sicherzustellen, dass die Kandidaten nicht nur 
-        fachlich, sondern auch menschlich passen.
+        Die Vorauswahl treffen unsere erfahrenen Recruiter, die 
+        neben fachlichen Qualifikationen auch Soft Skills und 
+        Sprachkenntnisse prüfen. Bei Bedarf können Sie sich in 
+        Interviews oder Online-Tests einbringen, um sicherzustellen, 
+        dass die Kandidaten nicht nur fachlich, sondern auch 
+        menschlich passen.
       </p>
       <ul>
         <li>Aktiver Talent-Pool mit geprüften Profilen</li>
@@ -438,17 +567,15 @@
     </div>
   </section>
 
-  <!-- SPLIT SECTION 3 -->
+  <!-- ========== SPLIT SECTION #3 ========== -->
   <section class="split-section">
     <div class="text-area">
-      <h2>Rechtliche Sicherheit & Formalitäten</h2>
+      <h2>Rechtliche Sicherheit &amp; Formalitäten</h2>
       <p>
         A1-Bescheinigungen, EU-Richtlinien und nationale Visa-Bestimmungen – 
         all diese Faktoren können Personalgewinnung komplex gestalten. 
         Durch unsere jahrelange Erfahrung und unser internes Legal-Team 
-        sind Sie jedoch auf der sicheren Seite. Wir kümmern uns um den 
-        gesamten Papierkram und informieren Sie regelmäßig über den 
-        Fortschritt.
+        sind Sie jedoch auf der sicheren Seite.
       </p>
       <p>
         Damit Sie stets flexibel bleiben, halten wir uns konsequent an 
@@ -464,28 +591,36 @@
       </ul>
     </div>
     <div class="image-area">
-      <img src="assets/img/personalgewinnung.jpg" alt="Legal Paperwork">
+      <img 
+        src="assets/img/personalgewinnung.jpg" 
+        alt="Rechtlich abgesicherte Personalgewinnung"
+      >
     </div>
   </section>
 
-  <!-- SPLIT SECTION 4 -->
+  <!-- ========== SPLIT SECTION #4 ========== -->
   <section class="split-section">
     <div class="image-area">
-      <img src="assets/img/onboarding.jpg" alt="Onboarding Training">
+      <img 
+        src="assets/img/onboarding.jpg" 
+        alt="Onboarding und Training"
+      >
     </div>
     <div class="text-area">
-      <h2>Nachhaltiges Onboarding & Begleitung</h2>
+      <h2>Nachhaltiges Onboarding &amp; Begleitung</h2>
       <p>
-        Sobald die neuen Mitarbeiter ankommen, sind wir weiterhin für Sie da. 
-        In den ersten Wochen unterstützen wir sowohl Sie als auch die 
-        Fachkräfte beim Onboarding. Dabei legen wir Wert auf kulturelle 
-        Integration, reibungslose Einarbeitung und einen konstruktiven Austausch.
+        Sobald die neuen Mitarbeiter ankommen, sind wir weiterhin für 
+        Sie da. In den ersten Wochen unterstützen wir sowohl Sie 
+        als auch die Fachkräfte beim Onboarding. Dabei legen wir 
+        Wert auf kulturelle Integration, reibungslose Einarbeitung 
+        und konstruktiven Austausch.
       </p>
       <p>
-        Durch regelmäßige Check-ins und Feedback-Schleifen sorgen wir dafür, 
-        dass sich alle wohlfühlen und der Projektstart gelingt. 
+        Durch regelmäßige Check-ins und Feedback-Schleifen sorgen wir 
+        dafür, dass sich alle wohlfühlen und der Projektstart gelingt. 
         Bei Bedarf organisieren wir Schulungen und Workshops, um die 
-        Zusammenarbeit zu vertiefen und potenzielle Missverständnisse zu klären.
+        Zusammenarbeit zu vertiefen und potenzielle Missverständnisse 
+        zu klären.
       </p>
       <ul>
         <li>Mentoring-Programme und Buddy-Systeme</li>
@@ -495,34 +630,34 @@
     </div>
   </section>
 
-  <!-- ROLES & RESPONSIBILITIES -->
+  <!-- ========== ROLES SECTION ========== -->
   <section class="roles">
     <h2>Aufgabenverteilung</h2>
     <div class="roles-grid">
       <div class="role-box">
         <h3>Was wir übernehmen</h3>
         <ul>
-          <li>Rekrutierung & Vorauswahl</li>
+          <li>Rekrutierung &amp; Vorauswahl</li>
           <li>Alle rechtlichen Formalitäten (A1-Bescheinigung, Versicherungen)</li>
           <li>Begleitung beim Onboarding</li>
-          <li>Schulungen & kulturelle Integration</li>
-          <li>Laufendes Feedback & Optimierung</li>
+          <li>Schulungen &amp; kulturelle Integration</li>
+          <li>Laufendes Feedback &amp; Optimierung</li>
         </ul>
       </div>
       <div class="role-box">
         <h3>Was Sie beitragen</h3>
         <ul>
-          <li>Klare Anforderungsprofile & Ziele</li>
+          <li>Klare Anforderungsprofile &amp; Ziele</li>
           <li>Kooperation bei Interviews (optional)</li>
           <li>Bereitstellung eines Arbeitsplatzes</li>
-          <li>Einarbeitung ins Team & interne Prozesse</li>
+          <li>Einarbeitung ins Team &amp; interne Prozesse</li>
           <li>Offene Kommunikation mit unseren Beratern</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- PARTNERS -->
+  <!-- ========== PARTNERS SECTION ========== -->
   <section class="partners">
     <h2>Erfolgreiche Partnerschaften</h2>
     <p>
@@ -530,19 +665,21 @@
       Hier ein Auszug unserer Partner:
     </p>
     <div class="partner-logos">
-      <img src="assets/img/partner1.png" alt="Partner1">
-      <img src="assets/img/partner2.png" alt="Partner2">
-      <img src="assets/img/partner3.png" alt="Partner3">
-      <img src="assets/img/partner4.png" alt="Partner4">
+      <img src="assets/img/a.png" alt="Partner 1 Logo">
+      <img src="assets/img/q.png" alt="Partner 2 Logo">
+      <img src="assets/img/w.png" alt="Partner 3 Logo">
+      <img src="assets/img/yy.png" alt="Partner 4 Logo">
     </div>
   </section>
 
-  <!-- FAQ SECTION (HÄUFIGE FRAGEN) -->
+  <!-- ========== FAQ SECTION (HIDDEN ANSWERS) ========== -->
   <section class="faq-section">
     <h2>Häufige Fragen</h2>
     <div class="faq-container">
+
+      <!-- FAQ #1 -->
       <div class="faq-item">
-        <div class="faq-question">Kann ich die Rekrutierung selbst beeinflussen?</div>
+        <h3 class="faq-question">Kann ich die Rekrutierung selbst beeinflussen?</h3>
         <div class="faq-answer">
           <p>
             Gerne können Sie sich in die Auswahlphase einbringen, 
@@ -550,8 +687,10 @@
           </p>
         </div>
       </div>
+
+      <!-- FAQ #2 -->
       <div class="faq-item">
-        <div class="faq-question">Welche Branchen deckt Job Werke ab?</div>
+        <h3 class="faq-question">Welche Branchen deckt Job Werke ab?</h3>
         <div class="faq-answer">
           <p>
             Wir sind in Bau, Gastronomie, Pflege, Logistik u.a. stark. 
@@ -559,8 +698,10 @@
           </p>
         </div>
       </div>
+
+      <!-- FAQ #3 -->
       <div class="faq-item">
-        <div class="faq-question">Wie ist das mit Zeit- & Leiharbeit?</div>
+        <h3 class="faq-question">Wie ist das mit Zeit- &amp; Leiharbeit?</h3>
         <div class="faq-answer">
           <p>
             Wir bieten beides: Arbeitnehmerüberlassung für projektbasierte Einsätze 
@@ -568,10 +709,12 @@
           </p>
         </div>
       </div>
+
+      <!-- Add more FAQ items if needed -->
     </div>
   </section>
 
-  <!-- FINAL CTA -->
+  <!-- ========== FINAL CTA SECTION ========== -->
   <section class="cta-section">
     <h2>Bereit für den nächsten Schritt?</h2>
     <p>
@@ -581,18 +724,39 @@
     <a href="kontakt.html" class="btn-contact">Termin vereinbaren</a>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ========== FOOTER ========== -->
   <footer class="footer">
-    <p>Impressum &bull; Datenschutz &bull; Cookie-Einstellungen</p>
+    <p>
+      <a href="impressum.html">Impressum</a> &bull; 
+      <a href="datenschutz.html">Datenschutz</a> &bull; 
+      <a href="cookie.html">Cookie-Einstellungen</a>
+    </p>
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- JS FOR FAQ TOGGLE (OPTIONAL) -->
+  <!-- ========== JS FOR MOBILE NAV & FAQ TOGGLE ========== -->
   <script>
+    /****************************************
+     1) MOBILE NAVBAR TOGGLE
+    *****************************************/
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+
+    mobileToggle.addEventListener('click', () => {
+      navbarMenu.classList.toggle('nav-open');
+    });
+
+    /****************************************
+     2) FAQ TOGGLE (Display: None / Block)
+    *****************************************/
     const faqItems = document.querySelectorAll(".faq-item");
     faqItems.forEach(item => {
       const question = item.querySelector(".faq-question");
       question.addEventListener("click", () => {
+        // If you want to close others automatically, uncomment:
+        // faqItems.forEach(i => i !== item && i.classList.remove("active"));
+
+        // Toggle the clicked one
         item.classList.toggle("active");
       });
     });
