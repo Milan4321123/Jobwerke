@@ -494,6 +494,18 @@
       color: #540090;
     }
 
+    /* NEU: Gemeinsames Button-Layout in der CTA */
+    .cta .btn {
+      margin: 0 0.5rem; /* Etwas Platz zwischen den Buttons auf großem Screen */
+    }
+    @media (max-width: 768px) {
+      .cta .btn {
+        display: block;
+        margin: 0.5rem auto; /* Zentriert die Buttons auf dem Handy */
+        width: max-content;  /* Verhindert, dass Buttons 100% Breite einnehmen */
+      }
+    }
+
     /****************************************
      11) FOOTER
     ****************************************/
@@ -752,8 +764,9 @@
       oder <strong><a href="arbeiten.html" style="color:#fff;">Mit uns arbeiten</a></strong> 
       zeigen Ihnen genau, wie wir Ihren Personalbedarf decken können.
     </p>
+    <!-- Inline-Style entfernt und zentrales Layout über CSS -->
     <a href="arbeiten.html" class="btn">Mit uns arbeiten</a>
-    <a href="kontakt.html" class="btn" style="margin-left:1rem;">Kontakt aufnehmen</a>
+    <a href="kontakt.html" class="btn">Kontakt aufnehmen</a>
   </section>
 
   <!-- ========== FOOTER ========== -->
@@ -778,3 +791,4 @@
     });
   </script>
 </body>
+</html>
