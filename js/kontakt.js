@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Kontakt WOW JS loaded!");
 
-  // ========== 1) Fade-in on scroll (Intersection Observer) ==========
+  // ========== 1) Fade-in on scroll ==========
   const fadeElems = document.querySelectorAll(".fade-section");
   const fadeObsOpts = { threshold: 0.1 };
   const fadeObserver = new IntersectionObserver((entries, observer) => {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navbarMenu.classList.toggle("nav-open");
   });
 
-  // ========== 4) Optional Parallax for Hero BG ==========
+  // ========== 4) Parallax Hero BG (optional) ==========
   const parallaxHero = document.getElementById("parallaxHero");
   if (parallaxHero) {
     window.addEventListener("scroll", () => {
@@ -40,13 +40,92 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ========== 5) (Optional) Form Submit Handler ==========
+  // ========== 5) Show/hide appointment fields ==========
+  const radioMessage = document.getElementById("anliegen-message");
+  const radioAppointment = document.getElementById("anliegen-appointment");
+  const appointmentFields = document.getElementById("appointment-fields");
+
+  function toggleAppointmentFields() {
+    if (radioAppointment.checked) {
+      appointmentFields.style.display = "block";
+    } else {
+      appointmentFields.style.display = "none";
+    }
+  }
+
+  // Listen for changes on the radio buttons
+  radioMessage.addEventListener("change", toggleAppointmentFields);
+  radioAppointment.addEventListener("change", toggleAppointmentFields);
+
+  // ========== 6) Form Submission ==========
   const form = document.querySelector(".contact-form");
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      alert("Vielen Dank für Ihre Nachricht! Wir melden uns schnellstmöglich bei Ihnen.");
-      form.reset();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("msg").value.trim();
+
+      // Honeypot
+      const honeypot = document.getElementById("hp").value;
+      if (honeypot) {
+        console.warn("Spam detected. Aborting submission.");
+        return;
+      }
+
+      if (!name || !email || !message) {
+        alert("Bitte füllen Sie Name, Email und Nachricht aus.");
+        return;
+      }
+
+      // Check if the user wants an appointment
+      const wantsAppointment = radioAppointment.checked;
+
+      let terminDate = "";
+      let terminTime = "";
+
+      if (wantsAppointment) {
+        terminDate = document.getElementById("terminDate").value.trim();
+        terminTime = document.getElementById("terminTime").value.trim();
+        if (!terminDate || !terminTime) {
+          alert("Bitte geben Sie Datum und Uhrzeit für den Termin an.");
+          return;
+        }
+      }
+
+      // Construct payload
+      const payload = {
+        name,
+        email,
+        message,
+        wantsAppointment,
+        terminDate,
+        terminTime
+      };
+
+      try {
+        const response = await fetch("http://localhost:3000/send-email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await response.json();
+
+        if (data.success) {
+          alert("Nachricht erfolgreich gesendet! Vielen Dank.");
+          form.reset();
+          // Hide appointment fields after reset
+          appointmentFields.style.display = "none";
+          // Optionally switch radio back to message-only
+          radioMessage.checked = true;
+        } else {
+          alert("Fehler beim Senden. Bitte versuchen Sie es erneut.");
+        }
+      } catch (err) {
+        console.error("Error sending data:", err);
+        alert("Netzwerkfehler. Bitte später erneut versuchen.");
+      }
     });
   }
 });
