@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, fadeObsOpts);
   fadeElems.forEach(elem => fadeObserver.observe(elem));
 
-  // (B) Sticky navbar on scroll (optional: add .scrolled-navbar in CSS if you want)
+  // (B) Sticky navbar on scroll (optional)
   const navbar = document.getElementById("mainNavbar");
   window.addEventListener("scroll", () => {
     if (window.scrollY > 40) {
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const name = document.getElementById("name").value.trim();
+      const name = document.getElementById("yourname").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("msg").value.trim();
       const honeypot = document.getElementById("hp").value; // hidden field
@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
+      // Example payload to send to your backend (if you have an API endpoint)
       const payload = {
         name,
         email,
@@ -104,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
-        // Example URL for your server endpoint:
+        // Example fetch call (adjust the URL to your real endpoint)
         const response = await fetch("http://localhost:3000/send-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         if (data.success) {
-          // On success, redirect to danke.html?success=1
+          // On success, redirect to a "thank you" page
           window.location.href = "danke.html?success=1";
         } else {
           window.location.href = "danke.html?error=1";
