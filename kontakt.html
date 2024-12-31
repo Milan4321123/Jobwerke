@@ -296,6 +296,13 @@
     /****************************************
      5) CONTACT SECTION
     ****************************************/
+    .map-container {
+  margin-top: 1rem;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  overflow: hidden; /* to round corners on the iframe */
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
     .contact-section {
       background: #f9f9fc;
       padding: 4rem 2rem;
@@ -493,21 +500,47 @@
   <!-- ========== CONTACT SECTION ========== -->
   <section class="contact-section fade-section" id="name">
     <!-- LEFT: CONTACT INFO -->
-    <div class="contact-info">
-      <h3>Adresse</h3>
-      <p>
-        Job Werke d.o.o.<br/>
-        Industriestraße 27<br/>
-        61381 Friedrichsdorf<br/>
-        Deutschland
-      </p>
-      <h3>E-Mail</h3>
-      <p>
-        <a href="mailto:job.werke@webmail.de">job.werke@webmail.de</a>
-      </p>
-      <h3>Telefon</h3>
-      <p>+385 (99) 532 1237</p>
-    </div>
+   <!-- LEFT: CONTACT INFO -->
+<div class="contact-info">
+  <h3>Adresse</h3>
+  <p>
+    Job Werke d.o.o.<br/>
+    Industriestraße 27<br/>
+    61381 Friedrichsdorf<br/>
+    Deutschland
+  </p>
+  <h3>E-Mail</h3>
+  <p>
+    <a href="mailto:job.werke@webmail.de">job.werke@webmail.de</a>
+  </p>
+  <h3>Telefon</h3>
+  <p>+385 (99) 532 1237</p>
+
+  <!-- MAP EMBED (GOOGLE) -->
+  <h3>Unser Standort</h3>
+  <p>
+    <a 
+    href="https://www.google.com/maps/dir/?api=1&destination=Industriestra%C3%9Fe+27+61381+Friedrichsdorf+Deutschland" 
+    target="_blank"
+    rel="noopener noreferrer"
+    style="
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: #181844;   /* brand color */
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+    "
+  >
+    Navigation starten
+  </a>
+  </p>
+
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.238816847897!2d8.63693149060038!3d50.25012379821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd071724ca921f%3A0x77d381e970bc2d2d!2sIndustriestra%C3%9Fe%2027%2C%2061381%20Friedrichsdorf!5e0!3m2!1sen!2sde!4v1735644093405!5m2!1sen!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</div>
 
     <!-- RIGHT: CONTACT FORM -->
     <div class="contact-form-container">
