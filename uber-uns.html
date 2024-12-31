@@ -472,20 +472,31 @@
 }
 
 /* CTA-like links in final paragraph */
-a.cta-link {
-  display: inline-block;            /* so padding is more button-like */
-  margin: 0 4px;                    /* small horizontal spacing */
-  padding: 0.4rem 0.8rem;           /* some padding for a button feel */
-  background: #181844;             /* brand color background */
-  color: #fff !important;          /* override default link color */
+.achievements-cta {
+  text-align: center;   /* or left, if you prefer */
+  margin-top: 1rem;     /* a little spacing above */
+}
+
+/* By default, side by side with some margin */
+.achievements-cta a.cta-link {
+  display: inline-block;
+  margin: 0 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: #181844;
+  color: #fff !important;
   border-radius: 4px;
   font-weight: 600;
-  transition: background 0.3s, color 0.3s;
-  text-decoration: none;           /* remove underline */
+  text-decoration: none;
+  /* ... etc. ... */
 }
-a.cta-link:hover {
-  background: #12163b;             /* slightly darker brand color */
-  color: #fff !important;
+
+/* On mobile, make them stack */
+@media (max-width: 768px) {
+  .achievements-cta a.cta-link {
+    display: block;
+    margin: 0.5rem auto;     /* vertical spacing + horizontal center */
+    width: max-content;      /* or leave it out if you want full width */
+  }
 }
 
     /****************************************
@@ -790,14 +801,14 @@ a.cta-link:hover {
     </div>
   </div>
 
-  <p style="max-width:700px; margin: 2rem auto 0; color:#555;">
-    Mehr über unsere Arbeitsweise und rechtliche Standards finden Sie 
-    in unseren
-    <a class="cta-link" href="dienstleistungen.html">Dienstleistungen</a>.
-    Oder entdecken Sie 
-    <a class="cta-link" href="arbeiten.html">Mit uns arbeiten</a>,
-    um Ihren Personalbedarf nachhaltig zu decken.
-  </p>
+ <p style="max-width:700px; margin: 2rem auto 0; color:#555;">
+  Mehr über unsere Arbeitsweise und rechtliche Standards ...
+</p>
+
+<div class="achievements-cta">
+  <a class="cta-link" href="dienstleistungen.html">Dienstleistungen</a>
+  <a class="cta-link" href="arbeiten.html">Mit uns arbeiten</a>
+</div>
 </section>
 
   <!-- ========== IMPACT / COMMUNITY ========== -->
