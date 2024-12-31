@@ -7,7 +7,7 @@
     name="description" 
     content="Kontaktieren Sie Job Werke d.o.o. – Ihr Partner für internationales Recruiting. Schreiben Sie uns eine Nachricht oder vereinbaren Sie einen Termin."
   />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 
   <!-- Google Font -->
   <link
@@ -48,12 +48,13 @@
     }
     h1, h2, h3 {
       margin-bottom: 0.8rem;
+      line-height: 1.2;
     }
     p {
       margin-bottom: 1rem;
     }
 
-    /* For fade-in sections */
+    /* Fade-in sections */
     .fade-section {
       opacity: 0;
       transform: translateY(30px);
@@ -72,33 +73,29 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 70px; /* fixed navbar height on desktop */
+      height: 70px;
       display: flex;
-      align-items: center; /* vertical centering */
+      align-items: center;
       justify-content: space-between;
       background: #181844; /* brand color */
-      padding: 0 2rem; /* horizontal spacing */
+      padding: 0 2rem;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       z-index: 9999;
     }
     .navbar__logo img {
-      max-height: 60px; /* keep logo within navbar height */
+      max-height: 60px;
       width: auto;
       object-fit: contain;
-      margin: 5px 0; /* optional breathing room */
       transition: transform 0.3s;
     }
     .navbar__logo a img:hover {
       transform: scale(1.05);
     }
-
-    /* Desktop menu */
     .navbar__menu {
       display: flex;
       gap: 2rem;
       align-items: center;
     }
-    /* White links on dark background */
     .navbar__menu a {
       font-weight: 500;
       padding: 0.3rem 0;
@@ -111,15 +108,13 @@
     .navbar__menu a.active {
       border-bottom: 2px solid #fff;
     }
-
-    /* Offsets page content below the fixed navbar (optional) */
     body::before {
       content: "";
       display: block;
-      height: 70px; /* matches .navbar height */
+      height: 70px; /* offset content below nav */
     }
 
-    /* Hamburger toggle (hidden on desktop) */
+    /* Mobile nav toggle */
     .navbar__toggle {
       display: none;
       flex-direction: column;
@@ -134,120 +129,170 @@
       transition: all 0.3s;
     }
 
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
-       RESPONSIVE (MAX-WIDTH: 768px)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    /* Responsive Navbar */
     @media (max-width: 768px) {
-      /* Slightly smaller navbar on mobile */
       .navbar {
         height: 60px;
       }
       .navbar__logo img {
         max-height: 50px;
       }
-
-      /* Show hamburger, hide normal menu by default */
       .navbar__toggle {
         display: flex;
       }
       .navbar__menu {
         position: absolute;
-        top: 60px; /* matches .navbar height on mobile */
+        top: 60px;
         left: 0;
         width: 100%;
         flex-direction: column;
         gap: 1rem;
-        background: #181844; /* brand color on mobile too */
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        background: #181844;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         padding: 1rem 2rem;
-        transform: translateY(-130%); /* hidden by default (above screen) */
+        transform: translateY(-130%);
         transition: transform 0.3s ease;
       }
-      /* Toggle open: slide down when .nav-open is added */
       .navbar__menu.nav-open {
         transform: translateY(0);
       }
-
-      /* Mobile links also white */
       .navbar__menu a {
         color: #fff;
-        padding: 0.3rem 0;
       }
       .navbar__menu a:hover {
         color: #bbb;
       }
     }
+
     /****************************************
-     3) HERO SECTION (ID=parallaxHero)
+     3) HERO SECTION
     ****************************************/
-    #parallaxHero {
+    /* 
+      - We'll create a "dark overlay" hero with brand color overlay.
+      - The text is centered vertically & horizontally.
+    */
+    .hero-section {
       position: relative;
-      width: 100%;
-      height: 50vh;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      width: 100%;
+      height: 60vh; /* taller hero for a more modern look */
+      overflow: hidden;
       color: #fff;
-      background: #181844; /* fallback color */
+      text-align: center;
+      background: #181844; /* fallback color for older browsers */
     }
-    #parallaxHero img {
+    .hero-section img {
+      position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      z-index: 0;
     }
     .hero-overlay {
       position: absolute;
       top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
+      width: 100%;
+      height: 100%;
+      background: rgba(24,24,68,0.65); 
       z-index: 1;
     }
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 2;   /* above overlay */
       max-width: 700px;
       padding: 1rem;
     }
     .hero-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
     .hero-content p {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
+      font-size: 1.2rem;
       text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
     }
 
     /****************************************
      4) CONTACT INTRO
     ****************************************/
     .contact-intro {
-      background: #fff;
-      padding: 3rem 2rem;
-      text-align: center;
-    }
-    .contact-intro .intro-container {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .contact-intro h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    .contact-intro p {
-      color: #555;
-      line-height: 1.5;
-    }
-    .contact-intro .highlight {
-      margin-top: 1.5rem;
-      font-weight: 600;
-      color: #333;
-    }
+  background: #fafafa; /* or #f9f9fc, whichever you prefer */
+  padding: 4rem 2rem;
+  /* fade-section styles remain same for fade-in effect */
+}
 
+/* Wrap the image + text side by side */
+.intro-wrapper {
+  display: flex;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Left column: illustration or image */
+.intro-image {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* center the image horizontally */
+}
+.intro-image img {
+  max-width: 80%;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  /* object-fit: cover; if you prefer, depends on your image */
+}
+
+/* Right column: text content */
+.intro-content {
+  flex: 1;
+}
+.intro-content h2 {
+  font-size: 2rem;
+  color: #181844; /* brand color */
+  margin-bottom: 1rem;
+}
+.intro-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+.intro-content .highlight {
+  color: #181844; /* brand color for emphasis */
+  font-weight: 600;
+}
+
+/* CTA button (optional) */
+.btn-cta {
+  display: inline-block;
+  padding: 0.9rem 2rem;
+  background: #181844;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.btn-cta:hover {
+  background: #131237;
+}
+
+/* Responsive: stack columns on mobile */
+@media (max-width: 768px) {
+  .intro-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+  .intro-image img {
+    max-width: 60%;
+    margin-bottom: 2rem;
+  }
+}
     /****************************************
      5) CONTACT SECTION
     ****************************************/
@@ -256,45 +301,48 @@
       padding: 4rem 2rem;
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: 3rem;
       justify-content: center;
       align-items: flex-start;
     }
+    .contact-info, .contact-form-container {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      padding: 2rem;
+      flex: 1 1 400px;
+      max-width: 500px;
+    }
     .contact-info {
-      flex: 1 1 280px;
       max-width: 400px;
     }
     .contact-info h3 {
-      font-size: 1.2rem; 
-      margin-bottom: 0.5rem;
-      color: #333;
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: #181844;
     }
     .contact-info p {
       margin-bottom: 1rem;
       color: #555;
-      line-height: 1.5;
+      line-height: 1.6;
     }
     .contact-info a {
       color: #6e00c2;
     }
 
+    /* Contact form container + form styling */
     .contact-form-container {
-      flex: 1 1 400px;
       max-width: 500px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2rem;
     }
     .contact-form-container h3 {
       margin-bottom: 1rem;
       font-size: 1.4rem;
-      color: #333;
+      color: #181844;
     }
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.2rem;
     }
     .form-group {
       display: flex;
@@ -303,7 +351,8 @@
     }
     .form-group label {
       font-size: 0.95rem;
-      color: #333;
+      color: #181844;
+      font-weight: 500;
     }
     .form-group input,
     .form-group textarea {
@@ -312,16 +361,17 @@
       border-radius: 4px;
       font-size: 0.95rem;
       outline: none;
+      transition: border-color 0.3s;
     }
     .form-group input:focus,
     .form-group textarea:focus {
-      border-color: #6e00c2;
+      border-color: #181844;
     }
     .btn-submit {
       display: inline-block;
       align-self: flex-start;
-      padding: 0.8rem 1.4rem;
-      background: #6e00c2;
+      padding: 0.8rem 2rem;
+      background: #181844;
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -330,7 +380,7 @@
       transition: background 0.3s;
     }
     .btn-submit:hover {
-      background: #540090;
+      background: #131237;
     }
 
     /* Appointment fields hidden by default */
@@ -341,6 +391,7 @@
       margin-top: 0.5rem;
     }
 
+    /* Responsive contact layout */
     @media (max-width: 768px) {
       .contact-section {
         flex-direction: column;
@@ -393,10 +444,13 @@
     </nav>
   </header>
 
-  <!-- ========== HERO (PARALLAX) ========== -->
+  <!-- ========== HERO SECTION ========== -->
   <section id="parallaxHero" class="hero-section fade-section">
+    <!-- Hero background image -->
     <img src="assets/img/hero-bg-2.jpg" alt="Kontakt Hero Image">
+    <!-- Overlay -->
     <div class="hero-overlay"></div>
+    <!-- Hero Content -->
     <div class="hero-content">
       <h1>Kontakt</h1>
       <p>
@@ -406,24 +460,38 @@
   </section>
 
   <!-- ========== CONTACT INTRO ========== -->
-  <section class="contact-intro fade-section">
-    <div class="intro-container">
-      <h2>Kontakt aufnehmen</h2>
+<!-- ========== CONTACT INTRO ========== -->
+<section class="contact-intro fade-section">
+  <div class="intro-wrapper">
+    <!-- Left: Illustration or Photo -->
+    <div class="intro-image">
+      <img src="assets/img/appointment.jpg" alt="Kontakt Illustration" />
+    </div>
+
+    <!-- Right: Headings + Text + CTA -->
+    <div class="intro-content">
+      <h2>Termin Vereinbaren</h2>
       <p>
-        Ob Sie Fragen zu unseren Dienstleistungen haben oder bereits 
-        konkrete Vorstellungen – wir helfen Ihnen gerne weiter. 
+        Ob Sie Fragen zu unseren Dienstleistungen haben oder schon 
+        konkrete Vorstellungen – wir sind für Sie da. 
         Rufen Sie uns an, schreiben Sie uns eine E-Mail oder 
         nutzen Sie unser Kontaktformular.
       </p>
       <p class="highlight">
         Gemeinsam finden wir die beste Lösung für Ihren 
-        Personalbedarf und begleiten Sie dabei Schritt für Schritt.
+        Personalbedarf und begleiten Sie Schritt für Schritt.
       </p>
+
+      <!-- Call-to-action button (optional) -->
+      <a href="#yourname" class="btn-cta">
+        Jetzt Kontakt aufnehmen
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ========== CONTACT SECTION ========== -->
-  <section class="contact-section fade-section">
+  <section class="contact-section fade-section" id="name">
     <!-- LEFT: CONTACT INFO -->
     <div class="contact-info">
       <h3>Adresse</h3>
@@ -434,9 +502,11 @@
         Deutschland
       </p>
       <h3>E-Mail</h3>
-      <p><a href="mailto:job.werke1@gmail.com">job.werke1@gmail.com</a></p>
+      <p>
+        <a href="mailto:job.werke@webmail.de">job.werke@webmail.de</a>
+      </p>
       <h3>Telefon</h3>
-      <p>+35 (51) 360 219</p>
+      <p>+385 (99) 532 1237</p>
     </div>
 
     <!-- RIGHT: CONTACT FORM -->
@@ -446,7 +516,7 @@
         <!-- NAME -->
         <div class="form-group">
           <label for="name">Name <span style="color:red;">*</span></label>
-          <input type="text" id="name" placeholder="Ihr Name" required />
+          <input type="text" id="yourname" placeholder="Ihr Name" required />
         </div>
 
         <!-- EMAIL -->

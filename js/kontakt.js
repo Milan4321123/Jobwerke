@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, fadeObsOpts);
   fadeElems.forEach(elem => fadeObserver.observe(elem));
 
-  // (B) Sticky navbar on scroll
+  // (B) Sticky navbar on scroll (optional: add .scrolled-navbar in CSS if you want)
   const navbar = document.getElementById("mainNavbar");
   window.addEventListener("scroll", () => {
     if (window.scrollY > 40) {
@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (parallaxHero) {
     window.addEventListener("scroll", () => {
       const offset = window.scrollY * 0.3;
-      if (parallaxHero.children[0]) {
-        // first child is the <img>
-        parallaxHero.children[0].style.transform = `translateY(${offset}px)`;
+      const heroImg = parallaxHero.querySelector("img");
+      if (heroImg) {
+        heroImg.style.transform = `translateY(${offset}px)`;
       }
     });
   }
@@ -69,19 +69,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const message = document.getElementById("msg").value.trim();
       const honeypot = document.getElementById("hp").value; // hidden field
 
+      // If honeypot was filled, it's likely spam
       if (honeypot) {
-        console.warn("Spam/honeypot triggered. Aborting.");
-        // We do NOT send if honeypot was filled
+        console.warn("Spam/honeypot triggered. Aborting submission.");
         return;
       }
 
       // Basic validation
       if (!name || !email || !message) {
-        alert("Bitte füllen Sie Name, Email und Nachricht aus.");
+        alert("Bitte füllen Sie Name, E-Mail und Nachricht aus.");
         return;
       }
 
-      // Appointment?
+      // If user wants an appointment, date + time are required
       const wantsAppointment = radioAppointment.checked;
       let terminDate = "";
       let terminTime = "";
@@ -104,15 +104,14 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
+        // Example URL for your server endpoint:
         const response = await fetch("http://localhost:3000/send-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
         });
 
-        // Attempt to parse server response
         if (!response.ok) {
-          // e.g., 400 or 500
           throw new Error("Server returned status " + response.status);
         }
         const data = await response.json();
@@ -121,12 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
           // On success, redirect to danke.html?success=1
           window.location.href = "danke.html?success=1";
         } else {
-          // If server responded success=false
           window.location.href = "danke.html?error=1";
         }
       } catch (err) {
         console.error("Network or server error:", err);
-        // also redirect to ?error=1
         window.location.href = "danke.html?error=1";
       }
     });
