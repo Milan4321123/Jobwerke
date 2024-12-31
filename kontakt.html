@@ -167,21 +167,17 @@
     /****************************************
      3) HERO SECTION
     ****************************************/
-    /* 
-      - We'll create a "dark overlay" hero with brand color overlay.
-      - The text is centered vertically & horizontally.
-    */
     .hero-section {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      height: 60vh; /* taller hero for a more modern look */
+      height: 60vh;
       overflow: hidden;
       color: #fff;
       text-align: center;
-      background: #181844; /* fallback color for older browsers */
+      background: #181844; /* fallback */
     }
     .hero-section img {
       position: absolute;
@@ -201,7 +197,7 @@
     }
     .hero-content {
       position: relative;
-      z-index: 2;   /* above overlay */
+      z-index: 2;  
       max-width: 700px;
       padding: 1rem;
     }
@@ -216,135 +212,221 @@
       margin-bottom: 2rem;
     }
 
+ /****************************************
+    4) CONTACT INTRO
+   ****************************************/
+   .contact-intro {
+     background: #fafafa;
+     padding: 4rem 2rem;
+   }
+   .intro-wrapper {
+     display: flex;
+     gap: 2rem;
+     max-width: 1200px;
+     margin: 0 auto;
+     align-items: center;
+     justify-content: center;
+   }
+   .intro-image {
+     flex: 1;
+     display: flex;
+     justify-content: center;
+   }
+   .intro-image img {
+     max-width: 80%;
+     border-radius: 8px;
+     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+   }
+   .intro-content {
+     flex: 1;
+   }
+   .intro-content h2 {
+     font-size: 2rem;
+     color: #181844;
+     margin-bottom: 1rem;
+   }
+   .intro-content p {
+     color: #555;
+     line-height: 1.6;
+     margin-bottom: 1.2rem;
+   }
+   .intro-content .highlight {
+     color: #181844;
+     font-weight: 600;
+   }
+   .btn-cta {
+     display: inline-block;
+     padding: 0.9rem 2rem;
+     background: #181844;
+     color: #fff;
+     border-radius: 4px;
+     text-decoration: none;
+     font-weight: 600;
+     transition: background 0.3s;
+   }
+   .btn-cta:hover {
+     background: #131237;
+   }
+   @media (max-width: 768px) {
+     .intro-wrapper {
+       flex-direction: column;
+       text-align: center;
+     }
+     .intro-image img {
+       max-width: 60%;
+       margin-bottom: 2rem;
+     }
+   }
+
     /****************************************
-     4) CONTACT INTRO
+     5) MAIN CONTACT SECTION
     ****************************************/
-    .contact-intro {
-  background: #fafafa; /* or #f9f9fc, whichever you prefer */
-  padding: 4rem 2rem;
-  /* fade-section styles remain same for fade-in effect */
-}
-
-/* Wrap the image + text side by side */
-.intro-wrapper {
-  display: flex;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Left column: illustration or image */
-.intro-image {
-  flex: 1;
-  display: flex;
-  justify-content: center; /* center the image horizontally */
-}
-.intro-image img {
-  max-width: 80%;
-  border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-  /* object-fit: cover; if you prefer, depends on your image */
-}
-
-/* Right column: text content */
-.intro-content {
-  flex: 1;
-}
-.intro-content h2 {
-  font-size: 2rem;
-  color: #181844; /* brand color */
-  margin-bottom: 1rem;
-}
-.intro-content p {
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-}
-.intro-content .highlight {
-  color: #181844; /* brand color for emphasis */
-  font-weight: 600;
-}
-
-/* CTA button (optional) */
-.btn-cta {
-  display: inline-block;
-  padding: 0.9rem 2rem;
-  background: #181844;
-  color: #fff;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-.btn-cta:hover {
-  background: #131237;
-}
-
-/* Responsive: stack columns on mobile */
-@media (max-width: 768px) {
-  .intro-wrapper {
-    flex-direction: column;
-    text-align: center;
-  }
-  .intro-image img {
-    max-width: 60%;
-    margin-bottom: 2rem;
-  }
-}
-    /****************************************
-     5) CONTACT SECTION
-    ****************************************/
-    .map-container {
-  margin-top: 1rem;
-  border: 2px solid #eee;
-  border-radius: 6px;
-  overflow: hidden; /* to round corners on the iframe */
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
     .contact-section {
-      background: #f9f9fc;
+      /* Slight gradient for the background area */
+      background: linear-gradient(
+        135deg,
+        #f9f9fc 0%,
+        #f1f3f6 100%
+      );
       padding: 4rem 2rem;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      gap: 3rem;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    .contact-info, .contact-form-container {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      padding: 2rem;
-      flex: 1 1 400px;
-      max-width: 500px;
-    }
-    .contact-info {
-      max-width: 400px;
-    }
-    .contact-info h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.8rem;
-      color: #181844;
-    }
-    .contact-info p {
-      margin-bottom: 1rem;
-      color: #555;
-      line-height: 1.6;
-    }
-    .contact-info a {
-      color: #6e00c2;
+      gap: 2rem;
     }
 
-    /* Contact form container + form styling */
-    .contact-form-container {
-      max-width: 500px;
+    .contact-heading {
+      text-align: center;
+      margin-bottom: 3rem;
     }
-    .contact-form-container h3 {
-      margin-bottom: 1rem;
-      font-size: 1.4rem;
+    .contact-heading h1 {
+      font-size: 2.2rem;
       color: #181844;
+      margin-bottom: 1rem;
+    }
+    .contact-heading p {
+      color: #555;
+      max-width: 600px;
+      margin: 0.5rem auto 0 auto;
+      line-height: 1.5;
+    }
+
+    .info-column {
+      flex: 1 1 400px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      padding: 2rem;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    /* LOGO at the top inside the contact info card */
+    .info-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .info-column h2 {
+      font-size: 1.6rem;
+      color: #181844;
+      margin-bottom: 1rem;
+    }
+
+    /* Info list styling */
+    .info-list {
+      list-style: none;
+      margin: 1.5rem 0 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      width: 100%;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start; 
+      gap: 1rem;
+      justify-content: center;
+    }
+    .info-icon {
+      font-size: 1.5rem;
+      color: #181844;
+      margin-top: 3px;
+    }
+    .info-text {
+      color: #555;
+      line-height: 1.4;
+    }
+    .info-text strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .info-text a {
+      color: #6e00c2;
+      font-weight: 600;
+    }
+
+    /* WhatsApp button style */
+    .whatsapp-btn {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 0.6rem 1rem;
+      background-color: #25D366;
+      color: #fff;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .whatsapp-btn:hover {
+      background-color: #1ebe5a;
+    }
+    /* The container that will hold the watermark behind it */
+.watermark-container {
+  position: relative;  /* needed for absolutely-positioned pseudo-element */
+  margin-top: 1.5rem;  /* some space above if you like */
+  min-height: 200px;   /* control how tall you want this watermark area */
+}
+
+/* Create the watermark as a pseudo-element */
+.watermark-container::before {
+  content: "";
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  /* Use your actual image or PNG/JPG/SVG. 
+     If your file is truly .mp4, 
+     you can't simply show it as an image. 
+     (a video watermark is more complex) */
+  background: url("assets/img/logog.gif") center/contain no-repeat;
+
+  width: 250px;         /* Adjust as needed */
+  height: 250px;
+  opacity: 1;        /* Low opacity for a watermark effect */
+  pointer-events: none; /* So user can still click anything above it */
+}
+    /* ===== RIGHT COLUMN: FORM ===== */
+    .form-column {
+      flex: 1 1 500px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 2rem;
+      min-width: 280px;
+    }
+    .form-column h2 {
+      font-size: 1.6rem;
+      color: #181844;
+      margin-bottom: 1.2rem;
     }
     .contact-form {
       display: flex;
@@ -357,18 +439,16 @@
       gap: 0.4rem;
     }
     .form-group label {
-      font-size: 0.95rem;
+      font-weight: 600;
       color: #181844;
-      font-weight: 500;
     }
     .form-group input,
     .form-group textarea {
-      padding: 0.7rem;
+      padding: 0.8rem;
       border: 1px solid #ccc;
       border-radius: 4px;
-      font-size: 0.95rem;
+      font-size: 1rem;
       outline: none;
-      transition: border-color 0.3s;
     }
     .form-group input:focus,
     .form-group textarea:focus {
@@ -376,41 +456,94 @@
     }
     .btn-submit {
       display: inline-block;
-      align-self: flex-start;
-      padding: 0.8rem 2rem;
+      margin-top: 0.5rem;
+      padding: 0.8rem 1.5rem;
       background: #181844;
       color: #fff;
       border: none;
       border-radius: 4px;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background-color 0.3s;
     }
     .btn-submit:hover {
-      background: #131237;
+      background-color: #131237;
     }
 
-    /* Appointment fields hidden by default */
+    /* Appointment Fields hidden by default */
     #appointment-fields {
-      background: #f1f1f1;
+      display: none;
+      background-color: #f1f1f1;
+      padding: 1rem;
       border-radius: 6px;
-      padding: 0.8rem;
-      margin-top: 0.5rem;
     }
 
-    /* Responsive contact layout */
+    /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
-      .contact-section {
+      .contact-container {
         flex-direction: column;
-        align-items: center;
-      }
-      .contact-info, .contact-form-container {
-        max-width: 100%;
       }
     }
 
     /****************************************
-     6) FOOTER
+     6) ADDRESS SECTION
+    ****************************************/
+    .address-section {
+      background: #fafafa;
+      padding: 3rem 2rem;
+    }
+    .address-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #181844;
+      margin-bottom: 2rem;
+    }
+    .address-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .address-box {
+      flex: 1 1 500px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      padding: 2rem;
+      min-width: 300px;
+    }
+    .address-box h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      color: #181844;
+    }
+    .address-box p {
+      margin-bottom: 1rem;
+      color: #555;
+      line-height: 1.6;
+    }
+    .address-box a {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: #181844;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .map-container {
+      margin-top: 1rem;
+      border: 2px solid #eee;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    /****************************************
+     7) FOOTER
     ****************************************/
     .footer {
       background: #e7e9fc;
@@ -430,7 +563,7 @@
   <header id="mainNavbar" class="navbar">
     <div class="navbar__logo">
       <a href="index.html">
-        <img src="assets/img/tztz.png" alt="Job Werke d.o.o. Logo">
+        <img src="assets/img/logogo.gif" alt="Job Werke d.o.o. Logo">
       </a>
     </div>
 
@@ -453,188 +586,224 @@
 
   <!-- ========== HERO SECTION ========== -->
   <section id="parallaxHero" class="hero-section fade-section">
-    <!-- Hero background image -->
     <img src="assets/img/hero-bg-2.jpg" alt="Kontakt Hero Image">
-    <!-- Overlay -->
     <div class="hero-overlay"></div>
-    <!-- Hero Content -->
     <div class="hero-content">
       <h1>Kontakt</h1>
-      <p>
-        Senden Sie uns eine Nachricht oder vereinbaren Sie direkt einen Termin.
-      </p>
+      <p>Senden Sie uns eine Nachricht oder vereinbaren Sie direkt einen Termin.</p>
     </div>
   </section>
 
   <!-- ========== CONTACT INTRO ========== -->
-<!-- ========== CONTACT INTRO ========== -->
-<section class="contact-intro fade-section">
+ <!-- ========== CONTACT INTRO ========== -->
+ <section class="contact-intro fade-section">
   <div class="intro-wrapper">
-    <!-- Left: Illustration or Photo -->
     <div class="intro-image">
       <img src="assets/img/appointment.jpg" alt="Kontakt Illustration" />
     </div>
-
-    <!-- Right: Headings + Text + CTA -->
     <div class="intro-content">
       <h2>Termin Vereinbaren</h2>
       <p>
-        Ob Sie Fragen zu unseren Dienstleistungen haben oder schon 
-        konkrete Vorstellungen – wir sind für Sie da. 
-        Rufen Sie uns an, schreiben Sie uns eine E-Mail oder 
+        Ob Sie Fragen zu unseren Dienstleistungen haben oder schon
+        konkrete Vorstellungen – wir sind für Sie da.
+        Rufen Sie uns an, schreiben Sie uns eine E-Mail oder
         nutzen Sie unser Kontaktformular.
       </p>
       <p class="highlight">
-        Gemeinsam finden wir die beste Lösung für Ihren 
+        Gemeinsam finden wir die beste Lösung für Ihren
         Personalbedarf und begleiten Sie Schritt für Schritt.
       </p>
-
-      <!-- Call-to-action button (optional) -->
-      <a href="#yourname" class="btn-cta">
-        Jetzt Kontakt aufnehmen
-      </a>
+      <a href="#yourname" class="btn-cta">Jetzt Kontakt aufnehmen</a>
     </div>
   </div>
 </section>
 
-  <!-- ========== CONTACT SECTION ========== -->
-  <section class="contact-section fade-section" >
-    <!-- LEFT: CONTACT INFO -->
-   <!-- LEFT: CONTACT INFO -->
-<div class="contact-info">
-  <h3>Adresse</h3>
-  <p>
-    Job Werke d.o.o.<br/>
-    Industriestraße 27<br/>
-    61381 Friedrichsdorf<br/>
-    Deutschland
-  </p>
-  <h3>E-Mail</h3>
-  <p>
-    <a href="mailto:job.werke@web.de">job.werke@web.de</a>
-  </p>
-  <h3>Telefon</h3>
-  <p>
-    WhatsApp (+385 (99) 532 1237): 
-    <a 
-      href="https://wa.me/385995321237?text=Hallo%20Job%20Werke!" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      style="
-        display: inline-block;
-        padding: 0.6rem 1rem;
-        background: #25D366; /* WhatsApp Green */
-        color: #fff;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 600;
-      "
-    >
-      Jetzt per WhatsApp schreiben
-    </a>
-  </p>
-  <p style="margin-top: 1rem;">
-    WhatsApp (+385 (99) 208 8076): 
-    <a 
-      href="https://wa.me/385992088076?text=Hallo%20Job%20Werke!" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      style="
-        display: inline-block;
-       
-        padding: 0.6rem 1rem;
-        background: #25D366;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 600;
-      "
-    >
-      Jetzt per WhatsApp schreiben
-    </a>
-  </p>
-  <!-- MAP EMBED (GOOGLE) -->
-  <h3>Unser Standort</h3>
-  <p>
-    <a 
-    href="https://www.google.com/maps/dir/?api=1&destination=Industriestra%C3%9Fe+27+61381+Friedrichsdorf+Deutschland" 
-    target="_blank"
-    rel="noopener noreferrer"
-    style="
-      display: inline-block;
-      padding: 0.6rem 1rem;
-      background: #181844;   /* brand color */
-      color: #fff;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: 600;
-    "
-  >
-    Navigation starten
-  </a>
-  </p>
+  
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+    <div class="contact-heading">
+      <h1>Kontakt</h1>
+      <p>
+        Haben Sie Fragen oder möchten direkt einen Termin vereinbaren?
+        Wir sind gerne für Sie da.  
+        Nutzen Sie einfach das Kontaktformular oder schreiben Sie uns via WhatsApp.
+      </p>
+    </div>
+    
+    <div class="contact-container">
+      <div class="info-column">
+        <h2>Kontaktinformationen</h2>
+        <ul class="info-list">
+          <!-- EMAIL -->
+          <li class="info-item">
+            <i class="fas fa-envelope info-icon"></i>
+            <div class="info-text">
+              <strong>E-Mail:</strong><br />
+              <a href="mailto:job.werke@web.de">job.werke@web.de</a>
+            </div>
+          </li>
+          
+          <!-- WHATSAPP 1 -->
+          <li class="info-item">
+            <i class="fab fa-whatsapp info-icon"></i>
+            <div class="info-text">
+              <strong>WhatsApp (1):</strong><br />
+              <a
+                href="https://wa.me/385995321237?text=Hallo%20Job%20Werke!"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="whatsapp-btn"
+              >
+                +385 (99) 532 1237
+              </a>
+            </div>
+          </li>
+          <!-- WHATSAPP 2 -->
+          <li class="info-item">
+            <i class="fab fa-whatsapp info-icon"></i>
+            <div class="info-text">
+              <strong>WhatsApp (2):</strong><br />
+              <a
+                href="https://wa.me/385992088076?text=Hallo%20Job%20Werke!"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="whatsapp-btn"
+              >
+                +385 (99) 208 8076
+              </a>
+            </div>
+          </li>
+        </ul>
+      
+        <!-- Place a new "watermark-container" here after WhatsApp items -->
+        <div class="watermark-container"></div>
+      </div>
 
-  <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.238816847897!2d8.63693149060038!3d50.25012379821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd071724ca921f%3A0x77d381e970bc2d2d!2sIndustriestra%C3%9Fe%2027%2C%2061381%20Friedrichsdorf!5e0!3m2!1sen!2sde!4v1735644093405!5m2!1sen!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </div>
-</div>
-
-    <!-- RIGHT: CONTACT FORM -->
-    <div class="contact-form-container" id="name">
-      <h3>Schreiben Sie uns oder Termin vereinbaren</h3>
-      <form class="contact-form">
-        <!-- NAME -->
-        <div class="form-group">
-          <label for="name">Name <span style="color:red;">*</span></label>
-          <input type="text" id="yourname" placeholder="Ihr Name" required />
-        </div>
-
-        <!-- EMAIL -->
-        <div class="form-group">
-          <label for="email">E-Mail-Adresse <span style="color:red;">*</span></label>
-          <input type="email" id="email" placeholder="Ihre E-Mail-Adresse" required />
-        </div>
-
-        <!-- RADIO: MESSAGE vs. APPOINTMENT -->
-        <div class="form-group">
-          <label style="font-weight:600;">Ihr Anliegen</label>
-          <div>
-            <input type="radio" name="anliegen" id="anliegen-message" value="message" checked />
-            <label for="anliegen-message">Nur eine Nachricht senden</label>
-          </div>
-          <div>
-            <input type="radio" name="anliegen" id="anliegen-appointment" value="appointment" />
-            <label for="anliegen-appointment">Einen Termin vereinbaren</label>
-          </div>
-        </div>
-
-        <!-- APPOINTMENT FIELDS -->
-        <div id="appointment-fields" style="display:none;">
+      <!-- RIGHT: FORM -->
+      <div class="form-column">
+        <h2>Kontaktformular</h2>
+        <form class="contact-form">
+          <!-- NAME -->
           <div class="form-group">
-            <label for="terminDate">Gewünschtes Datum</label>
-            <input type="date" id="terminDate" />
+            <label for="yourname">Name <span style="color:red;">*</span></label>
+            <input type="text" id="yourname" placeholder="Ihr Name" required />
           </div>
+          <!-- EMAIL -->
           <div class="form-group">
-            <label for="terminTime">Gewünschte Uhrzeit</label>
-            <input type="time" id="terminTime" />
+            <label for="email">E-Mail-Adresse <span style="color:red;">*</span></label>
+            <input type="email" id="email" placeholder="Ihre E-Mail-Adresse" required />
           </div>
-        </div>
+          <!-- RADIO: MESSAGE vs. APPOINTMENT -->
+          <div class="form-group">
+            <label>Ihr Anliegen</label>
+            <div>
+              <input 
+                type="radio" 
+                name="anliegen" 
+                id="anliegen-message" 
+                value="message" 
+                checked
+              />
+              <label for="anliegen-message">Nur eine Nachricht senden</label>
+            </div>
+            <div>
+              <input 
+                type="radio" 
+                name="anliegen" 
+                id="anliegen-appointment" 
+                value="appointment" 
+              />
+              <label for="anliegen-appointment">Einen Termin vereinbaren</label>
+            </div>
+          </div>
+          <!-- APPOINTMENT FIELDS -->
+          <div id="appointment-fields">
+            <div class="form-group">
+              <label for="terminDate">Gewünschtes Datum</label>
+              <input type="date" id="terminDate" />
+            </div>
+            <div class="form-group">
+              <label for="terminTime">Gewünschte Uhrzeit</label>
+              <input type="time" id="terminTime" />
+            </div>
+          </div>
+          <!-- MESSAGE -->
+          <div class="form-group">
+            <label for="msg">Nachricht <span style="color:red;">*</span></label>
+            <textarea id="msg" rows="5" placeholder="Ihre Nachricht..." required></textarea>
+          </div>
+          <!-- Honeypot (hidden) -->
+          <div style="display:none;">
+            <label for="hp">Honeypot:</label>
+            <input type="text" id="hp" name="hp" />
+          </div>
+          <!-- SUBMIT BUTTON -->
+          <button type="submit" class="btn-submit">Absenden</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-        <!-- MESSAGE -->
-        <div class="form-group">
-          <label for="msg">Nachricht <span style="color:red;">*</span></label>
-          <textarea id="msg" placeholder="Ihre Nachricht..." rows="5" required></textarea>
+  <!-- ========== ADDRESS SECTION ========== -->
+  <section class="address-section fade-section">
+    <h2>Unsere Standorte</h2>
+    <div class="address-container">
+      <!-- Germany -->
+      <div class="address-box">
+        <h3>Adresse (Deutschland)</h3>
+        <p>
+          Job Werke d.o.o.<br/>
+          Industriestraße 27<br/>
+          61381 Friedrichsdorf<br/>
+          Deutschland
+        </p>
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=Industriestra%C3%9Fe+27+61381+Friedrichsdorf+Deutschland"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Navigation starten
+        </a>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.238816847897!2d8.63693149060038!3d50.25012379821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd071724ca921f%3A0x77d381e970bc2d2d!2sIndustriestra%C3%9Fe%2027%2C%2061381%20Friedrichsdorf!5e0!3m2!1sen!2sde!4v1735644093405!5m2!1sen!2sde"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
-
-        <!-- Honeypot (hidden) -->
-        <div style="display:none;">
-          <label for="hp">Honeypot:</label>
-          <input type="text" id="hp" name="hp" />
+      </div>
+      <!-- Croatia -->
+      <div class="address-box">
+        <h3>Adresse (Kroatien)</h3>
+        <p>
+          Job Werke d.o.o.<br/>
+          Marije Grbac 14<br/>
+          51000 Rijeka<br/>
+          Croatia
+        </p>
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=Marije+Grbac+14+51000+Rijeka+Croatia"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Navigation starten
+        </a>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2803.9498217151754!2d14.375826776450756!3d45.34982517107221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a6f16fbd36df%3A0x5c6fb0f9e9b1d632!2sUl.%20Marije%20Grbac%2014%2C%2051000%2C%20Rijeka%2C%20Croatia!5e0!3m2!1sen!2sde!4v1735648157157!5m2!1sen!2sde"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
-
-        <!-- SUBMIT BUTTON -->
-        <button type="submit" class="btn-submit">Absenden</button>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -644,9 +813,9 @@
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- +++++++++++++++++++++++++++++++++++++++++++++
-       EXTERNAL JS
-  ++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- +++++++++++++++++++++++++++++++++++++
+       EXTERNAL JS (Load last for performance)
+  ++++++++++++++++++++++++++++++++++++++ -->
   <script src="js/kontakt.js"></script>
 </body>
 </html>
