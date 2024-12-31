@@ -10,15 +10,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Font -->
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" 
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
     rel="stylesheet"
   />
 
   <style>
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       1) RESET & BASE STYLES
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    /****************************************
+     1) RESET & BASE STYLES
+    ****************************************/
     * {
       margin: 0;
       padding: 0;
@@ -38,9 +38,8 @@
       text-decoration: none;
       transition: color 0.3s;
     }
-    /* Updated link hover color to brand color #181844 */
     a:hover {
-      color: #181844;
+      color: #181844; /* brand color on hover */
     }
     img {
       display: block;
@@ -54,51 +53,51 @@
       margin-bottom: 1rem;
     }
 
-    /* Fade-in for sections */
+    /* For fade-in sections */
     .fade-section {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .fade-in-view {
+    .in-view {
       opacity: 1 !important;
       transform: translateY(0) !important;
     }
 
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       2) NAVBAR (SLIDE-DOWN ON MOBILE)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .navbar {
+    /****************************************
+     2) NAVBAR
+    ****************************************/
+    header#mainNavbar {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      height: 70px; /* fixed navbar height on desktop */
+      height: 70px; 
       display: flex;
-      align-items: center; /* vertical centering */
+      align-items: center;
       justify-content: space-between;
       background: #181844; /* brand color */
-      padding: 0 2rem; /* horizontal spacing */
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      padding: 0 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
       z-index: 9999;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    /* On scroll, darken or change style if desired */
+    .scrolled-navbar {
+      background: #181844; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     .navbar__logo img {
-      max-height: 60px; /* keep logo within navbar height */
-      width: auto;
-      object-fit: contain;
-      margin: 5px 0; /* optional breathing room */
+      max-height: 60px;
       transition: transform 0.3s;
     }
     .navbar__logo a img:hover {
       transform: scale(1.05);
     }
-
-    /* Desktop menu */
     .navbar__menu {
       display: flex;
       gap: 2rem;
       align-items: center;
     }
-    /* White links on dark background */
     .navbar__menu a {
       font-weight: 500;
       padding: 0.3rem 0;
@@ -111,22 +110,20 @@
     .navbar__menu a.active {
       border-bottom: 2px solid #fff;
     }
-
-    /* Offsets page content below the fixed navbar (optional) */
     body::before {
       content: "";
       display: block;
-      height: 70px; /* matches .navbar height */
+      height: 70px; /* offset content below nav */
     }
 
-    /* Hamburger toggle (hidden on desktop) */
-    .navbar__toggle {
+    /* Hamburger toggle */
+    #hamburgerBtn {
       display: none;
       flex-direction: column;
       gap: 4px;
       cursor: pointer;
     }
-    .navbar__toggle span {
+    #hamburgerBtn span {
       width: 25px;
       height: 3px;
       background: #fff;
@@ -134,29 +131,24 @@
       transition: all 0.3s;
     }
 
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
-       RESPONSIVE (MAX-WIDTH: 768px)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
     @media (max-width: 768px) {
-      .navbar {
+      header#mainNavbar {
         height: 60px;
       }
       .navbar__logo img {
         max-height: 50px;
       }
-
-      /* Show hamburger, hide normal menu by default */
-      .navbar__toggle {
+      #hamburgerBtn {
         display: flex;
       }
       .navbar__menu {
         position: absolute;
-        top: 60px; /* matches .navbar height on mobile */
+        top: 60px;
         left: 0;
         width: 100%;
         flex-direction: column;
         gap: 1rem;
-        background: #181844; /* keep brand color on mobile too */
+        background: #181844;
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         padding: 1rem 2rem;
         transform: translateY(-130%);
@@ -165,21 +157,18 @@
       .navbar__menu.nav-open {
         transform: translateY(0);
       }
-
-      /* Mobile links also white */
       .navbar__menu a {
         color: #fff;
-        padding: 0.3rem 0;
       }
       .navbar__menu a:hover {
         color: #bbb;
       }
     }
 
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       3) HERO SECTION (ENHANCED BRANDING)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .hero-section {
+    /****************************************
+     3) HERO SECTION (ID=parallaxHero)
+    ****************************************/
+    #parallaxHero {
       position: relative;
       width: 100%;
       height: 50vh;
@@ -189,41 +178,23 @@
       justify-content: center;
       text-align: center;
       color: #fff;
+      background: #181844; /* fallback color */
     }
-    .hero-bg {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: -2;
-    }
-    .hero-bg img {
+    #parallaxHero img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-    /* BRAND-COLOR DIAGONAL OVERLAY */
-    .hero-brand-overlay {
+    .hero-overlay {
       position: absolute;
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
-      z-index: -1;
-      /* A multi-stop gradient for a bold brand look */
-      background: linear-gradient(
-        120deg,
-        rgba(24, 24, 68, 0.8) 0%,
-        rgba(24, 24, 68, 0.65) 40%,
-        rgba(24, 24, 68, 0.4) 100%
-      );
-      clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      z-index: 1;
     }
-
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       max-width: 700px;
       padding: 1rem;
     }
@@ -232,29 +203,15 @@
       margin-bottom: 0.5rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
-    .hero-content h2 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: #ffd700; /* optional brand highlight or gold accent */
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
     .hero-content p {
       font-size: 1.1rem;
       margin-bottom: 1rem;
       text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     }
-    /* optional angled shape at bottom */
-    .hero-angled-bottom {
-      position: absolute;
-      bottom: 0; 
-      left: 0;
-      width: 100%;
-      height: 60px;
-    }
 
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       4) CONTACT INTRO
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    /****************************************
+     4) CONTACT INTRO
+    ****************************************/
     .contact-intro {
       background: #fff;
       padding: 3rem 2rem;
@@ -279,9 +236,9 @@
       color: #333;
     }
 
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       5) CONTACT SECTION (INFO & FORM)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    /****************************************
+     5) CONTACT SECTION
+    ****************************************/
     .contact-section {
       background: #f9f9fc;
       padding: 4rem 2rem;
@@ -364,7 +321,7 @@
       background: #540090;
     }
 
-    /* APPOINTMENT FIELDS (hidden if not needed) */
+    /* Appointment fields hidden by default */
     #appointment-fields {
       background: #f1f1f1;
       border-radius: 6px;
@@ -382,9 +339,9 @@
       }
     }
 
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       6) FOOTER
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    /****************************************
+     6) FOOTER
+    ****************************************/
     .footer {
       background: #e7e9fc;
       text-align: center;
@@ -400,14 +357,15 @@
 <body>
 
   <!-- ========== NAVBAR ========== -->
-  <header class="navbar">
+  <header id="mainNavbar" class="navbar">
     <div class="navbar__logo">
       <a href="index.html">
         <img src="assets/img/tztz.png" alt="Job Werke d.o.o. Logo">
       </a>
     </div>
+
     <!-- Hamburger for mobile -->
-    <div class="navbar__toggle" id="mobileToggle">
+    <div class="navbar__toggle" id="hamburgerBtn">
       <span></span>
       <span></span>
       <span></span>
@@ -419,32 +377,20 @@
       <a href="uber-uns.html">Über uns</a>
       <a href="dienstleistungen.html">Dienstleistungen</a>
       <a href="arbeiten.html">Mit uns arbeiten</a>
-      <a href="kontakt.html" class="active-link">Kontakt</a>
+      <a href="kontakt.html" class="active">Kontakt</a>
     </nav>
   </header>
 
-  <!-- ========== HERO SECTION WITH BRANDING ========== -->
-  <section class="hero-section fade-section">
-    <div class="hero-bg">
-      <!-- You can replace hero-bg-2 with any image you prefer -->
-      <img src="assets/img/hero-bg-2.jpg" alt="Kontakt Hero Image">
-    </div>
-
-    <!-- Brand-colored diagonal overlay for emphasis -->
-    <div class="hero-brand-overlay"></div>
-
+  <!-- ========== HERO (PARALLAX) ========== -->
+  <section id="parallaxHero" class="hero-section fade-section">
+    <img src="assets/img/hero-bg-2.jpg" alt="Kontakt Hero Image">
+    <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Kontakt</h1>
-      <h2>Ihr direkter Draht zu Job Werke d.o.o.</h2>
       <p>
-        Ob Fragen, Anregungen oder Terminwünsche – wir freuen uns auf Ihre Nachricht.
+        Senden Sie uns eine Nachricht oder vereinbaren Sie direkt einen Termin.
       </p>
     </div>
-
-    <!-- Optional angled bottom shape -->
-    <svg class="hero-angled-bottom" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
-      <polygon fill="#ffffff" points="0,10 100,0 100,10"></polygon>
-    </svg>
   </section>
 
   <!-- ========== CONTACT INTRO ========== -->
@@ -464,13 +410,8 @@
     </div>
   </section>
 
-  <!-- Optional angled-separator here if you like -->
-  <svg class="angled-separator" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
-    <polygon fill="#f9f9fc" points="0,0 100,10 0,10"></polygon>
-  </svg>
-
   <!-- ========== CONTACT SECTION ========== -->
-  <section class="contact-section fade-section" id="name">
+  <section class="contact-section fade-section">
     <!-- LEFT: CONTACT INFO -->
     <div class="contact-info">
       <h3>Adresse</h3>
@@ -480,22 +421,20 @@
         61381 Friedrichsdorf<br/>
         Deutschland
       </p>
-
       <h3>E-Mail</h3>
-      <p><a href="mailto:job.werke@webmail.de">job.werke@webmail.de</a></p>
-
+      <p><a href="mailto:job.werke1@gmail.com">job.werke1@gmail.com</a></p>
       <h3>Telefon</h3>
       <p>+35 (51) 360 219</p>
     </div>
 
     <!-- RIGHT: CONTACT FORM -->
-    <div class="contact-form-container" >
+    <div class="contact-form-container">
       <h3>Schreiben Sie uns oder Termin vereinbaren</h3>
       <form class="contact-form">
         <!-- NAME -->
         <div class="form-group">
           <label for="name">Name <span style="color:red;">*</span></label>
-          <input type="text" id="Ihrname" placeholder="Ihr Name" required />
+          <input type="text" id="name" placeholder="Ihr Name" required />
         </div>
 
         <!-- EMAIL -->
@@ -517,7 +456,7 @@
           </div>
         </div>
 
-        <!-- APPOINTMENT FIELDS (Hidden by default) -->
+        <!-- APPOINTMENT FIELDS -->
         <div id="appointment-fields" style="display:none;">
           <div class="form-group">
             <label for="terminDate">Gewünschtes Datum</label>
@@ -535,7 +474,7 @@
           <textarea id="msg" placeholder="Ihre Nachricht..." rows="5" required></textarea>
         </div>
 
-        <!-- Honeypot field (hidden) -->
+        <!-- Honeypot (hidden) -->
         <div style="display:none;">
           <label for="hp">Honeypot:</label>
           <input type="text" id="hp" name="hp" />
@@ -554,44 +493,8 @@
   </footer>
 
   <!-- +++++++++++++++++++++++++++++++++++++++++++++
-       JS FOR MOBILE NAVBAR TOGGLE, FADE, & APPOINTMENT
+       EXTERNAL JS
   ++++++++++++++++++++++++++++++++++++++++++++++ -->
-  <script>
-    // ============ MOBILE NAV TOGGLE ============
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navbarMenu = document.getElementById('navbarMenu');
-
-    mobileToggle.addEventListener('click', () => {
-      navbarMenu.classList.toggle('nav-open');
-    });
-
-    // ============ FADE-IN (IntersectionObserver) ============
-    const fadeElems = document.querySelectorAll('.fade-section');
-    const fadeOptions = { threshold: 0.1 };
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, fadeOptions);
-    fadeElems.forEach(elem => fadeObserver.observe(elem));
-
-    // ============ APPOINTMENT FIELDS LOGIC ============
-    const radioMessage = document.getElementById('anliegen-message');
-    const radioAppointment = document.getElementById('anliegen-appointment');
-    const appointmentFields = document.getElementById('appointment-fields');
-
-    function toggleAppointmentFields() {
-      if (radioAppointment.checked) {
-        appointmentFields.style.display = 'block';
-      } else {
-        appointmentFields.style.display = 'none';
-      }
-    }
-    radioMessage.addEventListener('change', toggleAppointmentFields);
-    radioAppointment.addEventListener('change', toggleAppointmentFields);
-  </script>
+  <script src="js/kontakt.js"></script>
 </body>
 </html>
