@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Danke – Job Werke d.o.o.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f3f3f3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .thank-you-message {
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 500px;
+    }
+    .thank-you-message h1 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: #181844; /* brand color */
+    }
+    .thank-you-message p {
+      margin-bottom: 1rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .thank-you-message a {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: #181844;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .thank-you-message a:hover {
+      background: #12163b;
+    }
+
+    /* Additional classes for styling success or error text */
+    .msg-success { color: green; }
+    .msg-error { color: red; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="thank-you-message">
+    <h1 id="tyHeadline">Vielen Dank!</h1>
+    <p id="tyMessage"></p>
+    <a href="index.html">Zurück zur Startseite</a>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const isSuccess = params.get("success");
+    const isError = params.get("error");
+
+    const tyHeadline = document.getElementById("tyHeadline");
+    const tyMessage = document.getElementById("tyMessage");
+
+    if (isSuccess) {
+      // Show success content
+      tyHeadline.textContent = "Nachricht erfolgreich gesendet!";
+      tyMessage.textContent = 
+        "Wir haben Ihre Nachricht erhalten und werden uns schnellstmöglich bei Ihnen melden.";
+    } else if (isError) {
+      // Show error content
+      tyHeadline.textContent = "Fehler beim Senden";
+      tyHeadline.classList.add("msg-error");
+      tyMessage.textContent = 
+        "Es gab ein Problem beim Versenden Ihrer Nachricht. Bitte versuchen Sie es später erneut oder rufen Sie uns an.";
+    } else {
+      // No query param => default
+      tyHeadline.textContent = "Willkommen!";
+      tyMessage.textContent = "Keine Aktion erkannt.";
+    }
+  });
+  </script>
+</body>
+</html>
