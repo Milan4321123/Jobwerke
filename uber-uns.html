@@ -425,41 +425,68 @@
     /****************************************
      7) ACHIEVEMENTS
     ****************************************/
-    .achievements {
-      background: #f4f4f4;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .achievements h2 {
-      margin-bottom: 2rem;
-    }
-    .achievements-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .achievement-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2rem;
-      transition: transform 0.3s;
-    }
-    .achievement-card:hover {
-      transform: translateY(-3px);
-    }
-    .achievement-card h3 {
-      font-size: 1.1rem;
-      color: #333;
-      margin-bottom: 0.5rem;
-    }
-    .achievement-card p {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.4;
-    }
+ /****************************************
+  7) ACHIEVEMENTS
+****************************************/
+.achievements {
+  background: #f4f4f4;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.achievements h2 {
+  margin-bottom: 2rem;
+}
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.achievement-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  padding: 2rem;
+  transition: transform 0.3s;
+}
+.achievement-card:hover {
+  transform: translateY(-3px);
+}
+.achievement-card h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.achievement-card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.achievements p {
+  max-width: 700px; 
+  margin: 2rem auto 0; 
+  color: #555; 
+  line-height: 1.6;
+}
+
+/* CTA-like links in final paragraph */
+a.cta-link {
+  display: inline-block;            /* so padding is more button-like */
+  margin: 0 4px;                    /* small horizontal spacing */
+  padding: 0.4rem 0.8rem;           /* some padding for a button feel */
+  background: #181844;             /* brand color background */
+  color: #fff !important;          /* override default link color */
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+  text-decoration: none;           /* remove underline */
+}
+a.cta-link:hover {
+  background: #12163b;             /* slightly darker brand color */
+  color: #fff !important;
+}
 
     /****************************************
      8) IMPACT / COMMUNITY
@@ -612,7 +639,7 @@
   </section>
 
   <!-- ========== FOUNDING STORY + FULL TIMELINE ========== -->
-  <section class="founding-section">
+  <section class="founding-section"id="time">
     <div class="founding-top">
       <div class="founding-text">
         <h2>Unsere Anfänge</h2>
@@ -641,7 +668,7 @@
     </div>
 
     <!-- FULL TIMELINE -->
-    <div class="full-timeline">
+    <div class="full-timeline" >
       <div class="timeline-item">
         <span class="timeline-date">2010</span>
         <h3>Gründung in Kroatien</h3>
@@ -667,12 +694,7 @@
            Betreuung für Unternehmen jeder Größe.</p>
       </div>
     </div>
-    <p style="max-width: 700px; margin: 2rem auto 0; color:#555;">
-      Eine kurze Version dieser Timeline finden Sie auf unserer 
-      <strong><a href="index.html" style="color:#333;">Home Page</a></strong>. 
-      Dort werfen wir einen ersten Blick auf unsere Geschichte – 
-      hier sehen Sie jetzt die ganze Reise.
-    </p>
+   
   </section>
 
   <!-- ========== CULTURE & PHILOSOPHY ========== -->
@@ -741,38 +763,42 @@
   </section>
 
   <!-- ========== ACHIEVEMENTS SECTION ========== -->
-  <section class="achievements">
-    <h2>Unsere Meilensteine</h2>
-    <div class="achievements-grid">
-      <div class="achievement-card">
-        <h3>ISO-Zertifizierung (2021)</h3>
-        <p>
-          Ein Qualitätsbeweis für unsere Prozesse – von der Rekrutierung 
-          bis zum Onboarding.
-        </p>
-      </div>
-      <div class="achievement-card">
-        <h3>1.000+ vermittelte Fachkräfte</h3>
-        <p>
-          Immer wieder eine Freude zu sehen, wie unsere Vermittlungen 
-          Unternehmen stärken und Menschen neue Chancen geben.
-        </p>
-      </div>
-      <div class="achievement-card">
-        <h3>Bester Personalvermittler 2022</h3>
-        <p>
-          Eine Auszeichnung, die wir nur als Team erreichen konnten. 
-          Motiviert uns, weiter an innovativen Konzepten zu arbeiten.
-        </p>
-      </div>
+<!-- ========== ACHIEVEMENTS SECTION ========== -->
+<section class="achievements">
+  <h2>Unsere Meilensteine</h2>
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <h3>ISO-Zertifizierung (2021)</h3>
+      <p>
+        Ein Qualitätsbeweis für unsere Prozesse – von der Rekrutierung 
+        bis zum Onboarding.
+      </p>
     </div>
-    <p style="max-width:700px; margin: 2rem auto 0; color:#555;">
-      Mehr über unsere Arbeitsweise und rechtliche Standards finden Sie 
-      bei unseren <strong><a href="dienstleistungen.html" style="color:#333;">Dienstleistungen</a></strong>. 
-      Oder erfahren Sie <strong><a href="arbeiten.html" style="color:#333;">Mit uns arbeiten</a></strong>, 
-      wie wir Ihren Personalbedarf decken können.
-    </p>
-  </section>
+    <div class="achievement-card">
+      <h3>1.000+ vermittelte Fachkräfte</h3>
+      <p>
+        Immer wieder eine Freude zu sehen, wie unsere Vermittlungen 
+        Unternehmen stärken und Menschen neue Chancen geben.
+      </p>
+    </div>
+    <div class="achievement-card">
+      <h3>Bester Personalvermittler 2022</h3>
+      <p>
+        Eine Auszeichnung, die wir nur als Team erreichen konnten. 
+        Motiviert uns, weiter an innovativen Konzepten zu arbeiten.
+      </p>
+    </div>
+  </div>
+
+  <p style="max-width:700px; margin: 2rem auto 0; color:#555;">
+    Mehr über unsere Arbeitsweise und rechtliche Standards finden Sie 
+    in unseren
+    <a class="cta-link" href="dienstleistungen.html">Dienstleistungen</a>.
+    Oder entdecken Sie 
+    <a class="cta-link" href="arbeiten.html">Mit uns arbeiten</a>,
+    um Ihren Personalbedarf nachhaltig zu decken.
+  </p>
+</section>
 
   <!-- ========== IMPACT / COMMUNITY ========== -->
   <section class="impact">
