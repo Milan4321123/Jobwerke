@@ -67,38 +67,38 @@
     /****************************************
      2) NAVBAR
     ****************************************/
-    header#mainNavbar {
+    .navbar {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 70px; 
+      height: 70px; /* fixed navbar height on desktop */
       display: flex;
-      align-items: center;
+      align-items: center; /* vertical centering */
       justify-content: space-between;
       background: #181844; /* brand color */
-      padding: 0 2rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 0 2rem; /* horizontal spacing */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       z-index: 9999;
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-    /* On scroll, darken or change style if desired */
-    .scrolled-navbar {
-      background: #181844; 
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     .navbar__logo img {
-  width: auto;     /* allow the image to keep its original width */
-  max-width: 140px; /* or set a maximum width you prefer */
-  height: auto;    
-}
+      max-height: 60px; /* keep logo within navbar height */
+      width: auto;
+      object-fit: contain;
+      margin: 5px 0; /* optional breathing room */
+      transition: transform 0.3s;
+    }
     .navbar__logo a img:hover {
       transform: scale(1.05);
     }
+
+    /* Desktop menu */
     .navbar__menu {
       display: flex;
       gap: 2rem;
       align-items: center;
     }
+    /* White links on dark background */
     .navbar__menu a {
       font-weight: 500;
       padding: 0.3rem 0;
@@ -111,20 +111,22 @@
     .navbar__menu a.active {
       border-bottom: 2px solid #fff;
     }
+
+    /* Offsets page content below the fixed navbar (optional) */
     body::before {
       content: "";
       display: block;
-      height: 70px; /* offset content below nav */
+      height: 70px; /* matches .navbar height */
     }
 
-    /* Hamburger toggle */
-    #hamburgerBtn {
+    /* Hamburger toggle (hidden on desktop) */
+    .navbar__toggle {
       display: none;
       flex-direction: column;
       gap: 4px;
       cursor: pointer;
     }
-    #hamburgerBtn span {
+    .navbar__toggle span {
       width: 25px;
       height: 3px;
       background: #fff;
@@ -132,40 +134,49 @@
       transition: all 0.3s;
     }
 
+    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
+       RESPONSIVE (MAX-WIDTH: 768px)
+    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
     @media (max-width: 768px) {
-      header#mainNavbar {
+      /* Slightly smaller navbar on mobile */
+      .navbar {
         height: 60px;
       }
       .navbar__logo img {
         max-height: 50px;
       }
-      #hamburgerBtn {
+
+      /* Show hamburger, hide normal menu by default */
+      .navbar__toggle {
         display: flex;
       }
       .navbar__menu {
         position: absolute;
-        top: 60px;
+        top: 60px; /* matches .navbar height on mobile */
         left: 0;
         width: 100%;
         flex-direction: column;
         gap: 1rem;
-        background: #181844;
+        background: #181844; /* brand color on mobile too */
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         padding: 1rem 2rem;
-        transform: translateY(-130%);
+        transform: translateY(-130%); /* hidden by default (above screen) */
         transition: transform 0.3s ease;
       }
+      /* Toggle open: slide down when .nav-open is added */
       .navbar__menu.nav-open {
         transform: translateY(0);
       }
+
+      /* Mobile links also white */
       .navbar__menu a {
         color: #fff;
+        padding: 0.3rem 0;
       }
       .navbar__menu a:hover {
         color: #bbb;
       }
     }
-
     /****************************************
      3) HERO SECTION (ID=parallaxHero)
     ****************************************/
