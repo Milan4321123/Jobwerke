@@ -608,40 +608,43 @@
        10) FAQ SECTION
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .faq-section {
-      background: #f5f5f5;       
-      padding: 3rem 1rem;
+      background: #fff;
       text-align: center;
+      padding: 4rem 1rem;
     }
     .faq-section h2 {
       font-size: 2rem;
       margin-bottom: 2rem;
     }
     .faq-container {
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
+      text-align: left;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
     .faq-item {
-      background: #fff;
+      background: #fdfdfd;
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-      overflow: hidden; 
-      transition: box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: background 0.3s, box-shadow 0.3s;
+      overflow: hidden;
     }
     .faq-item:hover {
-      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      background: #f1efff;
+      background: rgba(165, 165, 214, 0.65); 
     }
     .faq-question {
-      padding: 1rem 1rem;
+      margin: 0;
+      padding: 1rem;
       cursor: pointer;
       position: relative;
-      font-size: 1.1rem;
       font-weight: 600;
+      font-size: 1.1rem;
       color: #333;
     }
-    /* Updated ::after color to brand color #181844 */
+    /* Plus sign with brand color */
     .faq-question::after {
       content: "+";
       position: absolute;
@@ -656,18 +659,14 @@
       content: "–";
     }
     .faq-answer {
-      padding: 0 1rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
+      display: none;
+      padding: 0 1rem 1rem;
       font-size: 0.95rem;
       color: #555;
       line-height: 1.5;
-      margin-bottom: 1rem;
-      margin-top: 0;
     }
     .faq-item.active .faq-answer {
-      max-height: 200px;
+      display: block;
     }
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
