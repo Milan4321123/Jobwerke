@@ -37,8 +37,9 @@
       text-decoration: none;
       transition: color 0.3s;
     }
+    /* Hover color for links */
     a:hover {
-      color: #6e00c2;
+      color: #181844;
     }
     img {
       display: block;
@@ -53,51 +54,61 @@
     }
 
     /****************************************
-     2) NAVBAR (WITH HAMBURGER)
+     2) NAVBAR (DESKTOP + MOBILE)
     *****************************************/
     .navbar {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 70px; /* fixed navbar height on desktop */
       display: flex;
-      align-items: center;
+      align-items: center; /* vertical centering */
       justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      background: #181844; /* brand color */
+      padding: 0 2rem; /* horizontal spacing */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       z-index: 9999;
     }
-    .navbar__logo a img {
-      width: 90px;
+    .navbar__logo img {
+      max-height: 60px; /* keep logo within navbar height */
+      width: auto;
       object-fit: contain;
+      margin: 5px 0; /* optional breathing room */
       transition: transform 0.3s;
     }
     .navbar__logo a img:hover {
       transform: scale(1.05);
     }
+
     /* Desktop menu */
     .navbar__menu {
       display: flex;
       gap: 2rem;
       align-items: center;
     }
+    /* White links on dark background */
     .navbar__menu a {
       font-weight: 500;
-      position: relative;
       padding: 0.3rem 0;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    .navbar__menu a:hover {
+      color: #bbb;
     }
     .navbar__menu a.active {
-      border-bottom: 2px solid #6e00c2;
+      border-bottom: 2px solid #fff;
     }
 
-    /* Reserve space below the fixed navbar */
+    /* Offsets page content below the fixed navbar (optional) */
     body::before {
       content: "";
       display: block;
-      height: 70px;
+      height: 70px; /* matches .navbar height */
     }
 
-    /* Hamburger toggle (hidden by default) */
+    /* Hamburger toggle (hidden on desktop) */
     .navbar__toggle {
       display: none;
       flex-direction: column;
@@ -107,34 +118,52 @@
     .navbar__toggle span {
       width: 25px;
       height: 3px;
-      background: #333;
+      background: #fff;
       border-radius: 2px;
       transition: all 0.3s;
     }
 
-    /****************************************
-     3) MOBILE NAV STYLES
-    *****************************************/
+    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
+       RESPONSIVE (MAX-WIDTH: 768px)
+    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
     @media (max-width: 768px) {
-      /* Show hamburger toggle, hide normal menu by default */
+      /* Slightly smaller navbar on mobile */
+      .navbar {
+        height: 60px;
+      }
+      .navbar__logo img {
+        max-height: 50px;
+      }
+
+      /* Show hamburger, hide normal menu by default */
       .navbar__toggle {
         display: flex;
       }
       .navbar__menu {
         position: absolute;
-        top: 70px; 
-        left: 0; 
+        top: 60px; /* matches .navbar height on mobile */
+        left: 0;
         width: 100%;
         flex-direction: column;
         gap: 1rem;
-        background: #fff;
+        background: #181844; /* brand color on mobile too */
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        padding: 1rem 1.5rem;
-        transform: translateY(-130%);
+        padding: 1rem 2rem;
+        transform: translateY(-130%); /* hidden by default (above screen) */
         transition: transform 0.3s ease;
       }
+      /* Toggle open: slide down when .nav-open is added */
       .navbar__menu.nav-open {
         transform: translateY(0);
+      }
+
+      /* Mobile links also white */
+      .navbar__menu a {
+        color: #fff;
+        padding: 0.3rem 0;
+      }
+      .navbar__menu a:hover {
+        color: #bbb;
       }
     }
 
@@ -153,7 +182,7 @@
       color: #fff;
       overflow: hidden;
     }
-    /* Diagonal gradient overlay */
+    /* Diagonal gradient overlay with brand color shades */
     .hero::before {
       content: "";
       position: absolute;
@@ -162,9 +191,9 @@
       height: 100%;
       background: linear-gradient(
         135deg,
-        rgba(110, 0, 194, 0.7),
-        rgba(150, 0, 220, 0.5),
-        rgba(183, 42, 234, 0.5)
+        rgba(24, 24, 68, 0.7),
+        rgba(18, 22, 59, 0.5),
+        rgba(28, 28, 75, 0.5)
       );
       z-index: 1;
       transform-origin: top left;
@@ -185,7 +214,6 @@
       font-size: 1.15rem;
       line-height: 1.4;
     }
-    /* Decorative wave at bottom */
     .hero-wave {
       position: absolute;
       bottom: 0; left: 0;
@@ -251,7 +279,6 @@
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
-
     @media (max-width: 768px) {
       .split-section {
         grid-template-columns: 1fr;
@@ -348,7 +375,7 @@
     }
 
     /****************************************
-     8) FAQ SECTION (NO ANSWERS SHOWN INITIALLY)
+     8) FAQ SECTION (HIDDEN ANSWERS)
     *****************************************/
     .faq-section {
       background: #fff;
@@ -365,20 +392,19 @@
       text-align: left;
       display: flex;
       flex-direction: column;
-      gap: 1rem; /* spacing between items */
+      gap: 1rem;
     }
     .faq-item {
       background: #fdfdfd;
       border-radius: 8px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       transition: background 0.3s, box-shadow 0.3s;
-      overflow: hidden; /* ensure hidden content stays hidden */
+      overflow: hidden;
     }
     .faq-item:hover {
       background: #f1efff;
       box-shadow: 0 6px 15px rgba(0,0,0,0.07);
     }
-    /* Question as a heading for semantics */
     .faq-question {
       margin: 0;
       padding: 1rem;
@@ -388,29 +414,27 @@
       font-size: 1.1rem;
       color: #333;
     }
-    /* The plus sign that toggles to minus */
+    /* Plus sign with brand color */
     .faq-question::after {
       content: "+";
       position: absolute;
       right: 1rem;
       top: 1rem;
       font-size: 1.3rem;
-      color: #6e00c2;
+      color: #181844;
       transition: transform 0.3s;
     }
     .faq-item.active .faq-question::after {
       transform: rotate(45deg);
       content: "–";
     }
-    /* FAQ answer: fully hidden by default */
     .faq-answer {
-      display: none; /* ensures no partial text is visible initially */
+      display: none;
       padding: 0 1rem 1rem;
       font-size: 0.95rem;
       color: #555;
       line-height: 1.5;
     }
-    /* Reveal the answer only when .active is set */
     .faq-item.active .faq-answer {
       display: block;
     }
@@ -419,7 +443,7 @@
      9) CTA SECTION
     *****************************************/
     .cta-section {
-      background: #6e00c2;
+      background: #181844; /* brand color */
       color: #fff;
       text-align: center;
       padding: 3rem 1rem;
@@ -436,7 +460,7 @@
     .btn-contact {
       display: inline-block;
       background: #fff;
-      color: #6e00c2;
+      color: #181844;
       padding: 0.8rem 1.4rem;
       border-radius: 4px;
       font-weight: 600;
@@ -444,7 +468,7 @@
     }
     .btn-contact:hover {
       background: #ebebeb;
-      color: #540090;
+      color: #12163b; /* darker shade for hover */
     }
 
     /****************************************
@@ -468,20 +492,20 @@
     <div class="navbar__logo">
       <a href="index.html">
         <img 
-          src="assets/img/jobwerke-logo.png" 
+          src="assets/img/tztz.png" 
           alt="Job Werke d.o.o. Logo – Mit uns arbeiten"
         >
       </a>
     </div>
 
-    <!-- Hamburger Toggle (mobile) -->
+    <!-- HAMBURGER (mobile) -->
     <div class="navbar__toggle" id="mobileToggle">
       <span></span>
       <span></span>
       <span></span>
     </div>
 
-    <!-- Navbar Menu -->
+    <!-- NAV MENU -->
     <nav class="navbar__menu" id="navbarMenu">
       <a href="index.html">Home</a>
       <a href="uber-uns.html">Über uns</a>
@@ -672,11 +696,10 @@
     </div>
   </section>
 
-  <!-- ========== FAQ SECTION (HIDDEN ANSWERS) ========== -->
+  <!-- ========== FAQ SECTION ========== -->
   <section class="faq-section">
     <h2>Häufige Fragen</h2>
     <div class="faq-container">
-
       <!-- FAQ #1 -->
       <div class="faq-item">
         <h3 class="faq-question">Kann ich die Rekrutierung selbst beeinflussen?</h3>
@@ -709,7 +732,6 @@
           </p>
         </div>
       </div>
-
       <!-- Add more FAQ items if needed -->
     </div>
   </section>
@@ -736,27 +758,20 @@
 
   <!-- ========== JS FOR MOBILE NAV & FAQ TOGGLE ========== -->
   <script>
-    /****************************************
-     1) MOBILE NAVBAR TOGGLE
-    *****************************************/
+    // 1) MOBILE NAVBAR TOGGLE
     const mobileToggle = document.getElementById('mobileToggle');
     const navbarMenu = document.getElementById('navbarMenu');
 
     mobileToggle.addEventListener('click', () => {
+      // Toggle 'nav-open' to slide down the menu
       navbarMenu.classList.toggle('nav-open');
     });
 
-    /****************************************
-     2) FAQ TOGGLE (Display: None / Block)
-    *****************************************/
+    // 2) FAQ ACCORDION TOGGLE
     const faqItems = document.querySelectorAll(".faq-item");
     faqItems.forEach(item => {
       const question = item.querySelector(".faq-question");
       question.addEventListener("click", () => {
-        // If you want to close others automatically, uncomment:
-        // faqItems.forEach(i => i !== item && i.classList.remove("active"));
-
-        // Toggle the clicked one
         item.classList.toggle("active");
       });
     });

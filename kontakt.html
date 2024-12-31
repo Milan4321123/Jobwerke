@@ -5,7 +5,8 @@
   <title>Job Werke d.o.o. – Kontakt</title>
   <meta 
     name="description" 
-    content="Kontaktieren Sie Job Werke d.o.o. – Ihr Partner für internationales Recruiting. Schreiben Sie uns eine Nachricht oder vereinbaren Sie einen Termin.">
+    content="Kontaktieren Sie Job Werke d.o.o. – Ihr Partner für internationales Recruiting. Schreiben Sie uns eine Nachricht oder vereinbaren Sie einen Termin."
+  />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Font -->
@@ -37,8 +38,9 @@
       text-decoration: none;
       transition: color 0.3s;
     }
+    /* Updated link hover color to brand color #181844 */
     a:hover {
-      color: #6e00c2;
+      color: #181844;
     }
     img {
       display: block;
@@ -64,50 +66,60 @@
     }
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       2) NAVBAR (SLIDE-DOWN ON MOBILE, LIKE “ÜBER UNS” EXAMPLE)
+       2) NAVBAR (SLIDE-DOWN ON MOBILE)
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .navbar {
       position: fixed;
       top: 0; left: 0;
       width: 100%;
-      display: flex; 
-      align-items: center; 
+      height: 70px; /* fixed navbar height on desktop */
+      display: flex;
+      align-items: center; /* vertical centering */
       justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      background: #181844; /* brand color */
+      padding: 0 2rem; /* horizontal spacing */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       z-index: 9999;
     }
     .navbar__logo img {
-      width: 80px;
-      height: auto;
+      max-height: 60px; /* keep logo within navbar height */
+      width: auto;
       object-fit: contain;
+      margin: 5px 0; /* optional breathing room */
+      transition: transform 0.3s;
     }
+    .navbar__logo a img:hover {
+      transform: scale(1.05);
+    }
+
     /* Desktop menu */
     .navbar__menu {
       display: flex;
       gap: 2rem;
       align-items: center;
-      transition: transform 0.3s ease;
     }
+    /* White links on dark background */
     .navbar__menu a {
       font-weight: 500;
       padding: 0.3rem 0;
-      position: relative;
+      color: #fff;
+      transition: color 0.3s;
     }
-    .navbar__menu a.active-link {
-      border-bottom: 2px solid #6e00c2;
-      color: #6e00c2;
+    .navbar__menu a:hover {
+      color: #bbb;
+    }
+    .navbar__menu a.active {
+      border-bottom: 2px solid #fff;
     }
 
-    /* Reserve space below the fixed navbar */
+    /* Offsets page content below the fixed navbar (optional) */
     body::before {
       content: "";
       display: block;
-      height: 70px;
+      height: 70px; /* matches .navbar height */
     }
 
-    /* HAMBURGER TOGGLE (hidden on desktop) */
+    /* Hamburger toggle (hidden on desktop) */
     .navbar__toggle {
       display: none;
       flex-direction: column;
@@ -117,36 +129,55 @@
     .navbar__toggle span {
       width: 25px;
       height: 3px;
-      background: #333;
+      background: #fff;
       border-radius: 2px;
       transition: all 0.3s;
     }
 
-    /* Slide-down effect on mobile screens */
+    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
+       RESPONSIVE (MAX-WIDTH: 768px)
+    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
     @media (max-width: 768px) {
-      .navbar__toggle {
-        display: flex; /* show hamburger icon */
+      .navbar {
+        height: 60px;
       }
-      /* Hide menu off-screen (above) by default */
+      .navbar__logo img {
+        max-height: 50px;
+      }
+
+      /* Show hamburger, hide normal menu by default */
+      .navbar__toggle {
+        display: flex;
+      }
       .navbar__menu {
         position: absolute;
-        top: 70px; 
+        top: 60px; /* matches .navbar height on mobile */
         left: 0;
         width: 100%;
         flex-direction: column;
-        background: #fff;
+        gap: 1rem;
+        background: #181844; /* keep brand color on mobile too */
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        padding: 1rem 1.5rem;
+        padding: 1rem 2rem;
         transform: translateY(-130%);
+        transition: transform 0.3s ease;
       }
-      /* Slide down when nav-open is toggled */
       .navbar__menu.nav-open {
         transform: translateY(0);
+      }
+
+      /* Mobile links also white */
+      .navbar__menu a {
+        color: #fff;
+        padding: 0.3rem 0;
+      }
+      .navbar__menu a:hover {
+        color: #bbb;
       }
     }
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       3) HERO SECTION (ANGLED)
+       3) HERO SECTION (ENHANCED BRANDING)
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .hero-section {
       position: relative;
@@ -172,34 +203,51 @@
       height: 100%;
       object-fit: cover;
     }
-    .hero-overlay {
+    /* BRAND-COLOR DIAGONAL OVERLAY */
+    .hero-brand-overlay {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%;
+      top: 0; 
+      left: 0;
+      width: 100%; 
       height: 100%;
-      background: rgba(0,0,0,0.4);
       z-index: -1;
+      /* A multi-stop gradient for a bold brand look */
+      background: linear-gradient(
+        120deg,
+        rgba(24, 24, 68, 0.8) 0%,
+        rgba(24, 24, 68, 0.65) 40%,
+        rgba(24, 24, 68, 0.4) 100%
+      );
+      clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
     }
+
     .hero-content {
       position: relative;
       z-index: 1;
       max-width: 700px;
       padding: 1rem;
-      color: #fff;
     }
     .hero-content h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
       text-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
+    .hero-content h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #ffd700; /* optional brand highlight or gold accent */
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
     .hero-content p {
       font-size: 1.1rem;
       margin-bottom: 1rem;
       text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     }
+    /* optional angled shape at bottom */
     .hero-angled-bottom {
       position: absolute;
-      bottom: 0; left: 0;
+      bottom: 0; 
+      left: 0;
       width: 100%;
       height: 60px;
     }
@@ -229,13 +277,6 @@
       margin-top: 1.5rem;
       font-weight: 600;
       color: #333;
-    }
-
-    /* Optional angled separator or straight line */
-    .angled-separator {
-      width: 100%;
-      height: 40px;
-      display: block;
     }
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -362,7 +403,7 @@
   <header class="navbar">
     <div class="navbar__logo">
       <a href="index.html">
-        <img src="assets/img/jobwerke-logo.png" alt="Job Werke d.o.o. Logo">
+        <img src="assets/img/tztz.png" alt="Job Werke d.o.o. Logo">
       </a>
     </div>
     <!-- Hamburger for mobile -->
@@ -382,16 +423,24 @@
     </nav>
   </header>
 
-  <!-- ========== HERO (Angled) ========== -->
+  <!-- ========== HERO SECTION WITH BRANDING ========== -->
   <section class="hero-section fade-section">
     <div class="hero-bg">
+      <!-- You can replace hero-bg-2 with any image you prefer -->
       <img src="assets/img/hero-bg-2.jpg" alt="Kontakt Hero Image">
-      <div class="hero-overlay"></div>
     </div>
+
+    <!-- Brand-colored diagonal overlay for emphasis -->
+    <div class="hero-brand-overlay"></div>
+
     <div class="hero-content">
       <h1>Kontakt</h1>
-      <p>Wir sind für Sie da – melden Sie sich gerne!</p>
+      <h2>Ihr direkter Draht zu Job Werke d.o.o.</h2>
+      <p>
+        Ob Fragen, Anregungen oder Terminwünsche – wir freuen uns auf Ihre Nachricht.
+      </p>
     </div>
+
     <!-- Optional angled bottom shape -->
     <svg class="hero-angled-bottom" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
       <polygon fill="#ffffff" points="0,10 100,0 100,10"></polygon>
@@ -433,7 +482,7 @@
       </p>
 
       <h3>E-Mail</h3>
-      <p><a href="mailto:job.werke1@gmail.com">job.werke1@gmail.com</a></p>
+      <p><a href="mailto:job.werke@webmail.de">job.werke@webmail.de</a></p>
 
       <h3>Telefon</h3>
       <p>+35 (51) 360 219</p>
@@ -505,7 +554,7 @@
   </footer>
 
   <!-- +++++++++++++++++++++++++++++++++++++++++++++
-       JS FOR MOBILE NAVBAR TOGGLE & FADE-IN
+       JS FOR MOBILE NAVBAR TOGGLE, FADE, & APPOINTMENT
   ++++++++++++++++++++++++++++++++++++++++++++++ -->
   <script>
     // ============ MOBILE NAV TOGGLE ============
@@ -541,7 +590,6 @@
         appointmentFields.style.display = 'none';
       }
     }
-
     radioMessage.addEventListener('change', toggleAppointmentFields);
     radioAppointment.addEventListener('change', toggleAppointmentFields);
   </script>

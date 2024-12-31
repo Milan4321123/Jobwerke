@@ -38,8 +38,9 @@
       text-decoration: none;
       transition: color 0.3s;
     }
+    /* Updated link hover color to the new brand color */
     a:hover {
-      color: #6e00c2;
+      color: #181844;
     }
     img, video {
       display: block;
@@ -69,52 +70,59 @@
     ***************************************************************/
     .navbar {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 70px; /* fixed navbar height on desktop */
       display: flex;
-      align-items: center;
+      align-items: center; /* vertical centering */
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      background: #181844; /* brand color */
+      padding: 0 2rem; /* horizontal spacing */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       z-index: 9999;
     }
     .navbar__logo img {
-      width: 90px;
+      max-height: 60px; /* keep logo within navbar height */
+      width: auto;
       object-fit: contain;
+      margin: 5px 0; /* optional breathing room */
       transition: transform 0.3s;
     }
-    .navbar__logo img:hover {
+    .navbar__logo a img:hover {
       transform: scale(1.05);
     }
+
     /* Desktop menu */
     .navbar__menu {
       display: flex;
       gap: 2rem;
       align-items: center;
-      transition: transform 0.3s ease;
     }
+    /* White links on dark background */
     .navbar__menu a {
       font-weight: 500;
-      position: relative;
       padding: 0.3rem 0;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    .navbar__menu a:hover {
+      color: #bbb;
     }
     .navbar__menu a.active {
-      border-bottom: 2px solid #6e00c2;
-      color: #6e00c2;
+      border-bottom: 2px solid #fff;
     }
-    /* Reserve space below the navbar */
+
+    /* Offsets page content below the fixed navbar (optional) */
     body::before {
       content: "";
       display: block;
-      height: 70px; 
+      height: 70px; /* matches .navbar height */
     }
 
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       3) HAMBURGER TOGGLE (MOBILE NAV)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    /* Hamburger toggle (hidden on desktop) */
     .navbar__toggle {
-      display: none; /* hidden by default (desktop) */
+      display: none;
       flex-direction: column;
       gap: 4px;
       cursor: pointer;
@@ -122,32 +130,52 @@
     .navbar__toggle span {
       width: 25px;
       height: 3px;
-      background: #333;
+      background: #fff;
       border-radius: 2px;
       transition: all 0.3s;
     }
 
-    /* When screen is <= 768px, show hamburger & hide menu by default */
+    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
+       RESPONSIVE (MAX-WIDTH: 768px)
+    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
     @media (max-width: 768px) {
-      .navbar__toggle {
-        display: flex; /* show hamburger on mobile */
+      /* Slightly smaller navbar on mobile */
+      .navbar {
+        height: 60px;
       }
-      /* The menu is initially hidden above the screen */
+      .navbar__logo img {
+        max-height: 50px;
+      }
+
+      /* Show hamburger, hide normal menu by default */
+      .navbar__toggle {
+        display: flex;
+      }
       .navbar__menu {
         position: absolute;
-        top: 70px; /* just below the fixed navbar height */
+        top: 60px; /* matches .navbar height on mobile */
         left: 0;
         width: 100%;
         flex-direction: column;
-        background: #fff;
+        gap: 1rem;
+        background: #181844; /* brand color on mobile too */
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        padding: 1rem 1.5rem;
-        transform: translateY(-130%); /* hidden above the top */
+        padding: 1rem 2rem;
+        transform: translateY(-130%); /* hidden by default (above screen) */
         transition: transform 0.3s ease;
       }
-      /* Slide down when .nav-open is toggled */
+      /* Toggle open: slide down when .nav-open is added */
       .navbar__menu.nav-open {
         transform: translateY(0);
+      }
+
+      /* Mobile links also white */
+      .navbar__menu a {
+        color: #fff;
+        padding: 0.3rem 0;
+      }
+      .navbar__menu a:hover {
+        color: #bbb;
       }
     }
 
@@ -196,17 +224,18 @@
       margin-bottom: 2rem;
       text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     }
+    /* Updated primary button color */
     .btn-primary {
       display: inline-block;
       padding: 0.8rem 1.6rem;
-      background: #6e00c2;
+      background: #181844;
       color: #fff;
       border-radius: 4px;
       font-weight: 600;
       transition: background 0.3s;
     }
     .btn-primary:hover {
-      background: #540090;
+      background: #12163b; /* Darker shade for hover */
     }
     @media (max-width: 768px) {
       .hero-content h1 {
@@ -314,17 +343,18 @@
       color: #555;
       line-height: 1.6;
     }
+    /* Updated button color here as well */
     .btn-learn-more {
       display: inline-block;
       padding: 0.8rem 1.4rem;
-      background: #6e00c2;
+      background: #181844;
       color: #fff;
       border-radius: 4px;
       font-weight: 600;
       transition: background 0.3s;
     }
     .btn-learn-more:hover {
-      background: #540090;
+      background: #12163b;
     }
 
     /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -401,6 +431,7 @@
       margin-bottom: 3rem;
       gap: 1rem;
     }
+    /* Updated step background & active color */
     .svc-step {
       background: #f1f3fe;
       color: #333;
@@ -411,11 +442,12 @@
       font-weight: 600;
     }
     .svc-step.active {
-      background: #6e00c2;
+      background: #181844;
       color: #fff;
     }
     .svc-step:hover {
-      background: #d2d6fb;
+      /* a lighter shade instead of #d2d6fb */
+      background: #e2e3f2;
     }
     .svc-step-content {
       max-width: 1100px;
@@ -452,11 +484,11 @@
       content: "✔";
       position: absolute;
       left: -1.2rem;
-      color: #6e00c2;
+      color: #181844;
     }
     .btn-cta {
       display: inline-block;
-      background: #6e00c2;
+      background: #181844;
       color: #fff;
       padding: 0.6rem 1.2rem;
       margin-top: 1rem;
@@ -467,7 +499,7 @@
       cursor: pointer;
     }
     .btn-cta:hover {
-      background: #540090;
+      background: #12163b;
     }
     .svc-image-side {
       flex: 1 1 300px;
@@ -532,113 +564,100 @@
     }
 
     /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       9) TESTIMONIALS (MARQUEE)
+       9) TESTIMONIALS (SLIDER)
     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .testimonials-slider-section {
-  background: #fff;
-  padding: 4rem 2rem;
-  text-align: center;
-  position: relative;
-}
+      background: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .testimonials-slider-section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+    .testimonial-slider {
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-slide {
+      width: 100%;
+      display: none; /* hide all slides by default */
+      position: relative;
+      transition: opacity 0.6s ease;
+    }
+    .testimonial-slide.active {
+      display: block; /* or flex if you prefer */
+    }
+    .testimonial-content {
+      background: #fdfdfd;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      padding: 2rem;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+    .testimonial-text {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+    .client-name {
+      font-weight: 600;
+      color: #333;
+    }
+    /* Updated slider arrows to brand color */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #181844;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      width: 40px; 
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.4rem;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    .slider-arrow:hover {
+      opacity: 1;
+    }
+    .left-arrow {
+      left: 0; 
+      margin-left: 0.5rem;
+    }
+    .right-arrow {
+      right: 0; 
+      margin-right: 0.5rem;
+    }
+    .slider-dots {
+      margin-top: 1rem;
+    }
+    .dot {
+      display: inline-block;
+      width: 10px; 
+      height: 10px;
+      border-radius: 50%;
+      margin: 0 4px;
+      background: #ddd;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .dot.active {
+      background: #181844;
+    }
 
-.testimonials-slider-section h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.testimonial-slider {
-  max-width: 700px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Each slide container */
-.testimonial-slide {
-  width: 100%;
-  display: none; /* hide all slides by default */
-  position: relative;
-  transition: opacity 0.6s ease;
-}
-
-/* Shown slide */
-.testimonial-slide.active {
-  display: block; /* or flex if you prefer */
-}
-
-/* The content within each slide */
-.testimonial-content {
-  background: #fdfdfd;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  padding: 2rem;
-  margin: 0 auto;
-  max-width: 600px;
-}
-
-.testimonial-text {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-}
-
-.client-name {
-  font-weight: 600;
-  color: #333;
-}
-
-/* Arrows */
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #6e00c2;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  width: 40px; 
-  height: 40px;
-  cursor: pointer;
-  font-size: 1.4rem;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-.slider-arrow:hover {
-  opacity: 1;
-}
-
-.left-arrow {
-  left: 0; 
-  margin-left: 0.5rem;
-}
-.right-arrow {
-  right: 0; 
-  margin-right: 0.5rem;
-}
-
-/* Optional Dots */
-.slider-dots {
-  margin-top: 1rem;
-}
-.dot {
-  display: inline-block;
-  width: 10px; 
-  height: 10px;
-  border-radius: 50%;
-  margin: 0 4px;
-  background: #ddd;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.dot.active {
-  background: #6e00c2;
-}
     /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
        10) NEWSLETTER CTA
     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .newsletter-cta {
-      background: linear-gradient(135deg, #6e00c2 0%, #540090 100%);
+      background: linear-gradient(135deg, #181844 0%, #12163b 100%);
       color: #fff;
       text-align: center;
       padding: 3rem 2rem;
@@ -669,7 +688,7 @@
     }
     .newsletter-cta button {
       background: #fff;
-      color: #6e00c2;
+      color: #181844;
       padding: 0.7rem 1.2rem;
       border: none;
       border-radius: 4px;
@@ -679,7 +698,7 @@
     }
     .newsletter-cta button:hover {
       background: #ebebeb;
-      color: #540090;
+      color: #12163b;
     }
 
     /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -700,24 +719,26 @@
       line-height: 1.6;
       color: #555;
     }
+    /* Updated large button color */
     .btn-large {
       display: inline-block;
       padding: 0.8rem 1.6rem;
-      background: #6e00c2;
+      background: #181844;
       color: #fff;
       border-radius: 4px;
       font-weight: 600;
       transition: background 0.3s;
     }
     .btn-large:hover {
-      background: #540090;
+      background: #12163b;
     }
 
     /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
        12) FOOTER
     +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .footer {
-      background: #e7e9fc;
+      /* Updated footer background to a subtle light color with a hint of blue/gray */
+      background: #e0e1f2;
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.9rem;
@@ -735,7 +756,7 @@
     <div class="navbar__logo">
       <a href="index.html">
         <img
-          src="assets/img/jobwerke-logo.png"
+          src="assets/img/tztz.png"
           alt="Job Werke d.o.o. Logo - Ihr Partner für internationales Recruiting"
         />
       </a>
@@ -995,109 +1016,99 @@
     </div>
   </section>
 
-<!-- TESTIMONIALS (SLIDER VERSION) -->
-<section class="testimonials-slider-section fade-in">
-  <h2>Was unsere Kunden sagen</h2>
-  <div class="testimonial-slider">
+  <!-- TESTIMONIALS (SLIDER VERSION) -->
+  <section class="testimonials-slider-section fade-in">
+    <h2>Was unsere Kunden sagen</h2>
+    <div class="testimonial-slider">
 
-    <!-- Slide #1 -->
-    <div class="testimonial-slide">
-      <div class="testimonial-content">
-        <p class="testimonial-text">
-          “Dank Job Werke konnten wir in kürzester Zeit zwei Top-Fachkräfte 
-           aus Nepal einstellen. Einfach, schnell und transparent!”
-        </p>
-        <span class="client-name">– Max Mustermann, Bauunternehmer</span>
+      <!-- Slide #1 -->
+      <div class="testimonial-slide">
+        <div class="testimonial-content">
+          <p class="testimonial-text">
+            “Dank Job Werke konnten wir in kürzester Zeit zwei Top-Fachkräfte 
+             aus Nepal einstellen. Einfach, schnell und transparent!”
+          </p>
+          <span class="client-name">– Max Mustermann, Bauunternehmer</span>
+        </div>
+      </div>
+
+      <!-- Slide #2 -->
+      <div class="testimonial-slide">
+        <div class="testimonial-content">
+          <p class="testimonial-text">
+            “Wir haben endlich eine verlässliche Lösung gefunden, 
+             um saisonale Engpässe in der Landwirtschaft zu decken. 
+             Super Service!”
+          </p>
+          <span class="client-name">– Anna Schmitt, Hofbesitzerin</span>
+        </div>
+      </div>
+
+      <!-- Slide #3 -->
+      <div class="testimonial-slide">
+        <div class="testimonial-content">
+          <p class="testimonial-text">
+            “Das Recruiting war unkompliziert, und wir fühlten uns 
+             rechtlich bestens abgesichert. Gerne wieder!”
+          </p>
+          <span class="client-name">– Peter Müller, Logistikleiter</span>
+        </div>
+      </div>
+      
+      <!-- Arrows -->
+      <button class="slider-arrow left-arrow" id="arrowLeft">&#10094;</button>
+      <button class="slider-arrow right-arrow" id="arrowRight">&#10095;</button>
+   
+      <div class="slider-dots">
+        <span class="dot active" data-slide="0"></span>
+        <span class="dot" data-slide="1"></span>
+        <span class="dot" data-slide="2"></span>
       </div>
     </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.testimonial-slide');
+      const arrowLeft = document.getElementById('arrowLeft');
+      const arrowRight = document.getElementById('arrowRight');
+      const dots = document.querySelectorAll('.dot');
 
-    <!-- Slide #2 -->
-    <div class="testimonial-slide">
-      <div class="testimonial-content">
-        <p class="testimonial-text">
-          “Wir haben endlich eine verlässliche Lösung gefunden, 
-           um saisonale Engpässe in der Landwirtschaft zu decken. 
-           Super Service!”
-        </p>
-        <span class="client-name">– Anna Schmitt, Hofbesitzerin</span>
-      </div>
-    </div>
+      let currentSlide = 0;
 
-    <!-- Slide #3 -->
-    <div class="testimonial-slide">
-      <div class="testimonial-content">
-        <p class="testimonial-text">
-          “Das Recruiting war unkompliziert, und wir fühlten uns 
-           rechtlich bestens abgesichert. Gerne wieder!”
-        </p>
-        <span class="client-name">– Peter Müller, Logistikleiter</span>
-      </div>
-    </div>
-    
-    <!-- Add more .testimonial-slide as needed -->
-
-    <!-- Arrows or Dots for navigation -->
-    <button class="slider-arrow left-arrow" id="arrowLeft">&#10094;</button>
-    <button class="slider-arrow right-arrow" id="arrowRight">&#10095;</button>
- 
-    <div class="slider-dots">
-      <span class="dot active" data-slide="0"></span>
-      <span class="dot" data-slide="1"></span>
-      <span class="dot" data-slide="2"></span>
-      <!-- etc. 
-    </div> -->
-  </div>
-</section>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const arrowLeft = document.getElementById('arrowLeft');
-    const arrowRight = document.getElementById('arrowRight');
-   const dots = document.querySelectorAll('.dot');
-
-    let currentSlide = 0;
-
-    function showSlide(index) {
-      // Hide all slides
-      slides.forEach((slide) => slide.classList.remove('active'));
-      // Show the targeted slide
-      slides[index].classList.add('active');
-
-      // Update dots if using them
-       dots.forEach(dot => dot.classList.remove('active'));
-       dots[index].classList.add('active');
-    }
-
-    // Initialize first slide
-    showSlide(currentSlide);
-
-    // Arrow Click Handlers
-    arrowLeft.addEventListener('click', () => {
-      currentSlide--;
-      if (currentSlide < 0) {
-        currentSlide = slides.length - 1; // wrap to last
+      function showSlide(index) {
+        slides.forEach((slide) => slide.classList.remove('active'));
+        slides[index].classList.add('active');
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
       }
-      showSlide(currentSlide);
-    });
 
-    arrowRight.addEventListener('click', () => {
-      currentSlide++;
-      if (currentSlide >= slides.length) {
-        currentSlide = 0; // wrap to first
-      }
       showSlide(currentSlide);
-    });
 
-  
-     dots.forEach(dot => {
-       dot.addEventListener('click', (e) => {
-         const slideIndex = parseInt(e.target.getAttribute('data-slide'));
-         currentSlide = slideIndex;
-        showSlide(slideIndex);
-       });
-     });
-  });
-</script>
+      arrowLeft.addEventListener('click', () => {
+        currentSlide--;
+        if (currentSlide < 0) {
+          currentSlide = slides.length - 1;
+        }
+        showSlide(currentSlide);
+      });
+
+      arrowRight.addEventListener('click', () => {
+        currentSlide++;
+        if (currentSlide >= slides.length) {
+          currentSlide = 0;
+        }
+        showSlide(currentSlide);
+      });
+
+      dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+          const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+          currentSlide = slideIndex;
+          showSlide(slideIndex);
+        });
+      });
+    });
+  </script>
 
   <!-- ========== NEWSLETTER CTA ========== -->
   <section class="newsletter-cta fade-in">

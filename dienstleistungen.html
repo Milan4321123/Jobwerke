@@ -34,8 +34,9 @@
       text-decoration: none;
       transition: color 0.3s;
     }
+    /* Updated link hover color to the brand color */
     a:hover {
-      color: #6e00c2;
+      color: #181844;
     }
     img {
       display: block;
@@ -54,46 +55,59 @@
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .navbar {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 70px; /* fixed navbar height on desktop */
       display: flex;
-      align-items: center;
+      align-items: center; /* vertical centering */
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      background: #181844; /* brand color */
+      padding: 0 2rem; /* horizontal spacing */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
       z-index: 9999;
     }
     .navbar__logo img {
-      width: 100px;
+      max-height: 60px; /* keep logo within navbar height */
+      width: auto;
       object-fit: contain;
+      margin: 5px 0; /* optional breathing room */
+      transition: transform 0.3s;
     }
-    /* The desktop menu */
+    .navbar__logo a img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Desktop menu */
     .navbar__menu {
       display: flex;
       gap: 2rem;
       align-items: center;
-      transition: transform 0.3s ease;
     }
+    /* White links on dark background */
     .navbar__menu a {
       font-weight: 500;
       padding: 0.3rem 0;
+      color: #fff;
+      transition: color 0.3s;
+    }
+    .navbar__menu a:hover {
+      color: #bbb;
     }
     .navbar__menu a.active {
-      border-bottom: 2px solid #6e00c2;
+      border-bottom: 2px solid #fff;
     }
-    /* Offset the page content below the fixed navbar */
+
+    /* Offsets page content below the fixed navbar (optional) */
     body::before {
       content: "";
       display: block;
-      height: 70px;
+      height: 70px; /* matches .navbar height */
     }
 
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       3) HAMBURGER TOGGLE (MOBILE NAV)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+    /* Hamburger toggle (hidden on desktop) */
     .navbar__toggle {
-      display: none; /* hidden by default (desktop) */
+      display: none;
       flex-direction: column;
       gap: 4px;
       cursor: pointer;
@@ -101,32 +115,55 @@
     .navbar__toggle span {
       width: 25px;
       height: 3px;
-      background: #333;
+      background: #fff;
       border-radius: 2px;
       transition: all 0.3s;
     }
 
-    /* When screen is <= 768px, show hamburger & hide menu by default */
+    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
+       RESPONSIVE (MAX-WIDTH: 768px)
+    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
     @media (max-width: 768px) {
+      /* Slightly smaller navbar on mobile */
+      .navbar {
+        height: 60px;
+      }
+      .navbar__logo img {
+        max-height: 50px;
+      }
+
+      /* Show hamburger, hide normal menu by default */
       .navbar__toggle {
         display: flex;
       }
       .navbar__menu {
         position: absolute;
-        top: 70px; 
+        top: 60px; /* matches .navbar height on mobile */
         left: 0;
         width: 100%;
         flex-direction: column;
-        background: #fff;
+        gap: 1rem;
+        background: #181844; /* brand color on mobile too */
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        padding: 1rem 1.5rem;
-        transform: translateY(-130%); /* hidden above the top */
+        padding: 1rem 2rem;
+        transform: translateY(-130%); /* hidden by default (above screen) */
+        transition: transform 0.3s ease;
       }
-      /* Slide down when .nav-open is toggled */
+      /* Toggle open: slide down when .nav-open is added */
       .navbar__menu.nav-open {
         transform: translateY(0);
       }
+
+      /* Mobile links also white */
+      .navbar__menu a {
+        color: #fff;
+        padding: 0.3rem 0;
+      }
+      .navbar__menu a:hover {
+        color: #bbb;
+      }
     }
+
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
        4) HERO SECTION (PARALLAX + TYPING)
@@ -143,7 +180,7 @@
       text-align: center;
       overflow: hidden;
     }
-    /* Dark gradient overlay for readability */
+    /* Updated gradient overlay to brand colors */
     .hero::before {
       content: "";
       position: absolute;
@@ -152,8 +189,8 @@
       height: 100%;
       background: linear-gradient(
         to bottom right,
-        rgba(110, 0, 194, 0.7),
-        rgba(143, 24, 199, 0.6)
+        rgba(24, 24, 68, 0.7),
+        rgba(18, 22, 59, 0.6)
       );
       z-index: 0;
     }
@@ -178,7 +215,7 @@
     .typing-text {
       display: inline-block;
       font-size: 1.4rem;
-      color: #ffd700;
+      color: #ffd700; /* Gold text remains unchanged */
       text-shadow: 0 2px 5px rgba(0,0,0,0.3);
       margin-bottom: 1rem;
     }
@@ -257,11 +294,12 @@
       display: none;
       margin-top: 0.5rem;
     }
+    /* Updated btn-toggle background to #181844 and hover to #12163b */
     .kl-text-col .btn-toggle {
       display: inline-block;
       margin-top: 1rem;
       padding: 0.6rem 1.2rem;
-      background: #6e00c2;
+      background: #181844;
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -270,7 +308,7 @@
       font-size: 0.9rem;
     }
     .kl-text-col .btn-toggle:hover {
-      background: #540090;
+      background: #12163b;
     }
     @media (max-width: 900px) {
       .kl-row {
@@ -362,7 +400,8 @@
       left: 0;
       width: 100%;
       height: 200px;
-      background: #6e00c2;
+      /* This used to be #6e00c2, replaced with #181844 or you can keep it. */
+      background: #181844;
       clip-path: polygon(0 100%, 100% 0, 100% 100%);
       z-index: -1;
     }
@@ -433,48 +472,88 @@
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
        8) ADVANTAGES
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .advantages {
-      background: #f9f9f9;
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-    .advantages h2 {
-      font-size: 2rem; 
-      margin-bottom: 1.5rem;
-    }
-    .advantages p {
-      max-width: 700px; 
-      margin: 0 auto 2rem; 
-      color: #555; 
-      line-height: 1.6;
-    }
-    .advantage-grid {
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      max-width: 1000px; 
-      margin: 0 auto;
-    }
-    .advantage-item {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2rem;
-      transition: transform 0.3s;
-    }
-    .advantage-item:hover {
-      transform: translateY(-3px);
-    }
-    .advantage-item h3 {
-      font-size: 1.1rem; 
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
-    .advantage-item p {
-      font-size: 0.9rem; 
-      color: #555; 
-      line-height: 1.5;
-    }
+   /********************************************
+  ADVANTAGES (ALTERNATIVE DESIGN)
+********************************************/
+.advantages-alt {
+  position: relative;
+  color: #fff; /* text on dark overlay */
+  padding: 4rem 1rem;
+  overflow: hidden; /* if we do horizontal scroll, might want hidden or auto. */
+}
+
+/* The background image with brand overlay */
+.advantages-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('assets/img/w.jpg') center/cover no-repeat;
+  z-index: -2; /* behind the content */
+}
+.advantages-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; 
+  height: 100%;
+  background: rgba(24,24,68,0.7); /* brand color overlay with some opacity */
+  z-index: -1;
+}
+
+.advantages-content {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+/* Headings & main text in white or off-white for contrast */
+.advantages-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+.advantages-content p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #f0f0f0; 
+  line-height: 1.6;
+}
+
+/* Horizontal scroll container */
+.advantage-scroll {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  overflow-x: auto; /* horizontal scroll if there are many items */
+  scroll-behavior: smooth;
+}
+/* Hide scrollbar (optional) */
+.advantage-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.advantage-item {
+  flex: 0 0 250px; /* each card has fixed width, or use auto */
+  background: rgba(255,255,255,0.1); /* a slight translucent box on the overlay */
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+.advantage-item:hover {
+  transform: translateY(-5px);
+}
+.advantage-item h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #ffd700; /* or #fff, or brand accent */
+}
+.advantage-item p {
+  font-size: 0.9rem;
+  color: #f2f2f2; 
+  line-height: 1.5;
+}
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
        9) CASE STUDIES
@@ -517,11 +596,12 @@
       line-height: 1.4;
       margin-bottom: 0.5rem;
     }
+    /* Updated border-left to #181844 */
     .client-quote {
       font-style: italic; 
       margin-top: 1rem; 
       padding-left: 1rem; 
-      border-left: 4px solid #6e00c2;
+      border-left: 4px solid #181844;
     }
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -561,13 +641,14 @@
       font-weight: 600;
       color: #333;
     }
+    /* Updated ::after color to brand color #181844 */
     .faq-question::after {
       content: "+";
       position: absolute;
       right: 1rem;
       top: 1rem;
       font-size: 1.3rem;
-      color: #6e00c2;
+      color: #181844;
       transition: transform 0.3s;
     }
     .faq-item.active .faq-question::after {
@@ -593,7 +674,7 @@
        11) FINAL CALL-TO-ACTION
     ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
     .cta-section {
-      background: #6e00c2;
+      background: #181844; /* was #6e00c2 */
       color: #fff;
       text-align: center;
       padding: 3rem 2rem;
@@ -607,10 +688,11 @@
       margin: 0 auto 2rem;
       line-height: 1.4;
     }
+    /* Updated button text color to #181844, hover color to #12163b */
     .btn-contact {
       display: inline-block;
       background: #fff;
-      color: #6e00c2;
+      color: #181844;
       padding: 0.8rem 1.4rem;
       border-radius: 4px;
       font-weight: 600;
@@ -618,7 +700,7 @@
     }
     .btn-contact:hover {
       background: #ebebeb;
-      color: #540090;
+      color: #12163b;
     }
 
     /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -643,7 +725,7 @@
   <header class="navbar">
     <div class="navbar__logo">
       <a href="index.html">
-        <img src="assets/img/jobwerke-logo.png" alt="Job Werke Logo">
+        <img src="assets/img/tztz.png" alt="Job Werke Logo">
       </a>
     </div>
 
@@ -674,7 +756,6 @@
       <div class="scroll-prompt">▼ Scroll Down ▼</div>
     </div>
   </section>
-
 
   <!-- ========== KERNLEISTUNGEN ========== -->
   <section class="kernleistungen" id="kernleistungenSection">
@@ -748,7 +829,6 @@
     </div>
   </section>
 
-
   <!-- ========== ANGLED SECTION (INDUSTRIES) ========== -->
   <section class="angled-section" id="industriesSection">
     <h2>Branchen im Fokus</h2>
@@ -757,7 +837,6 @@
       in verschiedenen Branchen. Hier einige Beispiele.
     </p>
     <div class="industry-grid">
-      <!-- Cards ... -->
       <div class="industry-card">
         <img src="assets/img/p.jpg" alt="Baugewerbe">
         <h3>Baugewerbe &amp; Logistik</h3>
@@ -826,31 +905,44 @@
   </section>
 
   <!-- ========== ADVANTAGES ========== -->
-  <section class="advantages" id="advantagesSection">
+ <!-- ========== ADVANTAGES (ALTERNATIVE DESIGN) ========== -->
+<section class="advantages-alt" id="advantagesSection">
+  <div class="advantages-bg">
+    <!-- Brand-color overlay -->
+    <div class="advantages-overlay"></div>
+  </div>
+
+  <div class="advantages-content">
     <h2>Ihre Vorteile</h2>
     <p>
-      Mit unseren Services sparen Sie Zeit und Ressourcen, bleiben 
+      Mit unseren Services sparen Sie Zeit und Ressourcen, bleiben  
       flexibel und profitieren von unserer Erfahrung auf internationalem Parkett.
     </p>
-    <div class="advantage-grid">
+
+    <!-- If you want a horizontal scroll, wrap items in a flex container -->
+    <div class="advantage-scroll">
       <div class="advantage-item">
         <h3>Minimaler Aufwand</h3>
         <p>Wir übernehmen Rekrutierung, Formalitäten &amp; Onboarding für Sie.</p>
       </div>
+
       <div class="advantage-item">
         <h3>Hohe Flexibilität</h3>
         <p>Personalbedarf schwankt? Wir sorgen für Skalierbarkeit nach Ihren Anforderungen.</p>
       </div>
+
       <div class="advantage-item">
         <h3>Neue Perspektiven</h3>
         <p>Internationale Teams bringen frische Ideen und Innovationskraft.</p>
       </div>
+
       <div class="advantage-item">
         <h3>Rechtliche Sicherheit</h3>
         <p>Wir bleiben up-to-date bei EU-Bestimmungen, A1-Bescheinigung &amp; mehr.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ========== CASE STUDIES ========== -->
   <section class="case-studies" id="caseStudiesSection">
