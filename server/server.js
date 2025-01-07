@@ -1,18 +1,19 @@
-// server.js
-
+/**
+ * server.js
+ * Run: node server.js   (or use nodemon)
+ */
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config();
+require("dotenv").config(); // make sure .env is in root
 
-// ===== IMPORT THE MODEL =====
 const Appointment = require("./models/Appointment.js");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ===== CONNECT TO MONGODB ATLAS =====
+// 1) Connect to MongoDB
 async function connectDB() {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
@@ -24,76 +25,88 @@ async function connectDB() {
 }
 connectDB();
 
-// ===== MIDDLEWARE =====
+// 2) Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ===== ROUTES =====
+// 3) Serve static files (kontakt.html, admin.html, etc. from ./public)
+app.use(express.static("public"));
 
-// CONTACT / APPOINTMENT FORM
+/**
+ * POST /send-email
+ * Saves inquiry to DB, sends admin email, sends user auto-reply
+ */
 app.post("/send-email", async (req, res) => {
   try {
     const {
       name,
       email,
       message,
-      wantsAppointment,
-      terminDate, // e.g. "2024-12-28"
-      terminTime, // e.g. "13:59"
-      hp
+      wantsAppointment, // boolean
+      terminDate,
+      terminTime,
+      hp // honeypot
     } = req.body;
 
-    // 1) Honeypot check
+    // (A) Honeypot/spam check
     if (hp && hp.trim() !== "") {
-      return res.status(400).json({ success: false, msg: "Spam detected." });
+      return res
+        .status(400)
+        .json({ success: false, msg: "Spam detected (honeypot filled)." });
     }
 
-    // 2) Build email text
-    let emailText = `Name: ${name}\nEmail: ${email}\nNachricht:\n${message}\n\n`;
-    let subjectLine = "Neue Kontakt-Anfrage";
+    // (B) Basic validation
+    if (!name || !email || !message) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "Missing required fields." });
+    }
 
+    // (C) Determine if user requested an appointment
     let appointmentDateTime = null;
-    let newAppointment = null;
-
     if (wantsAppointment && terminDate && terminTime) {
-      // Convert date+time -> single JavaScript Date
       appointmentDateTime = new Date(`${terminDate}T${terminTime}:00`);
-
-      emailText += `\n*** Termin-Anfrage ***\nDatum: ${terminDate}\nUhrzeit: ${terminTime}\n`;
-      subjectLine = "Neue Kontakt-Anfrage mit Termin";
-
-      // Save to DB
-      newAppointment = new Appointment({
-        name,
-        email,
-        message,
-        appointmentDateTime, // store as real Date
-        // status remains "pending" by default
-      });
-      await newAppointment.save();
-      console.log("New appointment stored:", newAppointment);
     }
 
-    // 3) Nodemailer config
+    // (D) Create text for admin email
+    let subjectLine = "Neue Kontakt-Anfrage";
+    let emailText = `Name: ${name}\nEmail: ${email}\nNachricht:\n${message}\n\n`;
+    if (appointmentDateTime) {
+      subjectLine = "Neue Kontakt-Anfrage (Terminwunsch)";
+      emailText += `*** Termin-Anfrage ***\nDatum: ${terminDate}\nUhrzeit: ${terminTime}\n`;
+    }
+
+    // (E) Store in MongoDB (new "Appointment" doc)
+    const newAppointment = new Appointment({
+      name,
+      email,
+      message,
+      appointmentDateTime,
+      // status defaults to "pending"
+    });
+    await newAppointment.save();
+    console.log("New inquiry stored in DB:", newAppointment);
+
+    // (F) Nodemailer: set up transporter
     let transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_USER, // e.g. "myaccount@gmail.com"
+        pass: process.env.EMAIL_PASS, // e.g. "abcd1234" (an app password)
       },
     });
 
-    // 4) Email to admin (YOU)
-    let mailOptions = {
+    // (G) Send email to admin
+    let adminMailOptions = {
       from: `"${name}" <${email}>`,
-      to: process.env.EMAIL_USER, // or your test email
+      to: process.env.EMAIL_USER, // your own email
       subject: subjectLine,
       text: emailText,
     };
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail(adminMailOptions);
 
-    // 5) Auto-reply to user
+    // (H) Send auto-reply to user
     let autoReplyOptions = {
       from: `"No-Reply" <${process.env.EMAIL_USER}>`,
       replyTo: email,
@@ -103,45 +116,56 @@ app.post("/send-email", async (req, res) => {
     };
     await transporter.sendMail(autoReplyOptions);
 
-    return res.status(200).json({ success: true, msg: "Emails sent successfully." });
+    return res
+      .status(200)
+      .json({ success: true, msg: "Ihre Nachricht wurde gesendet." });
   } catch (err) {
-    console.error("Error sending email:", err);
-    return res.status(500).json({ success: false, msg: "Failed to send email." });
+    console.error("Error in /send-email route:", err);
+    return res
+      .status(500)
+      .json({ success: false, msg: "Interner Serverfehler." });
   }
 });
 
-// GET all appointments
+// GET /appointments -> Admin panel fetches all
 app.get("/appointments", async (req, res) => {
   try {
+    // sort newest first
     const allAppointments = await Appointment.find().sort({ createdAt: -1 });
     return res.json(allAppointments);
   } catch (err) {
     console.error("Error fetching appointments:", err);
-    return res.status(500).json({ success: false, msg: "Failed to fetch appointments." });
+    return res
+      .status(500)
+      .json({ success: false, msg: "Failed to fetch appointments." });
   }
 });
 
-// UPDATE (confirm/cancel) an appointment
+// PUT /appointments/:id -> confirm/cancel
 app.put("/appointments/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { status } = req.body; // e.g. "confirmed", "canceled", etc.
+    const { status } = req.body; // "confirmed", "canceled", etc.
     const updatedAppt = await Appointment.findByIdAndUpdate(
       id,
       { status },
       { new: true }
     );
     if (!updatedAppt) {
-      return res.status(404).json({ success: false, msg: "Appointment not found." });
+      return res
+        .status(404)
+        .json({ success: false, msg: "Appointment not found." });
     }
     return res.json({ success: true, data: updatedAppt });
   } catch (err) {
     console.error("Error updating appointment:", err);
-    return res.status(500).json({ success: false, msg: "Failed to update appointment." });
+    return res
+      .status(500)
+      .json({ success: false, msg: "Failed to update appointment." });
   }
 });
 
-// DELETE an appointment
+// DELETE /appointments/:id
 app.delete("/appointments/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -149,11 +173,13 @@ app.delete("/appointments/:id", async (req, res) => {
     return res.json({ success: true, msg: "Appointment deleted." });
   } catch (err) {
     console.error("Error deleting appointment:", err);
-    return res.status(500).json({ success: false, msg: "Failed to delete appointment." });
+    return res
+      .status(500)
+      .json({ success: false, msg: "Failed to delete appointment." });
   }
 });
 
-// START SERVER
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -1,0 +1,850 @@
+/***************************************************************
+  1) GLOBAL RESET & BASE STYLES
+***************************************************************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    position: relative;
+  }
+  /* Basic link hover */
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  a:hover {
+    color: #181844; 
+  }
+  img, video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  h1, h2, h3 {
+    margin-bottom: 0.8rem;
+  }
+  p {
+    margin-bottom: 1rem;
+  }
+  /* For language toggles */
+  .hidden {
+    display: none !important;
+  }
+  
+  /***************************************************************
+    2) NAVBAR (WITH HAMBURGER)
+  ***************************************************************/
+  /* Base Navbar Container */
+  .navbar {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 70px; 
+    display: flex;
+    align-items: center;
+    background: #181844; 
+    padding: 0 2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    z-index: 9999;
+  }
+  /* Logo Area */
+  .navbar__logo img {
+    max-height: 60px;
+    width: auto;
+    transition: transform 0.3s;
+    margin: 5px 0;
+  }
+  .navbar__logo img:hover {
+    transform: scale(1.05);
+  }
+  /* Hamburger (hidden on desktop, shown on mobile) */
+  .navbar__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .navbar__toggle span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  /* Nav Menu (desktop) */
+  .navbar__menu {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
+  /* Nav Links */
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .navbar__links a {
+    font-weight: 500;
+    color: #fff;
+    transition: color 0.3s;
+    padding: 0.3rem 0;
+  }
+  .navbar__links a:hover {
+    color: #bbb;
+  }
+  .navbar__links a.active {
+    border-bottom: 2px solid #fff;
+  }
+  /* Language Button */
+  .lang-btn {
+    margin-left: 1rem;
+    background: #0808d3; /* same color for all pages */
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .lang-btn:hover {
+    background: #1c1c5f; /* consistent hover color */
+  }
+  /* Offset content below fixed navbar */
+  body::before {
+    content: "";
+    display: block;
+    height: 70px; /* matches .navbar height */
+  }
+  /* Responsive Navbar (max-width: 768px) */
+  @media (max-width: 768px) {
+    .navbar {
+      height: 60px;
+      padding: 0 1rem;
+    }
+    .navbar__logo img {
+      max-height: 50px;
+    }
+    .navbar__toggle {
+      display: flex;
+      margin-left: auto;
+    }
+    .navbar__menu {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      gap: 1rem;
+      background: #181844;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      padding: 1rem 2rem;
+      transform: translateY(-130%);
+      transition: transform 0.3s ease;
+    }
+    .navbar__menu.nav-open {
+      transform: translateY(0);
+    }
+    .navbar__links {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+  /***************************************************************
+    3) HERO (VIDEO BACKGROUND)
+  ***************************************************************/
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* full-screen hero */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+  }
+  .hero-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+  }
+  .hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(9, 9, 25, 0.65);
+    z-index: -1;
+  }
+  .hero-content {
+    max-width: 700px;
+    padding: 1rem;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    background: #181844;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .btn-primary:hover {
+    background: #12163b;
+  }
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2.2rem;
+    }
+    .hero-content p {
+      font-size: 1rem;
+    }
+  }
+/****************************************************
+  REVAMPED "WHY" SECTIONS WITH A WAVE BACKGROUND
+****************************************************/
+/* Container Section */
+.revamp-section {
+    position: relative;
+    padding: 6rem 1.5rem; /* large padding for modern look */
+    overflow: hidden; /* for wave background pseudo-element */
+    color: #333;
+    text-align: center;
+    background: #fdfdfd; /* fallback color */
+  }
+  
+  /* Wave/Curved BG (optionally use an SVG or your own path) */
+  .revamp-section .wave-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; 
+    height: 100%;
+    z-index: -1; /* place behind content */
+    background: linear-gradient(120deg, #f7f9ff 0%, #eef2fc 100%);
+    /* Example wave shape using a path; adjust or replace with your own */
+    clip-path: path("M0,80 Q50,0 100,80 T200,80 V1000H0Z");
+  }
+  
+  /* Main container inside the wave section */
+  .why-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative; /* keep wave behind content */
+  }
+  
+  /* TEXT+IMAGE WRAPPER */
+  .why-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 3rem;
+    gap: 2rem;
+  }
+  .why-image {
+    flex: 1 1 500px;
+    display: flex;
+    justify-content: center;
+  }
+  .why-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+  .why-text {
+    flex: 1 1 400px;
+    text-align: left; /* or center, as you prefer */
+  }
+  .why-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #181844; /* brand color */
+  }
+  .why-text .lead {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #555;
+  }
+  
+  /* USP GRID */
+  .usp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+  }
+  
+  /* INDIVIDUAL USP CARD */
+  .usp-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .usp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  .usp-card img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+  }
+  .usp-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #181844;
+  }
+  .usp-card p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    .why-content {
+      flex-direction: column-reverse; /* show text above image, or reverse */
+      text-align: center;
+    }
+    .why-text {
+      text-align: center;
+    }
+    .why-image img {
+      max-width: 300px;
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    .revamp-section {
+      padding: 8rem 3rem;
+    }
+    .why-text h2 {
+      font-size: 2.4rem;
+    }
+    .why-text .lead {
+      font-size: 1.2rem;
+    }
+  }
+  /***************************************************************
+    5) HISTORY TEASER
+  ***************************************************************/
+  .history-teaser {
+    background: #f4f8ff;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .history-teaser h2 {
+    margin-bottom: 1.5rem;
+  }
+  .history-teaser p {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  .btn-learn-more {
+    display: inline-block;
+    padding: 0.8rem 1.4rem;
+    background: #181844;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .btn-learn-more:hover {
+    background: #12163b;
+  }
+  
+  /***************************************************************
+    6) PROCESS SECTION
+  ***************************************************************/
+  .process {
+    background: url("../assets/img/hero-bg-1.jpg") center/cover no-repeat;
+    position: relative;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: #fff;
+  }
+  .process::before {
+    content: "";
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: -1;
+  }
+  .process h2 {
+    margin-bottom: 2rem;
+  }
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+  .step {
+    background: #ffffffcc;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    flex: 1 1 220px;
+    max-width: 240px;
+    transition: transform 0.3s;
+    color: #333;
+  }
+  .step:hover {
+    transform: translateY(-4px);
+  }
+  .step h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  .step p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.4;
+  }
+  
+  /***************************************************************
+    7) MAIN SERVICES (TABBED SECTIONS)
+  ***************************************************************/
+  .main-services-steps {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #fff;
+    position: relative;
+  }
+  .main-services-steps h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+  .svc-step-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 3rem;
+    gap: 1rem;
+  }
+  /* Service Step Buttons */
+  .svc-step {
+    background: #f1f3fe;
+    color: #333;
+    padding: 0.8rem 1.2rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: 600;
+  }
+  .svc-step.active {
+    background: #181844;
+    color: #fff;
+  }
+  .svc-step:hover {
+    background: #e2e3f2;
+  }
+  .svc-step-content {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .svc-step-panel {
+    display: none;
+    margin-bottom: 2rem;
+  }
+  .svc-step-panel.active {
+    display: block;
+  }
+  .svc-panel-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    text-align: left;
+  }
+  .svc-text-side {
+    flex: 1 1 400px;
+    min-width: 280px;
+  }
+  .svc-text-side ul {
+    margin: 1rem 0;
+    padding-left: 1.2rem;
+  }
+  .svc-text-side li {
+    margin-bottom: 0.5rem;
+    list-style: none;
+    position: relative;
+  }
+  .svc-text-side li::before {
+    content: "✔";
+    position: absolute;
+    left: -1.2rem;
+    color: #181844;
+  }
+  .btn-cta {
+    display: inline-block;
+    background: #181844;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-cta:hover {
+    background: #12163b;
+  }
+  .svc-image-side {
+    flex: 1 1 300px;
+    min-width: 200px;
+    display: flex;
+    justify-content: center;
+  }
+  .svc-image-side img {
+    width: 160px;
+    height: auto;
+  }
+/* Basic resets / overrides if needed */
+/* Basic wave-block container */
+/*********************************************************
+  BASE LAYOUT FOR CURVED SECTIONS
+*********************************************************/
+.curved-section {
+    position: relative;
+    width: 100%;
+    min-height: 280px; /* Adjust as needed */
+    margin: 4rem 0;
+    overflow: hidden;  /* Hide overflow from large corner radii */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the text horizontally by default */
+    /* We’ll let .curved-left / .curved-right control the alignment */
+  }
+  
+  /* The colored background block */
+  .curved-bg {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 55%; /* The color block covers ~55% horizontally */
+    z-index: 1;
+    /* Example gradient - adapt to your brand colors */
+    background: linear-gradient(135deg, #6c6c84  0%,  #4e8ad9  100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  
+  /* For .curved-left => color block on the left with big round corners on the right side */
+  .curved-section.curved-left .curved-bg {
+    left: 0;
+    border-top-right-radius: 200px;   /* Large corner arcs for a “round” effect */
+    border-bottom-right-radius: 200px;
+  }
+  
+  /* For .curved-right => color block on the right with big round corners on the left side */
+  .curved-section.curved-right .curved-bg {
+    right: 0;
+    border-top-left-radius: 200px;
+    border-bottom-left-radius: 200px;
+  }
+  
+  /*********************************************************
+    TEXT CONTENT STYLES
+  *********************************************************/
+  .curved-content {
+    position: relative;
+    z-index: 2; /* Over the color block */
+    color: rgb(11, 11, 82); /* White text for contrast on bright BG */
+    max-width: 600px; 
+    padding: 2rem;
+    line-height: 1.6;
+    margin: 0; /* We'll shift based on left/right below */
+  }
+  
+  /* On .curved-left => text sits on the right side */
+  .curved-section.curved-left .curved-content {
+    margin-left: auto; /* push text to the right half */
+    text-align: left;
+  }
+  /* On .curved-right => text sits on the left side */
+  .curved-section.curved-right .curved-content {
+    margin-right: auto; /* push text to the left half */
+    text-align: right;
+  }
+  
+  /* Headings inside curved-content */
+  .curved-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
+  .curved-content p {
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+  
+  /*********************************************************
+    RESPONSIVE (MOBILE) ADJUSTMENTS
+  *********************************************************/
+  @media (max-width: 768px) {
+    .curved-section {
+      flex-direction: column;
+      min-height: auto;
+    }
+    .curved-bg {
+      width: 60%; 
+      height: 50%; /* adjust if you want more or less coverage */
+      border-radius: 0; /* we’ll handle corners differently for mobile */
+    }
+    /* Possibly do a simpler rounding or clip path on mobile */
+    .curved-section.curved-left .curved-bg {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 80px; /* or less, for partial rounding */
+    }
+    .curved-section.curved-right .curved-bg {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 80px;
+    }
+  
+    .curved-content {
+      width: 90%;
+      margin: 2rem auto 0 auto;
+      text-align: center !important;
+      padding: 1.5rem;
+    }
+    .curved-content h2 {
+      font-size: 1.5rem;
+    }
+    .curved-content p {
+      font-size: 0.95rem;
+    }
+  }
+  /* UTILITY: for language toggling */
+  .hidden {
+    display: none;
+  }
+  /***************************************************************
+    9) TESTIMONIALS SLIDER
+  ***************************************************************/
+  .testimonials-slider-section {
+    background: #fcfcfc;
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  .testimonials-slider-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+  .testimonial-slider {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Hide slides by default; show .active slide */
+  .testimonial-slide {
+    width: 100%;
+    display: none;
+    position: relative;
+    transition: opacity 0.4s ease;
+  }
+  .testimonial-slide.active {
+    display: block;
+  }
+  .testimonial-content {
+    background: #fdfdfd;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 600px;
+  }
+  .testimonial-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  .client-name {
+    font-weight: 600;
+    color: #333;
+  }
+  /* Arrow buttons */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #202060;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    width: 40px; 
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .slider-arrow:hover {
+    opacity: 1;
+  }
+  .left-arrow {
+    left: 0; 
+    margin-left: 0.5rem;
+  }
+  .right-arrow {
+    right: 0; 
+    margin-right: 0.5rem;
+  }
+  /* Dots below slider */
+  .slider-dots {
+    margin-top: 1.5rem;
+  }
+  .dot {
+    display: inline-block;
+    width: 12px; 
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 6px;
+    background: #ddd;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .dot.active {
+    background: #202060;
+  }
+  
+  /***************************************************************
+    10) NEWSLETTER CTA
+  ***************************************************************/
+  .newsletter-cta {
+    background: linear-gradient(135deg, #181844 0%, #12163b 100%);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+  .newsletter-cta h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .newsletter-cta p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+  .newsletter-cta form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .newsletter-cta input {
+    flex: 1 1 200px;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+  }
+  .newsletter-cta button {
+    background: #fff;
+    color: #181844;
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s, color 0.3s;
+    cursor: pointer;
+  }
+  .newsletter-cta button:hover {
+    background: #ebebeb;
+    color: #12163b;
+  }
+  
+  /***************************************************************
+    11) APPOINTMENT CTA
+  ***************************************************************/
+  .appointment-cta {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: #f4f8ff;
+  }
+  .appointment-cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .appointment-cta p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    color: #555;
+  }
+  .btn-large {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    background: #181844;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+  .btn-large:hover {
+    background: #12163b;
+  }
+  
+  /***************************************************************
+    12) FOOTER
+  ***************************************************************/
+  .footer {
+    background: #e0e1f2;
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    color: #444;
+  }
+  .footer p {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Language Toggle Utility Class */
+  .hidden {
+    display: none;
+  }
