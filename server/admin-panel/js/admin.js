@@ -1,10 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Admin page loaded!");
+// public/js/admin.js
 
+document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("appointments-container");
 
-  // 1) Fetch all appointments from your Node server
-  //    Adjust URL if needed. If you’re serving Node from localhost:3000:
+  // Fetch all from /appointments
   fetch("http://localhost:3000/appointments")
     .then((res) => {
       if (!res.ok) {
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((appointments) => {
-      console.log("Appointments:", appointments);
       renderAppointments(appointments);
     })
     .catch((err) => {
@@ -22,88 +20,80 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   function renderAppointments(appointments) {
-    if (!appointments || !appointments.length) {
+    if (!appointments || appointments.length === 0) {
       container.innerHTML = "<p>Keine Termine vorhanden.</p>";
       return;
     }
 
-    container.innerHTML = ""; // clear any placeholder text
+    container.innerHTML = ""; // clear placeholder
 
     appointments.forEach((appt) => {
-      // === Create card element ===
+      // Card wrapper
       const card = document.createElement("div");
       card.classList.add("appointment-card");
 
-      // === Determine status badge class (pending, confirmed, canceled) ===
+      // Status badge
       let statusBadgeClass = "status-pending";
       if (appt.status === "confirmed") statusBadgeClass = "status-confirmed";
       if (appt.status === "canceled") statusBadgeClass = "status-canceled";
 
-      // === Build the appointment info section ===
-      const infoDiv = document.createElement("div");
-      infoDiv.classList.add("appointment-info");
-
-      // Convert date/time to readable string
-      const dateOptions = {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-      };
-      let dateStr = "Kein Termin / nicht gewünscht";
+      // Convert appointmentDateTime to string
+      let dateStr = "Kein Termin / nur Nachricht";
       if (appt.appointmentDateTime) {
-        dateStr = new Date(appt.appointmentDateTime).toLocaleString("de-DE", dateOptions);
+        const d = new Date(appt.appointmentDateTime);
+        dateStr = d.toLocaleString("de-DE", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
       }
 
+      // Info section
+      const infoDiv = document.createElement("div");
+      infoDiv.classList.add("appointment-info");
       infoDiv.innerHTML = `
         <span class="status-badge ${statusBadgeClass}">${appt.status}</span>
         <p><strong>Name:</strong> ${appt.name}</p>
         <p><strong>Email:</strong> ${appt.email}</p>
         <p><strong>Nachricht:</strong> ${appt.message || "-"}</p>
-        <p class="date-line"><strong>Termin:</strong> ${dateStr}</p>
-        <p class="date-line">Erstellt am: ${new Date(appt.createdAt).toLocaleString()}</p>
+        <p><strong>Termin:</strong> ${dateStr}</p>
+        <p>Erstellt am: ${new Date(appt.createdAt).toLocaleString()}</p>
       `;
 
-      // === Build the actions row ===
+      // Actions
       const actionsDiv = document.createElement("div");
       actionsDiv.classList.add("appointment-actions");
 
-      // Confirm button
       const confirmBtn = document.createElement("button");
       confirmBtn.textContent = "Confirm";
       confirmBtn.classList.add("confirm-btn");
-      confirmBtn.addEventListener("click", () => updateAppointmentStatus(appt._id, "confirmed"));
+      confirmBtn.addEventListener("click", () => updateStatus(appt._id, "confirmed"));
 
-      // Cancel button
       const cancelBtn = document.createElement("button");
       cancelBtn.textContent = "Cancel";
       cancelBtn.classList.add("cancel-btn");
-      cancelBtn.addEventListener("click", () => updateAppointmentStatus(appt._id, "canceled"));
+      cancelBtn.addEventListener("click", () => updateStatus(appt._id, "canceled"));
 
-      // Delete button
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "Delete";
       deleteBtn.classList.add("delete-btn");
       deleteBtn.addEventListener("click", () => deleteAppointment(appt._id));
 
-      // Append all buttons
       actionsDiv.appendChild(confirmBtn);
       actionsDiv.appendChild(cancelBtn);
       actionsDiv.appendChild(deleteBtn);
 
-      // Combine info + actions into the card
       card.appendChild(infoDiv);
       card.appendChild(actionsDiv);
-
-      // Finally, add the card to the grid
       container.appendChild(card);
     });
   }
 
-  // 2) Update status
-  function updateAppointmentStatus(id, newStatus) {
+  function updateStatus(id, newStatus) {
     if (!confirm(`Termin wirklich auf "${newStatus}" setzen?`)) return;
+
     fetch(`http://localhost:3000/appointments/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -119,13 +109,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
       .catch((err) => {
-        console.error("Error updating appointment:", err);
+        console.error("Error updating status:", err);
       });
   }
 
-  // 3) Delete
   function deleteAppointment(id) {
     if (!confirm("Diesen Termin wirklich löschen?")) return;
+
     fetch(`http://localhost:3000/appointments/${id}`, {
       method: "DELETE",
     })

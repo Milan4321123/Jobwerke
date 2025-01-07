@@ -1,150 +1,92 @@
-/* ========== GLOBAL RESETS & BASE STYLES ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* admin.css */
+
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  background-color: #f5f7fa;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f9fc;
   color: #333;
-  line-height: 1.4;
 }
 
-/* ========== HEADER ========== */
 .admin-header {
-  text-align: center;
   background: #fff;
-  padding: 1.5rem 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 .admin-header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.4rem;
+  margin: 0;
+  font-size: 1.8rem;
 }
 .subheader {
-  font-size: 1rem;
   color: #666;
+  font-size: 1rem;
+  margin-top: 0.3rem;
 }
 
-/* ========== MAIN CONTENT ========== */
 .main-content {
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-/* (Optional) If you add filters or special sections, style them here. */
-
-/* ========== APPOINTMENTS GRID ========== */
 .appointments-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1rem;
 }
 
-/* ========== APPOINTMENT CARD ========== */
 .appointment-card {
   background: #fff;
   border-radius: 6px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
-  padding: 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 1rem;
   display: flex;
-  flex-direction: column; /* so content + actions stack vertically */
+  flex-direction: column;
   justify-content: space-between;
-  position: relative;
-}
-.appointment-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
-/* Info area inside the card */
 .appointment-info {
   margin-bottom: 1rem;
 }
 .appointment-info p {
   margin: 0.3rem 0;
-  color: #444;
 }
-.appointment-info strong {
-  color: #222;
-}
-
-/* Status badge */
 .status-badge {
   display: inline-block;
-  padding: 0.25rem 0.6rem;
+  padding: 0.3rem 0.6rem;
   border-radius: 4px;
-  font-size: 0.9rem;
   color: #fff;
   margin-bottom: 0.5rem;
-  text-transform: capitalize; /* ensures “pending” -> “Pending” if you like */
 }
 .status-pending {
-  background: #ffc107; /* amber */
+  background: #f0ad4e; /* orange */
 }
 .status-confirmed {
-  background: #28a745; /* green */
+  background: #5cb85c; /* green */
 }
 .status-canceled {
-  background: #dc3545; /* red */
+  background: #d9534f; /* red */
 }
 
-/* The date/time line can be styled differently */
-.date-line {
-  font-size: 0.95rem;
-  color: #555;
-  margin: 0.2rem 0;
-  opacity: 0.9;
-}
-
-/* Appointment actions */
 .appointment-actions {
   display: flex;
   gap: 0.5rem;
-  margin-top: 1rem;
 }
 .appointment-actions button {
-  flex: 1; /* each action button takes equal space */
-  padding: 0.6rem 0.8rem;
+  flex: 1;
+  padding: 0.5rem;
   border: none;
   border-radius: 4px;
-  font-weight: 600;
   color: #fff;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: 600;
 }
-
-/* Colors for different buttons */
-.appointment-actions .confirm-btn {
-  background-color: #28a745;
+.confirm-btn {
+  background-color: #5cb85c;
 }
-.appointment-actions .confirm-btn:hover {
-  background-color: #218838;
+.cancel-btn {
+  background-color: #d9534f;
 }
-.appointment-actions .cancel-btn {
-  background-color: #dc3545;
-}
-.appointment-actions .cancel-btn:hover {
-  background-color: #c82333;
-}
-.appointment-actions .delete-btn {
-  background-color: #6c757d; /* gray */
-}
-.appointment-actions .delete-btn:hover {
-  background-color: #5a6268;
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
-/* The grid is already responsive with auto-fill, but we can tweak if needed */
-@media (max-width: 600px) {
-  .appointment-actions {
-    flex-direction: column;
-  }
-  .appointment-actions button {
-    margin-bottom: 0.3rem;
-  }
+.delete-btn {
+  background-color: #777;
 }

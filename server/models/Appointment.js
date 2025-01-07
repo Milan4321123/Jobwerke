@@ -1,33 +1,16 @@
 // models/Appointment.js
-
 const mongoose = require("mongoose");
 
-// Define the schema for an appointment
-const appointmentSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
+// By default, { timestamps: true } adds createdAt and updatedAt fields
+const appointmentSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    message: { type: String, required: true },
+    appointmentDateTime: { type: Date, default: null },
+    status: { type: String, default: "pending" }, // e.g., "pending", "confirmed", "canceled"
   },
-  email: {
-    type: String,
-    required: true,
-  },
-  message: {
-    type: String,
-  },
-  // Single Date field for robust date/time handling
-  appointmentDateTime: {
-    type: Date,
-    required: false, // only required if wantsAppointment is true
-  },
-  status: {
-    type: String,
-    default: "pending", // or "confirmed", "canceled", etc.
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Appointment", appointmentSchema);

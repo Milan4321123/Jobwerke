@@ -1,132 +1,179 @@
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Kontakt JS loaded!");
+// public/js/kontakt.js
+document.addEventListener('DOMContentLoaded', () => {
 
-  // (A) Fade-in on scroll
-  const fadeElems = document.querySelectorAll(".fade-section");
-  const fadeObsOpts = { threshold: 0.1 };
-  const fadeObserver = new IntersectionObserver((entries, observer) => {
+  /* 1) MOBILE NAVBAR TOGGLE (optional) */
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navbarMenu = document.getElementById('navbarMenu');
+  if (mobileToggle && navbarMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navbarMenu.classList.toggle('nav-open');
+    });
+  }
+
+  /* 2) FADE-IN OBSERVER (optional if you want fade animations) */
+  const fadeSections = document.querySelectorAll('.fade-section');
+  const observerOptions = { threshold: 0.1 };
+  const fadeObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("in-view");
-        observer.unobserve(entry.target);
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
       }
     });
-  }, fadeObsOpts);
-  fadeElems.forEach(elem => fadeObserver.observe(elem));
+  }, observerOptions);
 
-  // (B) Sticky navbar on scroll (optional)
-  const navbar = document.getElementById("mainNavbar");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add("scrolled-navbar");
-    } else {
-      navbar.classList.remove("scrolled-navbar");
-    }
-  });
+  fadeSections.forEach(sec => fadeObserver.observe(sec));
 
-  // (C) Mobile nav toggle
-  const hamburgerBtn = document.getElementById("hamburgerBtn");
-  const navbarMenu = document.getElementById("navbarMenu");
-  hamburgerBtn.addEventListener("click", () => {
-    navbarMenu.classList.toggle("nav-open");
-  });
-
-  // (D) Parallax hero (optional)
-  const parallaxHero = document.getElementById("parallaxHero");
-  if (parallaxHero) {
-    window.addEventListener("scroll", () => {
-      const offset = window.scrollY * 0.3;
-      const heroImg = parallaxHero.querySelector("img");
-      if (heroImg) {
-        heroImg.style.transform = `translateY(${offset}px)`;
-      }
-    });
-  }
-
-  // (E) Appointment fields toggle
-  const radioMessage = document.getElementById("anliegen-message");
-  const radioAppointment = document.getElementById("anliegen-appointment");
-  const appointmentFields = document.getElementById("appointment-fields");
+  /* 3) SHOW/HIDE APPOINTMENT FIELDS */
+  // German radio IDs:  anliegen-message, anliegen-appointment
+  // English radio IDs: en-anliegen-message, en-anliegen-appointment
+  const radioMessage = document.getElementById('anliegen-message')
+                     || document.getElementById('en-anliegen-message');
+  const radioAppointment = document.getElementById('anliegen-appointment')
+                        || document.getElementById('en-anliegen-appointment');
+  const appointmentFields = document.getElementById('appointment-fields');
 
   function toggleAppointmentFields() {
-    if (radioAppointment.checked) {
-      appointmentFields.style.display = "block";
+    if (!appointmentFields) return;
+    if (radioAppointment && radioAppointment.checked) {
+      appointmentFields.style.display = 'block';
     } else {
-      appointmentFields.style.display = "none";
+      appointmentFields.style.display = 'none';
     }
   }
-  radioMessage.addEventListener("change", toggleAppointmentFields);
-  radioAppointment.addEventListener("change", toggleAppointmentFields);
 
-  // (F) Form submission logic
-  const form = document.querySelector(".contact-form");
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+  if (radioMessage && radioAppointment) {
+    radioMessage.addEventListener('change', toggleAppointmentFields);
+    radioAppointment.addEventListener('change', toggleAppointmentFields);
+    toggleAppointmentFields(); // run once on load
+  }
 
-      const name = document.getElementById("yourname").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("msg").value.trim();
-      const honeypot = document.getElementById("hp").value; // hidden field
+  /* 4) DETECT LANG FROM URL ?lang=de or ?lang=en */
+  const urlParams = new URLSearchParams(window.location.search);
+  let currentLang = urlParams.get('lang');
+  if (!currentLang) currentLang = 'de'; // fallback
 
-      // If honeypot was filled, it's likely spam
-      if (honeypot) {
-        console.warn("Spam/honeypot triggered. Aborting submission.");
-        return;
-      }
+  // Show/hide .german vs .english sections
+  const germanDivs = document.querySelectorAll('.german');
+  const englishDivs = document.querySelectorAll('.english');
+  let isGerman = (currentLang !== 'en');
 
-      // Basic validation
-      if (!name || !email || !message) {
-        alert("Bitte füllen Sie Name, E-Mail und Nachricht aus.");
-        return;
-      }
+  if (isGerman) {
+    germanDivs.forEach(el => el.classList.remove('hidden'));
+    englishDivs.forEach(el => el.classList.add('hidden'));
+  } else {
+    germanDivs.forEach(el => el.classList.add('hidden'));
+    englishDivs.forEach(el => el.classList.remove('hidden'));
+  }
 
-      // If user wants an appointment, date + time are required
-      const wantsAppointment = radioAppointment.checked;
-      let terminDate = "";
-      let terminTime = "";
-      if (wantsAppointment) {
-        terminDate = document.getElementById("terminDate").value.trim();
-        terminTime = document.getElementById("terminTime").value.trim();
-        if (!terminDate || !terminTime) {
-          alert("Bitte geben Sie Datum und Uhrzeit für den Termin an.");
-          return;
-        }
-      }
+  /* 5) LANGUAGE TOGGLE BUTTON + SCROLL PRESERVATION */
+  const langBtn = document.getElementById('toggleLang');
+  if (langBtn) {
+    langBtn.textContent = isGerman ? 'English' : 'Deutsch';
+    langBtn.addEventListener('click', () => {
+      // Save user’s current scroll position as a ratio
+      const currentScrollY = window.pageYOffset;
+      const docHeight = document.body.scrollHeight || 1;
+      const ratio = currentScrollY / docHeight;
 
-      // Example payload to send to your backend (if you have an API endpoint)
-      const payload = {
-        name,
-        email,
-        message,
-        wantsAppointment,
-        terminDate,
-        terminTime
-      };
+      // Flip language
+      isGerman = !isGerman;
+      const newLang = isGerman ? 'de' : 'en';
 
-      try {
-        // Example fetch call (adjust the URL to your real endpoint)
-        const response = await fetch("http://localhost:3000/send-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        });
+      // Update URL with ?lang= + ?scrollRatio=
+      urlParams.set('lang', newLang);
+      urlParams.set('scrollRatio', ratio.toFixed(4));
 
-        if (!response.ok) {
-          throw new Error("Server returned status " + response.status);
-        }
-        const data = await response.json();
-
-        if (data.success) {
-          // On success, redirect to a "thank you" page
-          window.location.href = "danke.html?success=1";
-        } else {
-          window.location.href = "danke.html?error=1";
-        }
-      } catch (err) {
-        console.error("Network or server error:", err);
-        window.location.href = "danke.html?error=1";
-      }
+      // Reload the page with updated search params
+      window.location.search = urlParams.toString();
     });
   }
+
+  // If there's a ?scrollRatio= param, restore scroll after reload
+  if (urlParams.has('scrollRatio')) {
+    const ratio = parseFloat(urlParams.get('scrollRatio'));
+    setTimeout(() => {
+      const docHeight = document.body.scrollHeight || 1;
+      const scrollY = Math.round(docHeight * ratio);
+      window.scrollTo(0, scrollY);
+    }, 50);
+  }
+
+  /* 6) CONTACT FORM SUBMISSION */
+  const form = document.querySelector('.contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Gather field values (German OR English placeholders)
+    const name = form.querySelector('input[placeholder="Ihr Name"]')?.value
+              || form.querySelector('input[placeholder="Your Name"]')?.value
+              || "";
+    const email = form.querySelector('#email')?.value || "";
+    const msgField = form.querySelector('#msg');
+    const message = msgField ? msgField.value.trim() : "";
+
+    const hp = form.querySelector('#hp')?.value || ""; // honeypot
+
+    // Check if user selected "appointment" in either language
+    const radioAppointmentGer = document.getElementById('anliegen-appointment');
+    const radioAppointmentEn  = document.getElementById('en-anliegen-appointment');
+    const wantsAppointment = (
+      (radioAppointmentGer && radioAppointmentGer.checked) ||
+      (radioAppointmentEn && radioAppointmentEn.checked)
+    ) ? true : false;
+
+    let terminDate = "";
+    let terminTime = "";
+    if (wantsAppointment) {
+      // If found in German section
+      const dateGer = document.querySelector('.german #terminDate');
+      const timeGer = document.querySelector('.german #terminTime');
+      // If found in English section
+      const dateEn  = document.querySelector('.english #terminDate');
+      const timeEn  = document.querySelector('.english #terminTime');
+
+      // Use whichever is not empty
+      if (dateGer && dateGer.value) terminDate = dateGer.value;
+      if (timeGer && timeGer.value) terminTime = timeGer.value;
+      if (dateEn && dateEn.value) terminDate = dateEn.value;
+      if (timeEn && timeEn.value) terminTime = timeEn.value;
+    }
+
+    // Build payload
+    const payload = {
+      name,
+      email,
+      message,
+      hp,
+      wantsAppointment,
+      terminDate,
+      terminTime,
+    };
+
+    try {
+      // POST to /send-email
+      const res = await fetch("http://localhost:3000/send-email", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        alert("Fehler beim Absenden: " + (data.msg || ''));
+        return;
+      }
+
+      // Success
+      alert("Vielen Dank, Ihre Nachricht wurde gesendet!");
+      form.reset();
+      // Hide appointment fields again if needed
+      toggleAppointmentFields();
+    } catch (err) {
+      console.error("Submit error:", err);
+      alert("Serverfehler. Bitte später erneut versuchen.");
+    }
+  });
 });

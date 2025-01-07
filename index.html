@@ -2,1156 +2,810 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Job Werke d.o.o. | Internationale Fachkräfte &amp; Personalvermittlung</title>
+  <title>Job Werke d.o.o. | Internationale Fachkräfte & Dienstleistungsservice</title>
   <meta 
     name="description" 
-    content="Job Werke d.o.o. – Wir vermitteln Fachkräfte aus aller Welt für Ihr Unternehmen. Schnelle Lösungen, internationale Expertise und rechtliche Sicherheit."
+    content="Job Werke d.o.o. – Ihr Service-Dienstleister (Dienstleistungsvertrag) für Fachkräfte aus aller Welt. Schnelle Lösungen, internationale Expertise und rechtliche Sicherheit. Teil der Remix (seit 2021), Partnerschaft in Slowenien (2023) und Expansion nach Deutschland (2025)."
   >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Font -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  />
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>
 
-  <style>
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       1) RESET & BASE STYLES
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fafafa;
-      color: #333;
-      line-height: 1.6;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      position: relative;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    /* Updated link hover color to the new brand color */
-    a:hover {
-      color: #181844;
-    }
-    img, video {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    h1, h2, h3 {
-      margin-bottom: 0.8rem;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
-
-    /* Fade-in elements */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .in-view {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
-    }
-
-    /***************************************************************
-      2) NAVBAR (WITH HAMBURGER FOR MOBILE)
-    ***************************************************************/
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70px; /* fixed navbar height on desktop */
-      display: flex;
-      align-items: center; /* vertical centering */
-      justify-content: space-between;
-      background: #181844; /* brand color */
-      padding: 0 2rem; /* horizontal spacing */
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-      z-index: 9999;
-    }
-    .navbar__logo img {
-      max-height: 60px; /* keep logo within navbar height */
-      width: auto;
-      object-fit: contain;
-      margin: 5px 0; /* optional breathing room */
-      transition: transform 0.3s;
-    }
-    .navbar__logo a img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Desktop menu */
-    .navbar__menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-    /* White links on dark background */
-    .navbar__menu a {
-      font-weight: 500;
-      padding: 0.3rem 0;
-      color: #fff;
-      transition: color 0.3s;
-    }
-    .navbar__menu a:hover {
-      color: #bbb;
-    }
-    .navbar__menu a.active {
-      border-bottom: 2px solid #fff;
-    }
-
-    /* Offsets page content below the fixed navbar (optional) */
-    body::before {
-      content: "";
-      display: block;
-      height: 70px; /* matches .navbar height */
-    }
-
-    /* Hamburger toggle (hidden on desktop) */
-    .navbar__toggle {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
-    }
-    .navbar__toggle span {
-      width: 25px;
-      height: 3px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
-       RESPONSIVE (MAX-WIDTH: 768px)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    @media (max-width: 768px) {
-      /* Slightly smaller navbar on mobile */
-      .navbar {
-        height: 60px;
-      }
-      .navbar__logo img {
-        max-height: 50px;
-      }
-
-      /* Show hamburger, hide normal menu by default */
-      .navbar__toggle {
-        display: flex;
-      }
-      .navbar__menu {
-        position: absolute;
-        top: 60px; /* matches .navbar height on mobile */
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        gap: 1rem;
-        background: #181844; /* brand color on mobile too */
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        padding: 1rem 2rem;
-        transform: translateY(-130%); /* hidden by default (above screen) */
-        transition: transform 0.3s ease;
-      }
-      /* Toggle open: slide down when .nav-open is added */
-      .navbar__menu.nav-open {
-        transform: translateY(0);
-      }
-
-      /* Mobile links also white */
-      .navbar__menu a {
-        color: #fff;
-        padding: 0.3rem 0;
-      }
-      .navbar__menu a:hover {
-        color: #bbb;
-      }
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       3) HERO SECTION (VIDEO BACKGROUND)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-align: center;
-    }
-    .hero-video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-    .hero-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(9, 9, 25, 0.65); 
-      z-index: -1;
-    }
-    .hero-content {
-      max-width: 700px;
-      padding: 1rem;
-    }
-    .hero-content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-    }
-    .hero-content p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    }
-    /* Updated primary button color */
-    .btn-primary {
-      display: inline-block;
-      padding: 0.8rem 1.6rem;
-      background: #181844;
-      color: #fff;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    .btn-primary:hover {
-      background: #12163b; /* Darker shade for hover */
-    }
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2.2rem;
-      }
-      .hero-content p {
-        font-size: 1rem;
-      }
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       4) "WARUM JOB WERKE?" SECTION
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .why-jobwerke {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 2rem;
-      background: #fff;
-    }
-    .why-jobwerke .image-side {
-      flex: 1 1 450px;
-      max-width: 600px;
-      padding: 1rem;
-    }
-    .why-jobwerke .image-side img {
-      width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    }
-    .why-jobwerke .content-side {
-      flex: 1 1 400px;
-      padding: 2rem 1.5rem;
-    }
-    .why-jobwerke .content-side h2 {
-      margin-bottom: 1rem;
-      text-align: left;
-    }
-    .why-jobwerke .content-side p {
-      color: #555;
-      line-height: 1.6;
-    }
-    .usp-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .usp-item {
-      background: #f9f9f9;
-      border-radius: 6px;
-      padding: 1rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-    .usp-item:hover {
-      transform: translateY(-2px);
-    }
-    .usp-item img {
-      width: 40px;
-      height: 40px;
-      object-fit: contain;
-      margin-top: 4px;
-    }
-    .usp-text h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      color: #333;
-    }
-    .usp-text p {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.4;
-    }
-    @media (max-width: 992px) {
-      .why-jobwerke .image-side,
-      .why-jobwerke .content-side {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
-      .usp-list {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       5) TIMELINE / HISTORY TEASER
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .history-teaser {
-      background: #f4f8ff;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .history-teaser h2 {
-      margin-bottom: 1.5rem;
-    }
-    .history-teaser p {
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: #555;
-      line-height: 1.6;
-    }
-    /* Updated button color here as well */
-    .btn-learn-more {
-      display: inline-block;
-      padding: 0.8rem 1.4rem;
-      background: #181844;
-      color: #fff;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    .btn-learn-more:hover {
-      background: #12163b;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       6) PROCESS SECTION
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .process {
-      background: url("assets/img/hero-bg-1.jpg") center/cover no-repeat;
-      position: relative;
-      padding: 4rem 2rem;
-      text-align: center;
-      color: #fff;
-    }
-    .process::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      z-index: -1;
-    }
-    .process h2 {
-      margin-bottom: 2rem;
-    }
-    .process-steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-      justify-content: center;
-    }
-    .step {
-      background: #ffffffcc;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      padding: 1.5rem;
-      flex: 1 1 220px;
-      max-width: 240px;
-      transition: transform 0.3s;
-      color: #333;
-    }
-    .step:hover {
-      transform: translateY(-4px);
-    }
-    .step h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
-    .step p {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.4;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       7) HAUPTLEISTUNGEN (TABS)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .main-services-steps {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: #fff;
-      position: relative;
-    }
-    .main-services-steps h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #333;
-    }
-    .svc-step-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 3rem;
-      gap: 1rem;
-    }
-    /* Updated step background & active color */
-    .svc-step {
-      background: #f1f3fe;
-      color: #333;
-      padding: 0.8rem 1.2rem;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: background 0.3s;
-      font-weight: 600;
-    }
-    .svc-step.active {
-      background: #181844;
-      color: #fff;
-    }
-    .svc-step:hover {
-      /* a lighter shade instead of #d2d6fb */
-      background: #e2e3f2;
-    }
-    .svc-step-content {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .svc-step-panel {
-      display: none;
-      margin-bottom: 2rem;
-    }
-    .svc-step-panel.active {
-      display: block;
-    }
-    .svc-panel-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 2rem;
-      text-align: left;
-    }
-    .svc-text-side {
-      flex: 1 1 400px;
-      min-width: 280px;
-    }
-    .svc-text-side ul {
-      margin: 1rem 0;
-      padding-left: 1.2rem;
-    }
-    .svc-text-side li {
-      margin-bottom: 0.5rem;
-      list-style: none;
-      position: relative;
-    }
-    .svc-text-side li::before {
-      content: "✔";
-      position: absolute;
-      left: -1.2rem;
-      color: #181844;
-    }
-    .btn-cta {
-      display: inline-block;
-      background: #181844;
-      color: #fff;
-      padding: 0.6rem 1.2rem;
-      margin-top: 1rem;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-    .btn-cta:hover {
-      background: #12163b;
-    }
-    .svc-image-side {
-      flex: 1 1 300px;
-      min-width: 200px;
-      display: flex;
-      justify-content: center;
-    }
-    .svc-image-side img {
-      width: 160px;
-      height: auto;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       8) TEAM GALLERY
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .team-gallery {
-      background: url("assets/img/office vibes.jpg") center/cover no-repeat;
-      padding: 4rem 2rem;
-      text-align: center;
-      position: relative;
-    }
-    .team-gallery::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; 
-      height: 100%;
-      background: rgba(0,0,0,0.35);
-      z-index: -1;
-    }
-    .team-gallery h2 {
-      color: #fff;
-      margin-bottom: 2rem;
-    }
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
-    }
-    .gallery-item img {
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-    .gallery-item p {
-      position: absolute;
-      bottom: 0; left: 0; 
-      width: 100%;
-      background: rgba(0,0,0,0.4);
-      color: #fff;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       9) TESTIMONIALS (SLIDER)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .testimonials-slider-section {
-      background: #fff;
-      padding: 4rem 2rem;
-      text-align: center;
-      position: relative;
-    }
-    .testimonials-slider-section h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .testimonial-slider {
-      max-width: 700px;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-    }
-    .testimonial-slide {
-      width: 100%;
-      display: none; /* hide all slides by default */
-      position: relative;
-      transition: opacity 0.6s ease;
-    }
-    .testimonial-slide.active {
-      display: block; /* or flex if you prefer */
-    }
-    .testimonial-content {
-      background: #fdfdfd;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2rem;
-      margin: 0 auto;
-      max-width: 600px;
-    }
-    .testimonial-text {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.4;
-      margin-bottom: 1rem;
-    }
-    .client-name {
-      font-weight: 600;
-      color: #333;
-    }
-    /* Updated slider arrows to brand color */
-    .slider-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #181844;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      width: 40px; 
-      height: 40px;
-      cursor: pointer;
-      font-size: 1.4rem;
-      opacity: 0.8;
-      transition: opacity 0.3s;
-    }
-    .slider-arrow:hover {
-      opacity: 1;
-    }
-    .left-arrow {
-      left: 0; 
-      margin-left: 0.5rem;
-    }
-    .right-arrow {
-      right: 0; 
-      margin-right: 0.5rem;
-    }
-    .slider-dots {
-      margin-top: 1rem;
-    }
-    .dot {
-      display: inline-block;
-      width: 10px; 
-      height: 10px;
-      border-radius: 50%;
-      margin: 0 4px;
-      background: #ddd;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .dot.active {
-      background: #181844;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       10) NEWSLETTER CTA
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .newsletter-cta {
-      background: linear-gradient(135deg, #181844 0%, #12163b 100%);
-      color: #fff;
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-    .newsletter-cta h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-    .newsletter-cta p {
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      line-height: 1.6;
-    }
-    .newsletter-cta form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .newsletter-cta input {
-      flex: 1 1 200px;
-      padding: 0.7rem;
-      border: none;
-      border-radius: 4px;
-      outline: none;
-    }
-    .newsletter-cta button {
-      background: #fff;
-      color: #181844;
-      padding: 0.7rem 1.2rem;
-      border: none;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s;
-      cursor: pointer;
-    }
-    .newsletter-cta button:hover {
-      background: #ebebeb;
-      color: #12163b;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       11) MAIN CTA (APPOINTMENT)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .appointment-cta {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: #f4f8ff;
-    }
-    .appointment-cta h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .appointment-cta p {
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      line-height: 1.6;
-      color: #555;
-    }
-    /* Updated large button color */
-    .btn-large {
-      display: inline-block;
-      padding: 0.8rem 1.6rem;
-      background: #181844;
-      color: #fff;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    .btn-large:hover {
-      background: #12163b;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       12) FOOTER
-    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .footer {
-      /* Updated footer background to a subtle light color with a hint of blue/gray */
-      background: #e0e1f2;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #444;
-    }
-    .footer p {
-      margin-bottom: 0.5rem;
-    }
-  </style>
+  <!-- Link to your external CSS file -->
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
 
-  <!-- ========== NAVBAR (HAMBURGER FOR MOBILE) ========== -->
+  <!-- ========== NAVBAR ========== -->
   <header class="navbar">
     <div class="navbar__logo">
-      <a href="index.html">
+      <!-- Replace '#' with your actual home link, or keep # if you want no reload -->
+      <a href="#">
         <img
           src="assets/img/logogo.gif"
-          alt="Job Werke d.o.o. Logo - Ihr Partner für internationales Recruiting"
+          alt="Job Werke d.o.o."
         />
       </a>
     </div>
-
-    <!-- Hamburger icon (mobile only) -->
+  
+    <!-- Hamburger icon (mobile) -->
     <div class="navbar__toggle" id="mobileToggle">
       <span></span>
       <span></span>
       <span></span>
     </div>
-
+  
+    <!-- Main Menu -->
     <nav class="navbar__menu" id="navbarMenu">
-      <a href="index.html" class="active">Home</a>
-      <a href="uber-uns.html">Über uns</a>
-      <a href="dienstleistungen.html">Dienstleistungen</a>
-      <a href="arbeiten.html">Mit uns arbeiten</a>
-      <a href="kontakt.html">Kontakt</a>
+      <!-- GERMAN NAV LINKS -->
+      <div class="navbar__links german">
+        <a href="#" class="active">Home</a>
+        <a href="uber-uns.html">Über uns</a>
+        <a href="dienstleistungen.html">Dienstleistungen</a>
+        <a href="arbeiten.html">Mit uns arbeiten</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+      <!-- ENGLISH NAV LINKS -->
+      <div class="navbar__links english hidden">
+        <a href="index.html?lang=en" class="active">Home</a>
+        <a href="uber-uns.html?lang=en">About Us</a>
+        <a href="dienstleistungen.html?lang=en">Services</a>
+        <a href="arbeiten.html?lang=en">Work With Us</a>
+        <a href="kontakt.html?lang=en">Contact</a>
+      </div>
+  
+      <!-- Language Toggle Button -->
+      <button id="toggleLang" class="lang-btn">
+        English
+      </button>
     </nav>
   </header>
 
-  <!-- ========== HERO SECTION WITH VIDEO ========== -->
-  <section class="hero fade-in" id="hero">
-    <video class="hero-video" autoplay muted loop>
-      <source src="assets/img/connect.mp4" type="video/mp4" />
-      <!-- Fallback text for older browsers -->
-      Ihr Browser unterstützt kein Hintergrundvideo.
-    </video>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Wir bringen Unternehmen &amp; Fachkräfte weltweit zusammen</h1>
-      <p>Internationale Expertise, schnelle Lösungen, rechtliche Sicherheit.</p>
-      <a href="#why" class="btn-primary">Mehr über unsere Stärken</a>
-    </div>
-  </section>
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       GERMAN CONTENT
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <div class="german">
+    <!-- ========== HERO SECTION (GERMAN) ========== -->
+    <section class="hero fade-in" id="hero">
+      <video class="hero-video" autoplay muted loop>
+        <source src="assets/img/connect.mp4" type="video/mp4" />
+        <!-- Fallback text for older browsers -->
+        Ihr Browser unterstützt kein Hintergrundvideo.
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Dienstleister statt Leasing</h1>
+        <p>
+          Teil von Remix (gegründet 2021) – ausgezeichnet als “Best Personal Vermittler”.<br/>
+          Dienstleistungsvertrag statt Arbeitnehmerüberlassung: Wir übernehmen die Verantwortung  
+          und setzen auf unseren Partner in Slowenien (Work-Permit-Unterstützung) –  
+          ab 2025 auch in Deutschland mit eigener Niederlassung.
+        </p>
+        <a href="#why" class="btn-primary">Mehr über unser Dienstleister-Modell</a>
+      </div>
+    </section>
 
-  <!-- ========== WARUM JOB WERKE? ========== -->
-  <section class="why-jobwerke fade-in" id="why">
-    <div class="image-side">
-      <img
-        src="assets/img/u.jpg"
-        alt="Illustration: Globale Recruiting Solutions bei Job Werke d.o.o."
-      />
-    </div>
-    <div class="content-side">
-      <h2>Warum Job Werke?</h2>
+ <!-- =========================================================
+     GERMAN "WHY" SECTION (REVAMP)
+========================================================= -->
+<section class="why-jobwerke revamp-section german" id="why">
+  <!-- Wave/Curved BG (handled via CSS pseudo or .wave-bg) -->
+  <div class="wave-bg"></div>
+
+  <div class="why-container">
+    <!-- Text + Image Row -->
+    <div class="why-content">
+      <div class="why-image">
+        <!-- Replace with your actual German illustration -->
+        <img
+          src="assets/img/u.jpg"
+          alt="Illustration: Dienstleister-Vertrag bei Job Werke d.o.o."
+        />
+      </div>
+      <div class="why-text">
+        <h2>Warum als Dienstleister?</h2>
+        <p class="lead">
+          Statt Arbeitnehmerüberlassung oder Zeitarbeit schließen wir mit unseren Kunden 
+          <strong>Dienstleistungsverträge</strong>. Das bedeutet, unsere Fachkräfte bleiben 
+          bei uns angestellt, wir tragen die Verantwortung, und Sie profitieren von mehr 
+          Flexibilität bei minimalem Risiko.
+        </p>
+      </div>
+    </div><!-- /.why-content -->
+
+    <!-- USP GRID (GERMAN) -->
+    <div class="usp-grid">
+      <!-- USP #1 -->
+      <div class="usp-card">
+        <img src="assets/img/2mVW.gif" alt="Ikon: Global" />
+        <h3>Globales Fachkräfte-Netzwerk</h3>
+        <p>
+          Dank Remix &amp; unserem slowenischen Partner für Work-Permit-Dokumentation 
+          können wir rasch Personal organisieren, ohne komplizierte Leasing-Regeln.
+        </p>
+      </div>
+
+      <!-- USP #2 -->
+      <div class="usp-card">
+        <img src="assets/img/vertrag.gif" alt="Ikon: Dienstleistungsvertrag" />
+        <h3>Dienstleistungsvertrag</h3>
+        <p>
+          Keine Arbeitnehmerüberlassung – unser Team unterliegt 
+          unseren Weisungen und wir übernehmen die volle Haftung.
+        </p>
+      </div>
+
+      <!-- USP #3 -->
+      <div class="usp-card">
+        <img src="assets/img/4q43.gif" alt="Ikon: Schnelle Vermittlung" />
+        <h3>Schnelle Umsetzung</h3>
+        <p>
+          Wir kümmern uns um A1-Bescheinigung, Work-Permit-Papiere &amp; Deutschsprach-Trainings,
+          damit Sie rasch durchstarten können.
+        </p>
+      </div>
+
+      <!-- USP #4 -->
+      <div class="usp-card">
+        <img src="assets/img/7LDs.gif" alt="Ikon: Rechtliche Sicherheit" />
+        <h3>Rechtliche Sicherheit</h3>
+        <p>
+          Als Dienstleister minimieren wir Ihr Risiko – 
+          alle Verträge &amp; Abrechnungen laufen über uns.
+        </p>
+      </div>
+    </div><!-- /.usp-grid -->
+  </div><!-- /.why-container -->
+</section>
+
+
+    <!-- ========== HISTORY TEASER (GERMAN) ========== -->
+    <section class="history-teaser fade-in">
+      <h2>Von Kroatien bis Slowenien – und bald Deutschland</h2>
       <p>
-        Wir sind Ihr Partner, wenn es um internationales Fachkräfte-Recruiting geht.  
-        Ob Bau, Logistik, Gastronomie oder andere Branchen – wir liefern passgenaue  
-        Lösungen für Ihren Personalbedarf und entlasten Sie bei sämtlichen Formalitäten.
+        Unsere Muttergesellschaft Remix startete 2021 und wurde schnell für  
+        ihren Service ausgezeichnet. Heute arbeiten wir mit einer slowenischen  
+        Agentur zusammen, die vorübergehend alle Work-Permit-Formalitäten für  
+        unsere Fachkräfte erledigt. Bis wir unsere eigene Niederlassung in  
+        Slowenien eröffnen, nutzen wir diese Partnerschaft flexibel und  
+        effizient. Ab 2025 sind wir zudem in Deutschland vertreten.
       </p>
-      <div class="usp-list">
-        <div class="usp-item">
-          <img src="assets/img/2mVW.gif" alt="Ikon: Globales Netzwerk">
-          <div class="usp-text">
-            <h3>Globales Netzwerk</h3>
-            <p>Fachkräfte aus Nepal, Bangladesch, Vietnam, Philippinen und mehr.</p>
+      <a href="uber-uns.html#time" class="btn-learn-more">Unsere Geschichte ansehen</a>
+    </section>
+
+    <!-- ========== PROCESS (GERMAN) ========== -->
+    <section class="process fade-in">
+      <h2>Unser Prozess als Dienstleister</h2>
+      <div class="process-steps">
+        <div class="step">
+          <h3>1. Anfrage & Briefing</h3>
+          <p>Sie nennen uns Ihren Bedarf, wir klären alle Details für den Dienstleistungsvertrag.</p>
+        </div>
+        <div class="step">
+          <h3>2. Fachkräfte auswählen</h3>
+          <p>Wir finden das passende Personal aus unserem weltweiten Pool,  
+             koordinieren Work-Permit & Anmeldung via Slowenien (falls nötig).</p>
+        </div>
+        <div class="step">
+          <h3>3. Einsatz & Verantwortung</h3>
+          <p>Unsere Leute bleiben bei uns angestellt und folgen unseren Weisungen,  
+             Sie erhalten dennoch das komplette Service-Paket.</p>
+        </div>
+        <div class="step">
+          <h3>4. Fortlaufender Support</h3>
+          <p>Wir bleiben an Ihrer Seite – regelmäßige Abstimmungen, Feedback,  
+             eventuelle Anpassungen des Dienstleistungsumfangs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAIN SERVICES (GERMAN) ========== -->
+    <section class="main-services-steps fade-in" id="services">
+      <h2>Unsere Haupt-Dienstleistungen</h2>
+      <div class="svc-step-header">
+        <div class="svc-step active" data-step="1">1. Service am Bau</div>
+        <div class="svc-step" data-step="2">2. Gastro & Hotellerie</div>
+        <div class="svc-step" data-step="3">3. Büro- & Empfang</div>
+        <div class="svc-step" data-step="4">4. Weitere Branchen</div>
+      </div>
+      <div class="svc-step-content">
+        <!-- Panel 1 -->
+        <div class="svc-step-panel active" id="panel-1">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Service am Bau</h3>
+              <p>
+                Maurer, Helfer, Monteure – wir bringen die benötigten Fachkräfte  
+                zu Ihrer Baustelle, ohne dass Sie sie anstellen müssen.
+              </p>
+              <ul>
+                <li>Kein Leasing, sondern Dienstleistung</li>
+                <li>Flexible Einsatzplanung</li>
+                <li>Volle Haftung & Versicherung über uns</li>
+              </ul>
+              <button class="btn-cta" onclick="window.location.href='kontakt.html#name';">
+                Jetzt anfragen
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/hr.gif" alt="Icon: Bau-Service">
+            </div>
           </div>
         </div>
-        <div class="usp-item">
-          <img src="assets/img/4q43.gif" alt="Ikon: Schnelle Vermittlung">
-          <div class="usp-text">
-            <h3>Effiziente Prozesse</h3>
-            <p>Schnelle Vermittlung &amp; minimaler Verwaltungsaufwand.</p>
+        <!-- Panel 2 -->
+        <div class="svc-step-panel" id="panel-2">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Gastro & Hotellerie</h3>
+              <p>
+                Küchenhilfen, Servicepersonal, Housekeeping – wir übernehmen  
+                Briefing und Einarbeitung, Sie profitieren von eingespielten Teams.
+              </p>
+              <ul>
+                <li>Fachkräfte bleiben unserem Unternehmen unterstellt</li>
+                <li>Vielfältige Sprachen, dank Deutschsprach-Trainings</li>
+                <li>Saisonal oder ganzjährig: Wir passen uns an</li>
+              </ul>
+              <button class="btn-cta" onclick="window.location.href='arbeiten.html#info';">
+                Mehr erfahren
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/berietstellung.gif" alt="Icon: Gastro-Service">
+            </div>
           </div>
         </div>
-        <div class="usp-item">
-          <img src="assets/img/7LDs.gif" alt="Ikon: Rechtliche Sicherheit">
-          <div class="usp-text">
-            <h3>Rechtliche Expertise</h3>
-            <p>A1-Bescheinigung, ISO-Standards – alles abgedeckt.</p>
+        <!-- Panel 3 -->
+        <div class="svc-step-panel" id="panel-3">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Büro- & Empfang</h3>
+              <p>
+                Empfangsdienst, Telefonzentrale, Backoffice – wir sorgen dafür,  
+                dass Ihr Tagesgeschäft reibungslos läuft.
+              </p>
+              <ul>
+                <li>Langfristige Service-Vereinbarungen</li>
+                <li>Keine Personalkosten, nur Dienstleistung</li>
+                <li>Wir bleiben weisungsbefugt und haften für die Qualität</li>
+              </ul>
+              <button class="btn-cta" onclick="window.location.href='kontakt.html#name';">
+                Kontakt aufnehmen
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/internat.gif" alt="Icon: Büro & Empfang">
+            </div>
           </div>
         </div>
-        <div class="usp-item">
-          <img src="assets/img/vertrag.gif" alt="Ikon: Maßgeschneiderter Service">
-          <div class="usp-text">
-            <h3>Kundenorientierter Service</h3>
-            <p>Persönliche Betreuung &amp; maßgeschneiderte Lösungen.</p>
+        <!-- Panel 4 -->
+        <div class="svc-step-panel" id="panel-4">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Weitere Branchen</h3>
+              <p>
+                Landwirtschaft, IT-Support, Einzelhandel oder sonstige Bereiche –  
+                wir beraten Sie gerne und stellen Ihnen unser Team per Dienstleistung  
+                zur Verfügung.
+              </p>
+              <ul>
+                <li>Breites Spektrum an Skills</li>
+                <li>Zusätzlicher Support bei Behördenwegen</li>
+                <li>Schnelle Anpassung, falls sich Ihr Bedarf ändert</li>
+              </ul>
+              <button class="btn-cta" onclick="window.location.href='dienstleistungen.html#kernleistungenSection';">
+                Service entdecken
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/onboarding.jpg" alt="Icon: Sonstige Services">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========== TIMELINE / STORY TEASER ========== -->
-  <section class="history-teaser fade-in">
-    <h2>Ein kurzer Blick auf unsere Geschichte</h2>
+    <section class="team-values-section fade-in" id="teamValues">
+  
+     <!-- ========== WAVE BLOCK 1 (GERMAN & ENGLISH) ========== -->
+<!-- CURVED SECTION #1 -->
+<section class="curved-section curved-left" id="curvedBlock1">
+  <!-- Color block with big curved corners -->
+  <div class="curved-bg"></div>
+
+  <!-- GERMAN TEXT -->
+  <div class="curved-content german">
+    <h2>Wir nehmen uns Zeit für Sie.</h2>
     <p>
-      Seit unserer Gründung in Kroatien haben wir uns kontinuierlich erweitert  
-      und internationale Partnerschaften aufgebaut. Heute sind wir in der Lage,  
-      Unternehmen in ganz Europa zu bedienen. <strong>Möchten Sie mehr über  
-      unsere Anfänge erfahren?</strong>
+      Bevor wir loslegen, möchten wir Ihre Ziele verstehen, 
+      den Kontext erfassen und so die beste Dienstleistung 
+      für Ihren Erfolg auswählen.
     </p>
-    <a href="uber-uns.html#time" class="btn-learn-more">Unsere komplette Geschichte</a>
-  </section>
-
-  <!-- ========== PROCESS SECTION ========== -->
-  <section class="process fade-in">
-    <h2>Unser Prozess</h2>
-    <div class="process-steps">
-      <div class="step">
-        <h3>1. Anfrage &amp; Beratung</h3>
-        <p>Teilen Sie uns Ihre Anforderungen mit, wir beraten Sie zu den besten Optionen.</p>
-      </div>
-      <div class="step">
-        <h3>2. Rekrutierung</h3>
-        <p>Wir greifen auf unser internationales Netzwerk zu und wählen passende Kandidaten aus.</p>
-      </div>
-      <div class="step">
-        <h3>3. Einstellung &amp; Integration</h3>
-        <p>Wir kümmern uns um Arbeitsverträge, A1-Bescheinigungen und eine reibungslose Einarbeitung.</p>
-      </div>
-      <div class="step">
-        <h3>4. Follow-up</h3>
-        <p>Auf Wunsch begleiten wir Sie weiter, um langfristige Erfolge zu sichern.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== UNSERE HAUPTLEISTUNGEN (TABS) ========== -->
- <!-- ========== UNSERE HAUPTLEISTUNGEN (TABS) ========== -->
-<section class="main-services-steps fade-in" id="services">
-  <h2>So profitieren Sie von unseren Hauptleistungen</h2>
-
-  <div class="svc-step-header">
-    <div class="svc-step active" data-step="1">1. Personalvermittlung</div>
-    <div class="svc-step" data-step="2">2. Bereitstellung</div>
-    <div class="svc-step" data-step="3">3. Überlassung</div>
-    <div class="svc-step" data-step="4">4. Weitere Services</div>
   </div>
 
-  <div class="svc-step-content">
-    <!-- Panel 1 -->
-    <div class="svc-step-panel active" id="panel-1">
-      <div class="svc-panel-inner">
-        <div class="svc-text-side">
-          <h3>Personalvermittlung</h3>
-          <p>
-            Passende Fachkräfte für langfristige Beschäftigung –  
-            wir übernehmen Rekrutierung und Prüfung für Sie.
-          </p>
-          <ul>
-            <li>Direkter Zugang zu Fachkräften weltweit</li>
-            <li>Komplettes Onboarding und Vorbereitung</li>
-            <li>Langjährige Expertise im Recruiting</li>
-          </ul>
-          <!-- Now links directly to the Kontakt page's contact form -->
-          <button class="btn-cta" 
-            onclick="window.location.href='kontakt.html#name';">
-            Jetzt anfragen
-          </button>
+ 
+</section>
+
+<!-- CURVED SECTION #2 -->
+<section class="curved-section curved-right" id="curvedBlock2">
+  <div class="curved-bg"></div>
+
+  <!-- German Content -->
+  <div class="curved-content german">
+    <h2>Umfassendes Service-Paket.</h2>
+    <p>
+      Von Bau & Gastronomie bis zu Büro & Verwaltung: 
+      Unsere Fachkräfte greifen Ihnen unter die Arme, 
+      bleiben jedoch in unserem Unternehmen angestellt.
+    </p>
+  </div>
+
+
+</section>
+
+<!-- CURVED SECTION #3 -->
+<section class="curved-section curved-left" id="curvedBlock3">
+  <div class="curved-bg"></div>
+
+  <!-- German -->
+  <div class="curved-content german">
+    <h2>Performance, die überzeugt.</h2>
+    <p>
+      Gemeinsam erreichen wir nachhaltige Ergebnisse, 
+      ohne die Hürden klassischer Arbeitnehmerüberlassung. 
+      Flexibel, schnell und rechtssicher.
+    </p>
+  </div>
+
+
+</section>
+
+    <!-- TESTIMONIALS (GERMAN) -->
+    <section class="testimonials-slider-section fade-in german">
+      <h2>Stimmen unserer Kunden</h2>
+      <div class="testimonial-slider" id="testimonialSliderDe">
+        <!-- Slide #1 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              “Dank Job Werke als Dienstleister haben wir keine  
+               Personalsorgen mehr – alles läuft über ihren Vertrag.”
+            </p>
+            <span class="client-name">– Baumeister G.</span>
+          </div>
         </div>
-        <div class="svc-image-side">
-          <img src="assets/img/hr.gif" alt="Icon: Personalvermittlung">
+        <!-- Slide #2 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              “Die slowenische Agentur für Work-Permit war super effizient,  
+               und Job Werke trug die volle Verantwortung – perfekt für uns!”
+            </p>
+            <span class="client-name">– Hotelmanagerin K.</span>
+          </div>
         </div>
-      </div>
-    </div>
-    <!-- Panel 2 -->
-    <div class="svc-step-panel" id="panel-2">
-      <div class="svc-panel-inner">
-        <div class="svc-text-side">
-          <h3>Arbeitskräfte-Bereitstellung</h3>
-          <p>
-            Flexible Lösungen für Projektspitzen oder  
-            Saisonarbeit, inklusive schneller Onboarding-Prozesse.
-          </p>
-          <ul>
-            <li>Saisonale Unterstützung bei Bedarf</li>
-            <li>Schnelle &amp; unkomplizierte Prozesse</li>
-            <li>Minimaler Verwaltungsaufwand</li>
-          </ul>
-          <!-- Now links directly to a heading in "Mit uns arbeiten" page -->
-          <button class="btn-cta" 
-            onclick="window.location.href='arbeiten.html#info';">
-            Mehr erfahren
-          </button>
+        <!-- Slide #3 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              “Kein Leasing, kein Overhead – endlich ein flexibles Modell,  
+               wo wir nur den Dienst zahlen. Empfehlenswert.”
+            </p>
+            <span class="client-name">– Logistikleiter P.</span>
+          </div>
         </div>
-        <div class="svc-image-side">
-          <img src="assets/img/berietstellung.gif" alt="Icon: Bereitstellung">
-        </div>
-      </div>
-    </div>
-    <!-- Panel 3 -->
-    <div class="svc-step-panel" id="panel-3">
-      <div class="svc-panel-inner">
-        <div class="svc-text-side">
-          <h3>Arbeitnehmerüberlassung</h3>
-          <p>
-            Rechtliche Sicherheit durch A1-Bescheinigung,  
-            EU-Vorgaben – alles abgedeckt, damit Sie fokussiert  
-            arbeiten können.
-          </p>
-          <ul>
-            <li>Rechtlich abgesicherte Vermittlung</li>
-            <li>ISO-Standards konform</li>
-            <li>Langfristige Zusammenarbeit</li>
-          </ul>
-          <!-- Also leads to Kontakt page's contact form -->
-          <button class="btn-cta"
-            onclick="window.location.href='kontakt.html#name';">
-            Kontakt aufnehmen
-          </button>
-        </div>
-        <div class="svc-image-side">
-          <img src="assets/img/internat.gif" alt="Icon: Arbeitnehmerüberlassung">
-        </div>
-      </div>
-    </div>
-    <!-- Panel 4 -->
-    <div class="svc-step-panel" id="panel-4">
-      <div class="svc-panel-inner">
-        <div class="svc-text-side">
-          <h3>Weitere Services</h3>
-          <p>
-            Coaching, Team-Integration, Sprachkurse und Branchensupport –  
-            sprechen Sie uns an und lassen Sie sich beraten!
-          </p>
-          <ul>
-            <li>Mehr als nur Recruiting</li>
-            <li>Rundum-Betreuung Ihrer Fachkräfte</li>
-            <li>Workshops und Fortbildungen</li>
-          </ul>
-          <!-- Links to the “Dienstleistungen” main page or a certain anchor -->
-          <button class="btn-cta"
-            onclick="window.location.href='dienstleistungen.html#kernleistungenSection';">
-            Service entdecken
-          </button>
-        </div>
-        <div class="svc-image-side">
-          <img src="assets/img/onboarding.jpg" alt="Icon: Weitere Services">
+    
+        <!-- Arrows & Dots (GERMAN) -->
+        <button class="slider-arrow left-arrow" id="arrowLeftDe">&#10094;</button>
+        <button class="slider-arrow right-arrow" id="arrowRightDe">&#10095;</button>
+        <div class="slider-dots" id="dotsDe">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- NEWSLETTER CTA (GERMAN) -->
+    <section class="newsletter-cta fade-in">
+      <h3>Bleiben Sie auf dem Laufenden</h3>
+      <p>
+        Erfahren Sie mehr über unsere Dienstleister-Angebote,  
+        neue Branchenlösungen und aktuelle Trends bei Fachkräften.
+      </p>
+      <form>
+        <label for="newsletterEmail" class="sr-only">E-Mail-Adresse</label>
+        <input id="newsletterEmail" type="email" placeholder="Ihre E-Mail-Adresse" required>
+        <button type="submit">Abonnieren</button>
+      </form>
+    </section>
+
+    <!-- APPOINTMENT CTA (GERMAN) -->
+    <section class="appointment-cta fade-in" id="kontakt">
+      <h2>Bereit, unseren Dienst in Anspruch zu nehmen?</h2>
+      <p>
+        Schreiben Sie uns – wir beraten Sie gerne zu unseren  
+        Dienstleistungsverträgen und klären alle Fragen rund um  
+        Work-Permit und Deutschsprach-Support.
+      </p>
+      <a href="kontakt.html#name" class="btn-large">Jetzt Termin vereinbaren</a>
+    </section>
+  </div><!-- End .german -->
+
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ENGLISH CONTENT (HIDDEN)
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <div class="english hidden">
+    <!-- ========== HERO SECTION (EN) ========== -->
+    <section class="hero fade-in" id="heroEn">
+      <video class="hero-video" autoplay muted loop>
+        <source src="assets/img/connect.mp4" type="video/mp4" />
+        <!-- fallback -->
+        Your browser does not support background video.
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Service Provider Instead of Leasing</h1>
+        <p>
+          Part of Remix (founded 2021) – awarded “Best Recruiting Agency.”<br/>
+          Service contract instead of employee leasing: We take responsibility  
+          and rely on our partner in Slovenia (Work Permit support) –  
+          starting 2025 also in Germany with our own branch.
+        </p>
+        <a href="#whyEn" class="btn-primary">Learn More About Our Service Model</a>
+      </div>
+    </section>
+
+ <!-- =========================================================
+     ENGLISH "WHY" SECTION (REVAMP)
+========================================================= -->
+<section class="why-jobwerke revamp-section english hidden" id="whyEn">
+  <!-- Wave/Curved BG (handled via CSS pseudo or .wave-bg) -->
+  <div class="wave-bg"></div>
+
+  <div class="why-container">
+    <!-- Text + Image Row -->
+    <div class="why-content">
+      <div class="why-image">
+        <!-- Replace with your actual English illustration -->
+        <img
+          src="assets/img/u.jpg"
+          alt="Service Contract at Job Werke d.o.o."
+        />
+      </div>
+      <div class="why-text">
+        <h2>Why Choose a Service Provider?</h2>
+        <p class="lead">
+          Instead of employee leasing or temp work, we sign <strong>service agreements</strong>.  
+          This means our skilled workers remain employed by us,  
+          we assume responsibility, and you benefit from flexibility with minimal risk.
+        </p>
+      </div>
+    </div><!-- /.why-content -->
+
+    <!-- USP GRID (ENGLISH) -->
+    <div class="usp-grid">
+      <!-- USP #1 -->
+      <div class="usp-card">
+        <img src="assets/img/2mVW.gif" alt="Icon: Global" />
+        <h3>Global Skilled Worker Network</h3>
+        <p>
+          Thanks to Remix &amp; our Slovenian partner for Work-Permit documents, 
+          we can quickly staff without complicated leasing rules.
+        </p>
+      </div>
+
+      <!-- USP #2 -->
+      <div class="usp-card">
+        <img src="assets/img/vertrag.gif" alt="Icon: Service Agreement" />
+        <h3>Service Agreement</h3>
+        <p>
+          No employee leasing – our team follows our instructions, 
+          and we take full liability.
+        </p>
+      </div>
+
+      <!-- USP #3 -->
+      <div class="usp-card">
+        <img src="assets/img/4q43.gif" alt="Icon: Fast Implementation" />
+        <h3>Fast Implementation</h3>
+        <p>
+          We handle A1 certificates,  
+          Work-Permit paperwork &amp; German training,  
+          so you can start quickly.
+        </p>
+      </div>
+
+      <!-- USP #4 -->
+      <div class="usp-card">
+        <img src="assets/img/7LDs.gif" alt="Icon: Legal Security" />
+        <h3>Legal Security</h3>
+        <p>
+          As a service provider, we minimize your risk – 
+          all contracts &amp; billing go through us.
+        </p>
+      </div>
+    </div><!-- /.usp-grid -->
+  </div><!-- /.why-container -->
+</section>
+
+    <!-- ========== HISTORY TEASER (EN) ========== -->
+    <section class="history-teaser fade-in">
+      <h2>From Croatia to Slovenia – Soon in Germany</h2>
+      <p>
+        Our parent company Remix started in 2021 and was quickly recognized  
+        for outstanding service. We work with a Slovenian agency that  
+        currently manages all Work Permit formalities for our professionals.  
+        Until we open our own branch in Slovenia, we use this partnership  
+        flexibly and efficiently. By 2025, we’ll also be in Germany.
+      </p>
+      <a href="uber-uns.html?lang=en#time-en" class="btn-learn-more">View Our History</a>
+    </section>
+
+    <!-- ========== PROCESS (EN) ========== -->
+    <section class="process fade-in">
+      <h2>Our Process as a Service Provider</h2>
+      <div class="process-steps">
+        <div class="step">
+          <h3>1. Inquiry & Briefing</h3>
+          <p>You tell us your needs, we clarify all details for the service agreement.</p>
+        </div>
+        <div class="step">
+          <h3>2. Select Skilled Workers</h3>
+          <p>We find suitable personnel from our global pool,  
+             coordinate Work Permits & registration via Slovenia if needed.</p>
+        </div>
+        <div class="step">
+          <h3>3. Deployment & Responsibility</h3>
+          <p>Our people remain our employees, following our directions,  
+             but you get the full service package.</p>
+        </div>
+        <div class="step">
+          <h3>4. Ongoing Support</h3>
+          <p>We stay by your side – regular check-ins, feedback,  
+             possible adjustments to the service scope.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAIN SERVICES (EN) ========== -->
+    <section class="main-services-steps fade-in" id="servicesEn">
+      <h2>Our Main Services</h2>
+      <div class="svc-step-header">
+        <div class="svc-step active" data-step="1-en">1. Construction Service</div>
+        <div class="svc-step" data-step="2-en">2. Gastronomy & Hospitality</div>
+        <div class="svc-step" data-step="3-en">3. Office & Reception</div>
+        <div class="svc-step" data-step="4-en">4. Other Industries</div>
+      </div>
+      <div class="svc-step-content">
+        <!-- Panel 1 -->
+        <div class="svc-step-panel active" id="panel-1-en">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Construction Service</h3>
+              <p>
+                Bricklayers, helpers, assemblers – we bring needed workers  
+                to your site without you hiring them directly.
+              </p>
+              <ul>
+                <li>No leasing, only a service contract</li>
+                <li>Flexible scheduling</li>
+                <li>Full liability & insurance through us</li>
+              </ul>
+              <button class="btn-cta" onclick="window.location.href='kontakt.html?lang=en#name-en';">
+                Request Now
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/hr.gif" alt="Icon: Construction Service">
+            </div>
+          </div>
+        </div>
+        <!-- Panel 2 -->
+        <div class="svc-step-panel" id="panel-2-en">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Gastronomy & Hospitality</h3>
+              <p>
+                Kitchen helpers, service staff, housekeeping – we handle  
+                briefing and onboarding; you get well-coordinated teams.
+              </p>
+              <ul>
+                <li>Staff remain employed by us</li>
+                <li>Multilingual, thanks to German training</li>
+                <li>Seasonal or year-round: We adapt</li>
+              </ul>
+              <button class="btn-cta" onclick="window.location.href='arbeiten.html?lang=en#info-en';">
+                Learn More
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/berietstellung.gif" alt="Icon: Gastro-Service">
+            </div>
+          </div>
+        </div>
+        <!-- Panel 3 -->
+        <div class="svc-step-panel" id="panel-3-en">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Office & Reception</h3>
+              <p>
+                Reception desk, switchboard, back office – we ensure  
+                your daily operations run smoothly.
+              </p>
+              <ul>
+                <li>Long-term service agreements</li>
+                <li>No personnel costs, just service fees</li>
+                <li>We stay in charge and guarantee quality</li>
+              </ul>
+              <button class="btn-cta" onclick="window.location.href='kontakt.html?lang=en#name-en';">
+                Contact Us
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/internat.gif" alt="Icon: Office & Reception">
+            </div>
+          </div>
+        </div>
+        <!-- Panel 4 -->
+        <div class="svc-step-panel" id="panel-4-en">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Other Industries</h3>
+              <p>
+                Agriculture, IT support, retail, or other areas –  
+                we’ll gladly advise and provide our team on a service contract.
+              </p>
+              <ul>
+                <li>Wide range of skills</li>
+                <li>Extra help with admin tasks</li>
+                <li>Quick adaptation if your needs change</li>
+              </ul>
+              <button class="btn-cta" onclick="window.location.href='dienstleistungen.html?lang=en#kernleistungenSection-en';">
+                Discover Our Services
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/onboarding.jpg" alt="Icon: Other Services">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- CURVED SECTION #1 -->
+<section class="curved-section curved-left" id="curvedBlock1">
+  <!-- Color block with big curved corners -->
+  <div class="curved-bg"></div>
+
+
+
+  <!-- ENGLISH TEXT (hidden initially) -->
+  <div class="curved-content english hidden">
+    <h2>We Take Time for You.</h2>
+    <p>
+      Before diving in, we’ll learn about your goals, 
+      grasp the context, and choose the best service 
+      to drive your success.
+    </p>
   </div>
 </section>
 
-<!-- TAB SWITCHING LOGIC -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const steps = document.querySelectorAll('.svc-step');
-    const panels = document.querySelectorAll('.svc-step-panel');
+<!-- CURVED SECTION #2 -->
+<section class="curved-section curved-right" id="curvedBlock2">
+  <div class="curved-bg"></div>
 
-    steps.forEach(step => {
-      step.addEventListener('click', () => {
-        steps.forEach(s => s.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
-        step.classList.add('active');
-        document.getElementById(`panel-${step.getAttribute('data-step')}`).classList.add('active');
-      });
-    });
-  });
-</script>
+  <!-- German Content -->
+ 
 
-  <!-- ========== MINI GALLERY ========== -->
-  <section class="team-gallery fade-in">
-    <h2>Wir sind für Sie da</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="assets/img/team-placeholder.jpg" alt="Das Team von Job Werke">
-        <p>Unser eingespieltes Team in Aktion</p>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/img/recruit.jpg" alt="Recruiting-Meeting mit Partnern">
-        <p>Meeting mit neuen Partnern</p>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/img/personalgewinnung.jpg" alt="Fachkräfte im Einsatz">
-        <p>Fachkräfte aus aller Welt</p>
-      </div>
-      <div class="gallery-item">
-        <img src="assets/img/w.jpg" alt="Office in Kroatien">
-        <p>Unser Büro in Kroatien</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS (SLIDER VERSION) -->
-  <section class="testimonials-slider-section fade-in">
-    <h2>Was unsere Kunden sagen</h2>
-    <div class="testimonial-slider">
-
-      <!-- Slide #1 -->
-      <div class="testimonial-slide">
-        <div class="testimonial-content">
-          <p class="testimonial-text">
-            “Dank Job Werke konnten wir in kürzester Zeit zwei Top-Fachkräfte 
-             aus Nepal einstellen. Einfach, schnell und transparent!”
-          </p>
-          <span class="client-name">– Max Mustermann, Bauunternehmer</span>
-        </div>
-      </div>
-
-      <!-- Slide #2 -->
-      <div class="testimonial-slide">
-        <div class="testimonial-content">
-          <p class="testimonial-text">
-            “Wir haben endlich eine verlässliche Lösung gefunden, 
-             um saisonale Engpässe in der Landwirtschaft zu decken. 
-             Super Service!”
-          </p>
-          <span class="client-name">– Anna Schmitt, Hofbesitzerin</span>
-        </div>
-      </div>
-
-      <!-- Slide #3 -->
-      <div class="testimonial-slide">
-        <div class="testimonial-content">
-          <p class="testimonial-text">
-            “Das Recruiting war unkompliziert, und wir fühlten uns 
-             rechtlich bestens abgesichert. Gerne wieder!”
-          </p>
-          <span class="client-name">– Peter Müller, Logistikleiter</span>
-        </div>
-      </div>
-      
-      <!-- Arrows -->
-      <button class="slider-arrow left-arrow" id="arrowLeft">&#10094;</button>
-      <button class="slider-arrow right-arrow" id="arrowRight">&#10095;</button>
-   
-      <div class="slider-dots">
-        <span class="dot active" data-slide="0"></span>
-        <span class="dot" data-slide="1"></span>
-        <span class="dot" data-slide="2"></span>
-      </div>
-    </div>
-  </section>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelectorAll('.testimonial-slide');
-      const arrowLeft = document.getElementById('arrowLeft');
-      const arrowRight = document.getElementById('arrowRight');
-      const dots = document.querySelectorAll('.dot');
-
-      let currentSlide = 0;
-
-      function showSlide(index) {
-        slides.forEach((slide) => slide.classList.remove('active'));
-        slides[index].classList.add('active');
-        dots.forEach(dot => dot.classList.remove('active'));
-        dots[index].classList.add('active');
-      }
-
-      showSlide(currentSlide);
-
-      arrowLeft.addEventListener('click', () => {
-        currentSlide--;
-        if (currentSlide < 0) {
-          currentSlide = slides.length - 1;
-        }
-        showSlide(currentSlide);
-      });
-
-      arrowRight.addEventListener('click', () => {
-        currentSlide++;
-        if (currentSlide >= slides.length) {
-          currentSlide = 0;
-        }
-        showSlide(currentSlide);
-      });
-
-      dots.forEach(dot => {
-        dot.addEventListener('click', (e) => {
-          const slideIndex = parseInt(e.target.getAttribute('data-slide'));
-          currentSlide = slideIndex;
-          showSlide(slideIndex);
-        });
-      });
-    });
-  </script>
-
-  <!-- ========== NEWSLETTER CTA ========== -->
-  <section class="newsletter-cta fade-in">
-    <h3>Bleiben Sie auf dem Laufenden</h3>
+  <!-- English Content -->
+  <div class="curved-content english hidden">
+    <h2>Comprehensive Service Package.</h2>
     <p>
-      Melden Sie sich für unseren Newsletter an und erhalten Sie Infos  
-      zu neuen Stellenangeboten, Branchennews und mehr.
+      From construction & hospitality to office & admin: 
+      Our professionals support you but remain employed 
+      by our company.
     </p>
-    <form>
-      <label for="newsletterEmail" class="sr-only">E-Mail-Adresse</label>
-      <input id="newsletterEmail" type="email" placeholder="Ihre E-Mail-Adresse" required>
-      <button type="submit">Abonnieren</button>
-    </form>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== MAIN CTA (APPOINTMENT) ========== -->
-  <section class="appointment-cta fade-in" id="kontakt">
-    <h2>Bereit für das nächste Level?</h2>
+<!-- CURVED SECTION #3 -->
+<section class="curved-section curved-left" id="curvedBlock3">
+  <div class="curved-bg"></div>
+
+  <!-- German -->
+
+
+  <!-- English -->
+  <div class="curved-content english hidden">
+    <h2>Performance That Delivers.</h2>
     <p>
-      Kontaktieren Sie uns und erfahren Sie, wie wir Ihr Unternehmen  
-      mit den richtigen Talenten verstärken können.
+      Together, we’ll drive tangible results without the 
+      pitfalls of typical leasing models—flexible, swift, 
+      and legally sound.
     </p>
-    <a href="kontakt.html#name" class="btn-large">Termin vereinbaren</a>
-  </section>
+  </div>
+</section>
 
-  <!-- ========== FOOTER ========== -->
+    <!-- TESTIMONIALS (ENGLISH) -->
+    <section class="testimonials-slider-section fade-in english hidden">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonial-slider" id="testimonialSliderEn">
+        <!-- Slide #1 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              “Thanks to Job Werke as a service provider,  
+               we no longer worry about staffing – everything is under their contract.”
+            </p>
+            <span class="client-name">– Master Builder G.</span>
+          </div>
+        </div>
+        <!-- Slide #2 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              “The Slovenian agency for Work Permits was super efficient,  
+               and Job Werke took full responsibility – perfect for us!”
+            </p>
+            <span class="client-name">– Hotel Manager K.</span>
+          </div>
+        </div>
+        <!-- Slide #3 -->
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              “No leasing, no overhead – at last, a flexible model  
+               where we only pay for the service. Highly recommended.”
+            </p>
+            <span class="client-name">– Logistics Manager P.</span>
+          </div>
+        </div>
+    
+        <!-- Arrows & Dots (ENGLISH) -->
+        <button class="slider-arrow left-arrow" id="arrowLeftEn">&#10094;</button>
+        <button class="slider-arrow right-arrow" id="arrowRightEn">&#10095;</button>
+        <div class="slider-dots" id="dotsEn">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER CTA (EN) -->
+    <section class="newsletter-cta fade-in">
+      <h3>Stay Up to Date</h3>
+      <p>
+        Learn more about our service provider offers,  
+        new industry solutions, and the latest trends in skilled workers.
+      </p>
+      <form>
+        <label for="newsletterEmailEn" class="sr-only">Email Address</label>
+        <input id="newsletterEmailEn" type="email" placeholder="Your Email Address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+
+    <!-- APPOINTMENT CTA (EN) -->
+    <section class="appointment-cta fade-in" id="kontaktEn">
+      <h2>Ready to Use Our Service?</h2>
+      <p>
+        Write to us – we’ll gladly advise you on our  
+        service contracts and clarify any questions regarding  
+        Work Permits and German-language support.
+      </p>
+      <a href="kontakt.html?lang=en#name-en" class="btn-large">Schedule an Appointment</a>
+    </section>
+  </div><!-- End .english -->
+
+
+  <!-- ========== FOOTER (SAME FOR BOTH) ========== -->
   <footer class="footer">
     <p>
       <a href="impressum.html">Impressum</a> &bull; 
@@ -1161,29 +815,45 @@
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- +++++++++++++++++++++++++++++++++++++++++++++
-       JS FOR MOBILE NAV TOGGLE & FADE-IN OBSERVER
-  ++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- Link to your external JS file -->
+  <script src="js/index.js"></script>
+
+  <!-- Inline script for language toggle (if not in index.js) -->
   <script>
-    // Mobile Navbar Toggle
+    // 1) MOBILE NAVBAR
     const mobileToggle = document.getElementById('mobileToggle');
     const navbarMenu = document.getElementById('navbarMenu');
     mobileToggle.addEventListener('click', () => {
       navbarMenu.classList.toggle('nav-open');
     });
 
-    // IntersectionObserver for fade-in sections
-    const fadeElems = document.querySelectorAll('.fade-in');
-    const ioOptions = { threshold: 0.1 };
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, ioOptions);
-    fadeElems.forEach(el => observer.observe(el));
+    // 2) LANGUAGE SWITCH
+    const langBtn = document.getElementById('toggleLang');
+    const germanDivs = document.querySelectorAll('.german');
+    const englishDivs = document.querySelectorAll('.english');
+    let isGerman = true; // starts in German mode
+
+    langBtn.addEventListener('click', () => {
+      // store user’s scroll ratio (where they are on the page)
+      const scrollY = window.pageYOffset;
+      const docHeight = document.body.scrollHeight;
+      const ratio = docHeight ? (scrollY / docHeight) : 0;
+
+      // toggle
+      isGerman = !isGerman;
+      germanDivs.forEach(el => el.classList.toggle('hidden', !isGerman));
+      englishDivs.forEach(el => el.classList.toggle('hidden', isGerman));
+
+      // update button text
+      langBtn.textContent = isGerman ? 'English' : 'Deutsch';
+
+      // recalc doc height & restore scroll
+      setTimeout(() => {
+        const newHeight = document.body.scrollHeight;
+        const newScroll = Math.round(ratio * newHeight);
+        window.scrollTo(0, newScroll);
+      }, 50);
+    });
   </script>
 </body>
 </html>

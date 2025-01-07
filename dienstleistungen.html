@@ -5,1010 +5,584 @@
   <title>Dienstleistungen – Job Werke d.o.o.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Example Google Fonts -->
+  <!-- Google Font -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
 
-  <style>
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       1) GLOBAL RESET & BASE STYLES
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    * {
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: #333;
-      background: #fafafa;
-      line-height: 1.6;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      position: relative;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    /* Updated link hover color to the brand color */
-    a:hover {
-      color: #181844;
-    }
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    h1, h2, h3 {
-      margin-bottom: 0.8rem;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       2) NAVBAR (WITH HAMBURGER FOR MOBILE)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70px; /* fixed navbar height on desktop */
-      display: flex;
-      align-items: center; /* vertical centering */
-      justify-content: space-between;
-      background: #181844; /* brand color */
-      padding: 0 2rem; /* horizontal spacing */
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-      z-index: 9999;
-    }
-    .navbar__logo img {
-      max-height: 60px; /* keep logo within navbar height */
-      width: auto;
-      object-fit: contain;
-      margin: 5px 0; /* optional breathing room */
-      transition: transform 0.3s;
-    }
-    .navbar__logo a img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Desktop menu */
-    .navbar__menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-    /* White links on dark background */
-    .navbar__menu a {
-      font-weight: 500;
-      padding: 0.3rem 0;
-      color: #fff;
-      transition: color 0.3s;
-    }
-    .navbar__menu a:hover {
-      color: #bbb;
-    }
-    .navbar__menu a.active {
-      border-bottom: 2px solid #fff;
-    }
-
-    /* Offsets page content below the fixed navbar (optional) */
-    body::before {
-      content: "";
-      display: block;
-      height: 70px; /* matches .navbar height */
-    }
-
-    /* Hamburger toggle (hidden on desktop) */
-    .navbar__toggle {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
-    }
-    .navbar__toggle span {
-      width: 25px;
-      height: 3px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
-       RESPONSIVE (MAX-WIDTH: 768px)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    @media (max-width: 768px) {
-      /* Slightly smaller navbar on mobile */
-      .navbar {
-        height: 60px;
-      }
-      .navbar__logo img {
-        max-height: 50px;
-      }
-
-      /* Show hamburger, hide normal menu by default */
-      .navbar__toggle {
-        display: flex;
-      }
-      .navbar__menu {
-        position: absolute;
-        top: 60px; /* matches .navbar height on mobile */
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        gap: 1rem;
-        background: #181844; /* brand color on mobile too */
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        padding: 1rem 2rem;
-        transform: translateY(-130%); /* hidden by default (above screen) */
-        transition: transform 0.3s ease;
-      }
-      /* Toggle open: slide down when .nav-open is added */
-      .navbar__menu.nav-open {
-        transform: translateY(0);
-      }
-
-      /* Mobile links also white */
-      .navbar__menu a {
-        color: #fff;
-        padding: 0.3rem 0;
-      }
-      .navbar__menu a:hover {
-        color: #bbb;
-      }
-    }
-
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       4) HERO SECTION (PARALLAX + TYPING)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .hero {
-      position: relative;
-      width: 100%;
-      min-height: 80vh;
-      background: url('assets/img/u.jpg') center/cover no-repeat;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-    }
-    /* Updated gradient overlay to brand colors */
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; 
-      height: 100%;
-      background: linear-gradient(
-        to bottom right,
-        rgba(24, 24, 68, 0.7),
-        rgba(18, 22, 59, 0.6)
-      );
-      z-index: 0;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1; 
-      padding: 2rem 1rem;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .hero-content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.4);
-    }
-    .hero-subtext {
-      font-size: 1.1rem;
-      margin-top: 0.5rem;
-      margin-bottom: 2rem;
-      line-height: 1.4;
-    }
-    .typing-text {
-      display: inline-block;
-      font-size: 1.4rem;
-      color: #ffd700; /* Gold text remains unchanged */
-      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      margin-bottom: 1rem;
-    }
-    .scroll-prompt {
-      margin-top: 2rem;
-      font-size: 1rem;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-8px); }
-      60% { transform: translateY(-4px); }
-    }
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-      .typing-text {
-        font-size: 1.1rem;
-      }
-    }
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       5) KERNLEISTUNGEN (ALTERNATING LAYOUT)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .kernleistungen {
-      background: #fff;
-      padding: 4rem 1rem;
-    }
-    .kernleistungen .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .kernleistungen .intro-text {
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.6;
-      text-align: center;
-    }
-    .kl-row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 4rem;
-    }
-    .kl-row:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-    .kl-image-col, .kl-text-col {
-      flex: 1 1 400px; 
-      padding: 1rem;
-    }
-    .kl-image-col img {
-      border-radius: 6px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      display: block;
-    }
-    .kl-text-col h3 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #333;
-    }
-    .kl-text-col p {
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-    .kl-text-col .extra-text {
-      display: none;
-      margin-top: 0.5rem;
-    }
-    /* Updated btn-toggle background to #181844 and hover to #12163b */
-    .kl-text-col .btn-toggle {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.6rem 1.2rem;
-      background: #181844;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s;
-      font-size: 0.9rem;
-    }
-    .kl-text-col .btn-toggle:hover {
-      background: #12163b;
-    }
-    @media (max-width: 900px) {
-      .kl-row {
-        flex-direction: column !important;
-        text-align: left;
-      }
-      .kl-image-col, .kl-text-col {
-        padding: 1rem 0;
-      }
-    }
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       6) ANGLED SECTION (INDUSTRIES EXAMPLE)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .angled-section {
-      position: relative;
-      padding: 4rem 1rem;
-      background: #f4f8ff; 
-      z-index: 1;
-    }
-    .angled-section::before {
-      content: "";
-      position: absolute;
-      top: -60px;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: #fff;
-      clip-path: polygon(0 0, 100% 100%, 0 100%);
-      z-index: 2;
-    }
-    .angled-section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .angled-section p {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: #555;
-    }
-    .industry-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .industry-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-    .industry-card:hover {
-      transform: translateY(-3px);
-    }
-    .industry-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-    .industry-card h3 {
-      font-size: 1.2rem;
-      margin: 1rem;
-      color: #333;
-    }
-    .industry-card p {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.5;
-      margin: 0 1rem 1.5rem 1rem;
-    }
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       7) COMPLIANCE & LEGAL (Minimal Style)
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .compliance-section {
-      position: relative;
-      padding: 4rem 1rem;
-      background-color: #f4f4f4;
-      overflow: hidden;
-    }
-    .angled-bg {
-      position: absolute;
-      top: -50px;
-      left: 0;
-      width: 100%;
-      height: 200px;
-      /* This used to be #6e00c2, replaced with #181844 or you can keep it. */
-      background: #181844;
-      clip-path: polygon(0 100%, 100% 0, 100% 100%);
-      z-index: -1;
-    }
-    .compliance-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .compliance-content h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: #333;
-    }
-    .intro-paragraph {
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
-      color: #555;
-      line-height: 1.6;
-      font-size: 1rem;
-    }
-    .compliance-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .compliance-card {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.07);
-      padding: 2rem 1.5rem;
-      transition: transform 0.3s;
-      text-align: center;
-      display: flex; 
-      flex-direction: column; 
-      align-items: center;
-    }
-    .compliance-card:hover {
-      transform: translateY(-4px);
-    }
-    .compliance-card img {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      margin-bottom: 1rem;
-    }
-    .compliance-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.75rem;
-      color: #333;
-    }
-    .compliance-card p {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.4;
-    }
-    @media (max-width: 768px) {
-      .compliance-content h2 {
-        font-size: 1.8rem;
-      }
-      .compliance-card h3 {
-        font-size: 1.1rem;
-      }
-      .compliance-card p {
-        font-size: 0.9rem;
-      }
-    }
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       8) ADVANTAGES
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-   /********************************************
-  ADVANTAGES (ALTERNATIVE DESIGN)
-********************************************/
-.advantages-alt {
-  position: relative;
-  color: #fff; /* text on dark overlay */
-  padding: 4rem 1rem;
-  overflow: hidden; /* if we do horizontal scroll, might want hidden or auto. */
-}
-
-/* The background image with brand overlay */
-.advantages-bg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('assets/img/w.jpg') center/cover no-repeat;
-  z-index: -2; /* behind the content */
-}
-.advantages-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; 
-  height: 100%;
-  background: rgba(24,24,68,0.7); /* brand color overlay with some opacity */
-  z-index: -1;
-}
-
-.advantages-content {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-/* Headings & main text in white or off-white for contrast */
-.advantages-content h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: #fff;
-}
-.advantages-content p {
-  max-width: 700px;
-  margin: 0 auto 2rem;
-  color: #f0f0f0; 
-  line-height: 1.6;
-}
-
-/* Horizontal scroll container */
-.advantage-scroll {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem 0;
-  overflow-x: auto; /* horizontal scroll if there are many items */
-  scroll-behavior: smooth;
-}
-/* Hide scrollbar (optional) */
-.advantage-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.advantage-item {
-  flex: 0 0 250px; /* each card has fixed width, or use auto */
-  background: rgba(255,255,255,0.1); /* a slight translucent box on the overlay */
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 1rem 0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.3s;
-}
-.advantage-item:hover {
-  transform: translateY(-5px);
-}
-.advantage-item h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: #ffd700; /* or #fff, or brand accent */
-}
-.advantage-item p {
-  font-size: 0.9rem;
-  color: #f2f2f2; 
-  line-height: 1.5;
-}
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       9) CASE STUDIES
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .case-studies {
-      background: #fff;
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-    .case-studies h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .case-grid {
-      display: grid; 
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      max-width: 1000px; 
-      margin: 0 auto;
-    }
-    .case-item {
-      background: #fdfdfd;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2rem;
-      transition: transform 0.3s;
-      text-align: left;
-    }
-    .case-item:hover {
-      transform: translateY(-3px);
-    }
-    .case-item h3 {
-      font-size: 1.1rem; 
-      margin-bottom: 0.5rem; 
-      color: #333;
-    }
-    .case-item p {
-      font-size: 0.9rem; 
-      color: #555; 
-      line-height: 1.4;
-      margin-bottom: 0.5rem;
-    }
-    /* Updated border-left to #181844 */
-    .client-quote {
-      font-style: italic; 
-      margin-top: 1rem; 
-      padding-left: 1rem; 
-      border-left: 4px solid #181844;
-    }
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       10) FAQ SECTION
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .faq-section {
-      background: #fff;
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-    .faq-section h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .faq-container {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .faq-item {
-      background: #fdfdfd;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      transition: background 0.3s, box-shadow 0.3s;
-      overflow: hidden;
-    }
-    .faq-item:hover {
-      background: #f1efff;
-      background: rgba(165, 165, 214, 0.65); 
-    }
-    .faq-question {
-      margin: 0;
-      padding: 1rem;
-      cursor: pointer;
-      position: relative;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: #333;
-    }
-    /* Plus sign with brand color */
-    .faq-question::after {
-      content: "+";
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-      font-size: 1.3rem;
-      color: #181844;
-      transition: transform 0.3s;
-    }
-    .faq-item.active .faq-question::after {
-      transform: rotate(45deg);
-      content: "–";
-    }
-    .faq-answer {
-      display: none;
-      padding: 0 1rem 1rem;
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.5;
-    }
-    .faq-item.active .faq-answer {
-      display: block;
-    }
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       11) FINAL CALL-TO-ACTION
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .cta-section {
-      background: #181844; /* was #6e00c2 */
-      color: #fff;
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-    .cta-section h2 {
-      font-size: 2rem; 
-      margin-bottom: 1rem;
-    }
-    .cta-section p {
-      max-width: 600px; 
-      margin: 0 auto 2rem;
-      line-height: 1.4;
-    }
-    /* Updated button text color to #181844, hover color to #12163b */
-    .btn-contact {
-      display: inline-block;
-      background: #fff;
-      color: #181844;
-      padding: 0.8rem 1.4rem;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn-contact:hover {
-      background: #ebebeb;
-      color: #12163b;
-    }
-
-    /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       12) FOOTER
-    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    .footer {
-      background: #e7e9fc;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #444;
-    }
-    .footer p {
-      margin-bottom: 0.5rem;
-    }
-  </style>
+  <!-- Your main CSS (make sure this matches the same CSS file as your home page if you want them consistent) -->
+  <link rel="stylesheet" href="css/dienstleistungen.css" />
 </head>
-
 <body>
 
-  <!-- ========== NAVBAR (WITH HAMBURGER) ========== -->
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
+       NAVBAR
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <header class="navbar">
     <div class="navbar__logo">
+      <!-- Replace '#' or 'index.html' with your actual home link -->
       <a href="index.html">
-        <img src="assets/img/logogo.gif" alt="Job Werke Logo">
+        <img
+          src="assets/img/logogo.gif"
+          alt="Job Werke d.o.o."
+        />
       </a>
     </div>
-
-    <!-- Hamburger toggle (hidden on desktop, shown on mobile) -->
+  
+    <!-- Hamburger icon (mobile) -->
     <div class="navbar__toggle" id="mobileToggle">
       <span></span>
       <span></span>
       <span></span>
     </div>
-
+  
+    <!-- Main Menu -->
     <nav class="navbar__menu" id="navbarMenu">
-      <a href="index.html">Home</a>
-      <a href="uber-uns.html">Über uns</a>
-      <a href="dienstleistungen.html" class="active">Dienstleistungen</a>
-      <a href="arbeiten.html">Mit uns arbeiten</a>
-      <a href="kontakt.html">Kontakt</a>
+      <!-- GERMAN NAV LINKS -->
+      <div class="navbar__links german">
+        <a href="index.html">Home</a>
+        <a href="uber-uns.html">Über uns</a>
+        <a href="dienstleistungen.html" class="active">Dienstleistungen</a>
+        <a href="arbeiten.html">Mit uns arbeiten</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+      <!-- ENGLISH NAV LINKS -->
+      <div class="navbar__links english hidden">
+        <a href="index.html?lang=en">Home</a>
+        <a href="uber-uns.html?lang=en">About Us</a>
+        <a href="dienstleistungen.html?lang=en" class ="active">Services</a>
+        <a href="arbeiten.html?lang=en">Work With Us</a>
+        <a href="kontakt.html?lang=en">Contact</a>
+      </div>
+  
+      <!-- Language Toggle Button -->
+      <button id="toggleLang" class="lang-btn">
+        English
+      </button>
     </nav>
   </header>
 
-  <!-- ========== HERO (PARALLAX + TYPED TEXT) ========== -->
-  <section class="hero" id="heroSection">
-    <div class="hero-content">
-      <h1>Dienstleistungen</h1>
-      <div class="typing-text" id="typingText"></div>
-      <p class="hero-subtext">
-        Erleben Sie maßgeschneiderte Lösungen – von der Rekrutierung bis zum Onboarding.
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       GERMAN CONTENT
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <div class="german">
+    <!-- ========== HERO SECTION (GERMAN) ========== -->
+    <section class="hero" id="heroSectionDe">
+      <div class="hero-content">
+        <h1>Dienstleistungen</h1>
+        <!-- TYPING TEXT SPAN (GERMAN) -->
+        <div class="typing-text" id="typingTextDe"></div>
+        <p class="hero-subtext">
+          Qualität &amp; Verantwortung.<br/>
+          Erleben Sie maßgeschneiderte Outsourcing-Lösungen.<br/>
+          Wir bieten Ihnen Service-Teams, die in unserem Unternehmen angestellt bleiben.
+        </p>
+        <div class="scroll-prompt">▼ Scroll Down ▼</div>
+      </div>
+    </section>
+
+    <!-- KERNLEISTUNGEN (GERMAN) -->
+    <section class="kernleistungen" id="kernleistungenSection">
+      <h2 class="section-title">Unsere Kernleistungen</h2>
+      <p class="intro-text">
+        Statt auf Arbeitnehmerüberlassung setzen wir auf unsere eigenen Service-Teams, 
+        die wir für Sie bereitstellen. Unsere Lösungen sind flexibel, konform mit den 
+        deutschen Richtlinien für Dienstleistungsverträge und werden individuell 
+        auf Ihren Bedarf abgestimmt.
       </p>
-      <div class="scroll-prompt">▼ Scroll Down ▼</div>
-    </div>
-  </section>
 
-  <!-- ========== KERNLEISTUNGEN ========== -->
-  <section class="kernleistungen" id="kernleistungenSection">
-    <h2 class="section-title">Unsere Kernleistungen</h2>
-    <p class="intro-text">
-      Wir unterstützen Sie von der ersten Beratung bis hin zur Integration neuer Mitarbeiter. 
-      Unsere Expertise umfasst Personalvermittlung, rechtliche Formalitäten und 
-      globales Recruiting. Erfahren Sie mehr in den folgenden Bereichen oder besuchen Sie 
-      <strong><a href="uber-uns.html">Über uns</a></strong> für weitere Einblicke.
-    </p>
+      <!-- Row 1 -->
+      <div class="kl-row">
+        <div class="kl-image-col">
+          <img src="assets/img/a1be.jpg" alt="Beratungsgespräch" />
+        </div>
+        <div class="kl-text-col">
+          <h3>Umfassende Beratung</h3>
+          <p>
+            Wir starten immer mit einem ausführlichen Briefing, in dem wir Ihre Ziele, 
+            Arbeitsprozesse und Qualitätsansprüche kennenlernen. Basierend darauf 
+            stellen wir Ihr passendes Service-Team zusammen.
+          </p>
+          <p class="extra-text">
+            Dank enger Abstimmung und regelmäßiger Feedback-Schleifen können wir auch 
+            im laufenden Betrieb flexibel reagieren und unseren Dienstleistungsumfang 
+            anpassen.
+          </p>
+          <button class="btn-toggle">Mehr anzeigen</button>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="kl-row">
+        <div class="kl-image-col">
+          <img src="assets/img/internationlges.jpg" alt="Internationaler Service" />
+        </div>
+        <div class="kl-text-col">
+          <h3>Professionelles Outsourcing</h3>
+          <p>
+            Ob virtuelles Backoffice, Empfangsdienst, IT-Support oder andere Bereiche – 
+            unsere Fachkräfte agieren als Teil unseres Unternehmens. Sie übernehmen 
+            Aufgaben für Sie, bleiben jedoch unseren Weisungen unterstellt.
+          </p>
+          <p class="extra-text">
+            So übernehmen wir die Verantwortung für Qualität und Gesetzeskonformität – 
+            bei gleichzeitiger Flexibilität und ohne Personalkostenrisiko für Sie.
+          </p>
+          <button class="btn-toggle">Mehr anzeigen</button>
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div class="kl-row">
+        <div class="kl-image-col">
+          <img src="assets/img/kernlseitung.jpg" alt="Qualitätssicherung" />
+        </div>
+        <div class="kl-text-col">
+          <h3>Qualitätssicherung &amp; Schulungen</h3>
+          <p>
+            Unser Team wird regelmäßig geschult, um hohe Qualitätsstandards zu gewährleisten. 
+            Auf Wunsch führen wir branchen- oder kundenspezifische Trainings durch.
+          </p>
+          <p class="extra-text">
+            Bei Änderungen Ihrer Anforderungen oder neuen Prozessen passen wir unsere 
+            Schulungen entsprechend an. Ein fester Ansprechpartner koordiniert sämtliche 
+            Abläufe und bleibt in engem Austausch mit Ihnen.
+          </p>
+          <button class="btn-toggle">Mehr anzeigen</button>
+        </div>
+      </div>
+    </section>
 
-    <!-- Row 1 -->
-    <div class="kl-row">
-      <div class="kl-image-col">
-        <img src="assets/img/a1be.jpg" alt="Beratungsgespräch">
-      </div>
-      <div class="kl-text-col">
-        <h3>Strategische Beratung</h3>
-        <p>
-          Im ersten Schritt lernen wir Ihre Ziele, Wünsche und Herausforderungen genau kennen. 
-          Gemeinsam klären wir, welche Personalstruktur Sie aktuell benötigen oder zukünftig 
-          aufbauen möchten.
-        </p>
-        <p class="extra-text">
-          Hierbei profitieren Sie von unserem praxisorientierten Ansatz, fundiert durch jahrelange 
-          Erfahrung in verschiedenen Branchen. So erhalten Sie bereits zu Beginn eine klare Roadmap.
-        </p>
-        <button class="btn-toggle">Mehr anzeigen</button>
-      </div>
-    </div>
-
-    <!-- Row 2 -->
-    <div class="kl-row">
-      <div class="kl-image-col">
-        <img src="assets/img/internationlges.jpg" alt="Internationales Netzwerk">
-      </div>
-      <div class="kl-text-col">
-        <h3>Globales Recruiting</h3>
-        <p>
-          Dank eines internationalen Netzwerks finden wir passgenaue Fachkräfte. Gemeinsam 
-          mit lokalen Partnern stellen wir sicher, dass sowohl Qualifikation als auch 
-          Soft Skills stimmen.
-        </p>
-        <p class="extra-text">
-          Unsere Recruiter organisieren Video-Interviews, Eignungstests oder 
-          persönliche Vorstellungsgespräche, damit Sie die Kandidaten 
-          vorab kennenlernen und mitentscheiden können.
-        </p>
-        <button class="btn-toggle">Mehr anzeigen</button>
-      </div>
-    </div>
-
-    <!-- Row 3 -->
-    <div class="kl-row">
-      <div class="kl-image-col">
-        <img src="assets/img/kernlseitung.jpg" alt="Rechtliche Sicherheit">
-      </div>
-      <div class="kl-text-col">
-        <h3>Rechtliche Formalitäten &amp; Sicherheit</h3>
-        <p>
-          Visa-Anträge, A1-Bescheinigungen und EU-Regularien – wir begleiten Sie durch 
-          sämtliche rechtlichen Anforderungen.
-        </p>
-        <p class="extra-text">
-          Unser Team ist mit den neuesten Bestimmungen vertraut und kümmert sich um 
-          Vertragserstellung, Arbeitserlaubnisse und sonstige Bürokratie. 
-          So bleiben Sie rechtlich auf der sicheren Seite.
-        </p>
-        <button class="btn-toggle">Mehr anzeigen</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== ANGLED SECTION (INDUSTRIES) ========== -->
-  <section class="angled-section" id="industriesSection">
-    <h2>Branchen im Fokus</h2>
-    <p>
-      Ob Bau, Gastronomie oder IT – wir vermitteln weltweit motivierte Talente 
-      in verschiedenen Branchen. Hier einige Beispiele.
-    </p>
-    <div class="industry-grid">
-      <div class="industry-card">
-        <img src="assets/img/p.jpg" alt="Baugewerbe">
-        <h3>Baugewerbe &amp; Logistik</h3>
-        <p>Vom Helfer bis zum Fachmann: Unser Netzwerk deckt alle Qualifikationen ab.</p>
-      </div>
-      <div class="industry-card">
-        <img src="assets/img/8ab7c141-3b70-4d16-b0af-1784894ec3c9.jpg" alt="Gastronomie">
-        <h3>Gastronomie &amp; Hotellerie</h3>
-        <p>Von Servicepersonal über Köche bis hin zu Housekeeping – wir finden passende Teams.</p>
-      </div>
-      <div class="industry-card">
-        <img src="assets/img/53b204a5-1cd3-401c-b055-8a5d2da1c40f.jpg" alt="Pflege">
-        <h3>Landwirtschaft &amp; Pflege</h3>
-        <p>Wir vermitteln nicht nur Erntehelfer, sondern auch qualifizierte Pflegekräfte.</p>
-      </div>
-      <div class="industry-card">
-        <img src="assets/img/services-placeholder.jpg" alt="Weitere Branchen">
-        <h3>... und mehr!</h3>
-        <p>IT, Einzelhandel, Produktion &amp; mehr: Fragen Sie einfach an, wir helfen gern.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== COMPLIANCE & LEGAL ========== -->
-  <section class="compliance-section">
-    <div class="angled-bg"></div>
-    <div class="compliance-content">
-      <h2>Rechtliche Sicherheit</h2>
-      <p class="intro-paragraph">
-        Wir legen größten Wert auf transparente und konforme Prozesse. 
-        Unsere Erfahrung im Umgang mit A1-Bescheinigungen, EU-Richtlinien 
-        und arbeitsrechtlichen Bestimmungen schützt Ihr Unternehmen 
-        vor unliebsamen Überraschungen.
+    <!-- ANGLED SECTION (INDUSTRIES) GERMAN -->
+    <section class="angled-section" id="industriesSectionDe">
+      <h2>Branchen &amp; Einsatzbereiche</h2>
+      <p>
+        Wir unterstützen Unternehmen aus verschiedenen Branchen – 
+        von Bau und Logistik bis Gastronomie und Verwaltung. 
+        Hier ein Auszug.
       </p>
-  
-      <div class="compliance-grid">
-        <div class="compliance-card">
-          <img src="assets/img/2mVW.gif" alt="Icon">
-          <h3>Gesetzeskonform</h3>
+      <div class="industry-grid">
+        <div class="industry-card">
+          <img src="assets/img/p.jpg" alt="Baugewerbe" />
+          <h3>Baugewerbe &amp; Logistik</h3>
+          <p>Outsourcing-Lösungen für administrative und unterstützende Tätigkeiten.</p>
+        </div>
+        <div class="industry-card">
+          <img src="assets/img/8ab7c141-3b70-4d16-b0af-1784894ec3c9.jpg" alt="Gastronomie" />
+          <h3>Gastronomie &amp; Hotellerie</h3>
+          <p>Empfang, Reservierungsservice, Remote-Gästebetreuung – wir kümmern uns darum.</p>
+        </div>
+        <div class="industry-card">
+          <img src="assets/img/53b204a5-1cd3-401c-b055-8a5d2da1c40f.jpg" alt="Büro" />
+          <h3>Büro- &amp; Verwaltungsdienste</h3>
+          <p>Von Remote-Assistenz über Datenpflege bis hin zu Kundenhotlines.</p>
+        </div>
+        <div class="industry-card">
+          <img src="assets/img/services-placeholder.jpg" alt="Weitere Branchen" />
+          <h3>... und mehr!</h3>
+          <p>Ihre Branche ist nicht dabei? Fragen Sie uns einfach, wir finden eine Lösung.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPLIANCE (GERMAN) -->
+    <section class="compliance-section">
+      <div class="angled-bg"></div>
+      <div class="compliance-content">
+        <h2>Rechtliche Konformität</h2>
+        <p class="intro-paragraph">
+          Als Dienstleister übernehmen wir sämtliche gesetzlichen Pflichten und stellen 
+          sicher, dass alle Einsätze im Einklang mit dem deutschen Arbeits- und 
+          Steuerrecht stehen. Sie erhalten einen klar definierten Dienstleistungsvertrag 
+          und müssen sich nicht mit Arbeitnehmerüberlassung auseinandersetzen.
+        </p>
+        <div class="compliance-grid">
+          <div class="compliance-card">
+            <img src="assets/img/2mVW.gif" alt="Icon" />
+            <h3>Dienstleistungsvertrag</h3>
+            <p>
+              Wir bleiben weisungsbefugt gegenüber unserem Personal. Sie profitieren von 
+              klar geregelten Verantwortlichkeiten und transparenten Konditionen.
+            </p>
+          </div>
+          <div class="compliance-card">
+            <img src="assets/img/7LDs.gif" alt="Icon" />
+            <h3>Steuerliche Sicherheit</h3>
+            <p>
+              Da unsere Mitarbeitenden bei uns angestellt sind, gilt unser eigenes 
+              Steuer- und Abrechnungssystem. Kein Risiko für Scheinselbstständigkeit 
+              oder verdeckte Arbeitnehmerüberlassung.
+            </p>
+          </div>
+          <div class="compliance-card">
+            <img src="assets/img/hr.gif" alt="Icon" />
+            <h3>Verantwortung</h3>
+            <p>
+              Wir tragen die Verantwortung für die Arbeitsleistung, Einhaltung von Vorschriften 
+              und eventuelle Haftungsfragen. Für Sie bedeutet das maximale Entlastung.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADVANTAGES (GERMAN) -->
+    <section class="advantages-alt" id="advantagesSectionDe">
+      <div class="advantages-bg">
+        <div class="advantages-overlay"></div>
+      </div>
+      <div class="advantages-content">
+        <h2>Ihre Vorteile</h2>
+        <p>
+          Arbeiten Sie mit einem erfahrenen Service-Dienstleister zusammen, der nicht einfach 
+          nur Personal zur Verfügung stellt, sondern Ihre Prozesse kompetent unterstützt 
+          und Verantwortung übernimmt.
+        </p>
+        <div class="advantage-scroll">
+          <div class="advantage-item">
+            <h3>Flexibel &amp; Skalierbar</h3>
+            <p>Steigen Sie schnell ein und passen Sie den Leistungsumfang jederzeit an.</p>
+          </div>
+          <div class="advantage-item">
+            <h3>Komplette Kontrolle</h3>
+            <p>Sie definieren Ziele und Ergebnisse, wir kümmern uns um Durchführung und Management.</p>
+          </div>
+          <div class="advantage-item">
+            <h3>Weniger Bürokratie</h3>
+            <p>Keine Zeitarbeit, keine Abrechnung mit Stundenzetteln. Einfach ein Dienstleistungsvertrag.</p>
+          </div>
+          <div class="advantage-item">
+            <h3>Zeit &amp; Kosten sparen</h3>
+            <p>Vermeiden Sie langwierige Rekrutierungsprozesse und hohe Overheads.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES (GERMAN) -->
+    <section class="case-studies" id="caseStudiesSectionDe">
+      <h2>Erfolgsbeispiele</h2>
+      <div class="case-grid">
+        <div class="case-item">
+          <h3>Remote-Backoffice für Bauunternehmen</h3>
+          <p>Ein Team aus unserem Hause übernahm alle administrativen Aufgaben, während der Kunde sich auf sein Kerngeschäft fokussierte.</p>
+          <p class="client-quote">“Wir sparen enorme Kosten und erhalten trotzdem Top-Qualität.” – Projektleiter Müller</p>
+        </div>
+        <div class="case-item">
+          <h3>Empfangsservice im Hotel</h3>
+          <p>Unsere Servicekräfte begrüßen Gäste rund um die Uhr und kümmern sich um Reservierungen und Check-ins.</p>
+          <p class="client-quote">“Entlastung auf hohem Niveau – keine Zeitarbeiter, sondern richtige Profis!” – Hoteldirektorin Becker</p>
+        </div>
+        <div class="case-item">
+          <h3>Virtuelle Assistenz in der Pflegebranche</h3>
+          <p>Terminverwaltung, Dokumentation und Patientenbetreuung via Telefon wurden von unserem Remote-Team übernommen.</p>
+          <p class="client-quote">“Wir hätten nie gedacht, wie gut das aus der Ferne funktioniert.” – Heimleitung Schneider</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (GERMAN) -->
+    <section class="faq-section">
+      <h2 class="faq-heading">Häufige Fragen (FAQ)</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Können wir Ihr Personal später übernehmen?</h3>
+          <div class="faq-answer">
+            <p>
+              Unsere Mitarbeitenden bleiben grundsätzlich in unserem Unternehmen angestellt. 
+              Bei sehr langfristigen Projekten finden wir aber gerne individuelle Lösungen, 
+              falls Sie den Service ausbauen möchten.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Was kostet ein Dienstleistungsvertrag?</h3>
+          <div class="faq-answer">
+            <p>
+              Die Kosten hängen von Art und Umfang der Leistung ab. Wir erstellen 
+              Ihnen gerne ein individuelles Angebot, das genau zu Ihren Anforderungen passt.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">Wie läuft die Zusammenarbeit ab?</h3>
+          <div class="faq-answer">
+            <p>
+              Wir schließen einen Dienstleistungsvertrag mit klar definiertem Leistungsumfang. 
+              Unser Team arbeitet nach Ihren Vorgaben, bleibt aber unserem Unternehmen unterstellt.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA (GERMAN) -->
+    <section class="cta-section" id="ctaSectionDe">
+      <h2>Sie möchten mehr erfahren?</h2>
+      <p>
+        Treten Sie jetzt mit uns in Kontakt und erfahren Sie, wie unsere 
+        Dienstleistungs-Teams Ihre betrieblichen Abläufe verbessern können.
+      </p>
+      <a href="kontakt.html#name" class="btn-contact">Jetzt Anfrage senden</a>
+    </section>
+  </div><!-- End .german -->
+
+
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ENGLISH CONTENT (HIDDEN)
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <div class="english hidden">
+    <!-- ========== HERO SECTION (EN) ========== -->
+    <section class="hero" id="heroSectionEn">
+      <div class="hero-content">
+        <h1>Services</h1>
+        <!-- TYPING TEXT SPAN (EN) -->
+        <div class="typing-text" id="typingTextEn"></div>
+        <p class="hero-subtext">
+          Quality &amp; Responsibility.<br/>
+          Experience customized outsourcing solutions.<br/>
+          We offer service teams fully employed by our company.
+        </p>
+        <div class="scroll-prompt">▼ Scroll Down ▼</div>
+      </div>
+    </section>
+
+    <!-- CORE SERVICES (EN) -->
+    <section class="kernleistungen" id="kernleistungenSection-en">
+      <h2 class="section-title">Our Core Services</h2>
+      <p class="intro-text">
+        Instead of relying on temporary leasing, we use our own service teams. 
+        Our solutions are flexible, compliant with German service contract regulations, 
+        and tailored to your requirements.
+      </p>
+
+      <!-- Row 1 -->
+      <div class="kl-row">
+        <div class="kl-image-col">
+          <img src="assets/img/a1be.jpg" alt="Consultation" />
+        </div>
+        <div class="kl-text-col">
+          <h3>Comprehensive Consulting</h3>
           <p>
-            Wir behalten sämtliche EU-Regularien stets im Blick und 
-            aktualisieren unsere Prozesse kontinuierlich – damit Sie 
-            rechtlich immer auf der sicheren Seite stehen.
+            We always start with an in-depth briefing to understand your goals, 
+            workflows, and quality requirements. Based on that, we assemble your 
+            appropriate service team.
           </p>
+          <p class="extra-text">
+            Through close coordination and regular feedback loops, we can quickly 
+            adapt and adjust our service scope during ongoing operations.
+          </p>
+          <button class="btn-toggle">Show more</button>
         </div>
-        <div class="compliance-card">
-          <img src="assets/img/7LDs.gif" alt="Icon">
-          <h3>A1 &amp; Vertragserstellung</h3>
+      </div>
+      <!-- Row 2 -->
+      <div class="kl-row">
+        <div class="kl-image-col">
+          <img src="assets/img/internationlges.jpg" alt="International Service" />
+        </div>
+        <div class="kl-text-col">
+          <h3>Professional Outsourcing</h3>
           <p>
-            Von Arbeitsverträgen bis hin zu A1-Bescheinigungen – wir 
-            kümmern uns um alle Formalitäten, sodass Sie sich auf Ihr 
-            Kerngeschäft konzentrieren können.
+            Whether virtual back office, reception, IT support, or other tasks – 
+            our specialists act as part of our company. They perform tasks for you 
+            but remain under our direction.
           </p>
+          <p class="extra-text">
+            This way, we take responsibility for quality, compliance, and you still 
+            benefit from flexibility without the personnel cost risk.
+          </p>
+          <button class="btn-toggle">Show more</button>
         </div>
-        <div class="compliance-card">
-          <img src="assets/img/hr.gif" alt="Icon">
-          <h3>Internationale Standards</h3>
+      </div>
+      <!-- Row 3 -->
+      <div class="kl-row">
+        <div class="kl-image-col">
+          <img src="assets/img/kernlseitung.jpg" alt="Quality Assurance" />
+        </div>
+        <div class="kl-text-col">
+          <h3>Quality Assurance &amp; Training</h3>
           <p>
-            Unsere Abläufe sind ISO-konform und weltweit vernetzt – 
-            perfekt für Unternehmen, die grenzüberschreitend agieren 
-            möchten.
+            Our team is regularly trained to maintain high quality standards. 
+            If desired, we conduct industry- or client-specific training.
           </p>
+          <p class="extra-text">
+            When your requirements or processes change, we adapt our training. 
+            A dedicated contact person coordinates all procedures and stays 
+            in close contact with you.
+          </p>
+          <button class="btn-toggle">Show more</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========== ADVANTAGES ========== -->
- <!-- ========== ADVANTAGES (ALTERNATIVE DESIGN) ========== -->
-<section class="advantages-alt" id="advantagesSection">
-  <div class="advantages-bg">
-    <!-- Brand-color overlay -->
-    <div class="advantages-overlay"></div>
-  </div>
-
-  <div class="advantages-content">
-    <h2>Ihre Vorteile</h2>
-    <p>
-      Mit unseren Services sparen Sie Zeit und Ressourcen, bleiben  
-      flexibel und profitieren von unserer Erfahrung auf internationalem Parkett.
-    </p>
-
-    <!-- If you want a horizontal scroll, wrap items in a flex container -->
-    <div class="advantage-scroll">
-      <div class="advantage-item">
-        <h3>Minimaler Aufwand</h3>
-        <p>Wir übernehmen Rekrutierung, Formalitäten &amp; Onboarding für Sie.</p>
-      </div>
-
-      <div class="advantage-item">
-        <h3>Hohe Flexibilität</h3>
-        <p>Personalbedarf schwankt? Wir sorgen für Skalierbarkeit nach Ihren Anforderungen.</p>
-      </div>
-
-      <div class="advantage-item">
-        <h3>Neue Perspektiven</h3>
-        <p>Internationale Teams bringen frische Ideen und Innovationskraft.</p>
-      </div>
-
-      <div class="advantage-item">
-        <h3>Rechtliche Sicherheit</h3>
-        <p>Wir bleiben up-to-date bei EU-Bestimmungen, A1-Bescheinigung &amp; mehr.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- ========== CASE STUDIES ========== -->
-  <section class="case-studies" id="caseStudiesSection">
-    <h2>Erfolgsbeispiele</h2>
-    <div class="case-grid">
-      <div class="case-item">
-        <h3>Logistikzentrum in Berlin</h3>
-        <p>15 Fachkräfte wurden innerhalb weniger Wochen bereitgestellt. Effiziente Abläufe &amp; top-qualifiziertes Personal.</p>
-        <p class="client-quote">“Zuverlässig und schnell – wir würden Job Werke jederzeit wieder wählen.” – Teamleiter Schneider</p>
-      </div>
-      <div class="case-item">
-        <h3>Hotel-Neueröffnung</h3>
-        <p>Schnelle Rekrutierung von Service-, Küchen- und Housekeeping-Personal. Nahtloser Start zum Eröffnungstag.</p>
-        <p class="client-quote">“Ohne Job Werke hätten wir nicht so reibungslos eröffnen können!” – Hoteldirektorin Krause</p>
-      </div>
-      <div class="case-item">
-        <h3>Pflegeheim-Erweiterung</h3>
-        <p>Pflegekräfte aus Nepal mit hoher Motivation und passenden Sprachkenntnissen. Entlastung des bestehenden Teams.</p>
-        <p class="client-quote">“Unsere Bewohner sind sehr zufrieden – top Integration!” – Heimleiter Vogel</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== FAQ SECTION ========== -->
-  <section class="faq-section">
-    <h2 class="faq-heading">Häufige Fragen (FAQ)</h2>
-    <div class="faq-container">
-      <!-- FAQ Item #1 -->
-      <div class="faq-item">
-        <h3 class="faq-question">Wie lange dauert die Vermittlung?</h3>
-        <div class="faq-answer">
-          <p>Je nach Qualifikation und Herkunftsland zwischen 2 und 6 Wochen. Wir halten Sie jederzeit auf dem Laufenden.</p>
+    <!-- ANGLED SECTION (INDUSTRIES) EN -->
+    <section class="angled-section" id="industriesSectionEn">
+      <h2>Industries &amp; Applications</h2>
+      <p>
+        We support companies from various sectors – 
+        from construction and logistics to hospitality and administration. 
+        Here is a small selection.
+      </p>
+      <div class="industry-grid">
+        <div class="industry-card">
+          <img src="assets/img/p.jpg" alt="Construction" />
+          <h3>Construction &amp; Logistics</h3>
+          <p>Outsourcing solutions for administrative and supportive tasks.</p>
+        </div>
+        <div class="industry-card">
+          <img src="assets/img/8ab7c141-3b70-4d16-b0af-1784894ec3c9.jpg" alt="Hospitality" />
+          <h3>Gastronomy &amp; Hospitality</h3>
+          <p>Reception, reservation service, remote guest support – we handle it.</p>
+        </div>
+        <div class="industry-card">
+          <img src="assets/img/53b204a5-1cd3-401c-b055-8a5d2da1c40f.jpg" alt="Office Services" />
+          <h3>Office &amp; Admin Services</h3>
+          <p>From remote assistance and data management to customer hotlines.</p>
+        </div>
+        <div class="industry-card">
+          <img src="assets/img/services-placeholder.jpg" alt="More Industries" />
+          <h3>... and more!</h3>
+          <p>Your sector not listed? Just ask us – we’ll find a solution.</p>
         </div>
       </div>
-      <!-- FAQ Item #2 -->
-      <div class="faq-item">
-        <h3 class="faq-question">Kann ich die Mitarbeiter später übernehmen?</h3>
-        <div class="faq-answer">
-          <p>Selbstverständlich. Viele Kunden entscheiden sich für eine Übernahme, sobald sich die Mitarbeiter bewährt haben.</p>
-        </div>
-      </div>
-      <!-- FAQ Item #3 -->
-      <div class="faq-item">
-        <h3 class="faq-question">Wie sieht das Onboarding aus?</h3>
-        <div class="faq-answer">
-          <p>Wir begleiten Sie bei der Einarbeitung und unterstützen sowohl Arbeitgeber als auch Mitarbeiter bei der Eingliederung.</p>
-        </div>
-      </div>
-      <!-- FAQ Item #4 -->
-      <div class="faq-item">
-        <h3 class="faq-question">Was kostet das Ganze?</h3>
-        <div class="faq-answer">
-          <p>Die Kosten richten sich nach der Vertragsart und der benötigten Personalanzahl. Kontaktieren Sie uns für ein individuelles Angebot.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========== FINAL CTA SECTION ========== -->
-  <section class="cta-section" id="ctaSection">
-    <h2>Bereit für den nächsten Schritt?</h2>
-    <p>
-      Kontaktieren Sie uns und erfahren Sie, wie wir Ihr Team mit hochmotivierten Fachkräften 
-      unterstützen können. Lassen Sie uns gemeinsam Ihre Zukunft gestalten.
-    </p>
-    <a href="kontakt.html#name" class="btn-contact">Termin vereinbaren</a>
-  </section>
+    <!-- COMPLIANCE (EN) -->
+    <section class="compliance-section">
+      <div class="angled-bg"></div>
+      <div class="compliance-content">
+        <h2>Legal Compliance</h2>
+        <p class="intro-paragraph">
+          As a service provider, we handle all legal obligations and ensure full compliance 
+          with German labor and tax regulations. You get a clearly defined service contract 
+          and avoid the hassle of worker leasing arrangements.
+        </p>
+        <div class="compliance-grid">
+          <div class="compliance-card">
+            <img src="assets/img/2mVW.gif" alt="Icon" />
+            <h3>Service Contract</h3>
+            <p>
+              We remain the authority giving instructions to our staff. You benefit from 
+              clear responsibilities and transparent conditions.
+            </p>
+          </div>
+          <div class="compliance-card">
+            <img src="assets/img/7LDs.gif" alt="Icon" />
+            <h3>Tax Security</h3>
+            <p>
+              Since our employees are on our payroll, we manage taxes and billing. 
+              No risk of bogus self-employment or hidden leasing.
+            </p>
+          </div>
+          <div class="compliance-card">
+            <img src="assets/img/hr.gif" alt="Icon" />
+            <h3>Responsibility</h3>
+            <p>
+              We take responsibility for performance, regulations, and any liability issues. 
+              You gain maximum relief.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADVANTAGES (EN) -->
+    <section class="advantages-alt" id="advantagesSectionEn">
+      <div class="advantages-bg">
+        <div class="advantages-overlay"></div>
+      </div>
+      <div class="advantages-content">
+        <h2>Your Advantages</h2>
+        <p>
+          Partner with an experienced service provider who not only supplies personnel 
+          but also competently supports your processes and takes responsibility.
+        </p>
+        <div class="advantage-scroll">
+          <div class="advantage-item">
+            <h3>Flexible &amp; Scalable</h3>
+            <p>Ramp up quickly and adjust the scope of services at any time.</p>
+          </div>
+          <div class="advantage-item">
+            <h3>Complete Control</h3>
+            <p>You define goals and outcomes, we handle execution and management.</p>
+          </div>
+          <div class="advantage-item">
+            <h3>Less Bureaucracy</h3>
+            <p>No temp agency, no timesheet billing. Just a service contract.</p>
+          </div>
+          <div class="advantage-item">
+            <h3>Save Time &amp; Costs</h3>
+            <p>Avoid lengthy recruitment and high overhead. Focus on your core business.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES (EN) -->
+    <section class="case-studies" id="caseStudiesSectionEn">
+      <h2>Success Stories</h2>
+      <div class="case-grid">
+        <div class="case-item">
+          <h3>Remote Back Office for Construction</h3>
+          <p>A team from our company handled all administrative tasks, allowing the client to focus on core operations.</p>
+          <p class="client-quote">“We save enormous costs while maintaining top quality.” – Project Lead Müller</p>
+        </div>
+        <div class="case-item">
+          <h3>Reception Service for Hotels</h3>
+          <p>Our service staff welcome guests 24/7, handling reservations and check-ins.</p>
+          <p class="client-quote">“High-level relief – no temps, but real pros!” – Hotel Manager Becker</p>
+        </div>
+        <div class="case-item">
+          <h3>Virtual Assistance in Healthcare</h3>
+          <p>We took over scheduling, documentation, and phone-based patient support with our remote team.</p>
+          <p class="client-quote">“We never imagined remote service could work so well.” – Nursing Home Director Schneider</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (EN) -->
+    <section class="faq-section">
+      <h2 class="faq-heading">Frequently Asked Questions (FAQ)</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3 class="faq-question">Can we hire your personnel later on?</h3>
+          <div class="faq-answer">
+            <p>
+              Our employees generally remain employed by us. For very long-term projects, 
+              we’re happy to find individual solutions if you want to expand the service.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">What does a service contract cost?</h3>
+          <div class="faq-answer">
+            <p>
+              Costs depend on the nature and scope of the services. We’ll gladly create 
+              a custom offer to match your exact needs.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-question">How does the collaboration work?</h3>
+          <div class="faq-answer">
+            <p>
+              We sign a service contract with a clearly defined scope. Our team follows 
+              your requirements but remains under our company’s authority.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA (EN) -->
+    <section class="cta-section" id="ctaSectionEn">
+      <h2>Want to Learn More?</h2>
+      <p>
+        Contact us now to learn how our service teams can improve 
+        your business processes.
+      </p>
+      <a href="kontakt.html?lang=en#name-en" class="btn-contact">Send Inquiry Now</a>
+    </section>
+  </div><!-- End .english -->
 
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
@@ -1016,80 +590,7 @@
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- ++++++++++++++++++++++++++++++++++++++++
-       SCRIPTS (TYPING, NAV TOGGLE, FAQ, ETC.)
-  ++++++++++++++++++++++++++++++++++++++++++ -->
-  <script>
-    // ====== MOBILE NAV TOGGLE ======
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navbarMenu = document.getElementById('navbarMenu');
-
-    mobileToggle.addEventListener('click', () => {
-      navbarMenu.classList.toggle('nav-open');
-    });
-
-    // ====== TYPING TEXT EFFECT ======
-    const textToType = [
-      "Schnelle Lösungen.",
-      "Internationale Expertise.",
-      "Rechtliche Sicherheit.",
-      "Flexibel & Skalierbar.",
-    ];
-    const typingTextEl = document.getElementById("typingText");
-    let textIndex = 0;
-    let charIndex = 0;
-    let currentText = textToType[textIndex];
-    let isDeleting = false;
-    let delay = 120;
-
-    function typeEffect() {
-      if (!isDeleting && charIndex < currentText.length) {
-        typingTextEl.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-        setTimeout(typeEffect, delay);
-      } else if (isDeleting && charIndex > 0) {
-        typingTextEl.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(typeEffect, 40);
-      } else {
-        if (!isDeleting && charIndex === currentText.length) {
-          setTimeout(() => {
-            isDeleting = true;
-            typeEffect();
-          }, 1200);
-        } else if (isDeleting && charIndex === 0) {
-          isDeleting = false;
-          textIndex = (textIndex + 1) % textToType.length;
-          currentText = textToType[textIndex];
-          setTimeout(typeEffect, 300);
-        }
-      }
-    }
-    typeEffect();
-
-    // ====== SHOW MORE/LESS IN KERNLEISTUNGEN ======
-    const toggleBtns = document.querySelectorAll('.kl-text-col .btn-toggle');
-    toggleBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const extraText = btn.parentElement.querySelector('.extra-text');
-        if (extraText.style.display === 'block') {
-          extraText.style.display = 'none';
-          btn.textContent = 'Mehr anzeigen';
-        } else {
-          extraText.style.display = 'block';
-          btn.textContent = 'Weniger anzeigen';
-        }
-      });
-    });
-
-    // ====== FAQ TOGGLE ======
-    const faqItems = document.querySelectorAll(".faq-item");
-    faqItems.forEach(item => {
-      const question = item.querySelector(".faq-question");
-      question.addEventListener("click", () => {
-        item.classList.toggle("active");
-      });
-    });
-  </script>
+  <!-- JS FILE (Same logic as your Home page if you want consistent language toggles) -->
+  <script src="js/dienstleistungen.js"></script>
 </body>
 </html>

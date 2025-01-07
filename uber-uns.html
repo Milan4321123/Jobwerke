@@ -3,878 +3,541 @@
 <head>
   <meta charset="UTF-8" />
   <title>Über uns – Job Werke d.o.o. | Ihre Experten für Internationales Recruiting</title>
-  <meta name="description" content="Erfahren Sie, wie Job Werke d.o.o. gegründet wurde, welche Visionen uns antreiben und wie wir Unternehmen in Europa mit Fachkräften aus aller Welt verbinden.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- Google Font -->
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" 
-    rel="stylesheet" 
+  <meta 
+    name="description" 
+    content="Erfahren Sie, wie Job Werke d.o.o. gegründet wurde, welche Visionen uns antreiben und wie wir Unternehmen in Europa mit Fachkräften aus aller Welt verbinden." 
   />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-    /****************************************
-     1) RESET & BASE STYLES
-    ****************************************/
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #fafafa;
-      color: #333;
-      overflow-x: hidden;
-      line-height: 1.6;
-      scroll-behavior: smooth;
-      position: relative;
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    /* Updated link hover color to brand color */
-    a:hover {
-      color: #181844;
-    }
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    h1, h2, h3 {
-      margin-bottom: 0.8rem;
-    }
-    p {
-      margin-bottom: 1rem;
-    }
+  <!-- Google Font -->
+  <link
+  href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>
 
-    /* Reserve space for the fixed navbar */
-    body::before {
-      content: "";
-      display: block;
-      height: 80px; 
-    }
-
-    /****************************************
-     2) NAVBAR (WITH HAMBURGER FOR MOBILE)
-    ****************************************/
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70px; /* fixed navbar height on desktop */
-      display: flex;
-      align-items: center; /* vertical centering */
-      justify-content: space-between;
-      background: #181844; /* brand color */
-      padding: 0 2rem; /* horizontal spacing */
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-      z-index: 9999;
-    }
-    .navbar__logo img {
-      max-height: 60px; /* keep logo within navbar height */
-      width: auto;
-      object-fit: contain;
-      margin: 5px 0; /* optional breathing room */
-      transition: transform 0.3s;
-    }
-    .navbar__logo a img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Desktop menu */
-    .navbar__menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-    /* White links on dark background */
-    .navbar__menu a {
-      font-weight: 500;
-      padding: 0.3rem 0;
-      color: #fff;
-      transition: color 0.3s;
-    }
-    .navbar__menu a:hover {
-      color: #bbb;
-    }
-    .navbar__menu a.active {
-      border-bottom: 2px solid #fff;
-    }
-
-    /* Offsets page content below the fixed navbar (optional) */
-    body::before {
-      content: "";
-      display: block;
-      height: 70px; /* matches .navbar height */
-    }
-
-    /* Hamburger toggle (hidden on desktop) */
-    .navbar__toggle {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
-    }
-    .navbar__toggle span {
-      width: 25px;
-      height: 3px;
-      background: #fff;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-
-    /* +++++++++++++++++++++++++++++++++++++++++++++++++++
-       RESPONSIVE (MAX-WIDTH: 768px)
-    +++++++++++++++++++++++++++++++++++++++++++++++++++ */
-    @media (max-width: 768px) {
-      /* Slightly smaller navbar on mobile */
-      .navbar {
-        height: 60px;
-      }
-      .navbar__logo img {
-        max-height: 50px;
-      }
-
-      /* Show hamburger, hide normal menu by default */
-      .navbar__toggle {
-        display: flex;
-      }
-      .navbar__menu {
-        position: absolute;
-        top: 60px; /* matches .navbar height on mobile */
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        gap: 1rem;
-        background: #181844; /* brand color on mobile too */
-        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        padding: 1rem 2rem;
-        transform: translateY(-130%); /* hidden by default (above screen) */
-        transition: transform 0.3s ease;
-      }
-      /* Toggle open: slide down when .nav-open is added */
-      .navbar__menu.nav-open {
-        transform: translateY(0);
-      }
-
-      /* Mobile links also white */
-      .navbar__menu a {
-        color: #fff;
-        padding: 0.3rem 0;
-      }
-      .navbar__menu a:hover {
-        color: #bbb;
-      }
-    }
-
-
-    /****************************************
-     3) HERO BANNER (Frosted Card)
-    ****************************************/
-    .about-hero {
-      position: relative;
-      width: 100%;
-      min-height: 50vh;
-      background: url("assets/img/about-placeholder.jpg") center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      overflow: hidden;
-    }
-    .about-hero .hero-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; 
-      height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6));
-      z-index: 1;
-    }
-    .about-hero .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 700px;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(6px);
-      border-radius: 8px;
-      padding: 2rem;
-      text-align: center;
-      color: #333;
-    }
-    /* Updated heading color to brand color */
-    .about-hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-      color: #181844;
-    }
-    .about-hero p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.4;
-      color: #444;
-    }
-    @media (max-width: 768px) {
-      .about-hero {
-        min-height: 40vh;
-        padding: 1.5rem;
-      }
-      .about-hero h1 {
-        font-size: 2rem;
-      }
-    }
-
-    /****************************************
-     4) FOUNDING STORY + TIMELINE
-    ****************************************/
-    .founding-section {
-      background: #fff;
-      padding: 4rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .founding-top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-    .founding-text {
-      flex: 1 1 400px;
-      max-width: 600px;
-    }
-    .founding-text h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .founding-text p {
-      margin-bottom: 1rem;
-      color: #555;
-      line-height: 1.6;
-    }
-    /* Updated blockquote border color */
-    .founding-text blockquote {
-      margin: 1rem 0;
-      padding: 1rem;
-      background: #f9f9f9;
-      border-left: 4px solid #181844;
-      font-style: italic;
-    }
-    .founding-img {
-      flex: 1 1 300px;
-      max-width: 500px;
-    }
-    .founding-img img {
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-    }
-    @media (max-width: 768px) {
-      .founding-top {
-        flex-direction: column;
-      }
-      .founding-img {
-        margin: 2rem auto 0;
-      }
-    }
-
-    .full-timeline {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .timeline-item {
-      background: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 1.5rem;
-      transition: transform 0.3s;
-    }
-    .timeline-item:hover {
-      transform: translateY(-3px);
-    }
-    /* Updated timeline date background color */
-    .timeline-date {
-      display: inline-block;
-      background: #181844;
-      color: #fff;
-      font-weight: 600;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      margin-bottom: 0.5rem;
-    }
-    .timeline-item h3 {
-      margin-bottom: 0.4rem;
-      font-size: 1.2rem;
-      color: #333;
-    }
-    .timeline-item p {
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /****************************************
-     5) CULTURE & PHILOSOPHY
-    ****************************************/
-    .culture {
-      background: #f4f8ff;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .culture-intro {
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      color: #555;
-      line-height: 1.6;
-    }
-    .culture-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .culture-item {
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-    .culture-item:hover {
-      transform: translateY(-4px);
-    }
-    .culture-item img {
-      object-fit: cover;
-      width: 100%;
-      height: 180px;
-    }
-    .culture-item p {
-      padding: 1rem;
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    /****************************************
-     6) TEAM SPOTLIGHTS
-    ****************************************/
-    .team-spotlights {
-      background: #fff;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .team-spotlights h2 {
-      margin-bottom: 1rem;
-    }
-    .team-spotlights p {
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
-      color: #555;
-      line-height: 1.6;
-    }
-    .team-spotlight-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .spotlight-member {
-      background: #fdfdfd;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      padding: 2rem 1rem;
-      transition: transform 0.3s;
-    }
-    .spotlight-member:hover {
-      transform: translateY(-3px);
-    }
-    .spotlight-member img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin: 0 auto 1rem;
-    }
-    .spotlight-member h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      color: #333;
-    }
-    /* Updated role color to brand color */
-    .spotlight-member .role {
-      color: #181844;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .spotlight-member .bio {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.4;
-    }
-
-    /****************************************
-     7) ACHIEVEMENTS
-    ****************************************/
- /****************************************
-  7) ACHIEVEMENTS
-****************************************/
-.achievements {
-  background: #f4f4f4;
-  padding: 4rem 2rem;
-  text-align: center;
-}
-.achievements h2 {
-  margin-bottom: 2rem;
-}
-.achievements-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.achievement-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  padding: 2rem;
-  transition: transform 0.3s;
-}
-.achievement-card:hover {
-  transform: translateY(-3px);
-}
-.achievement-card h3 {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-.achievement-card p {
-  font-size: 0.9rem;
-  color: #555;
-  line-height: 1.4;
-}
-
-.achievements p {
-  max-width: 700px; 
-  margin: 2rem auto 0; 
-  color: #555; 
-  line-height: 1.6;
-}
-
-/* CTA-like links in final paragraph */
-.achievements-cta {
-  text-align: center;   /* or left, if you prefer */
-  margin-top: 1rem;     /* a little spacing above */
-}
-
-/* By default, side by side with some margin */
-.achievements-cta a.cta-link {
-  display: inline-block;
-  margin: 0 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background: #181844;
-  color: #fff !important;
-  border-radius: 4px;
-  font-weight: 600;
-  text-decoration: none;
-  /* ... etc. ... */
-}
-
-/* On mobile, make them stack */
-@media (max-width: 768px) {
-  .achievements-cta a.cta-link {
-    display: block;
-    margin: 0.5rem auto;     /* vertical spacing + horizontal center */
-    width: max-content;      /* or leave it out if you want full width */
-  }
-}
-
-    /****************************************
-     8) IMPACT / COMMUNITY
-    ****************************************/
-    .impact {
-      background: #fff;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .impact h2 {
-      margin-bottom: 1.5rem;
-    }
-    .impact p {
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      color: #555;
-      line-height: 1.6;
-    }
-    .impact-images {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .impact-images img {
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      object-fit: cover;
-      height: 180px;
-      width: 100%;
-    }
-
-    /****************************************
-     9) VISION / FUTURE
-    ****************************************/
-    .vision-future {
-      background: #f4f8ff;
-      padding: 4rem 2rem;
-      text-align: center;
-    }
-    .vision-future h2 {
-      margin-bottom: 1.5rem;
-    }
-    .vision-future p {
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-      color: #555;
-      line-height: 1.6;
-    }
-
-    /****************************************
-     10) CTA SECTION
-    ****************************************/
-    /* Updated CTA background and text colors */
-    .cta {
-      background: #181844;
-      color: #fff;
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-    .cta h2 {
-      margin-bottom: 1rem;
-    }
-    .cta p {
-      max-width: 600px;
-      margin: 0 auto 1.5rem;
-      line-height: 1.4;
-    }
-    /* Updated buttons to brand color and hover color */
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.4rem;
-      background: #fff;
-      color: #181844;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn:hover {
-      background: #ebebeb;
-      color: #12163b;
-    }
-
-    /* NEU: Gemeinsames Button-Layout in der CTA */
-    .cta .btn {
-      margin: 0 0.5rem; /* Etwas Platz zwischen den Buttons auf großem Screen */
-    }
-    @media (max-width: 768px) {
-      .cta .btn {
-        display: block;
-        margin: 0.5rem auto; /* Zentriert die Buttons auf dem Handy */
-        width: max-content;  /* Verhindert, dass Buttons 100% Breite einnehmen */
-      }
-    }
-
-    /****************************************
-     11) FOOTER
-    ****************************************/
-    /* Keeping the light background for contrast but you can adjust as needed */
-    .footer {
-      background: #e7e9fc;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #444;
-    }
-    .footer p {
-      margin-bottom: 0.5rem;
-    }
-
-  </style>
+  <!-- Link to your external CSS file -->
+  <link rel="stylesheet" href="css/uber-uns.css" />
 </head>
+
 <body>
 
-  <!-- ========== NAVBAR (WITH HAMBURGER) ========== -->
-  <header class="navbar">
-    <div class="navbar__logo">
-      <a href="index.html">
-        <img src="assets/img/logogo.gif" alt="Job Werke d.o.o. Logo – Über uns">
-      </a>
-    </div>
-    <!-- Hamburger Toggle (for mobile) -->
-    <div class="navbar__toggle" id="mobileToggle">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <nav class="navbar__menu" id="navbarMenu">
-      <a href="index.html">Home</a>
-      <a href="uber-uns.html" class="active">Über uns</a>
-      <a href="dienstleistungen.html">Dienstleistungen</a>
-      <a href="arbeiten.html">Mit uns arbeiten</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
-  </header>
-
-  <!-- ========== HERO BANNER (FROSTED CARD) ========== -->
-  <section class="about-hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Wer wir sind und was uns antreibt</h1>
-      <p>
-        Unser Weg von einem kleinen Büro in Kroatien hin zum europaweit 
-        vernetzten Personalvermittler – entdecken Sie unsere Geschichte, 
-        unsere Kultur und unser Team.
-      </p>
-    </div>
-  </section>
-
-  <!-- ========== FOUNDING STORY + FULL TIMELINE ========== -->
-  <section class="founding-section"id="time">
-    <div class="founding-top">
-      <div class="founding-text">
-        <h2>Unsere Anfänge</h2>
-        <p>
-          Job Werke d.o.o. entstand mit dem Ziel, Unternehmen dabei zu helfen, 
-          qualifiziertes Personal aus aller Welt zu finden – und gleichzeitig 
-          talentierten Menschen neue Chancen zu eröffnen. Schon früh stellten 
-          wir fest, dass internationaler Austausch und Vielfalt Innovationen 
-          hervorbringen.
-        </p>
-        <p>
-          Nach den ersten erfolgreichen Vermittlungen von Fachkräften aus Nepal 
-          haben wir rasch expandiert und Partnerschaften in Slowenien und 
-          weiteren Ländern aufgebaut. Heute können wir Unternehmen in nahezu 
-          allen Branchen unterstützen.
-        </p>
-        <blockquote>
-          “Wir möchten Brücken bauen – zwischen Kontinenten, Kulturen und Menschen.
-           Daraus schöpfen wir unsere Leidenschaft.”
-          <br/>– Drago Ćosić, Gründer &amp; CEO
-        </blockquote>
-      </div>
-      <div class="founding-img">
-        <img src="assets/img/team-placeholder.jpg" alt="Historische Aufnahme: Gründerteam von Job Werke">
-      </div>
-    </div>
-
-    <!-- FULL TIMELINE -->
-    <div class="full-timeline" >
-      <div class="timeline-item">
-        <span class="timeline-date">2010</span>
-        <h3>Gründung in Kroatien</h3>
-        <p>Wir starteten in einem kleinen Büro mit dem Traum, Grenzen zu 
-           überwinden und Fachkräfte zu vermitteln.</p>
-      </div>
-      <div class="timeline-item">
-        <span class="timeline-date">2015</span>
-        <h3>Neue Partnerschaften in Slowenien</h3>
-        <p>Unsere europäischen Kontakte wuchsen – wir bauten ein 
-           Netzwerk in Slowenien auf, um weitere Talente zu gewinnen.</p>
-      </div>
-      <div class="timeline-item">
-        <span class="timeline-date">2020</span>
-        <h3>Internationaler Durchbruch</h3>
-        <p>Fachkräfte aus Nepal, Bangladesch, Vietnam und weiteren Ländern 
-           bereichern unsere Kunden in ganz Europa.</p>
-      </div>
-      <div class="timeline-item">
-        <span class="timeline-date">2024+</span>
-        <h3>Expansion nach Deutschland</h3>
-        <p>Wir eröffnen unser Büro in Deutschland und bieten ortsnahe 
-           Betreuung für Unternehmen jeder Größe.</p>
-      </div>
-    </div>
-   
-  </section>
-
-  <!-- ========== CULTURE & PHILOSOPHY ========== -->
-  <section class="culture">
-    <h2>Unsere Kultur &amp; Philosophie</h2>
-    <p class="culture-intro">
-      In unseren Büros treffen unterschiedliche Hintergründe und Ideen 
-      aufeinander. Offenheit, Lernbereitschaft und gemeinsamer Spaß 
-      sind für uns wichtige Pfeiler – so bleibt unser Team 
-      nicht nur produktiv, sondern auch menschlich.
-    </p>
-    <div class="culture-gallery">
-      <div class="culture-item">
-        <img src="assets/img/office vibes.jpg" alt="Team-Event im Büro">
-        <p>
-          Gemeinsame Teamabende mit internationaler Küche, 
-          um unsere Vielfalt zu feiern und uns besser kennenzulernen.
-        </p>
-      </div>
-      <div class="culture-item">
-        <img src="assets/img/workshops.jpg" alt="Workshop: Interkulturelle Schulung">
-        <p>
-          Regelmäßige Workshops: Von interkulturellen Trainings 
-          bis hin zu fachspezifischen Schulungen.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== TEAM SPOTLIGHTS ========== -->
-  <section class="team-spotlights">
-    <h2>Das Team hinter Job Werke</h2>
-    <p>
-      Menschen mit Visionen und Tatkraft – jeder mit seiner eigenen Geschichte. 
-      Genau diese Vielfalt macht unseren Erfolg aus.
-    </p>
-    <div class="team-spotlight-grid">
-      <div class="spotlight-member">
-        <img src="assets/img/team-placeholder.jpg" alt="Portrait: Max Mustermann, CEO">
-        <h3>Drago Ćosić </h3>
-        <div class="role">CEO &amp; Gründer</div>
-        <p class="bio">
-          Mit einem Blick fürs Große Ganze koordiniert er Vision, Wachstum 
-          und internationale Partnerschaften.
-        </p>
-      </div>
-      <div class="spotlight-member">
-        <img src="assets/img/team-placeholder.jpg" alt="Portrait: Anna Beispiel, Recruiting-Leitung">
-        <h3>Lenny Adhikari</h3>
-        <div class="role">Leitung Recruiting</div>
-        <p class="bio">
-          Sie setzt auf „People First“ und führt das Recruiting-Team 
-          mit Herz, Verstand und Empathie.
-        </p>
-      </div>
-      <div class="spotlight-member">
-        <img src="assets/img/team-placeholder.jpg" alt="Portrait: Peter Müller, Projektmanager">
-        <h3>Milan Adhikari</h3>
-        <div class="role">Projektmanager</div>
-        <p class="bio">
-          Sorgt dafür, dass unsere vermittelten Mitarbeiter schnell Fuß fassen 
-          und unterstützt Kunden bei der Integration.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== ACHIEVEMENTS SECTION ========== -->
-<!-- ========== ACHIEVEMENTS SECTION ========== -->
-<section class="achievements">
-  <h2>Unsere Meilensteine</h2>
-  <div class="achievements-grid">
-    <div class="achievement-card">
-      <h3>ISO-Zertifizierung (2021)</h3>
-      <p>
-        Ein Qualitätsbeweis für unsere Prozesse – von der Rekrutierung 
-        bis zum Onboarding.
-      </p>
-    </div>
-    <div class="achievement-card">
-      <h3>1.000+ vermittelte Fachkräfte</h3>
-      <p>
-        Immer wieder eine Freude zu sehen, wie unsere Vermittlungen 
-        Unternehmen stärken und Menschen neue Chancen geben.
-      </p>
-    </div>
-    <div class="achievement-card">
-      <h3>Bester Personalvermittler 2022</h3>
-      <p>
-        Eine Auszeichnung, die wir nur als Team erreichen konnten. 
-        Motiviert uns, weiter an innovativen Konzepten zu arbeiten.
-      </p>
-    </div>
+ <!-- NAVIGATION BAR -->
+<header class="navbar">
+  <!-- LOGO / BRAND -->
+  <div class="navbar__logo">
+    <!-- Update to your actual homepage link or keep "#" if you want no reload -->
+    <a href="#">
+      <!-- Replace with your actual logo -->
+      <img src="assets/img/logogo.gif" alt="Job Werke d.o.o." />
+    </a>
   </div>
 
- <p style="max-width:700px; margin: 2rem auto 0; color:#555;">
-  Mehr über unsere Arbeitsweise und rechtliche Standards ...
-</p>
+  <!-- HAMBURGER ICON (mobile only) -->
+  <div class="navbar__toggle" id="mobileToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-<div class="achievements-cta">
-  <a class="cta-link" href="dienstleistungen.html">Dienstleistungen</a>
-  <a class="cta-link" href="arbeiten.html">Mit uns arbeiten</a>
-</div>
-</section>
-
-  <!-- ========== IMPACT / COMMUNITY ========== -->
-  <section class="impact">
-    <h2>Unser Engagement</h2>
-    <p>
-      Über reines Business hinauszudenken, ist für uns selbstverständlich. 
-      Wir unterstützen Sprach- und Trainingsprogramme in unseren 
-      Partnerländern, um die Integration der Fachkräfte zu erleichtern 
-      und die lokale Gesellschaft zu fördern.
-    </p>
-    <div class="impact-images">
-      <img src="assets/img/sprachkurs.jpg" alt="Sprachkurs für internationale Fachkräfte">
-      <img src="assets/img/recruit.jpg" alt="Praktisches Training im Partnerland">
+  <!-- NAV MENU -->
+  <nav class="navbar__menu" id="navbarMenu">
+    <!-- GERMAN LINKS -->
+    <div class="navbar__links german">
+      <!-- Adjust these links as needed -->
+      <a href="index.html" >Home</a>
+      <a href="uber-uns.html"class="active">Über uns</a>
+      <a href="dienstleistungen.html">Dienstleistungen</a>
+      <a href="arbeiten.html?lang=de">Mit uns arbeiten</a>
+      <a href="kontakt.html">Kontakt</a>
     </div>
-  </section>
+    
+    <!-- ENGLISH LINKS -->
+    <div class="navbar__links english hidden">
+      <a href="index.html?lang=en">Home</a>
+      <a href="uber-uns.html?lang=en"class="active">About Us</a>
+      <a href="dienstleistungen.html?lang=en">Services</a>
+      <a href="arbeiten.html?lang=en">Work With Us</a>
+      <a href="kontakt.html?lang=en">Contact</a>
+    </div>
+    
+    <!-- LANGUAGE TOGGLE BUTTON -->
+    <button id="toggleLang" class="lang-btn">
+      English
+    </button>
+  </nav>
+</header>
 
-  <!-- ========== VISION / FUTURE ========== -->
-  <section class="vision-future">
-    <h2>Blick nach vorn</h2>
-    <p>
-      Wir wollen weiterwachsen, digitale Recruiting-Prozesse ausbauen 
-      und neue Regionen erschließen. Dabei bleibt unser Fokus stets, 
-      Menschen und Chancen zu verbinden – unabhängig von Grenzen.
-    </p>
-    <p>
-      Ob wir uns in weiteren Ländern etablieren oder mit 
-      Technologielösungen neue Wege gehen: Wir bleiben überzeugt, 
-      dass Vielfalt und Offenheit die besten Voraussetzungen 
-      für nachhaltiges Wachstum sind.
-    </p>
-  </section>
 
-  <!-- ========== CTA SECTION ========== -->
-  <section class="cta">
-    <h2>Werden Sie Teil unserer Reise</h2>
-    <p>
-      Lernen Sie noch mehr über unsere konkreten Dienstleistungen, 
-      rechtliche Sicherheit und Arbeitsweise. 
-      <strong><a href="dienstleistungen.html" style="color:#fff;">Dienstleistungen</a></strong> 
-      oder <strong><a href="arbeiten.html" style="color:#fff;">Mit uns arbeiten</a></strong> 
-      zeigen Ihnen genau, wie wir Ihren Personalbedarf decken können.
-    </p>
-    <a href="arbeiten.html" class="btn">Mit uns arbeiten</a>
-    <a href="kontakt.html#name" class="btn">Kontakt aufnehmen</a>
-  </section>
+  <!-- =====================================
+       GERMAN CONTENT
+  ====================================== -->
+  <div class="german">
+    <!-- ========== HERO BANNER (FROSTED CARD) ========== -->
+    <section class="about-hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Wer wir sind und was uns antreibt</h1>
+        <p>
+          Unser Weg von Remix (unser Mutterunternehmen) bis zur Gründung von Job Werke d.o.o.   
+          – entdecken Sie unsere Geschichte, Kultur und unser Team.
+        </p>
+      </div>
+    </section>
 
-  <!-- ========== FOOTER ========== -->
+    <!-- ========== FOUNDING STORY + FULL TIMELINE ========== -->
+    <section class="founding-section" id="time">
+      <div class="founding-top">
+        <div class="founding-text">
+          <h2>Unsere Anfänge</h2>
+          <p>
+            Job Werke d.o.o. entstand als Tochterunternehmen der Remix (gegründet 2021).   
+            Ziel war es, Unternehmen dabei zu helfen, qualifiziertes Personal aus aller Welt zu finden –   
+            und gleichzeitig talentierten Menschen neue Chancen zu eröffnen. Schon früh stellten   
+            wir fest, dass internationaler Austausch und Vielfalt Innovationen hervorbringen.
+          </p>
+          <p>
+            Dank einer entscheidenden Partnerschaft mit unserer Software-Entwicklung in Slowenien (2023)   
+            und unseren <strong>International Deutschsprach</strong>-Programmen (ebenfalls 2023) konnten wir schnell   
+            wachsen. Heute sind wir bereit, ab 2025 auch ganz offiziell in Deutschland zu expandieren   
+            und ortsnahe Betreuung für Unternehmen jeder Größe zu bieten.
+          </p>
+          <blockquote>
+            “Wir möchten Brücken bauen – zwischen Kontinenten, Kulturen und Menschen.
+             Daraus schöpfen wir unsere Leidenschaft.”
+            <br/>– Drago Ćosić, Gründer &amp; CEO
+          </blockquote>
+        </div>
+        <div class="founding-img">
+          <img src="assets/img/team-placeholder.jpg" alt="Historische Aufnahme: Gründerteam von Job Werke">
+        </div>
+      </div>
+
+      <!-- FULL TIMELINE -->
+      <div class="full-timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">2021</span>
+          <h3>Gründung der Muttergesellschaft “Remix”</h3>
+          <p>
+            Remix erblickt das Licht der Welt und setzt erste Schwerpunkte   
+            im Bereich “Best Personal Vermittler”.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2023</span>
+          <h3>Partner-Software in Slowenien &amp; Deutschsprach-Programme</h3>
+          <p>
+            Technische Grundlage und multilinguale Services – ein wichtiger Schritt zur Beschleunigung   
+            unserer internationalen Vermittlungsprozesse.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2023</span>
+          <h3>International Deutschsprach</h3>
+          <p>
+            Wir investieren in Sprachkurse &amp; Trainings, um Fachkräfte optimal auf den deutschsprachigen   
+            Arbeitsmarkt vorzubereiten.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2025</span>
+          <h3>Expansion nach Deutschland</h3>
+          <p>
+            Offizielle Eröffnung unserer deutschen Niederlassung. Regionale Nähe, ortsnahe Betreuung   
+            und noch schnellere Prozesse.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CULTURE & PHILOSOPHY ========== -->
+    <section class="culture">
+      <h2>Unsere Kultur &amp; Philosophie</h2>
+      <p class="culture-intro">
+        In unseren Büros treffen unterschiedliche Hintergründe und Ideen 
+        aufeinander. Offenheit, Lernbereitschaft und gemeinsamer Spaß 
+        sind für uns wichtige Pfeiler – so bleibt unser Team 
+        nicht nur produktiv, sondern auch menschlich.
+      </p>
+      <div class="culture-gallery">
+        <div class="culture-item">
+          <img src="assets/img/office vibes.jpg" alt="Team-Event im Büro">
+          <p>
+            Gemeinsame Teamabende mit internationaler Küche, 
+            um unsere Vielfalt zu feiern und uns besser kennenzulernen.
+          </p>
+        </div>
+        <div class="culture-item">
+          <img src="assets/img/workshops.jpg" alt="Workshop: Interkulturelle Schulung">
+          <p>
+            Regelmäßige Workshops: Von interkulturellen Trainings 
+            bis hin zu fachspezifischen Schulungen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TEAM SPOTLIGHTS ========== -->
+    <section class="team-spotlights">
+      <h2>Das Team hinter Job Werke</h2>
+      <p>
+        Menschen mit Visionen und Tatkraft – jeder mit seiner eigenen Geschichte. 
+        Genau diese Vielfalt macht unseren Erfolg aus.
+      </p>
+      <div class="team-spotlight-grid">
+        <div class="spotlight-member">
+          <img src="assets/img/team-placeholder.jpg" alt="Portrait: Drago Ćosić">
+          <h3>Drago Ćosić</h3>
+          <div class="role">CEO &amp; Gründer</div>
+          <p class="bio">
+            Mit einem Blick fürs Große Ganze koordiniert er Vision, Wachstum 
+            und internationale Partnerschaften.
+          </p>
+        </div>
+        <div class="spotlight-member">
+          <img src="assets/img/team-placeholder.jpg" alt="Portrait: Lenny Adhikari">
+          <h3>Lenny Adhikari</h3>
+          <div class="role">Leitung Recruiting</div>
+          <p class="bio">
+            Sie setzt auf „People First“ und führt das Recruiting-Team 
+            mit Herz, Verstand und Empathie.
+          </p>
+        </div>
+        <div class="spotlight-member">
+          <img src="assets/img/team-placeholder.jpg" alt="Portrait: Milan Adhikari">
+          <h3>Milan Adhikari</h3>
+          <div class="role">Projektmanager</div>
+          <p class="bio">
+            Sorgt dafür, dass unsere vermittelten Mitarbeiter schnell Fuß fassen 
+            und unterstützt Kunden bei der Integration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ACHIEVEMENTS SECTION ========== -->
+    <section class="achievements">
+      <h2>Unsere Meilensteine</h2>
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <h3>ISO-Zertifizierung (2021)</h3>
+          <p>
+            Ein Qualitätsbeweis für unsere Prozesse – von der Rekrutierung 
+            bis zum Onboarding.
+          </p>
+        </div>
+        <div class="achievement-card">
+          <h3>1.000+ vermittelte Fachkräfte</h3>
+          <p>
+            Immer wieder eine Freude zu sehen, wie unsere Vermittlungen 
+            Unternehmen stärken und Menschen neue Chancen geben.
+          </p>
+        </div>
+        <div class="achievement-card">
+          <h3>“Best Personal Vermittler” durch Remix</h3>
+          <p>
+            Unsere Muttergesellschaft Remix wurde ausgezeichnet – und wir führen 
+            diesen Anspruch in jedem Projekt fort.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        Möchten Sie mehr über unsere Dienstleistungen und die rechtlichen Aspekte erfahren?
+        Wir geben Ihnen gerne Einblicke.
+      </p>
+
+      <div class="achievements-cta">
+        <a class="cta-link" href="dienstleistungen.html?lang=de">Dienstleistungen</a>
+        <a class="cta-link" href="arbeiten.html?lang=de">Mit uns arbeiten</a>
+      </div>
+    </section>
+
+    <!-- ========== IMPACT / COMMUNITY ========== -->
+    <section class="impact">
+      <h2>Unser Engagement</h2>
+      <p>
+        Über reines Business hinauszudenken, ist für uns selbstverständlich. 
+        Wir unterstützen Sprach- und Trainingsprogramme in unseren 
+        Partnerländern, um die Integration der Fachkräfte zu erleichtern 
+        und die lokale Gesellschaft zu fördern.
+      </p>
+      <div class="impact-images">
+        <img src="assets/img/sprachkurs.jpg" alt="Sprachkurs für internationale Fachkräfte">
+        <img src="assets/img/recruit.jpg" alt="Praktisches Training im Partnerland">
+      </div>
+    </section>
+
+    <!-- ========== VISION / FUTURE ========== -->
+    <section class="vision-future">
+      <h2>Blick nach vorn</h2>
+      <p>
+        Wir wollen weiterwachsen, digitale Recruiting-Prozesse ausbauen 
+        und neue Regionen erschließen. Dabei bleibt unser Fokus stets, 
+        Menschen und Chancen zu verbinden – unabhängig von Grenzen.
+      </p>
+      <p>
+        Mit der für 2025 geplanten Deutschland-Eröffnung verstärken wir unseren 
+        lokalen Support und bieten Unternehmen vor Ort noch mehr Nähe, Service 
+        und persönliche Betreuung.
+      </p>
+    </section>
+
+    <!-- ========== CTA SECTION ========== -->
+    <section class="cta">
+      <h2>Werden Sie Teil unserer Reise</h2>
+      <p>
+        Lernen Sie noch mehr über unsere konkreten Dienstleistungen, 
+        rechtliche Sicherheit und Arbeitsweise. 
+        <strong><a href="dienstleistungen.html?lang=de" style="color:#fff;">Dienstleistungen</a></strong> 
+        oder <strong><a href="arbeiten.html?lang=de" style="color:#fff;">Mit uns arbeiten</a></strong> 
+        zeigen Ihnen genau, wie wir Ihren Personalbedarf decken können.
+      </p>
+      <a href="arbeiten.html?lang=de" class="btn">Mit uns arbeiten</a>
+      <a href="kontakt.html?lang=de#name" class="btn">Kontakt aufnehmen</a>
+    </section>
+  </div>
+  <!-- END of German content -->
+
+  <!-- =====================================
+       ENGLISH CONTENT
+  ====================================== -->
+  <div class="english hidden">
+    <!-- ========== HERO BANNER (FROSTED CARD) ========== -->
+    <section class="about-hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Who We Are and What Drives Us</h1>
+        <p>
+          Our journey from Remix (our parent company) to the founding of Job Werke d.o.o.  
+          – discover our story, culture, and our team.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== FOUNDING STORY + FULL TIMELINE ========== -->
+    <section class="founding-section" id="time-en">
+      <div class="founding-top">
+        <div class="founding-text">
+          <h2>Our Beginnings</h2>
+          <p>
+            Job Werke d.o.o. was established as a subsidiary of Remix (founded in 2021).  
+            The goal was to help companies find qualified personnel from around the globe –  
+            while simultaneously offering talented people new opportunities. Early on,  
+            we recognized that international exchange and diversity foster innovation.
+          </p>
+          <p>
+            Thanks to a decisive partnership with our software development in Slovenia (2023)  
+            and our <strong>International Deutschsprach</strong> programs (also 2023), we were able to grow quickly.  
+            Today, we are ready to officially expand into Germany in 2025,  
+            providing local support for companies of all sizes.
+          </p>
+          <blockquote>
+            “We want to build bridges – between continents, cultures, and people.
+             We draw our passion from that.”
+            <br/>– Drago Ćosić, Founder &amp; CEO
+          </blockquote>
+        </div>
+        <div class="founding-img">
+          <img src="assets/img/team-placeholder.jpg" alt="Historic Photo: Job Werke Founding Team">
+        </div>
+      </div>
+
+      <!-- FULL TIMELINE -->
+      <div class="full-timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">2021</span>
+          <h3>Founding of Parent Company “Remix”</h3>
+          <p>
+            Remix is born, initially focusing  
+            on becoming the “Best Staffing Partner.”
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2023</span>
+          <h3>Partner Software in Slovenia &amp; German-Language Programs</h3>
+          <p>
+            Technical foundation and multilingual services – an important step  
+            to accelerate our international placement processes.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2023</span>
+          <h3>International Deutschsprach</h3>
+          <p>
+            We invest in language courses &amp; training to prepare professionals optimally  
+            for the German-speaking job market.
+          </p>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-date">2025</span>
+          <h3>Expansion into Germany</h3>
+          <p>
+            Official opening of our German branch. Regional proximity, local support,  
+            and even faster processes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CULTURE & PHILOSOPHY ========== -->
+    <section class="culture">
+      <h2>Our Culture &amp; Philosophy</h2>
+      <p class="culture-intro">
+        Our offices bring together various backgrounds and ideas. Openness,  
+        willingness to learn, and shared enjoyment are important pillars for us –  
+        ensuring our team remains both productive and humane.
+      </p>
+      <div class="culture-gallery">
+        <div class="culture-item">
+          <img src="assets/img/office vibes.jpg" alt="Team event at the office">
+          <p>
+            Shared team evenings with international cuisine  
+            to celebrate our diversity and get to know each other better.
+          </p>
+        </div>
+        <div class="culture-item">
+          <img src="assets/img/workshops.jpg" alt="Workshop: Cross-Cultural Training">
+          <p>
+            Regular workshops: From cross-cultural training  
+            to specialized professional seminars.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TEAM SPOTLIGHTS ========== -->
+    <section class="team-spotlights">
+      <h2>The Team Behind Job Werke</h2>
+      <p>
+        People with vision and drive – each with their own story.  
+        It is precisely this diversity that leads to our success.
+      </p>
+      <div class="team-spotlight-grid">
+        <div class="spotlight-member">
+          <img src="assets/img/team-placeholder.jpg" alt="Portrait: Drago Ćosić">
+          <h3>Drago Ćosić</h3>
+          <div class="role">CEO &amp; Founder</div>
+          <p class="bio">
+            With an eye for the big picture, he coordinates vision,  
+            growth, and international partnerships.
+          </p>
+        </div>
+        <div class="spotlight-member">
+          <img src="assets/img/team-placeholder.jpg" alt="Portrait: Lenny Adhikari">
+          <h3>Lenny Adhikari</h3>
+          <div class="role">Head of Recruiting</div>
+          <p class="bio">
+            Emphasizes a “people first” approach and leads the recruiting team  
+            with heart, mind, and empathy.
+          </p>
+        </div>
+        <div class="spotlight-member">
+          <img src="assets/img/team-placeholder.jpg" alt="Portrait: Milan Adhikari">
+          <h3>Milan Adhikari</h3>
+          <div class="role">Project Manager</div>
+          <p class="bio">
+            Ensures our placed employees quickly settle in  
+            and supports clients in the integration process.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ACHIEVEMENTS SECTION ========== -->
+    <section class="achievements">
+      <h2>Our Milestones</h2>
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <h3>ISO Certification (2021)</h3>
+          <p>
+            A testament to our quality processes –  
+            from recruitment to onboarding.
+          </p>
+        </div>
+        <div class="achievement-card">
+          <h3>1,000+ Placed Professionals</h3>
+          <p>
+            It’s always a joy to see how our placements  
+            strengthen companies and provide new opportunities for people.
+          </p>
+        </div>
+        <div class="achievement-card">
+          <h3>“Best Staffing Partner” by Remix</h3>
+          <p>
+            Our parent company Remix was recognized – we uphold  
+            this commitment in every project.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        Want to learn more about our services and the legal aspects?
+        We’ll be happy to give you further insight.
+      </p>
+
+      <div class="achievements-cta">
+        <a class="cta-link" href="dienstleistungen.html?lang=en">Services</a>
+        <a class="cta-link" href="arbeiten.html?lang=en">Work With Us</a>
+      </div>
+    </section>
+
+    <!-- ========== IMPACT / COMMUNITY ========== -->
+    <section class="impact">
+      <h2>Our Commitment</h2>
+      <p>
+        Thinking beyond pure business is second nature to us.  
+        We support language and training programs in our partner countries  
+        to facilitate the integration of skilled workers  
+        and strengthen the local community.
+      </p>
+      <div class="impact-images">
+        <img src="assets/img/sprachkurs.jpg" alt="Language course for international professionals">
+        <img src="assets/img/recruit.jpg" alt="Hands-on training in the partner country">
+      </div>
+    </section>
+
+    <!-- ========== VISION / FUTURE ========== -->
+    <section class="vision-future">
+      <h2>Looking Ahead</h2>
+      <p>
+        We want to continue to grow, expand digital recruitment processes,  
+        and explore new regions. Our focus remains on connecting people  
+        and opportunities – regardless of borders.
+      </p>
+      <p>
+        With our planned 2025 opening in Germany,  
+        we are enhancing our local support and offering even more accessibility, service,  
+        and personal guidance to companies on site.
+      </p>
+    </section>
+
+    <!-- ========== CTA SECTION ========== -->
+    <section class="cta">
+      <h2>Join Our Journey</h2>
+      <p>
+        Learn more about our specific services, legal assurances, and approach.  
+        <strong><a href="dienstleistungen.html?lang=en" style="color:#fff;">Services</a></strong>  
+        or <strong><a href="arbeiten.html?lang=en" style="color:#fff;">Work With Us</a></strong>  
+        will show you exactly how we can meet your staffing needs.
+      </p>
+      <a href="arbeiten.html?lang=en" class="btn">Work With Us</a>
+      <a href="kontakt.html?lang=en#yourname-en" class="btn">Get in Touch</a>
+    </section>
+  </div>
+  <!-- END of English content -->
+
+  <!-- ========== FOOTER (SAME FOR BOTH LANGUAGES) ========== -->
   <footer class="footer">
     <p>
-      <a href="impressum.html">Impressum</a> &bull; 
-      <a href="datenschutz.html">Datenschutz</a> &bull; 
-      <a href="cookie.html">Cookie-Einstellungen</a>
+      <a href="impressum.html?lang=de">Impressum</a> &bull; 
+      <a href="datenschutz.html?lang=de">Datenschutz</a> &bull; 
+      <a href="cookie.html?lang=de">Cookie-Einstellungen</a>
     </p>
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- ========== JS FOR MOBILE NAV TOGGLE ========== -->
-  <script>
-    // 1) MOBILE NAV TOGGLE
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navbarMenu = document.getElementById('navbarMenu');
-
-    mobileToggle.addEventListener('click', () => {
-      navbarMenu.classList.toggle('nav-open');
-    });
-  </script>
+  <!-- Link to your external JS file -->
+  <script src="js/uber-uns.js"></script>
+  
 </body>
 </html>
