@@ -3,14 +3,14 @@
  * Run with: node server.js (or use nodemon)
  */
 const express = require("express");
+const path = require("path");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config(); // Ensure .env is in root with EMAIL_USER, EMAIL_PASS, MONGODB_URI, etc.
+require("dotenv").config(); // .env must have EMAIL_USER, EMAIL_PASS, MONGODB_URI, etc.
 
 // Import existing models
 const Appointment = require("./models/Appointment.js");
-// Import new Subscriber model
 const Subscriber = require("./models/Subscriber.js");
 
 const app = express();
@@ -33,44 +33,75 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 3) Serve static files (kontakt.html, admin.html, etc. from ./public)
-app.use(express.static("public"));
+// 3) Serve ONLY specific folders as static
+//    so you don't expose the entire repo
+app.use("/css", express.static(path.join(__dirname, "css")));
+app.use("/js", express.static(path.join(__dirname, "js")));
+app.use("/assets", express.static(path.join(__dirname, "assets")));
+
+// (Optional) If you have an admin-panel folder with static files:
+app.use("/admin-panel", express.static(path.join(__dirname, "admin-panel")));
+
+// 4) Serve each HTML file explicitly
+//    e.g., root path -> index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+// Repeat for each .html you want publicly accessible:
+app.get("/arbeiten.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "arbeiten.html"));
+});
+
+app.get("/kontakt.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "kontakt.html"));
+});
+
+app.get("/dienstleistungen.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "dienstleistungen.html"));
+});
+
+app.get("/uber-uns.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "uber-uns.html"));
+});
+
+app.get("/danke.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "danke.html"));
+});
+
+// ... add more if you have other .html files
 
 /**
  * OPTIONS /subscribe
- * Allows CORS preflight requests for the /subscribe endpoint
+ * For CORS preflight on /subscribe endpoint
  */
 app.options("/subscribe", cors());
 
 /**
  * POST /subscribe
- * Saves the email to MongoDB (Subscriber collection).
- * Optionally sends a welcome email via nodemailer.
+ * Saves an email to MongoDB (Subscriber collection),
+ * optionally sends a welcome email
  */
 app.post("/subscribe", async (req, res) => {
   try {
     const { email, language } = req.body;
-
-    // Basic validation
     if (!email) {
       return res.status(400).json({ success: false, msg: "E-Mail fehlt." });
     }
-
-    // Check if the email already exists
+    // Check if already subscribed
     let existing = await Subscriber.findOne({ email });
     if (existing) {
-      return res.status(400).json({
-        success: false,
-        msg: "Diese E-Mail ist bereits eingetragen."
-      });
+      return res
+        .status(400)
+        .json({ success: false, msg: "Diese E-Mail ist bereits eingetragen." });
     }
 
-    // Save subscriber in MongoDB
-    const newSub = new Subscriber({ email /*, language*/ });
+    // Save new subscriber
+    const newSub = new Subscriber({ email });
     await newSub.save();
     console.log("New newsletter subscriber saved:", email);
 
-    // (Optional) Send a welcome email
+    // (Optional) send a welcome email
     let transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
@@ -78,7 +109,6 @@ app.post("/subscribe", async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-
     let mailOptions = {
       from: `"Job Werke Newsletter" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -93,7 +123,7 @@ app.post("/subscribe", async (req, res) => {
     };
     await transporter.sendMail(mailOptions);
 
-    // Return success to front-end
+    // Return success
     return res.status(200).json({
       success: true,
       msg:
@@ -103,13 +133,15 @@ app.post("/subscribe", async (req, res) => {
     });
   } catch (err) {
     console.error("Error in /subscribe route:", err);
-    return res.status(500).json({ success: false, msg: "Serverfehler beim Abonnieren." });
+    return res
+      .status(500)
+      .json({ success: false, msg: "Serverfehler beim Abonnieren." });
   }
 });
 
 /**
  * POST /send-email
- * Saves inquiry to DB, sends admin email, sends user an auto-reply
+ * Saves inquiry to DB, sends admin email, and sends user an auto-reply
  */
 app.post("/send-email", async (req, res) => {
   try {
@@ -143,7 +175,7 @@ app.post("/send-email", async (req, res) => {
       appointmentDateTime = new Date(`${terminDate}T${terminTime}:00`);
     }
 
-    // (D) Prepare admin email text
+    // (D) Prepare admin email
     let subjectLine = "Neue Kontakt-Anfrage";
     let emailText = `Name: ${name}\nEmail: ${email}\nNachricht:\n${message}\n\n`;
     if (appointmentDateTime) {
@@ -151,7 +183,7 @@ app.post("/send-email", async (req, res) => {
       emailText += `*** Termin-Anfrage ***\nDatum: ${terminDate}\nUhrzeit: ${terminTime}\n`;
     }
 
-    // (E) Store in MongoDB (new "Appointment" doc)
+    // (E) Store in MongoDB
     const newAppointment = new Appointment({
       name,
       email,
@@ -161,7 +193,7 @@ app.post("/send-email", async (req, res) => {
     await newAppointment.save();
     console.log("New inquiry stored in DB:", newAppointment);
 
-    // (F) Nodemailer: set up transporter
+    // (F) Nodemailer for admin
     let transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
@@ -169,8 +201,6 @@ app.post("/send-email", async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-
-    // (G) Send email to admin
     let adminMailOptions = {
       from: `"${name}" <${email}>`,
       to: process.env.EMAIL_USER,
@@ -179,7 +209,7 @@ app.post("/send-email", async (req, res) => {
     };
     await transporter.sendMail(adminMailOptions);
 
-    // (H) Send auto-reply to user
+    // (G) Auto-reply to user
     let autoReplyOptions = {
       from: `"No-Reply" <${process.env.EMAIL_USER}>`,
       replyTo: email,
