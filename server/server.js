@@ -57,6 +57,12 @@ app.get("/index.html", (req, res) => {
 app.get("/arbeiten.html", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "arbeiten.html"));
 });
+app.get("/datenschutz.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "datenschutz.html"));
+});
+app.get("/datenschutzEn.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "datenschutzEn.html"));
+});
 app.get("/kontakt.html", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "kontakt.html"));
 });
