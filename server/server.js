@@ -7,9 +7,10 @@ const path = require("path");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config(); // .env must have EMAIL_USER, EMAIL_PASS, MONGODB_URI, etc.
+require("dotenv").config(); // .env in the project root or inside /server, as long as it's found
 
-// Import existing models
+// Import your models. Adjust if your models folder location differs.
+// For example, if models is in "/server/models", this is correct:
 const Appointment = require("./models/Appointment.js");
 const Subscriber = require("./models/Subscriber.js");
 
@@ -33,54 +34,57 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 3) Serve ONLY specific folders as static
-//    so you don't expose the entire repo
-app.use("/css", express.static(path.join(__dirname, "css")));
-app.use("/js", express.static(path.join(__dirname, "js")));
-app.use("/assets", express.static(path.join(__dirname, "assets")));
+// 3) Serve only the needed folders as static
+//    Going up one level ("..") because server.js is in /server/ folder,
+//    while css/, js/, and assets/ are in the project root.
+app.use("/css", express.static(path.join(__dirname, "..", "css")));
+app.use("/js", express.static(path.join(__dirname, "..", "js")));
+app.use("/assets", express.static(path.join(__dirname, "..", "assets")));
 
-// (Optional) If you have an admin-panel folder with static files:
-app.use("/admin-panel", express.static(path.join(__dirname, "admin-panel")));
+// (Optional) If you want to serve an admin-panel folder in the root later, you'd do:
+// app.use("/admin-panel", express.static(path.join(__dirname, "..", "admin-panel")));
 
-// 4) Serve each HTML file explicitly
-//    e.g., root path -> index.html
+// 4) Serve each .html file from the project root.
+//    The ".." means "one level up" from /server to the project root.
+
+// Root path -> index.html
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "..", "index.html"));
 });
 
-// Repeat for each .html you want publicly accessible:
+// Additional pages
 app.get("/arbeiten.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "arbeiten.html"));
+  res.sendFile(path.join(__dirname, "..", "arbeiten.html"));
 });
 
 app.get("/kontakt.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "kontakt.html"));
+  res.sendFile(path.join(__dirname, "..", "kontakt.html"));
 });
 
 app.get("/dienstleistungen.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "dienstleistungen.html"));
+  res.sendFile(path.join(__dirname, "..", "dienstleistungen.html"));
 });
 
 app.get("/uber-uns.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "uber-uns.html"));
+  res.sendFile(path.join(__dirname, "..", "uber-uns.html"));
 });
 
 app.get("/danke.html", (req, res) => {
-  res.sendFile(path.join(__dirname, "danke.html"));
+  res.sendFile(path.join(__dirname, "..", "danke.html"));
 });
 
-// ... add more if you have other .html files
+// ... Add more if you have other .html files in the root
 
 /**
  * OPTIONS /subscribe
- * For CORS preflight on /subscribe endpoint
+ * Allows CORS preflight requests for the /subscribe endpoint
  */
 app.options("/subscribe", cors());
 
 /**
  * POST /subscribe
- * Saves an email to MongoDB (Subscriber collection),
- * optionally sends a welcome email
+ * Saves the email to MongoDB (Subscriber collection).
+ * Optionally sends a welcome email via Nodemailer.
  */
 app.post("/subscribe", async (req, res) => {
   try {
@@ -88,27 +92,30 @@ app.post("/subscribe", async (req, res) => {
     if (!email) {
       return res.status(400).json({ success: false, msg: "E-Mail fehlt." });
     }
-    // Check if already subscribed
+
+    // Check if the email already exists
     let existing = await Subscriber.findOne({ email });
     if (existing) {
-      return res
-        .status(400)
-        .json({ success: false, msg: "Diese E-Mail ist bereits eingetragen." });
+      return res.status(400).json({
+        success: false,
+        msg: "Diese E-Mail ist bereits eingetragen."
+      });
     }
 
-    // Save new subscriber
+    // Save subscriber in MongoDB
     const newSub = new Subscriber({ email });
     await newSub.save();
     console.log("New newsletter subscriber saved:", email);
 
-    // (Optional) send a welcome email
+    // (Optional) Send a welcome email
     let transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_USER, // from .env
+        pass: process.env.EMAIL_PASS, // from .env
       },
     });
+
     let mailOptions = {
       from: `"Job Werke Newsletter" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -123,7 +130,7 @@ app.post("/subscribe", async (req, res) => {
     };
     await transporter.sendMail(mailOptions);
 
-    // Return success
+    // Return success to front-end
     return res.status(200).json({
       success: true,
       msg:
@@ -141,7 +148,7 @@ app.post("/subscribe", async (req, res) => {
 
 /**
  * POST /send-email
- * Saves inquiry to DB, sends admin email, and sends user an auto-reply
+ * Saves inquiry to DB, sends admin email, sends user an auto-reply
  */
 app.post("/send-email", async (req, res) => {
   try {
@@ -175,7 +182,7 @@ app.post("/send-email", async (req, res) => {
       appointmentDateTime = new Date(`${terminDate}T${terminTime}:00`);
     }
 
-    // (D) Prepare admin email
+    // (D) Prepare admin email text
     let subjectLine = "Neue Kontakt-Anfrage";
     let emailText = `Name: ${name}\nEmail: ${email}\nNachricht:\n${message}\n\n`;
     if (appointmentDateTime) {
@@ -230,7 +237,7 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// GET /appointments -> Admin panel fetches all
+// GET /appointments -> for admin panel
 app.get("/appointments", async (req, res) => {
   try {
     const allAppointments = await Appointment.find().sort({ createdAt: -1 });
