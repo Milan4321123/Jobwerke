@@ -196,4 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.search = params.toString();
       });
     }
+   
+    // ENGLISH newsletter form
+  
   });
+ 

@@ -419,61 +419,117 @@
   
   /****************************************
     6) TEAM SPOTLIGHTS
-  ****************************************/
-  .team-spotlights {
-    background: #fff;
-    padding: 4rem 2rem;
+ /**************************************
+ * TEAM SPOTLIGHTS SECTION (Horizontal)
+ **************************************/
+.team-spotlights {
+    /* Subtle gradient background for the entire section */
+    background: linear-gradient(120deg, #fdfdfd, #f7f7f7);
+    padding: 3rem 2rem;
     text-align: center;
+    margin-bottom: 2rem;
   }
+  
   .team-spotlights h2 {
+    font-size: 2rem;
     margin-bottom: 1rem;
+    color: #333;
   }
+  
   .team-spotlights p {
     max-width: 700px;
-    margin: 0 auto 2.5rem;
+    margin: 0 auto 2rem;
     color: #555;
     line-height: 1.6;
   }
-  .team-spotlight-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  
+  /* Horizontal row container for the "cards" */
+  .team-spotlight-row {
+    display: flex;
+    flex-wrap: nowrap;       /* keep in a row */
     gap: 2rem;
-    max-width: 1000px;
+    overflow-x: auto;        /* horizontal scroll if not fitting on screen */
+    max-width: 1200px;
     margin: 0 auto;
+    padding-bottom: 1rem;    /* space for scroll bar area if needed */
+    align-items: flex-start;
+    justify-content: center; 
   }
-  .spotlight-member {
-    background: #fdfdfd;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    padding: 2rem 1rem;
-    transition: transform 0.3s;
+  
+  /* Each card */
+  .spotlight-card {
+    flex: 0 0 auto;          /* don't shrink; keep fixed width */
+    width: 280px;            /* adjust as needed for your design */
+    background: #fff;        /* white card */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 1.5rem 1.25rem;
+    text-align: left;        /* left-align text inside the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1rem;     /* optional bottom space for aesthetic */
+    transform: rotate(1.5deg);  /* slight tilt for a fun, creative vibe */
+    position: relative;
   }
-  .spotlight-member:hover {
-    transform: translateY(-3px);
+  
+  /* Card hover effect: straighten tilt & deepen shadow */
+  .spotlight-card:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
   }
-  .spotlight-member img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 1rem;
-  }
-  .spotlight-member h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
+  
+  /* Team member name & role styling */
+  .spotlight-card h3 {
+    margin: 0.5rem 0 0.25rem;
+    font-size: 1.2rem;
     color: #333;
   }
-  .spotlight-member .role {
-    color: #181844;
+  
+  .role {
+    color: #0086c2;      /* accent color for roles */
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
   }
-  .spotlight-member .bio {
+  
+  /* The stylized quote box */
+  .short-quote {
+    font-style: italic;
+    background: #f1f1f1;
+    border-left: 3px solid #0086c2;
+    padding: 0.75rem 1rem;
+    margin: 0.75rem 0 1rem;
+    border-radius: 4px;
     font-size: 0.9rem;
     color: #555;
     line-height: 1.4;
   }
   
+  /* Bio text */
+  .bio {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.45;
+  }
+  
+  /* Make sure text is never too wide within each card */
+  .spotlight-card p {
+    max-width: 250px;
+    margin: 0.5rem 0 0 0; /* slight top margin */
+  }
+  
+  /* Responsive tweaks for smaller screens */
+  @media (max-width: 600px) {
+    .team-spotlight-row {
+      flex-wrap: wrap;        /* let cards wrap on multiple lines */
+      overflow-x: hidden;     /* no horizontal scroll needed if wrapping */
+      justify-content: center;
+    }
+    .spotlight-card {
+      width: 85%;
+      margin: 0 auto 1rem;
+      transform: rotate(0deg); /* remove tilt for better reading on mobile */
+    }
+  }
   /****************************************
     7) ACHIEVEMENTS
   ****************************************/
