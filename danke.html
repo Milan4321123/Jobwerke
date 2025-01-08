@@ -25,7 +25,7 @@
     .thank-you-message h1 {
       margin-bottom: 1rem;
       font-size: 1.8rem;
-      color: #181844; /* brand color */
+      color: #181844;
     }
     .thank-you-message p {
       margin-bottom: 1rem;
@@ -40,58 +40,157 @@
       border-radius: 4px;
       text-decoration: none;
       transition: background 0.3s;
+      margin-top: 1rem;
     }
     .thank-you-message a:hover {
       background: #12163b;
     }
-
-    /* Additional classes for styling success or error text */
-    .msg-success { color: green; }
-    .msg-error { color: red; margin-bottom: 1rem; }
+    .msg-error {
+      color: red;
+      margin-bottom: 1rem;
+    }
+    .msg-success {
+      color: green;
+    }
   </style>
 </head>
 <body>
   <div class="thank-you-message">
     <h1 id="tyHeadline">Vielen Dank!</h1>
     <p id="tyMessage"></p>
-    <a href="index.html">Zurück zur Startseite</a>
+    <!-- We'll change the text and href of this link dynamically based on lang -->
+    <a id="backLink" href="/">Zurück zur Startseite</a>
   </div>
 
   <script>
-   document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const isSuccess = params.get("success");
-    const isError   = params.get("error");
-    const isAppointment = params.get("appointment"); // <-- NEW
+    document.addEventListener("DOMContentLoaded", () => {
+      const params       = new URLSearchParams(window.location.search);
+      const isSuccess    = params.get("success");
+      const isError      = params.get("error");
+      const isAppointment= params.get("appointment");
+      const isSubscribe  = params.get("subscribe");
+      const isAlreadySub = params.get("subscribed");
+      // Language (default to "de" if missing)
+      const userLang     = params.get("lang") || "de";
 
-    const tyHeadline = document.getElementById("tyHeadline");
-    const tyMessage  = document.getElementById("tyMessage");
+      const tyHeadline = document.getElementById("tyHeadline");
+      const tyMessage  = document.getElementById("tyMessage");
+      const backLink   = document.getElementById("backLink");
 
-    if (isSuccess && isAppointment) {
-      // If success=1 and appointment=1 -> Appointment request was sent
-      tyHeadline.textContent = "Termin-Anfrage erfolgreich gesendet!";
-      tyMessage.textContent  =
-        "Vielen Dank für Ihre Termin-Anfrage. Wir werden uns so schnell wie möglich bei Ihnen melden, um den Termin zu bestätigen.";
-    } 
-    else if (isSuccess) {
-      // Normal success without appointment
-      tyHeadline.textContent = "Nachricht erfolgreich gesendet!";
-      tyMessage.textContent  =
-        "Wir haben Ihre Nachricht erhalten und werden uns schnellstmöglich bei Ihnen melden.";
-    }
-    else if (isError) {
-      // Show error content
-      tyHeadline.textContent = "Fehler beim Senden";
-      tyHeadline.classList.add("msg-error");
-      tyMessage.textContent  =
-        "Es gab ein Problem beim Versenden Ihrer Nachricht. Bitte versuchen Sie es später erneut oder rufen Sie uns an.";
-    }
-    else {
-      // No query param => default
-      tyHeadline.textContent = "Willkommen!";
-      tyMessage.textContent  = "Keine Aktion erkannt.";
-    }
-  });
+      // =========================
+      // 1) Adjust backLink
+      // =========================
+      if (userLang === "en") {
+        backLink.href = "/?lang=en";   // preserve English
+        backLink.textContent = "Back to Homepage";
+      } else {
+        backLink.href = "/?lang=de";   // preserve German
+        backLink.textContent = "Zurück zur Startseite";
+      }
+
+      // =========================
+      // Helper function
+      // =========================
+      function setHeadlineAndMessage(title, msg, isErrorMode = false) {
+        tyHeadline.textContent = title;
+        tyMessage.textContent  = msg;
+        if (isErrorMode) {
+          tyHeadline.classList.add("msg-error");
+        }
+      }
+
+      // =========================
+      // 2) Determine scenario
+      // =========================
+      // a) Already subscribed
+      if (isAlreadySub) {
+        if (userLang === "en") {
+          setHeadlineAndMessage(
+            "Email Already Registered",
+            "This address is already on our newsletter list."
+          );
+        } else {
+          setHeadlineAndMessage(
+            "E-Mail bereits registriert!",
+            "Diese E-Mail-Adresse ist bereits in unserem Newsletter-Verteiler."
+          );
+        }
+        return;
+      }
+
+      // b) Subscription success
+      if (isSuccess && isSubscribe) {
+        if (userLang === "en") {
+          setHeadlineAndMessage(
+            "Subscription Successful!",
+            "Thank you for subscribing. A confirmation email has been sent."
+          );
+        } else {
+          setHeadlineAndMessage(
+            "Erfolgreich eingetragen!",
+            "Vielen Dank für Ihre Newsletter-Anmeldung. Wir haben Ihnen eine Bestätigungs-E-Mail gesendet."
+          );
+        }
+        return;
+      }
+
+      // c) Appointment success
+      if (isSuccess && isAppointment) {
+        if (userLang === "en") {
+          setHeadlineAndMessage(
+            "Appointment Request Sent!",
+            "Thank you for requesting an appointment. We'll contact you soon."
+          );
+        } else {
+          setHeadlineAndMessage(
+            "Termin-Anfrage erfolgreich gesendet!",
+            "Vielen Dank für Ihre Termin-Anfrage. Wir melden uns so schnell wie möglich."
+          );
+        }
+        return;
+      }
+
+      // d) Generic success (contact form, no appointment)
+      if (isSuccess) {
+        if (userLang === "en") {
+          setHeadlineAndMessage(
+            "Message Sent!",
+            "We've received your message and will get back to you ASAP."
+          );
+        } else {
+          setHeadlineAndMessage(
+            "Nachricht erfolgreich gesendet!",
+            "Wir haben Ihre Nachricht erhalten und werden uns schnellstmöglich melden."
+          );
+        }
+        return;
+      }
+
+      // e) Error
+      if (isError) {
+        if (userLang === "en") {
+          setHeadlineAndMessage(
+            "Error",
+            "An error occurred. Please try again later.",
+            true
+          );
+        } else {
+          setHeadlineAndMessage(
+            "Fehler beim Senden",
+            "Es gab ein Problem. Bitte versuchen Sie es später erneut.",
+            true
+          );
+        }
+        return;
+      }
+
+      // f) Fallback (no params)
+      if (userLang === "en") {
+        setHeadlineAndMessage("Welcome!", "No action recognized.");
+      } else {
+        setHeadlineAndMessage("Willkommen!", "Keine Aktion erkannt.");
+      }
+    });
   </script>
 </body>
 </html>

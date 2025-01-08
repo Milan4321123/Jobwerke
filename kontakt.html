@@ -20,21 +20,18 @@
     crossorigin="anonymous"
   ></script>
 
-  <!-- Link to external CSS file -->
+  <!-- Link to your external CSS file -->
   <link rel="stylesheet" href="css/kontakt.css" />
 </head>
 <body>
   <!-- ========== NAVBAR ========== -->
   <header class="navbar">
-    <!-- LOGO -->
     <div class="navbar__logo">
-      <!-- Link includes ?lang=de by default, or you can detect existing param -->
       <a href="index.html?lang=de">
         <img src="assets/img/logogo.gif" alt="Job Werke d.o.o. Logo" />
       </a>
     </div>
 
-    <!-- Hamburger icon (mobile) -->
     <div class="navbar__toggle" id="mobileToggle">
       <span></span>
       <span></span>
@@ -120,7 +117,6 @@
         <div class="info-column">
           <h2>Kontaktinformationen</h2>
           <ul class="info-list">
-            <!-- EMAIL -->
             <li class="info-item">
               <i class="fas fa-envelope info-icon"></i>
               <div class="info-text">
@@ -128,7 +124,6 @@
                 <a href="mailto:job.werke@web.de">job.werke@web.de</a>
               </div>
             </li>
-            <!-- WHATSAPP 1 -->
             <li class="info-item">
               <i class="fab fa-whatsapp info-icon"></i>
               <div class="info-text">
@@ -143,7 +138,6 @@
                 </a>
               </div>
             </li>
-            <!-- WHATSAPP 2 -->
             <li class="info-item">
               <i class="fab fa-whatsapp info-icon"></i>
               <div class="info-text">
@@ -163,26 +157,49 @@
         </div>
 
         <!-- FORM COLUMN -->
-        <div class="form-column" id="yourname" >
+        <div class="form-column" id="yourname">
           <h2>Kontaktformular</h2>
-          <form class="contact-form">
+          <!-- CLASSIC FORM: posts to /send-email -->
+          <form
+            class="contact-form"
+            action="/send-email"
+            method="POST"
+            style="margin-top: 1rem;"
+          >
             <div class="form-group">
-              <label for="yourname">Name <span style="color:red;">*</span></label>
-              <input type="text" placeholder="Ihr Name" required />
+              <label for="yourname-de">Name <span style="color:red;">*</span></label>
+              <!-- name="name" => So server sees req.body.name -->
+              <input 
+                type="text"
+                id="yourname-de"
+                name="name"
+                placeholder="Ihr Name" 
+                required
+              />
             </div>
             <div class="form-group">
-              <label for="email">E-Mail-Adresse <span style="color:red;">*</span></label>
-              <input type="email" id="email" placeholder="Ihre E-Mail-Adresse" required />
+              <label for="email-de">E-Mail-Adresse <span style="color:red;">*</span></label>
+              <!-- name="email" => So server sees req.body.email -->
+              <input
+                type="email"
+                id="email-de"
+                name="email"
+                placeholder="Ihre E-Mail-Adresse"
+                required
+              />
             </div>
-            <!-- RADIO: MESSAGE vs. APPOINTMENT -->
+
+            <!-- Radio: message vs. appointment -->
             <div class="form-group">
               <label>Ihr Anliegen</label>
               <div>
+                <!-- name="wantsAppointment" => if value="on" => user wants appointment -->
+                <!-- or we can do  value="message" for normal message. It's up to your server logic. -->
                 <input
                   type="radio"
-                  name="anliegen"
                   id="anliegen-message"
-                  value="message"
+                  name="wantsAppointment"
+                  value=""
                   checked
                 />
                 <label for="anliegen-message">Nur eine Nachricht senden</label>
@@ -190,32 +207,45 @@
               <div>
                 <input
                   type="radio"
-                  name="anliegen"
                   id="anliegen-appointment"
-                  value="appointment"
+                  name="wantsAppointment"
+                  value="on"
                 />
                 <label for="anliegen-appointment">Einen Termin vereinbaren</label>
               </div>
             </div>
+
+            <!-- Appointment fields (shown/hidden by JavaScript) -->
             <div id="appointment-fields">
               <div class="form-group">
-                <label for="terminDate">Gewünschtes Datum</label>
-                <input type="date" id="terminDate" />
+                <label for="terminDate-de">Gewünschtes Datum</label>
+                <input type="date" id="terminDate-de" name="terminDate" />
               </div>
               <div class="form-group">
-                <label for="terminTime">Gewünschte Uhrzeit</label>
-                <input type="time" id="terminTime" />
+                <label for="terminTime-de">Gewünschte Uhrzeit</label>
+                <input type="time" id="terminTime-de" name="terminTime" />
               </div>
             </div>
+
             <div class="form-group">
-              <label for="msg">Nachricht <span style="color:red;">*</span></label>
-              <textarea id="msg" rows="5" placeholder="Ihre Nachricht..." required></textarea>
+              <label for="msg-de">Nachricht <span style="color:red;">*</span></label>
+              <!-- name="message" => So server sees req.body.message -->
+              <textarea
+                id="msg-de"
+                name="message"
+                rows="5"
+                placeholder="Ihre Nachricht..."
+                required
+              ></textarea>
             </div>
-            <!-- Honeypot (hidden) -->
+
+            <!-- Honeypot -->
             <div style="display:none;">
-              <label for="hp">Honeypot:</label>
-              <input type="text" id="hp" name="hp" />
+              <label for="hp-de">Honeypot:</label>
+              <input type="text" id="hp-de" name="hp" />
             </div>
+             <!-- Language field (Deutsch) -->
+            <input type="hidden" name="language" value="de" />
             <!-- SUBMIT -->
             <button type="submit" class="btn-submit">Absenden</button>
           </form>
@@ -286,6 +316,9 @@
       </div>
     </section>
   </div><!-- End .german -->
+ 
+ 
+
 
   <!-- =================================
        ENGLISH CONTENT
@@ -381,27 +414,44 @@
           <div class="watermark-container"></div>
         </div>
 
-        <!-- FORM (EN) -->
+        <!-- EN form -->
         <div class="form-column" id="yourname-en">
           <h2>Contact Form</h2>
-          <form class="contact-form">
+          <form
+            class="contact-form"
+            action="/send-email"
+            method="POST"
+            style="margin-top: 1rem;"
+          >
             <div class="form-group">
-              <label for="yourname">Name <span style="color:red;">*</span></label>
-              <input type="text" placeholder="Your Name" required />
+              <label for="yourname-en">Name <span style="color:red;">*</span></label>
+              <input
+                type="text"
+                id="yourname-en"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
             </div>
             <div class="form-group">
-              <label for="email">Email Address <span style="color:red;">*</span></label>
-              <input type="email" id="email" placeholder="Your Email Address" required />
+              <label for="email-en">Email Address <span style="color:red;">*</span></label>
+              <input
+                type="email"
+                id="email-en"
+                name="email"
+                placeholder="Your Email Address"
+                required
+              />
             </div>
-            <!-- RADIO: MESSAGE vs. APPOINTMENT -->
+            <!-- Radio: message vs. appointment -->
             <div class="form-group">
               <label>Your Request</label>
               <div>
                 <input
                   type="radio"
-                  name="anliegen"
                   id="en-anliegen-message"
-                  value="message"
+                  name="wantsAppointment"
+                  value=""
                   checked
                 />
                 <label for="en-anliegen-message">Just send a message</label>
@@ -409,31 +459,39 @@
               <div>
                 <input
                   type="radio"
-                  name="anliegen"
                   id="en-anliegen-appointment"
-                  value="appointment"
+                  name="wantsAppointment"
+                  value="on"
                 />
                 <label for="en-anliegen-appointment">Schedule an appointment</label>
               </div>
             </div>
             <div id="appointment-fields">
               <div class="form-group">
-                <label for="terminDate">Desired Date</label>
-                <input type="date" id="terminDate" />
+                <label for="terminDate-en">Desired Date</label>
+                <input type="date" id="terminDate-en" name="terminDate" />
               </div>
               <div class="form-group">
-                <label for="terminTime">Desired Time</label>
-                <input type="time" id="terminTime" />
+                <label for="terminTime-en">Desired Time</label>
+                <input type="time" id="terminTime-en" name="terminTime" />
               </div>
             </div>
             <div class="form-group">
-              <label for="msg">Message <span style="color:red;">*</span></label>
-              <textarea id="msg" rows="5" placeholder="Your Message..." required></textarea>
+              <label for="msg-en">Message <span style="color:red;">*</span></label>
+              <textarea
+                id="msg-en"
+                name="message"
+                rows="5"
+                placeholder="Your Message..."
+                required
+              ></textarea>
             </div>
             <div style="display:none;">
-              <label for="hp">Honeypot:</label>
-              <input type="text" id="hp" name="hp" />
+              <label for="hp-en">Honeypot:</label>
+              <input type="text" id="hp-en" name="hp" />
             </div>
+            <!-- Language field (English) -->
+            <input type="hidden" name="language" value="en" />
             <button type="submit" class="btn-submit">Send</button>
           </form>
         </div>
@@ -501,6 +559,7 @@
           </div>
         </div>
       </div>
+ 
     </section>
   </div><!-- End .english -->
 

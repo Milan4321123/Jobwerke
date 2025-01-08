@@ -1,21 +1,38 @@
-<!-- public/admin.html -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Panel – Termine</title>
+  <title>Admin Panel – Job Werke</title>
   <link rel="stylesheet" href="css/admin.css" />
 </head>
 <body>
   <header class="admin-header">
-    <h1>Admin Panel – Termine</h1>
-    <p class="subheader">Verwalten & organisieren Sie Ihre Anfragen</p>
+    <h1>Admin Panel – Job Werke</h1>
+    <p class="subheader">Verwalten & organisieren Sie Ihre Anfragen & Abonnenten</p>
   </header>
 
+  <!-- Simple Tabs -->
+  <nav class="admin-tabs">
+    <button id="btnAppointments" class="tab-button active">Termine</button>
+    <button id="btnSubscribers" class="tab-button">Newsletter-Abonnenten</button>
+  </nav>
+
   <main class="main-content">
-    <div id="appointments-container" class="appointments-grid">
-      <!-- Filled by admin.js -->
-    </div>
+    <!-- Appointments Container -->
+    <section id="appointments-section" style="display: block;">
+      <h2>Termine</h2>
+      <div id="appointments-container" class="appointments-grid">
+        <!-- Filled by admin.js with appointment data -->
+      </div>
+    </section>
+
+    <!-- Subscribers Container -->
+    <section id="subscribers-section" style="display: none;">
+      <h2>Newsletter-Abonnenten</h2>
+      <div id="subscribers-container" class="subscribers-grid">
+        <!-- Filled by admin.js with subscriber data -->
+      </div>
+    </section>
   </main>
 
   <script src="js/admin.js"></script>

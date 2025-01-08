@@ -90,3 +90,44 @@ body {
 .delete-btn {
   background-color: #777;
 }
+/* existing styles for body, .admin-header, etc. */
+
+.admin-tabs {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.tab-button {
+  border: none;
+  background: none;
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tab-button.active {
+  color: #181844;
+  border-bottom: 2px solid #181844;
+}
+
+/* For subscribers */
+.subscribers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.subscriber-card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.subscriber-info p {
+  margin: 0.3rem 0;
+}

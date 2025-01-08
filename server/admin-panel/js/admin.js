@@ -1,33 +1,59 @@
-// public/js/admin.js
-
 document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("appointments-container");
+  const appointmentsContainer = document.getElementById("appointments-container");
+  const subscribersContainer = document.getElementById("subscribers-container");
 
-  // Fetch all from /appointments
+  const btnAppointments = document.getElementById("btnAppointments");
+  const btnSubscribers = document.getElementById("btnSubscribers");
+
+  const sectionAppointments = document.getElementById("appointments-section");
+  const sectionSubscribers = document.getElementById("subscribers-section");
+
+  // ========================================================
+  // TAB SWITCH LOGIC
+  // ========================================================
+  btnAppointments.addEventListener("click", () => {
+    // Show appointments, hide subscribers
+    sectionAppointments.style.display = "block";
+    sectionSubscribers.style.display = "none";
+    btnAppointments.classList.add("active");
+    btnSubscribers.classList.remove("active");
+  });
+
+  btnSubscribers.addEventListener("click", () => {
+    // Show subscribers, hide appointments
+    sectionAppointments.style.display = "none";
+    sectionSubscribers.style.display = "block";
+    btnAppointments.classList.remove("active");
+    btnSubscribers.classList.add("active");
+  });
+
+  // ========================================================
+  // 1) FETCH APPOINTMENTS
+  // ========================================================
   fetch("http://localhost:3000/appointments")
-    .then((res) => {
+    .then(res => {
       if (!res.ok) {
         throw new Error(`Server error: ${res.status}`);
       }
       return res.json();
     })
-    .then((appointments) => {
+    .then(appointments => {
       renderAppointments(appointments);
     })
-    .catch((err) => {
+    .catch(err => {
       console.error("Error fetching appointments:", err);
-      container.innerHTML = "<p>Fehler beim Laden der Termine.</p>";
+      appointmentsContainer.innerHTML = "<p>Fehler beim Laden der Termine.</p>";
     });
 
   function renderAppointments(appointments) {
     if (!appointments || appointments.length === 0) {
-      container.innerHTML = "<p>Keine Termine vorhanden.</p>";
+      appointmentsContainer.innerHTML = "<p>Keine Termine vorhanden.</p>";
       return;
     }
 
-    container.innerHTML = ""; // clear placeholder
+    appointmentsContainer.innerHTML = ""; // clear placeholder
 
-    appointments.forEach((appt) => {
+    appointments.forEach(appt => {
       // Card wrapper
       const card = document.createElement("div");
       card.classList.add("appointment-card");
@@ -37,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (appt.status === "confirmed") statusBadgeClass = "status-confirmed";
       if (appt.status === "canceled") statusBadgeClass = "status-canceled";
 
-      // Convert appointmentDateTime to string
+      // Convert date
       let dateStr = "Kein Termin / nur Nachricht";
       if (appt.appointmentDateTime) {
         const d = new Date(appt.appointmentDateTime);
@@ -50,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      // Info section
+      // Info
       const infoDiv = document.createElement("div");
       infoDiv.classList.add("appointment-info");
       infoDiv.innerHTML = `
@@ -87,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       card.appendChild(infoDiv);
       card.appendChild(actionsDiv);
-      container.appendChild(card);
+      appointmentsContainer.appendChild(card);
     });
   }
 
@@ -99,8 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status: newStatus }),
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data.success) {
           alert(`Termin auf "${newStatus}" gesetzt.`);
           location.reload();
@@ -108,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Fehler beim Aktualisieren des Termin-Status.");
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.error("Error updating status:", err);
       });
   }
@@ -119,8 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(`http://localhost:3000/appointments/${id}`, {
       method: "DELETE",
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         if (data.success) {
           alert("Termin erfolgreich gelöscht.");
           location.reload();
@@ -128,8 +154,78 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("Fehler beim Löschen des Termins.");
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.error("Error deleting appointment:", err);
+      });
+  }
+
+  // ========================================================
+  // 2) FETCH SUBSCRIBERS
+  // ========================================================
+  fetch("http://localhost:3000/subscribers")
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.status}`);
+      }
+      return res.json();
+    })
+    .then(subscribers => {
+      renderSubscribers(subscribers);
+    })
+    .catch(err => {
+      console.error("Error fetching subscribers:", err);
+      subscribersContainer.innerHTML = "<p>Fehler beim Laden der Abonnenten.</p>";
+    });
+
+  function renderSubscribers(subscribers) {
+    if (!subscribers || subscribers.length === 0) {
+      subscribersContainer.innerHTML = "<p>Keine Abonnenten vorhanden.</p>";
+      return;
+    }
+
+    subscribersContainer.innerHTML = ""; // clear placeholder
+
+    subscribers.forEach(sub => {
+      // A simple card or row for each subscriber
+      const subCard = document.createElement("div");
+      subCard.classList.add("subscriber-card");
+
+      const infoDiv = document.createElement("div");
+      infoDiv.classList.add("subscriber-info");
+      infoDiv.innerHTML = `
+        <p><strong>Email:</strong> ${sub.email}</p>
+        <p>Erstellt am: ${new Date(sub.createdAt).toLocaleString()}</p>
+      `;
+
+      // Delete button
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.classList.add("delete-btn");
+      deleteBtn.addEventListener("click", () => deleteSubscriber(sub._id));
+
+      subCard.appendChild(infoDiv);
+      subCard.appendChild(deleteBtn);
+      subscribersContainer.appendChild(subCard);
+    });
+  }
+
+  function deleteSubscriber(id) {
+    if (!confirm("Diesen Abonnenten wirklich löschen?")) return;
+
+    fetch(`http://localhost:3000/subscribers/${id}`, {
+      method: "DELETE",
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("Abonnent erfolgreich gelöscht.");
+          location.reload();
+        } else {
+          alert("Fehler beim Löschen des Abonnenten.");
+        }
+      })
+      .catch(err => {
+        console.error("Error deleting subscriber:", err);
       });
   }
 });
