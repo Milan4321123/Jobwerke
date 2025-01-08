@@ -424,56 +424,31 @@
         innovativen Lösungen und Fachkräften, 
         die wir anbieten können.
       </p>
-      <form id="newsletterFormDe">
+    
+      <!-- CLASSIC HTML FORM -->
+      <!-- 'action="/subscribe"' => Submits directly to your server
+           'method="POST"' => Must be POST to match app.post("/subscribe") -->
+      <form action="/subscribe" method="POST" id="newsletterFormDe" style="margin-top: 1rem;">
         <label for="newsletterEmail" class="sr-only">E-Mail-Adresse</label>
+        <!-- IMPORTANT: 'name="email"' so the server can read req.body.email -->
         <input 
-          id="newsletterEmail" 
-          type="email" 
+          id="newsletterEmail"
+          name="email"
+          type="email"
           placeholder="Ihre E-Mail-Adresse" 
           required
         >
+    
+        <!-- Optional: set a hidden language field if you want to pass "de" -->
+        <input 
+          type="hidden"
+          name="language"
+          value="de"
+        >
+    
         <button type="submit">Abonnieren</button>
       </form>
-      <script> const deForm = document.querySelector('form#newsletterFormDe');
-        // If you used <form id="newsletterFormDe"> in the HTML
-        if (deForm) {
-          deForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const emailInput = document.getElementById("newsletterEmail");
-            const emailVal = emailInput.value.trim();
-      
-            // You can store a language indicator, e.g. "de"
-            const language = "de";
-      
-            if (!emailVal) {
-              alert("Bitte E-Mail-Adresse eingeben.");
-              return;
-            }
-      
-            try {
-              const res = await fetch("http://localhost:3000/subscribe", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email: emailVal, language }),
-              });
-              const data = await res.json();
-              if (data.success) {
-                // Show success
-                alert(data.msg || "Danke für Ihre Anmeldung!");
-                // Clear input
-                emailInput.value = "";
-              } else {
-                alert(data.msg || "Fehler beim Abonnieren.");
-              }
-            } catch (err) {
-              console.error("Error subscribing (de):", err);
-              alert("Serverfehler. Bitte versuchen Sie es später erneut.");
-            }
-          });
-        }
-      </script>
     </section>
-
     <!-- APPOINTMENT CTA (GER) -->
     <section class="appointment-cta fade-in" id="kontakt">
       <h2>Bereit, den nächsten Schritt zu gehen?</h2>
@@ -832,50 +807,27 @@
         on new projects, innovative solutions, 
         and the latest talent we can offer.
       </p>
-      <form id="newsletterFormEn">
+    
+      <!-- CLASSIC HTML FORM (English) -->
+      <form action="/subscribe" method="POST" id="newsletterFormEn" style="margin-top: 1rem;">
         <label for="newsletterEmailEn" class="sr-only">Email Address</label>
-        <input
+        <input 
           id="newsletterEmailEn"
+          name="email"
           type="email"
-          placeholder="Your Email Address"
+          placeholder="Your Email Address" 
           required
+        >
+        <!-- Hidden field to pass language=en -->
+        <input 
+          type="hidden"
+          name="language"
+          value="en"
         >
         <button type="submit">Subscribe</button>
       </form>
-     <script>  const enForm = document.querySelector('form#newsletterFormEn');
-      // If you used <form id="newsletterFormEn"> in HTML
-      if (enForm) {
-        enForm.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const emailInput = document.getElementById("newsletterEmailEn");
-          const emailVal = emailInput.value.trim();
-    
-          const language = "en";
-    
-          if (!emailVal) {
-            alert("Please enter your email address.");
-            return;
-          }
-    
-          try {
-            const res = await fetch("http://localhost:3000/subscribe", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email: emailVal, language }),
-            });
-            const data = await res.json();
-            if (data.success) {
-              alert(data.msg || "Thank you for subscribing!");
-              emailInput.value = "";
-            } else {
-              alert(data.msg || "Error subscribing.");
-            }
-          } catch (err) {
-            console.error("Error subscribing (en):", err);
-            alert("Server error. Please try again later.");
-          }
-        });
-      }</script>
+    </section>
+      </script>
     </section>
 
     <!-- APPOINTMENT CTA (EN) -->
