@@ -1,14 +1,17 @@
 /**
  * server.js
- * Run: node server.js   (or use nodemon)
+ * Run with: node server.js (or use nodemon)
  */
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const mongoose = require("mongoose");
-require("dotenv").config(); // make sure .env is in root
+require("dotenv").config(); // Ensure .env is in root with EMAIL_USER, EMAIL_PASS, MONGODB_URI, etc.
 
+// Import existing models
 const Appointment = require("./models/Appointment.js");
+// Import new Subscriber model
+const Subscriber = require("./models/Subscriber.js");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,8 +37,79 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 /**
+ * OPTIONS /subscribe
+ * Allows CORS preflight requests for the /subscribe endpoint
+ */
+app.options("/subscribe", cors());
+
+/**
+ * POST /subscribe
+ * Saves the email to MongoDB (Subscriber collection).
+ * Optionally sends a welcome email via nodemailer.
+ */
+app.post("/subscribe", async (req, res) => {
+  try {
+    const { email, language } = req.body;
+
+    // Basic validation
+    if (!email) {
+      return res.status(400).json({ success: false, msg: "E-Mail fehlt." });
+    }
+
+    // Check if the email already exists
+    let existing = await Subscriber.findOne({ email });
+    if (existing) {
+      return res.status(400).json({
+        success: false,
+        msg: "Diese E-Mail ist bereits eingetragen."
+      });
+    }
+
+    // Save subscriber in MongoDB
+    const newSub = new Subscriber({ email /*, language*/ });
+    await newSub.save();
+    console.log("New newsletter subscriber saved:", email);
+
+    // (Optional) Send a welcome email
+    let transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    let mailOptions = {
+      from: `"Job Werke Newsletter" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject:
+        language === "en"
+          ? "Thank you for subscribing!"
+          : "Danke für Ihre Newsletter-Anmeldung!",
+      text:
+        language === "en"
+          ? "Hello, thanks for subscribing to our newsletter!"
+          : "Hallo, danke für Ihre Anmeldung zu unserem Newsletter!",
+    };
+    await transporter.sendMail(mailOptions);
+
+    // Return success to front-end
+    return res.status(200).json({
+      success: true,
+      msg:
+        language === "en"
+          ? "Thank you for subscribing!"
+          : "Danke für Ihre Newsletter-Anmeldung!",
+    });
+  } catch (err) {
+    console.error("Error in /subscribe route:", err);
+    return res.status(500).json({ success: false, msg: "Serverfehler beim Abonnieren." });
+  }
+});
+
+/**
  * POST /send-email
- * Saves inquiry to DB, sends admin email, sends user auto-reply
+ * Saves inquiry to DB, sends admin email, sends user an auto-reply
  */
 app.post("/send-email", async (req, res) => {
   try {
@@ -43,10 +117,10 @@ app.post("/send-email", async (req, res) => {
       name,
       email,
       message,
-      wantsAppointment, // boolean
+      wantsAppointment,
       terminDate,
       terminTime,
-      hp // honeypot
+      hp
     } = req.body;
 
     // (A) Honeypot/spam check
@@ -63,13 +137,13 @@ app.post("/send-email", async (req, res) => {
         .json({ success: false, msg: "Missing required fields." });
     }
 
-    // (C) Determine if user requested an appointment
+    // (C) If user requested an appointment
     let appointmentDateTime = null;
     if (wantsAppointment && terminDate && terminTime) {
       appointmentDateTime = new Date(`${terminDate}T${terminTime}:00`);
     }
 
-    // (D) Create text for admin email
+    // (D) Prepare admin email text
     let subjectLine = "Neue Kontakt-Anfrage";
     let emailText = `Name: ${name}\nEmail: ${email}\nNachricht:\n${message}\n\n`;
     if (appointmentDateTime) {
@@ -83,7 +157,6 @@ app.post("/send-email", async (req, res) => {
       email,
       message,
       appointmentDateTime,
-      // status defaults to "pending"
     });
     await newAppointment.save();
     console.log("New inquiry stored in DB:", newAppointment);
@@ -92,15 +165,15 @@ app.post("/send-email", async (req, res) => {
     let transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.EMAIL_USER, // e.g. "myaccount@gmail.com"
-        pass: process.env.EMAIL_PASS, // e.g. "abcd1234" (an app password)
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     // (G) Send email to admin
     let adminMailOptions = {
       from: `"${name}" <${email}>`,
-      to: process.env.EMAIL_USER, // your own email
+      to: process.env.EMAIL_USER,
       subject: subjectLine,
       text: emailText,
     };
@@ -130,7 +203,6 @@ app.post("/send-email", async (req, res) => {
 // GET /appointments -> Admin panel fetches all
 app.get("/appointments", async (req, res) => {
   try {
-    // sort newest first
     const allAppointments = await Appointment.find().sort({ createdAt: -1 });
     return res.json(allAppointments);
   } catch (err) {
@@ -145,7 +217,7 @@ app.get("/appointments", async (req, res) => {
 app.put("/appointments/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { status } = req.body; // "confirmed", "canceled", etc.
+    const { status } = req.body;
     const updatedAppt = await Appointment.findByIdAndUpdate(
       id,
       { status },

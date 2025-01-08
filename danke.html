@@ -58,29 +58,38 @@
   </div>
 
   <script>
-  document.addEventListener('DOMContentLoaded', () => {
+   document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const isSuccess = params.get("success");
-    const isError = params.get("error");
+    const isError   = params.get("error");
+    const isAppointment = params.get("appointment"); // <-- NEW
 
     const tyHeadline = document.getElementById("tyHeadline");
-    const tyMessage = document.getElementById("tyMessage");
+    const tyMessage  = document.getElementById("tyMessage");
 
-    if (isSuccess) {
-      // Show success content
+    if (isSuccess && isAppointment) {
+      // If success=1 and appointment=1 -> Appointment request was sent
+      tyHeadline.textContent = "Termin-Anfrage erfolgreich gesendet!";
+      tyMessage.textContent  =
+        "Vielen Dank für Ihre Termin-Anfrage. Wir werden uns so schnell wie möglich bei Ihnen melden, um den Termin zu bestätigen.";
+    } 
+    else if (isSuccess) {
+      // Normal success without appointment
       tyHeadline.textContent = "Nachricht erfolgreich gesendet!";
-      tyMessage.textContent = 
+      tyMessage.textContent  =
         "Wir haben Ihre Nachricht erhalten und werden uns schnellstmöglich bei Ihnen melden.";
-    } else if (isError) {
+    }
+    else if (isError) {
       // Show error content
       tyHeadline.textContent = "Fehler beim Senden";
       tyHeadline.classList.add("msg-error");
-      tyMessage.textContent = 
+      tyMessage.textContent  =
         "Es gab ein Problem beim Versenden Ihrer Nachricht. Bitte versuchen Sie es später erneut oder rufen Sie uns an.";
-    } else {
+    }
+    else {
       // No query param => default
       tyHeadline.textContent = "Willkommen!";
-      tyMessage.textContent = "Keine Aktion erkannt.";
+      tyMessage.textContent  = "Keine Aktion erkannt.";
     }
   });
   </script>

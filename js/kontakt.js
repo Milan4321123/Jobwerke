@@ -167,8 +167,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // Success
-      alert("Vielen Dank, Ihre Nachricht wurde gesendet!");
-      form.reset();
+      if (wantsAppointment) {
+        // The user chose "Einen Termin vereinbaren"
+        window.location.href = "danke.html?success=1&appointment=1";
+      } else {
+        // The user just sent a message
+        window.location.href = "danke.html?success=1";
+      }
       // Hide appointment fields again if needed
       toggleAppointmentFields();
     } catch (err) {

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1) MOBILE NAVBAR TOGGLE
     // =====================================================
     const mobileToggle = document.getElementById('mobileToggle');
-    const navbarMenu = document.getElementById('navbarMenu');
+    const navbarMenu = document.getElementById('navbar__Menu');
     if (mobileToggle && navbarMenu) {
       mobileToggle.addEventListener('click', () => {
         navbarMenu.classList.toggle('nav-open');
