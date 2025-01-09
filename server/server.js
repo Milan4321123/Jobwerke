@@ -335,7 +335,7 @@ app.post("/send-email", async (req, res) => {
 
 Thank you for reaching out to Job Werke d.o.o. We appreciate your inquiry and will respond as soon as possible.
 
-{{snippetEn}} 
+
 
 Should you have any additional questions, feel free to reply to this email or visit our website at https://www.jobwerke.com.
 
@@ -373,7 +373,7 @@ This email and any attachments may contain confidential and/or legally protected
 
 vielen Dank für Ihre Nachricht an Job Werke d.o.o. Wir haben Ihre Anfrage erhalten und melden uns schnellstmöglich bei Ihnen.
 
-{{snippetDe}}
+
 
 Sollten Sie weitere Fragen haben, antworten Sie gerne auf diese E-Mail oder besuchen Sie unsere Webseite unter https://www.jobwerke.com.
 
