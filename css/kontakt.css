@@ -58,11 +58,13 @@ p {
   z-index: 9999;
 }
 /* Logo Area */
-.navbar__logo img {
+.navbar__logo .navbar-logo-video {
+  pointer-events: none;
   max-height: 60px;
   width: auto;
   transition: transform 0.3s;
   margin: 5px 0;
+  object-fit: contain;
 }
 .navbar__logo img:hover {
   transform: scale(1.05);
@@ -134,7 +136,8 @@ body::before {
     height: 60px;
     padding: 0 1rem;
   }
-  .navbar__logo img {
+  .navbar__logo .navbar-logo-video {
+    pointer-events: none;
     max-height: 50px;
   }
   .navbar__toggle {
@@ -309,6 +312,7 @@ body::before {
   gap: 2rem;
 }
 .info-column {
+  position: relative;
   flex: 1 1 400px;
   background-color: #fff;
   border-radius: 8px;
@@ -372,21 +376,32 @@ body::before {
   background-color: #1ebe5a;
 }
 .watermark-container {
-  position: relative;
-  margin-top: 1.5rem;
-  min-height: 200px;
-}
-.watermark-container::before {
-  content: "";
+  /* no specific width/height needed unless you want to restrict the video’s bounding box */
   position: absolute;
-  top: 50%; 
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* ensures the container covers the entire .info-column area
+     so we can center the video background-style inside it */
+  pointer-events: none; /* clicks pass through */
+  z-index: 0;           /* behind other content in .info-column if they are z-index:1 or auto */
+}
+
+.watermark-video {
+  position: absolute;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: url("assets/img/logog.gif") center/contain no-repeat;
-  width: 250px;
+  
+  width: 300px;   /* or any size you prefer for the “watermark” */
   height: 250px;
-  opacity: 1;
-  pointer-events: none;
+  object-fit: contain;  /* or 'contain' if you don’t want cropping */
+
+  pointer-events: none; /* ensures user can still click links in .info-column */
+  opacity: 0.7;         /* reduce opacity to look more like a watermark */
+  z-index: 0;           /* ensures the video is behind the text */
 }
 .form-column {
   flex: 1 1 500px;

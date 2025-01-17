@@ -58,11 +58,13 @@
     z-index: 9999;
   }
   /* Logo Area */
-  .navbar__logo img {
+  .navbar__logo .navbar-logo-video {
+    pointer-events: none;
     max-height: 60px;
     width: auto;
     transition: transform 0.3s;
     margin: 5px 0;
+    object-fit: contain;
   }
   .navbar__logo img:hover {
     transform: scale(1.05);
