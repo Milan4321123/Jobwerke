@@ -28,7 +28,17 @@
   <header class="navbar">
     <div class="navbar__logo">
       <a href="index.html?lang=de">
-        <img src="assets/img/logogo.gif" alt="Job Werke d.o.o. Logo" />
+        <video 
+        class="navbar-logo-video"
+        autoplay
+        muted
+        loop
+        playsinline
+      >
+        <source src="assets/img/logogo.mp4" type="video/mp4" />
+        <!-- Fallback text if video fails to load -->
+        Your browser does not support the video tag.
+      </video>
       </a>
     </div>
 
@@ -153,7 +163,13 @@
               </div>
             </li>
           </ul>
-          <div class="watermark-container"></div>
+          <div class="watermark-container">
+            <video class="watermark-video" autoplay muted loop playsinline>
+              <source src="assets/img/logog.mp4" type="video/mp4" />
+              <!-- fallback text -->
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
 
         <!-- FORM COLUMN -->
@@ -425,7 +441,13 @@
               </div>
             </li>
           </ul>
-          <div class="watermark-container"></div>
+          <div class="watermark-container">
+            <video class="watermark-video" autoplay muted loop playsinline>
+              <source src="assets/img/logog.mp4" type="video/mp4" />
+              <!-- fallback text -->
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
 
         <!-- EN form -->
