@@ -15,439 +15,433 @@
     rel="stylesheet"
   />
 
-  <!-- Link to your external CSS file (dark/silver theme) -->
+  <!-- Link to your external CSS file -->
   <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
 
-<!-- ========== NAVIGATION BAR ========== -->
-<header class="navbar">
-  <div class="navbar__logo">
-    <img src="assets/videos/logo33.png" style="max-height: 50px; width: auto;" />
-  </div>
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar">
+    <div class="navbar__logo">
+      <video 
+    class="navbar-logo-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+  >
+    <source src="assets/img/logogo.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+    </div>
   
-  <!-- HAMBURGER ICON (mobile) -->
-  <div class="navbar__toggle" id="mobileToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <!-- MAIN MENU -->
-  <nav class="navbar__menu" id="navbarMenu">
-    <!-- GERMAN NAV LINKS -->
-    <div class="navbar__links german">
-      <a href="#" class="active">Home</a>
-      <a href="uber-uns.html">Über uns</a>
-      <a href="dienstleistungen.html">Dienstleistungen</a>
-      <a href="arbeiten.html">Mit uns arbeiten</a>
-      <a href="kontakt.html">Kontakt</a>
+    <!-- Hamburger icon (mobile) -->
+    <div class="navbar__toggle" id="mobileToggle">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
+  
+    <!-- Main Menu -->
+    <nav class="navbar__menu" id="navbarMenu">
+      <!-- GERMAN NAV LINKS -->
+      <div class="navbar__links german">
+        <a href="#" class="active">Home</a>
+        <a href="uber-uns.html">Über uns</a>
+        <a href="dienstleistungen.html">Dienstleistungen</a>
+        <a href="arbeiten.html">Mit uns arbeiten</a>
+        <a href="kontakt.html">Kontakt</a>
+      </div>
+      <!-- ENGLISH NAV LINKS -->
+      <div class="navbar__links english hidden">
+        <a href="index.html?lang=en" class="active">Home</a>
+        <a href="uber-uns.html?lang=en">About Us</a>
+        <a href="dienstleistungen.html?lang=en">Services</a>
+        <a href="arbeiten.html?lang=en">Work With Us</a>
+        <a href="kontakt.html?lang=en">Contact</a>
+      </div>
+  
+      <!-- Language Toggle Button -->
+      <button id="toggleLang" class="lang-btn">
+        English
+      </button>
+    </nav>
+  </header>
 
-    <!-- ENGLISH NAV LINKS -->
-    <div class="navbar__links english hidden">
-      <a href="index.html?lang=en" class="active">Home</a>
-      <a href="uber-uns.html?lang=en">About Us</a>
-      <a href="dienstleistungen.html?lang=en">Services</a>
-      <a href="arbeiten.html?lang=en">Work With Us</a>
-      <a href="kontakt.html?lang=en">Contact</a>
-    </div>
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       GERMAN CONTENT (HOME)
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <div class="german">
+    <!-- ========== HERO SECTION (GER) ========== -->
+    <section class="hero fade-in" id="hero">
+      <video class="hero-video" autoplay muted loop >
+        <source src="assets/img/connect.mp4" type="video/mp4" />
+        Ihr Browser unterstützt kein Hintergrundvideo.
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Ihr Dienstleister &amp; Personalvermittler</h1>
+        <p>
+          Seit Jahren europaweit erfolgreich:
+          Wir vereinen die Kompetenz unserer Muttergesellschaft 
+          <strong>Remix</strong> (Kroatien), bekannt für ausgezeichnete 
+          Bau-Dienstleistungen, mit <strong>Trinity</strong> (Slowenien) 
+          als verlässlichem Partner für reibungslose Visa- und A1-Prozesse.  
+          Ob Sie direkt <strong>Fachkräfte einstellen</strong> oder 
+          ein ganzes <strong>Dienstleistungspaket</strong> auslagern möchten –
+          wir übernehmen Verantwortung und sorgen für beste Ergebnisse 
+          in Bau, Gastro, Hotel, Büro und mehr.
+        </p>
+        <a href="#why" class="btn-primary">Mehr erfahren</a>
+      </div>
+    </section>
 
-    <!-- LANGUAGE TOGGLE BUTTON -->
-    <button id="toggleLang" class="lang-btn">
-      English
-    </button>
-  </nav>
-</header>
+    <!-- ========== WHY SECTION (GER) ========== -->
+    <section class="why-jobwerke revamp-section german" id="why">
+      <div class="wave-bg"></div>
+      <div class="why-container">
+        <div class="why-content">
+          <div class="why-image">
+            <img src="assets/img/u.jpg" alt="Job Werke - Illustration" />
+          </div>
+          <div class="why-text">
+            <h2>Warum Job Werke d.o.o.?</h2>
+            <p class="lead">
+              Wir sind <strong>mehrfach ausgezeichnet</strong>, 
+              europaweit vernetzt und hochspezialisiert auf 
+              <em>zwei Modelle</em>:
+              die <strong>Personalvermittlung</strong> 
+              (direkte Einstellung ins Unternehmen) 
+              und den <strong>Dienstleistungsvertrag</strong> 
+              (wir tragen die volle Projektverantwortung). 
+              Mit Remix und Trinity an unserer Seite 
+              stellen wir sicher, dass **alle Visa- und 
+              Arbeitsprozesse** professionell und 
+              rechtlich einwandfrei ablaufen.
+            </p>
+          </div>
+        </div><!-- /.why-content -->
 
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-     GERMAN CONTENT (HOME)
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<div class="german">
-  <!-- ========== HERO SECTION (GER) ========== -->
-  <section class="hero-angled fade-in" id="hero">
-    <!-- Background video if desired -->
-    <video 
-      class="hero-bg-video" 
-      autoplay 
-      muted 
-      loop
-      playsinline
-      webkit-playsinline
-    >
-      <source src="assets/videos/v4.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-overlay-angled"></div>
+        <!-- USP GRID -->
+        <div class="usp-grid">
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/2mVW.mp4" type="video/mp4" />
+              <!-- Optional fallback or message -->
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <h3>Starkes Netzwerk</h3>
+            <p>
+              Remix (Kroatien) + Trinity (Slowenien) + Job Werke (Deutschland).
+              Ein eingespieltes Team für reibungslose Genehmigungen, 
+              Versicherungen &amp; A1-Bescheinigungen.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/vertrag.mp4" type="video/mp4" />
+              <!-- Optional fallback or message -->
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <h3>Dienstleistung &amp; Vermittlung</h3>
+            <p>
+              Entweder übernehmen wir Ihr Projekt als Dienstleister 
+              oder wir vermitteln Ihnen topausgebildete Fachkräfte 
+              für Ihren Betrieb.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/4q43.mp4" type="video/mp4" />
+              <!-- Optional fallback or message -->
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <h3>Schnell &amp; Flexibel</h3>
+            <p>
+              Kurze Abstimmungswege, eingespielte Abläufe: 
+              Vom Erstkontakt bis zum Projektstart vergeht 
+              meist nur wenig Zeit.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/7LD.mp4" type="video/mp4" />
+              <!-- Optional fallback or message -->
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <h3>Rechtssicherheit</h3>
+            <p>
+              Sämtliche Verträge, 
+              Versicherungen und Work-Permit-Themen 
+              sind durch unsere langjährige Erfahrung abgesichert.
+            </p>
+          </div>
+        </div><!-- /.usp-grid -->
+      </div>
+    </section>
 
-    <div class="hero-angled-content">
-      <h1>Remix – Ihr Baupartner mit frischem Elan</h1>
+    <!-- ========== HISTORY TEASER (GER) ========== -->
+    <section class="history-teaser fade-in">
+      <h2>Von Kroatien bis Deutschland</h2>
       <p>
-        Seit unserer Gründung im Jahr <strong>2021</strong> bringen wir neuen Schwung
-        in Bau- und Renovierungsprojekte in ganz Europa. Ob Neubau, Umbau oder
-        umfassende Sanierung – wir stehen für erstklassige Qualität, präzise Planung
-        und verlässliche Termine. Erfahren Sie jetzt, warum Remix genau der richtige
-        Partner ist, um Ihr Vorhaben zum Erfolg zu führen.
+        Unsere Wurzeln liegen im Bau-Sektor mit Remix, 
+        doch heute decken wir viele Branchen ab: 
+        Ob Hotel &amp; Gastro oder Büro &amp; Logistik – 
+        unser Angebot wächst stetig. 
+        Denn Qualität spricht sich herum – 
+        dank <strong>ehrlicher Arbeit</strong>, 
+        <strong>besten Referenzen</strong> 
+        und einem <strong>motivierten Team</strong>.
       </p>
-      <a href="#why" class="hero-angled-btn">Mehr erfahren</a>
-    </div>
-  </section>
-  <!-- END HERO -->
-
-  <!-- ========== WHY REMIX SECTION (GER) ========== -->
-  <section class="why-remix-alt fade-in" id="why">
-    <!-- Section heading + intro text -->
-    <div class="why-remix-alt-heading">
-      <h2>Warum Remix?</h2>
-      <p class="why-remix-lead">
-        Wir sind jung, aber schon erfolgreich etabliert: 
-        <strong>Remix</strong> vereint <em>moderne Bau-Methoden</em> 
-        mit solider Handwerkserfahrung. Gestartet in Kroatien
-        und nun europaweit aktiv, liefern wir 
-        <strong>schnell</strong> und <strong>transparent</strong> 
-        genau das Ergebnis, das Sie sich wünschen.
-      </p>
-    </div>
-
-    <!-- Four Highlight Cards in a grid -->
-    <div class="why-remix-cards">
-      <div class="why-remix-card">
-        <div class="why-remix-icon">1</div>
-        <h3>Frische Perspektive, starke Wurzeln</h3>
-        <p>
-          Seit 2021 haben wir unzählige Bau- und Renovierungsprojekte 
-          erfolgreich realisiert. Unsere kroatischen Wurzeln 
-          treffen dabei auf moderne Innovation – das Ergebnis: 
-          effektive Lösungen mit hohem Qualitätsanspruch.
-        </p>
-      </div>
-      
-      <div class="why-remix-card">
-        <div class="why-remix-icon">2</div>
-        <h3>Termintreue &amp; Transparenz</h3>
-        <p>
-          Jeder Schritt, von der Planung bis zur Abnahme, 
-          ist für Sie nachvollziehbar. So wissen Sie stets, 
-          wo Ihr Projekt steht – und wann Sie das fertige Resultat 
-          in den Händen halten können.
-        </p>
-      </div>
-      
-      <div class="why-remix-card">
-        <div class="why-remix-icon">3</div>
-        <h3>Innovation &amp; Technik</h3>
-        <p>
-          Wir setzen auf moderne Baustoffe, digitale Planung 
-          und effiziente Abläufe. So sparen wir Zeit und Kosten, 
-          ohne Kompromisse bei der Qualität einzugehen.
-        </p>
-      </div>
-      
-      <div class="why-remix-card">
-        <div class="why-remix-icon">4</div>
-        <h3>Ihr Erfolg ist unser Ziel</h3>
-        <p>
-          Wir möchten, dass Sie sich vom ersten Gespräch bis zur 
-          Projektübergabe gut aufgehoben fühlen – 
-          durch klare Kommunikation, schnelle Entscheidungen 
-          und eine Extraportion Leidenschaft fürs Bauen.
-        </p>
-      </div>
-    </div> <!-- end .why-remix-cards -->
-
-    <!-- CTA button at the bottom -->
-    <div class="why-remix-cta">
-      <a href="kontakt.html#name" class="why-remix-btn">
-        Kontakt aufnehmen
+      <a href="uber-uns.html#time" class="btn-learn-more">
+        Unsere Geschichte
       </a>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========== HISTORY TEASER (GER) ========== -->
-  <section class="history-teaser fade-in">
-    <h2>Von der Idee zum gefragten Baupartner</h2>
-    <p>
-      <strong>Remix</strong> entstand 2021 aus dem Wunsch,
-      Bau- und Renovierungsprojekte frischer, 
-      transparenter und kundenorientierter zu gestalten. 
-      Durch zufriedene Kunden und kontinuierliche Weiterempfehlung 
-      konnten wir schnell wachsen. Heute sind wir ein
-      <em>verlässlicher Allround-Anbieter</em>, 
-      der von kleinen Umbauten bis hin zu großen Projekten 
-      alles mit Fachkompetenz und Engagement realisiert.
-    </p>
-    <a href="uber-uns.html#time" class="btn-outline">
-      Unsere Reise entdecken
-    </a>
-  </section>
-
-  <!-- ========== PROCESS SECTION (GER) ========== -->
-  <section class="process-layers fade-in" id="processSection">
-    <div class="process-bg-image"></div> 
-    <div class="process-bg-overlay"></div>
-
-    <div class="process-layers-content">
-      <h2 class="section-title">So arbeiten wir</h2>
-      <div class="process-steps-container">
-        <!-- Step 1 -->
-        <div class="process-step-card">
-          <div class="step-number">1</div>
-          <h3>Analyse &amp; Beratung</h3>
+    <!-- ========== PROCESS (GER) ========== -->
+    <section class="process fade-in">
+      <h2>So funktioniert es</h2>
+      <div class="process-steps">
+        <div class="step">
+          <h3>1. Beratung</h3>
           <p>
-            Wir hören Ihnen genau zu und nehmen Ihre Wünsche und Anforderungen auf.
-            Ob es um einen Neubau, eine Altbausanierung oder einen Umbau geht –
-            wir stellen die richtigen Fragen und planen gemeinsam die nächsten Schritte.
+            Sie erklären uns, was Sie brauchen: 
+            Möchten Sie direkt Personal einstellen 
+            oder soll Job Werke das gesamte Projekt übernehmen?
           </p>
         </div>
-        <!-- Step 2 -->
-        <div class="process-step-card">
-          <div class="step-number">2</div>
-          <h3>Planung &amp; Angebot</h3>
+        <div class="step">
+          <h3>2. Fachkräfte &amp; Formalitäten</h3>
           <p>
-            Auf Basis Ihrer Ziele erstellen wir ein transparentes Konzept, 
-            das Zeit, Budget und Materialien umfasst. So wissen Sie genau, 
-            worauf Sie sich einlassen – ohne versteckte Kosten.
+            Wir greifen auf unser Netzwerk zu, 
+            erledigen Visa-Fragen und Versicherungen 
+            – z.B. durch Trinity in Slowenien oder 
+            die Expertise von Remix in Kroatien.
           </p>
         </div>
-        <!-- Step 3 -->
-        <div class="process-step-card">
-          <div class="step-number">3</div>
-          <h3>Umsetzung &amp; Koordination</h3>
+        <div class="step">
+          <h3>3. Umsetzung</h3>
           <p>
-            Unser erfahrenes Team setzt das Projekt fachgerecht um, 
-            während wir alle Gewerke koordinieren und regelmäßig Updates geben.
-            So haben Sie stets den Überblick, ohne selbst alle Fäden ziehen zu müssen.
+            <strong>bei Personalvermittlung:</strong>   
+            Die neuen Kräfte werden in Ihrem Unternehmen angestellt.
+            <br/>
+            <strong>Bei Dienstleistung:</strong>  
+            Unser Team bleibt bei Job Werke – Sie erhalten 
+            das fertige Ergebnis, ohne Personalrisiko.
           </p>
         </div>
-        <!-- Step 4 -->
-        <div class="process-step-card">
-          <div class="step-number">4</div>
-          <h3>Abschluss &amp; Qualität</h3>
+        <div class="step">
+          <h3>4. Begleitung &amp; Erfolg</h3>
           <p>
-            Nach Fertigstellung prüfen wir gemeinsam das Ergebnis. 
-            Bei Bedarf optimieren wir nach – 
-            denn erst wenn Sie zufrieden sind, ist unser Job getan.
+            Wir bleiben Ihr Ansprechpartner, 
+            passen uns an neue Anforderungen an 
+            und sorgen dafür, dass alles rund läuft.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========== MAIN SERVICES (TABBED, GER) ========== -->
-  <section class="services-scene fade-in" id="services">
-    <div class="services-bg-image" ></div>
-    <div class="services-overlay"></div>
-
-    <div class="services-content-wrap">
-      <h2 class="section-title">Unser Portfolio</h2>
-      <div class="services-tabs-header">
-        <div class="svc-tab-btn active" data-tab="neubauten">Neubauten</div>
-        <div class="svc-tab-btn" data-tab="sanierung">Renovierungen &amp; Sanierungen</div>
-        <div class="svc-tab-btn" data-tab="innenausbau">Innenausbau &amp; Modernisierung</div>
-        <div class="svc-tab-btn" data-tab="sonstiges">Sonderleistungen</div>
+    <!-- ========== MAIN SERVICES (GER) ========== -->
+    <section class="main-services-steps fade-in" id="services">
+      <h2>Unsere Hauptfelder</h2>
+      <div class="svc-step-header">
+        <div class="svc-step active" data-step="1">1. Bau &amp; Renovierung</div>
+        <div class="svc-step" data-step="2">2. Hotel &amp; Gastro</div>
+        <div class="svc-step" data-step="3">3. Büro &amp; Empfang</div>
+        <div class="svc-step" data-step="4">4. Weitere Branchen</div>
       </div>
-
-      <div class="services-panels-area">
-        <!-- Neubauten -->
-        <div class="services-panel active" id="neubauten">
-          <div class="services-panel-inner">
+      <div class="svc-step-content">
+        <!-- Panel 1 -->
+        <div class="svc-step-panel active" id="panel-1">
+          <div class="svc-panel-inner">
             <div class="svc-text-side">
-              <h3>Neubauten</h3>
+              <h3>Bau &amp; Renovierung</h3>
               <p>
-                Egal ob privates Wohnhaus oder gewerbliche Immobilie –
-                wir sorgen dafür, dass Ihr Neubauprojekt reibungslos abläuft:
-                von der Bodenplatte bis zum letzten Feinschliff.
+                Seit Remix-Zeiten sind wir für Bauaufträge bekannt. 
+                Ob Sie einzelne Handwerker brauchen 
+                oder ein ganzes Renovierungspaket –
+                wir liefern top Qualität.
               </p>
               <ul>
-                <li>Digitale Planung &amp; 3D-Visualisierung</li>
-                <li>Termingerechte Umsetzung</li>
-                <li>Energieeffiziente Bauweisen</li>
+                <li>Werk- oder Dienstvertrag: Sie wählen</li>
+                <li>Direkte Vermittlung erfahrener Kräfte möglich</li>
+                <li>Schneller Projektstart dank eingespielter Prozesse</li>
               </ul>
-              <button class="btn-solid" onclick="window.location.href='kontakt.html#name';">
+              <button class="btn-cta"
+                onclick="window.location.href='kontakt.html#name';">
                 Jetzt anfragen
               </button>
             </div>
-            <div class="svc-media-side">
-              <img src="assets/img/13.jpg" alt="Neubauten">
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/hr.mp4" type="video/mp4" />
+                <!-- Optional fallback or message -->
+                Ihr Browser unterstützt kein HTML5-Video.
+              </video>
             </div>
           </div>
         </div>
-
-        <!-- Renovierungen & Sanierungen -->
-        <div class="services-panel" id="sanierung">
-          <div class="services-panel-inner">
+        <!-- Panel 2 -->
+        <div class="svc-step-panel" id="panel-2">
+          <div class="svc-panel-inner">
             <div class="svc-text-side">
-              <h3>Renovierungen &amp; Sanierungen</h3>
+              <h3>Hotel &amp; Gastro</h3>
               <p>
-                Ob Altbauwohnung oder Gewerbefläche: 
-                Wir bringen frischen Glanz in bestehende Objekte. 
-                Dank modernster Technik und eingespielter Teams 
-                läuft alles sauber und sicher.
+                Küchenhilfen, Service, Housekeeping 
+                oder Management-Unterstützung – 
+                dank unseres internationalen Pools 
+                finden wir genau die Menschen, 
+                die Ihre Gäste begeistern.
               </p>
               <ul>
-                <li>Komplette oder Teil-Sanierungen</li>
-                <li>Lösungsorientierter Umgang mit Altbau-Herausforderungen</li>
-                <li>Kosteneffizient und terminsicher</li>
+                <li>Deutschsprach- &amp; Servicetraining inklusive</li>
+                <li>Per Vermittlung oder Dienstleistungsvertrag</li>
+                <li>Flexibel erweiterbar für Saisongeschäft</li>
               </ul>
-              <button class="btn-solid" onclick="window.location.href='kontakt.html#name';">
+              <button class="btn-cta"
+                onclick="window.location.href='arbeiten.html#info';">
                 Mehr erfahren
               </button>
             </div>
-            <div class="svc-media-side">
-              <img src="assets/img/15.jpg" alt="Renovierungen">
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/bereistellung.mp4" type="video/mp4" />
+                <!-- Optional fallback or message -->
+                Ihr Browser unterstützt kein HTML5-Video.
+              </video>
             </div>
           </div>
         </div>
-
-        <!-- Innenausbau & Modernisierung -->
-        <div class="services-panel" id="innenausbau">
-          <div class="services-panel-inner">
+        <!-- Panel 3 -->
+        <div class="svc-step-panel" id="panel-3">
+          <div class="svc-panel-inner">
             <div class="svc-text-side">
-              <h3>Innenausbau &amp; Modernisierung</h3>
+              <h3>Büro &amp; Empfang</h3>
               <p>
-                Ob neue Küche, modernes Bad oder ein kompletter Büroausbau –
-                wir kümmern uns um das <strong>Innenleben</strong> Ihrer Räume
-                und schaffen ein Ambiente zum Wohlfühlen.
+                Entlasten Sie Ihr Kernteam und 
+                holen Sie sich kompetentes Personal ins Büro
+                oder lagern Sie einzelne Prozesse aus, 
+                z.B. Empfang, Backoffice oder Telefonservice.
               </p>
               <ul>
-                <li>Wohn- und Büroräume neu gestalten</li>
-                <li>Einsatz hochwertiger Materialien</li>
-                <li>Zuverlässige Koordination aller Gewerke</li>
+                <li>Langfristige Serviceverträge möglich</li>
+                <li>Professionelle, versicherte Arbeitskräfte</li>
+                <li>Alle Formalitäten durch uns abgewickelt</li>
               </ul>
-              <button class="btn-solid" onclick="window.location.href='kontakt.html#name';">
-                Jetzt Kontakt aufnehmen
+              <button class="btn-cta"
+                onclick="window.location.href='kontakt.html#name';">
+                Kontakt aufnehmen
               </button>
             </div>
-            <div class="svc-media-side">
-              <img src="assets/img/16.jpg" alt="Innenausbau">
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/internat.mp4" type="video/mp4" />
+                <!-- Optional fallback or message -->
+                Ihr Browser unterstützt kein HTML5-Video.
+              </video>
             </div>
           </div>
         </div>
-
-        <!-- Sonderleistungen -->
-        <div class="services-panel" id="sonstiges">
-          <div class="services-panel-inner">
+        <!-- Panel 4 -->
+        <div class="svc-step-panel" id="panel-4">
+          <div class="svc-panel-inner">
             <div class="svc-text-side">
-              <h3>Individuelle Sonderleistungen</h3>
+              <h3>Weitere Branchen</h3>
               <p>
-                Jede Immobilie hat eigene Anforderungen –
-                ob Dachausbau, Kellerabdichtung oder Spezialkonstruktionen.
-                Sagen Sie uns, was Sie brauchen, wir finden eine Lösung.
+                Ob Logistik, Einzelhandel, Landwirtschaft oder IT-Support:
+                Wir haben uns ein breites Netzwerk aufgebaut und 
+                liefern individuelle Lösungen für jedes Projekt – 
+                per Arbeitnehmervermittlung oder Full-Service.
               </p>
               <ul>
-                <li>Flexible Anpassung an Ihr Projekt</li>
-                <li>Maßgeschneiderte Lösungen</li>
-                <li>Erprobte Partner in ganz Europa</li>
+                <li>Große Auswahl an Fachkräften</li>
+                <li>Rasch skalierbar bei wachsendem Bedarf</li>
+                <li>Partnerschaften für reibungslose Visa &amp; Genehmigungen</li>
               </ul>
-              <button class="btn-solid" onclick="window.location.href='dienstleistungen.html#kernleistungenSection';">
-                Mehr entdecken
+              <button class="btn-cta"
+                onclick="window.location.href='dienstleistungen.html#kernleistungenSection';">
+                Service entdecken
               </button>
             </div>
-            <div class="svc-media-side">
-              <img src="assets/img/17.jpg" alt="Sonderleistungen">
+            <div class="svc-image-side">
+              <img src="assets/img/onboarding.jpg" alt="Weitere Branchen" />
             </div>
           </div>
         </div>
-      </div><!-- .services-panels-area -->
-    </div><!-- .services-content-wrap -->
-  </section>
+      </div>
+    </section>
 
-  <!-- Scenic Lateral VIDEO BLOCK -->
-  <section class="scenic-lateral-video fade-in" id="oneVideoForAllTexts">
-    <div class="scenic-video-wrapper">
-      <video 
-        class="scenic-video-bg" 
-        autoplay 
-        muted 
-        loop 
-        playsinline 
-        webkit-playsinline
-      >
-        <source src="assets/videos/v2.mp4" type="video/mp4" />
-        Ihr Browser unterstützt kein Hintergrundvideo.
-      </video>
-    </div>
-    
-    <div class="scenic-overlay"></div>
-  
-    <div class="scenic-inner">
-      <div class="scenic-text-col" id="textBlock1">
-        <h2>Unser Team: Engagement &amp; Expertise</h2>
+    <!-- CURVED SECTIONS (GER) -->
+    <section class="curved-section curved-left" id="curvedBlock1">
+      <div class="curved-bg"></div>
+      <div class="curved-content german">
+        <h2>Gemeinsam mit Remix &amp; Trinity.</h2>
         <p>
-          Hinter Remix steht eine motivierte Mannschaft: 
-          Projektleiter, Bauprofis und kreative Köpfe, 
-          die altbewährtes Handwerk mit modernen Methoden vereinen.
-          Wir setzen auf <em>flache Hierarchien</em> und 
-          <em>kurze Abstimmungswege</em>, damit Sie rasch 
-          konkrete Ergebnisse sehen.
+          Dank unserer europäischen Partner läuft 
+          jeder Auftrag schnell und legal –  
+          Fachkräfte aus Asien, reibungslose Verwaltung, 
+          hochmotivierte Teams.
         </p>
       </div>
-  
-      <div class="scenic-text-col" id="textBlock2">
-        <h2>Die Mischung macht’s</h2>
-        <p>
-          Ob junge Innovationstreiber oder erfahrene Altbau-Spezialisten:
-          Bei Remix treffen frische Ideen auf jahrzehntelange 
-          Handwerks-Kompetenz. Das führt zu kreativen Lösungen,
-          hoher Präzision und einer Atmosphäre, in der jedes Projekt 
-          zum Erfolgsmodell wird.
-        </p>
-      </div>
-  
-      <div class="scenic-text-col" id="textBlock3">
-        <h2>Von Kroatien nach Europa</h2>
-        <p>
-          Was als regionales Bau- und Renovierungsunternehmen begann,
-          ist heute europaweit gefragt. Durch unsere 
-          grenzüberschreitenden Kooperationen wachsen wir stetig –
-          und begleiten Projekte in Deutschland, Österreich, Slowenien 
-          und natürlich Kroatien.
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TESTIMONIALS (GER) -->
-  <section class="testimonials-scenic fade-in german" id="testimonialsDe">
-    <div class="testimonials-bg"></div>
-    <div class="testimonials-overlay"></div>
-    <div class="testimonials-content">
-      <h2>Was unsere Kunden sagen</h2>
+    <section class="curved-section curved-right" id="curvedBlock2">
+      <div class="curved-bg"></div>
+      <div class="curved-content german">
+        <h2>Europäische Erfahrung.</h2>
+        <p>
+          Zahlreiche Projekte in Deutschland, 
+          Kroatien und Slowenien haben gezeigt, 
+          wie wir Qualität und Schnelligkeit vereinen.
+        </p>
+      </div>
+    </section>
+
+    <section class="curved-section curved-left" id="curvedBlock3">
+      <div class="curved-bg"></div>
+      <div class="curved-content german">
+        <h2>Erfolgsnachweise.</h2>
+        <p>
+          Ob Bauauszeichnung oder zufriedene Gastro-Kunden –
+          wir haben die Referenzen, um Ihr Vertrauen zu gewinnen.
+        </p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (GER) -->
+    <section class="testimonials-slider-section fade-in german">
+      <h2>Stimmen unserer Kunden</h2>
       <div class="testimonial-slider" id="testimonialSliderDe">
-        <!-- Slide #1 -->
         <div class="testimonial-slide">
           <div class="testimonial-content">
             <p class="testimonial-text">
-              “Mit Remix haben wir unser Einfamilienhaus 
-               termingerecht und stressfrei bauen können. 
-               Besonders die offene Kommunikation 
-               hat uns sehr gefallen!”
+              “Im Bau hatten wir bereits mit Remix tolle Erfahrungen. 
+               Jetzt nutzen wir Job Werke für unsere Hotellerie 
+               – und es läuft genauso rund.”
             </p>
-            <span class="client-name">– Familie G.</span>
+            <span class="client-name">– Hotelmanagerin K.- Katarina (Kata)</span>
           </div>
         </div>
-        <!-- Slide #2 -->
         <div class="testimonial-slide">
           <div class="testimonial-content">
             <p class="testimonial-text">
-              “Die Renovierung unserer Altbauwohnung 
-               lief reibungslos. Remix hat trotz kniffliger
-               Baustellensituation alles sauber koordiniert. 
-               Wir sind begeistert vom Ergebnis!”
+              “Die Kombination aus Dienstleistungsvertrag und A1-Unterstützung 
+               ist Gold wert – wir konnten schnell loslegen ohne Formalitäten-Stress.”
             </p>
-            <span class="client-name">– Architektin L.</span>
+            <span class="client-name">– Logistikleiter P. - Petar (Pero)</span>
           </div>
         </div>
-        <!-- Slide #3 -->
         <div class="testimonial-slide">
           <div class="testimonial-content">
             <p class="testimonial-text">
-              “Umbau und Modernisierung unserer Büroetage 
-               in wenigen Wochen – dank Remix ein voller Erfolg. 
-               Das Team war jederzeit erreichbar und super kooperativ.”
+              “Unsere neuen Mitarbeiter aus Nepal sind super integriert, 
+               danke an das Team für die top Begleitung!”
             </p>
-            <span class="client-name">– Geschäftsführer M.</span>
+            <span class="client-name">– Bauunternehmer R.- Roko (Rok)</span>
           </div>
         </div>
+        <!-- Slider Arrows & Dots -->
         <button class="slider-arrow left-arrow" id="arrowLeftDe">&#10094;</button>
         <button class="slider-arrow right-arrow" id="arrowRightDe">&#10095;</button>
         <div class="slider-dots" id="dotsDe">
@@ -456,428 +450,423 @@
           <span class="dot" data-slide="2"></span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- NEWSLETTER CTA (GER) -->
-  <section class="newsletter-scenic fade-in german" id="newsletterDe">
-    <div class="newsletter-bg"></div>
-    <div class="newsletter-overlay"></div>
-    <div class="newsletter-content">
-      <h3>Neugierig auf mehr Bauideen?</h3>
+    <!-- NEWSLETTER CTA (GER) -->
+    <section class="newsletter-cta fade-in">
+      <h3>Neugierig geworden?</h3>
       <p>
-        Erhalten Sie Tipps zu neuen Baustoffen, 
-        Renovierungs-Trends und Einblicke in unsere aktuellen Projekte.
-        Jetzt einfach für unseren Remix-Newsletter anmelden.
+        Erfahren Sie regelmäßig von neuen Projekten, 
+        innovativen Lösungen und Fachkräften, 
+        die wir anbieten können.
       </p>
+    
+      <!-- CLASSIC HTML FORM -->
+      <!-- 'action="/subscribe"' => Submits directly to your server
+           'method="POST"' => Must be POST to match app.post("/subscribe") -->
       <form action="/subscribe" method="POST" id="newsletterFormDe" style="margin-top: 1rem;">
-        <label for="newsletterEmailDe" class="sr-only">E-Mail-Adresse</label>
+        <label for="newsletterEmail" class="sr-only">E-Mail-Adresse</label>
+        <!-- IMPORTANT: 'name="email"' so the server can read req.body.email -->
         <input 
-          id="newsletterEmailDe"
+          id="newsletterEmail"
           name="email"
           type="email"
           placeholder="Ihre E-Mail-Adresse" 
           required
         >
-        <input type="hidden" name="language" value="de" />
-        <div class="form-group">
-          <input
-            type="checkbox"
-            id="privacyNewsletterDe"
-            name="privacyNewsletter"
-            required
-          />
-          <label for="privacyNewsletterDe">
-            Ich habe die 
-            <a href="datenschutz.html" target="_blank" style="color:#fffa; text-decoration: underline;">
-              Datenschutzerklärung
-            </a>
-            gelesen und stimme der Verarbeitung meiner Daten zu.
-          </label>
-        </div>
-      
+    
+        <!-- Optional: set a hidden language field if you want to pass "de" -->
+        <input 
+          type="hidden"
+          name="language"
+          value="de"
+        >
+         <!-- Datens. Checkbox -->
+  <div class="form-group">
+    <input
+      type="checkbox"
+      id="privacyNewsletter"
+      name="privacyNewsletter"
+      required
+    />
+    <label for="privacyNewsletter">
+      Ich habe die 
+      <a href="datenschutz.html" target="_blank" style="color: blue; text-decoration: underline;">Datenschutzerklärung</a> 
+       and accepted my data processing.
+    </label>
+  </div>
+
+        <button type="submit">Abonnieren</button>
       </form>
-    </div>
-  </section>
-
-  <!-- APPOINTMENT CTA (GER) -->
-  <section class="appointment-scenic fade-in german" id="kontakt">
-    <div class="appointment-bg"></div>
-    <div class="appointment-overlay"></div>
-    <div class="appointment-content">
-      <h2>Bereit für Ihr nächstes Bauprojekt?</h2>
+    </section>
+    <!-- APPOINTMENT CTA (GER) -->
+    <section class="appointment-cta fade-in" id="kontakt">
+      <h2>Bereit, den nächsten Schritt zu gehen?</h2>
       <p>
-        Ob Neubau, Renovierung oder Modernisierung –
-        lassen Sie uns gemeinsam über Ihre Pläne sprechen.
-        Unser Team freut sich, Ihnen ein maßgeschneidertes Konzept
-        anzubieten. Jetzt unverbindlich Kontakt aufnehmen!
+        Kontaktieren Sie uns für ein unverbindliches Gespräch. 
+        Gemeinsam finden wir die beste Lösung – 
+        ob Dienstleistung oder direkte Einstellung. 
+        Wir freuen uns auf Sie!
       </p>
-      <a href="kontakt.html#name" class="btn-appointment">Termin vereinbaren</a>
-    </div>
-  </section>
-</div><!-- End .german -->
+      <a href="kontakt.html#name" class="btn-large">Termin vereinbaren</a>
+    </section>
+  </div><!-- End .german -->
 
-<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-     ENGLISH CONTENT (HOME) -- MATCHING THE GERMAN STRUCTURE & IMAGES
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-<div class="english hidden">
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ENGLISH CONTENT (HOME)
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <div class="english hidden">
+    <!-- ========== HERO SECTION (EN) ========== -->
+    <section class="hero fade-in" id="heroEn">
+      <video class="hero-video" autoplay muted loop>
+        <source src="assets/img/connect.mp4" type="video/mp4" />
+        Your browser does not support background video.
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Your Service Provider &amp; Recruitment Partner</h1>
+        <p>
+          Established across Europe: we combine the expertise of our 
+          parent company <strong>Remix</strong> (Croatia), renowned for 
+          award-winning construction services, with the reliability of 
+          <strong>Trinity</strong> (Slovenia) for seamless visa and A1 processes.  
+          Whether you need <strong>direct hires</strong> or a 
+          <strong>full service contract</strong>, we deliver 
+          top performance in construction, hospitality, office, and more.
+        </p>
+        <a href="#whyEn" class="btn-primary">Learn More</a>
+      </div>
+    </section>
 
-  <!-- ========== HERO SECTION (EN) ========== -->
-  <section class="hero-angled fade-in" id="heroEn">
-    <!-- Background video to match the German version -->
-    <video class="hero-bg-video" autoplay muted loop playsinline webkit-playsinline>
-      <source src="assets/videos/v4.mp4" type="video/mp4" />
-      Your browser does not support background video.
-    </video>
-    <div class="hero-overlay-angled"></div>
-  
-    <div class="hero-angled-content">
-      <h1>Remix – Your Dynamic Construction Partner</h1>
+    <!-- ========== WHY SECTION (EN) ========== -->
+    <section class="why-jobwerke revamp-section english hidden" id="whyEn">
+      <div class="wave-bg"></div>
+      <div class="why-container">
+        <div class="why-content">
+          <div class="why-image">
+            <img src="assets/img/u.jpg" alt="Job Werke - Illustration" />
+          </div>
+          <div class="why-text">
+            <h2>Why Job Werke d.o.o.?</h2>
+            <p class="lead">
+              We’re <strong>highly rated</strong>, 
+              connected throughout Europe, and specialize in 
+              <em>two main approaches</em>:
+              <strong>recruitment</strong> (direct employment) 
+              and <strong>service contracts</strong> (we assume full project responsibility).
+              With Remix and Trinity, we ensure all visa 
+              and work documentation is handled smoothly 
+              and legally, so you can focus on your core business.
+            </p>
+          </div>
+        </div>
+
+        <!-- USP GRID (EN) -->
+        <div class="usp-grid">
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/2mVW.mp4" type="video/mp4" />
+              <!-- Optional fallback or message -->
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <h3>Strong Network</h3>
+            <p>
+              Remix (Croatia) + Trinity (Slovenia) + Job Werke (Germany):
+              a proven trio for reliable permits, insurance, 
+              and A1 certificates.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/vertrag.mp4" type="video/mp4" />
+              <!-- Optional fallback or message -->
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <h3>Service &amp; Recruitment</h3>
+            <p>
+              Either outsource your entire project to us 
+              or have us recruit top professionals directly 
+              into your company.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/4q43.mp4" type="video/mp4" />
+              <!-- Optional fallback or message -->
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <h3>Quick &amp; Flexible</h3>
+            <p>
+              Short communication channels, streamlined processes: 
+              from first contact to project launch in minimal time.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/7LD.mp4" type="video/mp4" />
+              <!-- Optional fallback or message -->
+              Ihr Browser unterstützt kein HTML5-Video.
+            </video>
+            <h3>Legal Security</h3>
+            <p>
+              All contracts, insurance, and work-permit matters 
+              are covered by our extensive expertise.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HISTORY TEASER (EN) ========== -->
+    <section class="history-teaser fade-in">
+      <h2>From Croatia to Germany</h2>
       <p>
-        Established in <strong>2021</strong>, Remix brings fresh energy to
-        construction and renovation projects across Europe. Whether it’s new builds,
-        complete overhauls, or modernizing existing spaces, we deliver
-        top-tier quality, transparent planning, and on-time results. 
-        Let our motivated team and solid expertise show you how efficient 
-        building can be.
+        We originated in the construction sector with Remix, 
+        but now serve multiple industries: 
+        from hotels &amp; gastronomy to office services &amp; logistics. 
+        Quality leads to trust – thanks to 
+        <strong>genuine work</strong>, 
+        <strong>top references</strong>, 
+        and a <strong>motivated team</strong>.
       </p>
-      <a href="#whyEn" class="hero-angled-btn">Learn More</a>
-    </div>
-  </section>
-
-  <!-- ========== WHY REMIX SECTION (EN) [SAME CLASSES AS GERMAN] ========== -->
-  <section class="why-remix-alt fade-in" id="whyEn">
-    <!-- Same heading structure as German, with .why-remix-alt-heading, .why-remix-lead, etc. -->
-    <div class="why-remix-alt-heading">
-      <h2>Why Remix?</h2>
-      <p class="why-remix-lead">
-        Though we’re relatively young, our foundation is strong:
-        <strong>Remix</strong> merges <em>modern construction methods</em> 
-        with tried-and-true craftsmanship. Starting in Croatia and now 
-        working across Europe, we deliver <strong>speed</strong> and 
-        <strong>clarity</strong> for every project’s success.
-      </p>
-    </div>
-
-    <div class="why-remix-cards">
-      <div class="why-remix-card">
-        <div class="why-remix-icon">1</div>
-        <h3>Fresh Perspective, Solid Roots</h3>
-        <p>
-          Since 2021, we’ve tackled a wide range of building and renovation 
-          jobs. Our Croatian roots and innovative mindset converge here, 
-          producing efficient solutions with high standards.
-        </p>
-      </div>
-      <div class="why-remix-card">
-        <div class="why-remix-icon">2</div>
-        <h3>On-Time &amp; Transparent</h3>
-        <p>
-          From initial planning to final delivery, 
-          you’ll always know where your project stands. 
-          Clear timelines, no hidden fees.
-        </p>
-      </div>
-      <div class="why-remix-card">
-        <div class="why-remix-icon">3</div>
-        <h3>Innovation &amp; Technology</h3>
-        <p>
-          We use contemporary materials, digital tools,
-          and streamlined processes to save both time and cost –
-          all without compromising on quality.
-        </p>
-      </div>
-      <div class="why-remix-card">
-        <div class="why-remix-icon">4</div>
-        <h3>Your Success, Our Goal</h3>
-        <p>
-          We want you to feel confident from our first conversation
-          to the final handover – 
-          thanks to open communication, swift decisions,
-          and a genuine passion for building well.
-        </p>
-      </div>
-    </div>
-
-    <div class="why-remix-cta">
-      <a href="kontakt.html?lang=en#name-en" class="why-remix-btn">
-        Get in Touch
+      <a href="uber-uns.html?lang=en#time-en" class="btn-learn-more">
+        Our Story
       </a>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========== HISTORY TEASER (EN) -- same classes: .history-teaser fade-in ========== -->
-  <section class="history-teaser fade-in">
-    <h2>From a Vision to a Trusted Partner</h2>
-    <p>
-      <strong>Remix</strong> was founded in 2021 to bring a fresh, transparent,
-      and client-focused approach to building and renovation. Through satisfied 
-      customers and continuous referrals, we grew quickly. Now we’re an 
-      <em>all-round provider</em> handling anything from small refurbishments 
-      to large-scale construction – always with commitment and skill.
-    </p>
-    <a href="uber-uns.html?lang=en#time-en" class="btn-outline">
-      Discover Our Journey
-    </a>
-  </section>
-
-  <!-- ========== PROCESS SECTION (EN) [SAME .process-layers, .process-step-card, etc.] ========== -->
-  <section class="process-layers fade-in" id="processSectionEn">
-    <div class="process-bg-image"></div>
-    <div class="process-bg-overlay"></div>
-    <div class="process-layers-content">
-      <h2 class="section-title">Our Approach</h2>
-      <div class="process-steps-container">
-        <div class="process-step-card">
-          <div class="step-number">1</div>
-          <h3>Analysis &amp; Consultation</h3>
+    <!-- ========== PROCESS (EN) ========== -->
+    <section class="process fade-in">
+      <h2>How It Works</h2>
+      <div class="process-steps">
+        <div class="step">
+          <h3>1. Consultation</h3>
           <p>
-            We listen carefully to your needs—be it new building, 
-            renovation, or modernizing older spaces—then plan 
-            the next steps together.
+            You tell us what you need: 
+            Do you want direct hires 
+            or a fully outsourced service contract from Job Werke?
           </p>
         </div>
-        <div class="process-step-card">
-          <div class="step-number">2</div>
-          <h3>Planning &amp; Proposal</h3>
+        <div class="step">
+          <h3>2. Professionals &amp; Paperwork</h3>
           <p>
-            Based on your goals, we draft a clear plan covering
-            budget, timelines, and materials, so there are no surprises.
+            We access our extensive network, handle visas 
+            and insurance (in collaboration with Trinity and Remix), 
+            ensuring a smooth process.
           </p>
         </div>
-        <div class="process-step-card">
-          <div class="step-number">3</div>
-          <h3>Execution &amp; Coordination</h3>
+        <div class="step">
+          <h3>3. Implementation</h3>
           <p>
-            Our experienced team carries out the project professionally,
-            coordinating all trades and giving you regular updates.
-            You stay informed, without the heavy lifting.
+            <strong>under recruitment</strong> , new staff join your payroll.  
+            <strong>Under a service contract</strong>, our team remains at Job Werke, 
+            delivering the finished outcome.
           </p>
         </div>
-        <div class="process-step-card">
-          <div class="step-number">4</div>
-          <h3>Completion &amp; Quality Check</h3>
+        <div class="step">
+          <h3>4. Ongoing Support</h3>
           <p>
-            Once finished, we review everything with you. If adjustments
-            are needed, we handle them promptly. Our job ends only 
-            when you’re truly satisfied.
+            We stay by your side, adapt to new needs, 
+            and ensure everything runs flawlessly from start to finish.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ========== MAIN SERVICES (TABBED, EN) [SAME CSS CLASSES & IMGS] ========== -->
-  <section class="services-scene fade-in" id="servicesEn">
-    <div class="services-bg-image"></div>
-    <div class="services-overlay"></div>
-
-    <div class="services-content-wrap">
-      <h2 class="section-title">Our Portfolio</h2>
-      <div class="services-tabs-header">
-        <div class="svc-tab-btn active" data-tab="newbuildsEn">New Builds</div>
-        <div class="svc-tab-btn" data-tab="renovationsEn">Renovations &amp; Restorations</div>
-        <div class="svc-tab-btn" data-tab="interiorEn">Interior &amp; Modernization</div>
-        <div class="svc-tab-btn" data-tab="specialEn">Special Services</div>
+    <!-- ========== MAIN SERVICES (EN) ========== -->
+    <section class="main-services-steps fade-in" id="servicesEn">
+      <h2>Our Core Fields</h2>
+      <div class="svc-step-header">
+        <div class="svc-step active" data-step="1-en">1. Construction &amp; Renovation</div>
+        <div class="svc-step" data-step="2-en">2. Hotels &amp; Restaurants</div>
+        <div class="svc-step" data-step="3-en">3. Office &amp; Reception</div>
+        <div class="svc-step" data-step="4-en">4. Other Industries</div>
       </div>
-
-      <div class="services-panels-area">
-
-        <!-- Panel: New Builds -->
-        <div class="services-panel active" id="newbuildsEn">
-          <div class="services-panel-inner">
+      <div class="svc-step-content">
+        <!-- Panel 1 -->
+        <div class="svc-step-panel active" id="panel-1-en">
+          <div class="svc-panel-inner">
             <div class="svc-text-side">
-              <h3>New Builds</h3>
+              <h3>Construction &amp; Renovation</h3>
               <p>
-                Whether a private home or commercial property,
-                we ensure a smooth project from the ground up
-                to the final finish.
+                Building on Remix’s track record, 
+                we supply experienced workers or handle your entire 
+                renovation project—whichever suits you best.
               </p>
               <ul>
-                <li>Digital planning &amp; 3D visualization</li>
-                <li>On-schedule delivery</li>
-                <li>Energy-efficient construction</li>
+                <li>Service or direct hire</li>
+                <li>Seasoned crews for fast starts</li>
+                <li>Proven success in German construction</li>
               </ul>
-              <button class="btn-solid"
+              <button class="btn-cta"
                 onclick="window.location.href='kontakt.html?lang=en#name-en';">
                 Request Now
               </button>
             </div>
-            <div class="svc-media-side">
-              <!-- Same image as German: assets/img/13.jpg -->
-              <img src="assets/img/13.jpg" alt="New Builds">
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/hr.mp4" type="video/mp4" />
+                <!-- Optional fallback or message -->
+                Ihr Browser unterstützt kein HTML5-Video.
+              </video>
             </div>
           </div>
         </div>
-
-        <!-- Panel: Renovations & Restorations -->
-        <div class="services-panel" id="renovationsEn">
-          <div class="services-panel-inner">
+        <!-- Panel 2 -->
+        <div class="svc-step-panel" id="panel-2-en">
+          <div class="svc-panel-inner">
             <div class="svc-text-side">
-              <h3>Renovations &amp; Restorations</h3>
+              <h3>Hotels &amp; Restaurants</h3>
               <p>
-                From older apartments to commercial spaces, 
-                we bring fresh appeal to existing structures 
-                using modern tech and an efficient crew.
+                Kitchen assistants, housekeeping, or a complete 
+                hotel management team – our international talents 
+                are primed to delight your guests.
               </p>
               <ul>
-                <li>Full or partial makeovers</li>
-                <li>Solutions for older-building challenges</li>
-                <li>Cost-efficient &amp; timely</li>
+                <li>Language training &amp; service focus</li>
+                <li>Either direct hire or outsourced service</li>
+                <li>Quickly adjustable for seasonal peaks</li>
               </ul>
-              <button class="btn-solid"
-                onclick="window.location.href='kontakt.html?lang=en#name-en';">
+              <button class="btn-cta"
+                onclick="window.location.href='arbeiten.html?lang=en#info-en';">
                 Learn More
               </button>
             </div>
-            <div class="svc-media-side">
-              <!-- Same image as German: assets/img/15.jpg -->
-              <img src="assets/img/15.jpg" alt="Renovations">
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/bereistellung.mp4" type="video/mp4" />
+                <!-- Optional fallback or message -->
+                Ihr Browser unterstützt kein HTML5-Video.
+              </video>
             </div>
           </div>
         </div>
-
-        <!-- Panel: Interior & Modernization -->
-        <div class="services-panel" id="interiorEn">
-          <div class="services-panel-inner">
+        <!-- Panel 3 -->
+        <div class="svc-step-panel" id="panel-3-en">
+          <div class="svc-panel-inner">
             <div class="svc-text-side">
-              <h3>Interior &amp; Modernization</h3>
+              <h3>Office &amp; Reception</h3>
               <p>
-                New kitchen, modern bathroom, or entire office revamp—
-                we handle your interior work, aiming for both 
-                comfort and functionality.
+                Reduce the load on your core team by hiring 
+                skilled office staff or outsourcing your reception, 
+                back-office, or call center operations.
               </p>
               <ul>
-                <li>Transform living or workspace</li>
-                <li>Quality materials &amp; finishes</li>
-                <li>Coordinated trades, hassle-free</li>
+                <li>Long-term service agreements available</li>
+                <li>Professional, insured workforce</li>
+                <li>All permits handled by us</li>
               </ul>
-              <button class="btn-solid"
+              <button class="btn-cta"
                 onclick="window.location.href='kontakt.html?lang=en#name-en';">
                 Contact Us
               </button>
             </div>
-            <div class="svc-media-side">
-              <!-- Same image as German: assets/img/16.jpg -->
-              <img src="assets/img/16.jpg" alt="Interior & Modernization">
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/internat.mp4" type="video/mp4" />
+                <!-- Optional fallback or message -->
+                Ihr Browser unterstützt kein HTML5-Video.
+              </video>
             </div>
           </div>
         </div>
-
-        <!-- Panel: Special Services -->
-        <div class="services-panel" id="specialEn">
-          <div class="services-panel-inner">
+        <!-- Panel 4 -->
+        <div class="svc-step-panel" id="panel-4-en">
+          <div class="svc-panel-inner">
             <div class="svc-text-side">
-              <h3>Special Services</h3>
+              <h3>Other Industries</h3>
               <p>
-                Every property has unique needs—from loft extensions 
-                to cellar sealing or unusual structural demands. 
-                Tell us your requirements and we’ll find a solution.
+                Logistics, retail, agriculture, IT – 
+                our vast network provides tailor-made solutions 
+                for virtually any sector.
               </p>
               <ul>
-                <li>Adaptable for any project</li>
-                <li>Custom concepts</li>
-                <li>Established partners Europe-wide</li>
+                <li>Extensive talent pool</li>
+                <li>Efficient communication &amp; onboarding</li>
+                <li>Supported by trusted partners for visas &amp; documentation</li>
               </ul>
-              <button class="btn-solid"
+              <button class="btn-cta"
                 onclick="window.location.href='dienstleistungen.html?lang=en#kernleistungenSection-en';">
-                See More
+                Discover Our Services
               </button>
             </div>
-            <div class="svc-media-side">
-              <!-- Same image as German: assets/img/17.jpg -->
-              <img src="assets/img/17.jpg" alt="Special Services">
+            <div class="svc-image-side">
+              <img src="assets/img/onboarding.jpg" alt="Other Industries" />
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Scenic Lateral VIDEO BLOCK (EN) [Same classes, video, structure as .scenic-lateral-video fade-in] -->
-  <section class="scenic-lateral-video fade-in" id="oneVideoForAllTextsEn">
-    <div class="scenic-video-wrapper">
-      <video 
-        class="scenic-video-bg" 
-        autoplay 
-        muted 
-        loop 
-        playsinline 
-        webkit-playsinline
-      >
-        <source src="assets/videos/v2.mp4" type="video/mp4" />
-        Your browser does not support background video.
-      </video>
-    </div>
-    <div class="scenic-overlay"></div>
-    <div class="scenic-inner">
-      <div class="scenic-text-col" id="textBlock1En">
-        <h2>Our Team: Dedication &amp; Expertise</h2>
+    <!-- CURVED SECTIONS (EN) -->
+    <section class="curved-section curved-left" id="curvedBlock1">
+      <div class="curved-bg"></div>
+      <div class="curved-content english hidden">
+        <h2>Together with Remix &amp; Trinity.</h2>
         <p>
-          A motivated team of project leads, skilled builders,
-          and creative talents merges traditional craftsmanship 
-          with modern approaches. We rely on <em>flat hierarchies</em> 
-          and <em>quick communication</em> for rapid, solid outcomes.
+          Thanks to our European partners, every project 
+          unfolds quickly and legally – from Asian talent 
+          sourcing to comprehensive project teams.
         </p>
       </div>
-      <div class="scenic-text-col" id="textBlock2En">
-        <h2>The Perfect Blend</h2>
-        <p>
-          Whether fresh innovators or experienced old-building specialists:
-          at Remix, new ideas meet decades of know-how. 
-          This fosters innovative solutions, precision, and a spirit 
-          that turns every job into a success story.
-        </p>
-      </div>
-      <div class="scenic-text-col" id="textBlock3En">
-        <h2>From Croatia to Europe</h2>
-        <p>
-          Starting out as a regional building and renovation team,
-          we’re now in demand across Europe. Through cross-border 
-          partnerships, we continue to grow—managing projects 
-          in Germany, Austria, Slovenia, and of course, Croatia.
-        </p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TESTIMONIALS (EN) [Same classes for .testimonials-scenic, etc.] -->
-  <section class="testimonials-scenic fade-in" id="testimonialsEn">
-    <div class="testimonials-bg"></div>
-    <div class="testimonials-overlay"></div>
-    <div class="testimonials-content">
+    <section class="curved-section curved-right" id="curvedBlock2">
+      <div class="curved-bg"></div>
+      <div class="curved-content english hidden">
+        <h2>European Expertise.</h2>
+        <p>
+          Numerous projects across Germany, Croatia, and Slovenia 
+          demonstrate how we combine quality and speed 
+          for maximum impact.
+        </p>
+      </div>
+    </section>
+
+    <section class="curved-section curved-left" id="curvedBlock3">
+      <div class="curved-bg"></div>
+      <div class="curved-content english hidden">
+        <h2>Proven Success.</h2>
+        <p>
+          Whether it’s a construction award or satisfied hospitality clients –
+          our track record speaks for itself. Let our passion 
+          and professionalism convince you.
+        </p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (EN) -->
+    <section class="testimonials-slider-section fade-in english hidden">
       <h2>What Our Clients Say</h2>
       <div class="testimonial-slider" id="testimonialSliderEn">
         <div class="testimonial-slide">
           <div class="testimonial-content">
             <p class="testimonial-text">
-              “Building our single-family home with Remix was on schedule
-               and stress-free. We especially appreciated the open 
-               communication!”
+              “We had great experiences with Remix for construction 
+               and now use Job Werke for our hotel business – 
+               it’s just as smooth.”
             </p>
-            <span class="client-name">– The G. Family</span>
+            <span class="client-name">– Hotel Manager K. - Katarina (Kata)</span>
           </div>
         </div>
         <div class="testimonial-slide">
           <div class="testimonial-content">
             <p class="testimonial-text">
-              “Renovating our older apartment was seamless. 
-               Despite tricky site conditions, Remix stayed on top 
-               of everything. We’re thrilled with the results!”
+              “A brilliant combination of service contracts and A1 support –
+               we started our logistics project quickly without any headaches.”
             </p>
-            <span class="client-name">– Architect L.</span>
+            <span class="client-name">–Logistics Head P. - Petar (Pero)</span>
           </div>
         </div>
         <div class="testimonial-slide">
           <div class="testimonial-content">
             <p class="testimonial-text">
-              “Our office overhaul took just a few weeks 
-               thanks to Remix’s coordinated approach. 
-               They were always reachable and extremely helpful.”
+              “Our new employees from Nepal integrated perfectly, 
+               thanks to top guidance from the team!”
             </p>
-            <span class="client-name">– CEO M.</span>
+            <span class="client-name">– Construction Entrepreneur R. - Roko (Rok)</span>
           </div>
         </div>
+        <!-- Slider Arrows & Dots -->
         <button class="slider-arrow left-arrow" id="arrowLeftEn">&#10094;</button>
         <button class="slider-arrow right-arrow" id="arrowRightEn">&#10095;</button>
         <div class="slider-dots" id="dotsEn">
@@ -886,118 +875,112 @@
           <span class="dot" data-slide="2"></span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- NEWSLETTER CTA (EN) [Same classes as German] -->
-  <section class="newsletter-scenic fade-in" id="newsletterEn">
-    <div class="newsletter-bg"></div>
-    <div class="newsletter-overlay"></div>
-    <div class="newsletter-content">
-      <h3>Curious for More Building Ideas?</h3>
+    <!-- NEWSLETTER CTA (EN) -->
+    <section class="newsletter-cta fade-in">
+      <h3>Curious to Learn More?</h3>
       <p>
-        Get tips on modern materials, renovation insights,
-        and updates on our latest projects in the Remix newsletter.
+        Sign up for our newsletter to receive updates 
+        on new projects, innovative solutions, 
+        and the latest talent we can offer.
       </p>
+    
+      <!-- CLASSIC HTML FORM (English) -->
       <form action="/subscribe" method="POST" id="newsletterFormEn" style="margin-top: 1rem;">
         <label for="newsletterEmailEn" class="sr-only">Email Address</label>
         <input 
           id="newsletterEmailEn"
           name="email"
           type="email"
-          placeholder="Your Email Address"
+          placeholder="Your Email Address" 
           required
         >
-        <input type="hidden" name="language" value="en" />
-        <div class="form-group">
-          <input
-            type="checkbox"
-            id="privacyNewsletterEn"
-            name="privacyNewsletter"
-            required
-          />
-          <label for="privacyNewsletterEn">
-            I have read the
-            <a href="datenschutzEn.html" target="_blank" style="color: #fffa; text-decoration: underline;">
-              Data Privacy Policy
-            </a>
-            and consent to the processing of my data.
-          </label>
-        </div>
-        <button type="submit" class="btn-newsletter">Subscribe</button>
+        <!-- Hidden field to pass language=en -->
+        <input 
+          type="hidden"
+          name="language"
+          value="en"
+        >
+        <!-- Datens. Checkbox -->
+  <div class="form-group">
+    <input
+      type="checkbox"
+      id="privacyNewsletter"
+      name="privacyNewsletter"
+      required
+    />
+    <label for="privacyNewsletter">
+      I have read the 
+      <a href="datenschutzEn.html" target="_blank" style="color: blue; text-decoration: underline;">Data privacy</a> 
+       and accepted my data processing.
+        </label>
+  </div>
+
+        <button type="submit">Subscribe</button>
       </form>
-    </div>
-  </section>
+    </section>
+      </script>
+    </section>
 
-  <!-- APPOINTMENT CTA (EN) [Same classes as German .appointment-scenic fade-in] -->
-  <section class="appointment-scenic fade-in" id="kontaktEn">
-    <div class="appointment-bg"></div>
-    <div class="appointment-overlay"></div>
-    <div class="appointment-content">
-      <h2>Ready for Your Next Construction Project?</h2>
+    <!-- APPOINTMENT CTA (EN) -->
+    <section class="appointment-cta fade-in" id="kontaktEn">
+      <h2>Ready to Take the Next Step?</h2>
       <p>
-        From new builds to renovations or modernizations –
-        let’s discuss your ideas. We’re eager to provide 
-        a tailored concept that delivers. Contact us now for a 
-        no-obligation chat!
+        Whether you need recruitment or a full service package, 
+        let’s find the best solution for your business. 
+        Reach out and let us turn your ideas into reality!
       </p>
-      <a href="kontakt.html?lang=en#name-en" class="btn-appointment">
-        Schedule an Appointment
-      </a>
-    </div>
-  </section>
+      <a href="kontakt.html?lang=en#name-en" class="btn-large">Schedule an Appointment</a>
+    </section>
+  </div><!-- End .english -->
 
-</div><!-- End .english -->
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <p>
+      <a href="impressum.html">Impressum</a> &bull; 
+      <a href="datenschutz.html">Datenschutz</a> &bull; 
+      <a href="cookie.html">Cookie-Einstellungen</a>
+    </p>
+    <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
+  </footer>
 
-<!-- ========== FOOTER ========== -->
-<footer class="footer">
-  <p>
-    <a href="impressum.html">Impressum</a> &bull; 
-    <a href="datenschutz.html">Datenschutz</a> &bull; 
-    <a href="cookie.html">Cookie-Einstellungen</a>
-  </p>
-  <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
-</footer>
+  <!-- Link to your external JS file -->
+  <script src="js/index.js"></script>
 
-<!-- Link to your external JS file -->
-<script src="js/index.js"></script>
+  <!-- Inline script for language toggle (if not in index.js) -->
+  <script>
+    // 1) MOBILE NAV
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+    mobileToggle.addEventListener('click', () => {
+      navbarMenu.classList.toggle('nav-open');
+    });
 
-<!-- Inline script for language toggle (if not in index.js) -->
-<script>
-  // MOBILE NAV
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navbarMenu = document.getElementById('navbarMenu'); // FIX: correct ID
+    // 2) LANGUAGE SWITCH
+    const langBtn = document.getElementById('toggleLang');
+    const germanDivs = document.querySelectorAll('.german');
+    const englishDivs = document.querySelectorAll('.english');
+    let isGerman = true; // Start in German mode
 
-  mobileToggle.addEventListener('click', () => {
-    navbarMenu.classList.toggle('nav-open');
-  });
+    langBtn.addEventListener('click', () => {
+      const scrollY = window.pageYOffset;
+      const docHeight = document.body.scrollHeight;
+      const ratio = docHeight ? (scrollY / docHeight) : 0;
 
-  // LANGUAGE TOGGLE
-  const langBtn = document.getElementById('toggleLang');
-  const germanDivs = document.querySelectorAll('.german');
-  const englishDivs = document.querySelectorAll('.english');
-  let isGerman = true;
+      isGerman = !isGerman;
+      germanDivs.forEach(el => el.classList.toggle('hidden', !isGerman));
+      englishDivs.forEach(el => el.classList.toggle('hidden', isGerman));
 
-  langBtn.addEventListener('click', () => {
-    const scrollY = window.pageYOffset;
-    const docHeight = document.body.scrollHeight;
-    const ratio = docHeight ? (scrollY / docHeight) : 0;
+      langBtn.textContent = isGerman ? 'English' : 'Deutsch';
 
-    // Toggle language
-    isGerman = !isGerman;
-    germanDivs.forEach(el => el.classList.toggle('hidden', !isGerman));
-    englishDivs.forEach(el => el.classList.toggle('hidden', isGerman));
-
-    // Update button text
-    langBtn.textContent = isGerman ? 'English' : 'Deutsch';
-
-    // Maintain approximate scroll position
-    setTimeout(() => {
-      const newHeight = document.body.scrollHeight;
-      const newScroll = Math.round(ratio * newHeight);
-      window.scrollTo(0, newScroll);
-    }, 50);
-  });
-</script>
+      // Recalc doc height & restore scroll position
+      setTimeout(() => {
+        const newHeight = document.body.scrollHeight;
+        const newScroll = Math.round(ratio * newHeight);
+        window.scrollTo(0, newScroll);
+      }, 50);
+    });
+  </script>
 </body>
 </html>
