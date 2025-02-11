@@ -2,899 +2,1041 @@
   1) GLOBAL RESET & BASE STYLES
 ***************************************************************/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-    color: #333;
-    line-height: 1.6;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    position: relative;
-  }
-  /* Basic link hover */
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  a:hover {
-    color: #181844; 
-  }
-  img, video {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  h1, h2, h3 {
-    margin-bottom: 0.8rem;
-  }
-  p {
-    margin-bottom: 1rem;
-  }
-  /* For language toggles */
-  .hidden {
-    display: none !important;
-  }
-  
-  /***************************************************************
-    2) NAVBAR (WITH HAMBURGER)
-  ***************************************************************/
-  /* Base Navbar Container */
-  .navbar {
-    position: fixed;
-    top: 0; 
-    left: 0;
-    width: 100%;
-    height: 70px; 
-    display: flex;
-    align-items: center;
-    background: #181844; 
-    padding: 0 2rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    z-index: 9999;
-  }
-  /* Logo Area */
-  .navbar__logo .navbar-logo-video {
-    pointer-events: none;
-    max-height: 60px;
-    width: auto;
-    transition: transform 0.3s;
-    margin: 5px 0;
-    object-fit: contain;
-  }
-  .navbar__logo img:hover {
-    transform: scale(1.05);
-  }
-  /* Hamburger (hidden on desktop, shown on mobile) */
-  .navbar__toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-  }
-  .navbar__toggle span {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
-  /* Nav Menu (desktop) */
-  .navbar__menu {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
-  }
-  /* Nav Links */
-  .navbar__links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-  .navbar__links a {
-    font-weight: 500;
-    color: #fff;
-    transition: color 0.3s;
-    padding: 0.3rem 0;
-  }
-  .navbar__links a:hover {
-    color: #bbb;
-  }
-  .navbar__links a.active {
-    border-bottom: 2px solid #fff;
-  }
-  /* Language Button */
-  .lang-btn {
-    margin-left: 1rem;
-    background: #0808d3; /* same color for all pages */
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .lang-btn:hover {
-    background: #1c1c5f; /* consistent hover color */
-  }
-  /* Offset content below fixed navbar */
-  body::before {
-    content: "";
-    display: block;
-    height: 70px; /* matches .navbar height */
-  }
-  /* Responsive Navbar (max-width: 768px) */
-  @media (max-width: 768px) {
-    .navbar {
-      height: 60px;
-      padding: 0 1rem;
-    }
-    .navbar__logo img {
-      max-height: 50px;
-    }
-    .navbar__toggle {
-      display: flex;
-      margin-left: auto;
-    }
-    .navbar__menu {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      flex-direction: column;
-      gap: 1rem;
-      background: #181844;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      padding: 1rem 2rem;
-      transform: translateY(-130%);
-      transition: transform 0.3s ease;
-    }
-    .navbar__menu.nav-open {
-      transform: translateY(0);
-    }
-    .navbar__links {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
-  /***************************************************************
-    3) HERO (VIDEO BACKGROUND)
-  ***************************************************************/
-  .hero {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* full-screen hero */
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-  }
-  .hero-video {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -2;
-  }
-  .hero-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(9, 9, 25, 0.65);
-    z-index: -1;
-  }
-  .hero-content {
-    max-width: 700px;
-    padding: 1rem;
-  }
-  .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-  }
-  .hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  }
-  .btn-primary {
-    display: inline-block;
-    padding: 0.8rem 1.6rem;
-    background: #181844;
-    color: #fff;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: background 0.3s;
-  }
-  .btn-primary:hover {
-    background: #12163b;
-  }
-  @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2.2rem;
-    }
-    .hero-content p {
-      font-size: 1rem;
-    }
-  }
-/****************************************************
-  REVAMPED "WHY" SECTIONS WITH A WAVE BACKGROUND
-****************************************************/
-/* Container Section */
-.revamp-section {
-    position: relative;
-    padding: 6rem 1.5rem; /* large padding for modern look */
-    overflow: hidden; /* for wave background pseudo-element */
-    color: #333;
-    text-align: center;
-    background: #fdfdfd; /* fallback color */
-  }
-  
-  /* Wave/Curved BG (optionally use an SVG or your own path) */
-  .revamp-section .wave-bg {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; 
-    height: 100%;
-    z-index: -1; /* place behind content */
-    background: linear-gradient(120deg, #f7f9ff 0%, #eef2fc 100%);
-    /* Example wave shape using a path; adjust or replace with your own */
-    clip-path: path("M0,80 Q50,0 100,80 T200,80 V1000H0Z");
-  }
-  
-  /* Main container inside the wave section */
-  .why-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative; /* keep wave behind content */
-  }
-  
-  /* TEXT+IMAGE WRAPPER */
-  .why-content {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 3rem;
-    gap: 2rem;
-  }
-  .why-image {
-    flex: 1 1 500px;
-    display: flex;
-    justify-content: center;
-  }
-  .why-image img {
-    width: 100%;
-    max-width: 450px;
-    border-radius: 10px;
-    object-fit: cover;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  }
-  .why-text {
-    flex: 1 1 400px;
-    text-align: left; /* or center, as you prefer */
-  }
-  .why-text h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    color: #181844; /* brand color */
-  }
-  .why-text .lead {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    color: #555;
-  }
-  
-  /* USP GRID */
-/* ========== USP GRID ========== */
-.usp-grid {
-  display: grid;
-  /* auto-fit automatically creates as many columns as will fit in the container,
-     each being at least 220px wide, and then expands to fill remaining space. */
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  /* Optional: left text aligns the content inside each card,
-     but you can also center text if you prefer. */
-  text-align: left;
-  max-width: 1200px; /* limit the max width if desired */
-  margin: 0 auto;    /* center the entire grid in the page */
-  padding: 1rem;     /* space around the grid for breathing room */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ========== USP CARD ========== */
-.usp-card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  padding: 1.5rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-  
-  /* If you want the card contents to be stacked vertically
-     and easily centered horizontally, you could do:
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-  */
+html, body {
+  font-family: "Poppins", sans-serif;
+  background: #0c0c0c; /* overall dark black */
+  color: #ccc;         /* default text in silver */
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle hover lift */
-.usp-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+/* Basic link styling */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #fff; /* highlight text on hover */
 }
 
-/* ========== CARD IMAGE / ICONS ========== */
-
-.usp-video{
-  /* If it's an icon, keep it small:
-     (50×50 as you mentioned) */
-     pointer-events: none;
-  width: 200px;
-  height: 200px;
-  margin-bottom: 1rem;
+img, video {
   display: block;
-  /* Center the image if you like */
+  width: 100%;
+  height: auto;
+}
+
+/* For toggled language sections */
+.hidden {
+  display: none !important;
+}
+
+/* If you have a fixed navbar, offset content if needed */
+body::before {
+  content: "";
+  display: block;
+  height: 70px; /* match your .navbar height */
+}
+
+/***************************************************************
+  2) NAVBAR
+***************************************************************/
+.navbar {
+  position: fixed;
+  /* Positioning */
+  top: 1rem;            /* space from the top */
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%);
+  
+  /* Size & layout */
+  width: 80%;           /* or however wide you want it */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  /* Look & feel */
+  background: linear-gradient(360deg, #7f6060, #f90000);  /* gradient color */
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;     /* large radius for that “pill” shape */
+  
+  /* Glow / Shadow */
+  box-shadow: 0 0 10px rgba(175, 27, 27, 0.7),
+              0 0 25px rgba(182, 62, 62, 0.4);
+  
+  /* Layer above page content */
+  z-index: 9999;
+}
+.navbar__logo {
+  flex-shrink: 0;
+}
+.navbar-logo-video {
+  max-height: 50px;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+.navbar__logo:hover .navbar-logo-video {
+  transform: scale(1.05);
+}
+
+/* Hamburger for mobile */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
   margin-left: auto;
-  margin-right: auto;
+  cursor: pointer;
+}
+.navbar__toggle span {
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
-/* ========== CARD HEADING ========== */
-.usp-card h3 {
+/* Desktop menu */
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+/* Nav links */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+}
+.navbar__links a {
+  font-weight: 1000;
+  color: #f5f5f5;
+  position: relative;
+  padding: 0.2rem 0;
+}
+.navbar__links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: #888; /* subtle silver for active link */
+}
+.navbar__links a:hover {
+  color: #fff; 
+}
+
+/* Language btn */
+.lang-btn {
+  background: #a52121;
+  color: #eee;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-weight: 500;
+  border: 2px solid rgba(255, 255, 255, 0.5); /* solid blur border */
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* shiny effect */
+}
+.lang-btn:hover {
+  background: #666;
+  border-color: rgba(255, 255, 255, 0.8); /* more shiny on hover */
+}
+/* Mobile nav */
+@media (max-width: 768px) {
+  .navbar {
+    height: 60px;
+  }
+  .navbar__toggle {
+    display: flex;
+    margin-left: auto;
+  }
+  .navbar__menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    background: #1a1a1a;
+    padding: 1rem 2rem;
+    transform: translateY(-120%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+  }
+  .navbar__menu.nav-open {
+    transform: translateY(0);
+  }
+  .navbar__links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+/***************************************************************
+  HERO SECTION (ANGLED) – with background video
+***************************************************************/
+.hero-angled {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.hero-bg-video {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  /* 
+    To ensure the video stays behind the overlay & content, 
+    give it a lower z-index than the overlay 
+  */
+  z-index: -2;
+}
+
+.hero-overlay-angled {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* 
+    Slight diagonal overlay. 
+    Increase/decrease RGBA values for more or less darkness. 
+  */
+  background: linear-gradient(
+    115deg, 
+    rgba(0, 0, 0, 0.6) 50%, 
+    rgba(0, 0, 0, 0.4) 50%
+  );
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+  z-index: -1; /* overlay is behind content but above video */
+}
+
+.hero-angled-content {
+  position: relative;
+  max-width: 800px;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  z-index: 1; /* ensures text/content is on top of overlay & video */
+}
+
+.hero-angled-content h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.hero-angled-content p {
   font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: #181844;
-  /* If you centered the image, you can also center the heading:
-     text-align: center;
-  */
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: #ccc;
 }
 
-/* ========== CARD TEXT ========== */
-.usp-card p {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.4;
-  /* If you center the heading and image, you might also want:
-     text-align: center;
-  */
-}
-
-/* ========== RESPONSIVE FONT (Optional) ========== */
-/* Slightly smaller text on narrow screens */
-@media (max-width: 600px) {
-  .usp-card h3 {
-    font-size: 1rem;
-  }
-  .usp-card p {
-    font-size: 0.9rem;
-  }
-}
-  
-  /* Responsive tweaks */
-  @media (max-width: 768px) {
-    .why-content {
-      flex-direction: column-reverse; /* show text above image, or reverse */
-      text-align: center;
-    }
-    .why-text {
-      text-align: center;
-    }
-    .why-image img {
-      max-width: 300px;
-    }
-  }
-  
-  @media (min-width: 1400px) {
-    .revamp-section {
-      padding: 8rem 3rem;
-    }
-    .why-text h2 {
-      font-size: 2.4rem;
-    }
-    .why-text .lead {
-      font-size: 1.2rem;
-    }
-  }
-  /***************************************************************
-    5) HISTORY TEASER
-  ***************************************************************/
-  .history-teaser {
-    background: #f4f8ff;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-  .history-teaser h2 {
-    margin-bottom: 1.5rem;
-  }
-  .history-teaser p {
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    color: #555;
-    line-height: 1.6;
-  }
-  .btn-learn-more {
+.hero-angled-btn {
     display: inline-block;
-    padding: 0.8rem 1.4rem;
-    background: #181844;
-    color: #fff;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: background 0.3s;
-  }
-  .btn-learn-more:hover {
-    background: #12163b;
-  }
-  
-  /***************************************************************
-    6) PROCESS SECTION
-  ***************************************************************/
-  .process {
-    background: url("../assets/img/hero-bg-1.jpg") center/cover no-repeat;
-    position: relative;
-    padding: 4rem 2rem;
-    text-align: center;
-    color: #fff;
-  }
-  .process::before {
-    content: "";
-    position: absolute;
-    top: 0; 
-    left: 0;
-    width: 100%; 
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    z-index: -1;
-  }
-  .process h2 {
-    margin-bottom: 2rem;
-  }
-  .process-steps {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-    justify-content: center;
-  }
-  .step {
-    background: #ffffffcc;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    padding: 1.5rem;
-    flex: 1 1 220px;
-    max-width: 240px;
-    transition: transform 0.3s;
-    color: #333;
-  }
-  .step:hover {
-    transform: translateY(-4px);
-  }
-  .step h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #333;
-  }
-  .step p {
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.4;
-  }
-  
-  /***************************************************************
-    7) MAIN SERVICES (TABBED SECTIONS)
-  ***************************************************************/
-  .main-services-steps {
-    padding: 4rem 2rem;
-    text-align: center;
-    background: #fff;
-    position: relative;
-  }
-  .main-services-steps h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #333;
-  }
-  .svc-step-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 3rem;
-    gap: 1rem;
-  }
-  /* Service Step Buttons */
-  .svc-step {
-    background: #f1f3fe;
-    color: #333;
-    padding: 0.8rem 1.2rem;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background 0.3s;
-    font-weight: 600;
-  }
-  .svc-step.active {
-    background: #181844;
-    color: #fff;
-  }
-  .svc-step:hover {
-    background: #e2e3f2;
-  }
-  .svc-step-content {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  .svc-step-panel {
-    display: none;
-    margin-bottom: 2rem;
-  }
-  .svc-step-panel.active {
-    display: block;
-  }
-  .svc-panel-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 2rem;
-    text-align: left;
-  }
-  .svc-text-side {
-    flex: 1 1 400px;
-    min-width: 280px;
-  }
-  .svc-text-side ul {
-    margin: 1rem 0;
-    padding-left: 1.2rem;
-  }
-  .svc-text-side li {
-    margin-bottom: 0.5rem;
-    list-style: none;
-    position: relative;
-  }
-  .svc-text-side li::before {
-    content: "✔";
-    position: absolute;
-    left: -1.2rem;
-    color: #181844;
-  }
-  .btn-cta {
-    display: inline-block;
-    background: #181844;
-    color: #fff;
     padding: 0.6rem 1.2rem;
-    margin-top: 1rem;
+    background: transparent;
+    border: 2px solid #f05a28;
+    color: #f05a28;
     border-radius: 4px;
     font-weight: 600;
-    transition: background 0.3s;
-    border: none;
-    cursor: pointer;
-  }
-  .btn-cta:hover {
-    background: #12163b;
-  }
-  .svc-image-side {
-    flex: 1 1 300px;
-    min-width: 200px;
-    display: flex;
-    justify-content: center;
-  }
-  .svc-image-side img {
-    width: 160px;
-    height: auto;
-  }
-/* Basic resets / overrides if needed */
-/* Basic wave-block container */
-/*********************************************************
-  BASE LAYOUT FOR CURVED SECTIONS
-*********************************************************/
-.curved-section {
-    position: relative;
-    width: 100%;
-    min-height: 280px; /* Adjust as needed */
-    margin: 4rem 0;
-    overflow: hidden;  /* Hide overflow from large corner radii */
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centers the text horizontally by default */
-    /* We’ll let .curved-left / .curved-right control the alignment */
-  }
+    transition: 0.3s;
   
-  /* The colored background block */
-  .curved-bg {
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 55%; /* The color block covers ~55% horizontally */
-    z-index: 1;
-    /* Example gradient - adapt to your brand colors */
-    background: linear-gradient(135deg, #6c6c84  0%,  #4e8ad9  100%);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  }
-  
-  /* For .curved-left => color block on the left with big round corners on the right side */
-  .curved-section.curved-left .curved-bg {
-    left: 0;
-    border-top-right-radius: 200px;   /* Large corner arcs for a “round” effect */
-    border-bottom-right-radius: 200px;
-  }
-  
-  /* For .curved-right => color block on the right with big round corners on the left side */
-  .curved-section.curved-right .curved-bg {
-    right: 0;
-    border-top-left-radius: 200px;
-    border-bottom-left-radius: 200px;
-  }
-  
-  /*********************************************************
-    TEXT CONTENT STYLES
-  *********************************************************/
-  .curved-content {
-    position: relative;
-    z-index: 2; /* Over the color block */
-    color: rgb(11, 11, 82); /* White text for contrast on bright BG */
-    max-width: 600px; 
-    padding: 2rem;
-    line-height: 1.6;
-    margin: 0; /* We'll shift based on left/right below */
-  }
-  
-  /* On .curved-left => text sits on the right side */
-  .curved-section.curved-left .curved-content {
-    margin-left: auto; /* push text to the right half */
-    text-align: left;
-  }
-  /* On .curved-right => text sits on the left side */
-  .curved-section.curved-right .curved-content {
-    margin-right: auto; /* push text to the left half */
-    text-align: right;
-  }
-  
-  /* Headings inside curved-content */
-  .curved-content h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  }
-  .curved-content p {
-    font-size: 1rem;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-  }
-  
-  /*********************************************************
-    RESPONSIVE (MOBILE) ADJUSTMENTS
-  *********************************************************/
-  @media (max-width: 768px) {
-    .curved-section {
-      flex-direction: column;
-      min-height: auto;
-    }
-    .curved-bg {
-      width: 60%; 
-      height: 50%; /* adjust if you want more or less coverage */
-      border-radius: 0; /* we’ll handle corners differently for mobile */
-    }
-    /* Possibly do a simpler rounding or clip path on mobile */
-    .curved-section.curved-left .curved-bg {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 80px; /* or less, for partial rounding */
-    }
-    .curved-section.curved-right .curved-bg {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 80px;
-    }
-  
-    .curved-content {
-      width: 90%;
-      margin: 2rem auto 0 auto;
-      text-align: center !important;
-      padding: 1.5rem;
-    }
-    .curved-content h2 {
-      font-size: 1.5rem;
-    }
-    .curved-content p {
-      font-size: 0.95rem;
-    }
-  }
-  /* UTILITY: for language toggling */
-  .hidden {
-    display: none;
-  }
-  /***************************************************************
-    9) TESTIMONIALS SLIDER
-  ***************************************************************/
-  .testimonials-slider-section {
-    background: #fcfcfc;
-    padding: 5rem 2rem;
-    text-align: center;
-    position: relative;
-  }
-  .testimonials-slider-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 2.5rem;
-  }
-  .testimonial-slider {
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    overflow: hidden;
-  }
-  /* Hide slides by default; show .active slide */
-  .testimonial-slide {
-    width: 100%;
-    display: none;
-    position: relative;
-    transition: opacity 0.4s ease;
-  }
-  .testimonial-slide.active {
-    display: block;
-  }
-  .testimonial-content {
-    background: #fdfdfd;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    padding: 2rem;
-    margin: 0 auto;
-    max-width: 600px;
-  }
-  .testimonial-text {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-  }
-  .client-name {
-    font-weight: 600;
-    color: #333;
-  }
-  /* Arrow buttons */
-  .slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #202060;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    width: 40px; 
-    height: 40px;
-    cursor: pointer;
-    font-size: 1.4rem;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-  }
-  .slider-arrow:hover {
-    opacity: 1;
-  }
-  .left-arrow {
-    left: 0; 
-    margin-left: 0.5rem;
-  }
-  .right-arrow {
-    right: 0; 
-    margin-right: 0.5rem;
-  }
-  /* Dots below slider */
-  .slider-dots {
-    margin-top: 1.5rem;
-  }
-  .dot {
-    display: inline-block;
-    width: 12px; 
-    height: 12px;
-    border-radius: 50%;
-    margin: 0 6px;
-    background: #ddd;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .dot.active {
-    background: #202060;
-  }
-  
-  /***************************************************************
-    10) NEWSLETTER CTA
-  ***************************************************************/
-  .newsletter-cta {
-    background: linear-gradient(135deg, #181844 0%, #12163b 100%);
-    color: #fff;
-    text-align: center;
-    padding: 3rem 2rem;
-  }
-  .newsletter-cta h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
-  .newsletter-cta p {
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-  }
-  .newsletter-cta form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .newsletter-cta input {
-    flex: 1 1 200px;
-    padding: 0.7rem;
-    border: none;
-    border-radius: 4px;
-    outline: none;
-  }
-  .newsletter-cta button {
-    background: #fff;
-    color: #181844;
-    padding: 0.7rem 1.2rem;
-    border: none;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: background 0.3s, color 0.3s;
-    cursor: pointer;
-  }
-  .newsletter-cta button:hover {
-    background: #ebebeb;
-    color: #12163b;
-  }
+}
 
-  /***************************************************************
-    11) APPOINTMENT CTA
-  ***************************************************************/
-  .appointment-cta {
-    padding: 4rem 2rem;
-    text-align: center;
-    background: #f4f8ff;
+.hero-angled-btn:hover {
+  background: #666;
+  transform: translateY(-2px);
+}
+
+//* 
+  WHY REMIX - ALTERNATIVE STYLE 
+  (Uses a dark background, red accent, and a 4-column grid)
+*/
+
+.why-remix-alt {
+  background: #111; 
+  color: #fff;
+  padding: 4rem 2rem;
+}
+
+/* ----- Heading & Intro ----- */
+.why-remix-alt-heading {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.why-remix-alt-heading h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  color: #fff;
+}
+
+/* Subtle orange/red “underline” below the H2 */
+.why-remix-alt-heading h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #f05a28; /* or your desired shade of red/orange */
+  margin: 0.5rem auto 0;
+}
+
+.why-remix-lead {
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ----- Cards Grid ----- */
+.why-remix-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-remix-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.why-remix-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Circular red icon area at top (you can swap text for an actual icon) */
+.why-remix-icon {
+  width: 50px;
+  height: 50px;
+  background: #f05a28;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.why-remix-card h3 {
+  color: #fff;
+  margin-bottom: 0.8rem;
+}
+
+.why-remix-card p {
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* ----- CTA Button ----- */
+.why-remix-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.why-remix-btn {
+  display: inline-block;
+  background: #f05a28;
+  color: #fff;
+  padding: 0.65rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.why-remix-btn:hover {
+  background: #cc4a20; /* darker shade of orange */
+  transform: translateY(-2px);
+}
+/***************************************************************
+  5) HISTORY TEASER
+***************************************************************/
+.history-teaser {
+  background: #1a1a1a; /* replaced #f4f4f4 with dark */
+  padding: 4rem 1rem;
+  text-align: center;
+  color: #ccc;
+}
+.history-teaser h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.history-teaser p {
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+.btn-outline {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 2px solid #f05a28;
+  color: #f05a28;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn-solid {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 2px solid #f05a28;
+  color: #f05a28;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn-outline:hover {
+  background: #f05a28;
+  color: #fff;
+}
+
+/***************************************************************
+  6) PROCESS SECTION
+***************************************************************/
+.process-layers {
+  position: relative;
+  min-height: 80vh;
+  overflow: hidden;
+  color: #fff;
+  padding: 4rem 1rem;
+}
+.process-bg-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url("../assets/img/16.jpg") center/cover no-repeat;
+  z-index: 0;
+}
+.process-bg-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  z-index: 1;
+}
+.process-layers-content {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.process-steps-container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.process-step-card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  position: relative;
+  min-height: 200px;
+  z-index: 2;
+}
+.process-step-card:hover {
+  transform: translateY(-4px);
+}
+.step-number {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  background: #f05a28;
+  width: 50px; height: 50px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+.process-step-card h3 {
+  margin-top: 1.5rem;
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+  color: #fff;
+}
+.process-step-card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #eee;
+}
+
+/***************************************************************
+  7) SERVICES (TABBED)
+***************************************************************/
+.services-scene {
+  position: relative;
+  padding: 5rem 1rem;
+  color: #fff;
+  overflow: hidden;
+}
+.services-bg-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url("assets/img/zz.webp") center/cover no-repeat;
+  z-index: -2;
+}
+.services-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.4) 80%);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  z-index: -1;
+}
+.services-content-wrap {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.services-content-wrap .section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: #fff;
+}
+.services-tabs-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.svc-tab-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.svc-tab-btn.active {
+  background: #f05a28;
+  border-color: #f05a28;
+}
+.svc-tab-btn:hover {
+  transform: translateY(-2px);
+}
+.services-panels-area {
+  position: relative;
+}
+.services-panel {
+  display: none;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  padding: 2rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  transition: opacity 0.4s, transform 0.4s;
+}
+.services-panel.active {
+  display: block;
+  animation: panelFade 0.6s ease;
+}
+@keyframes panelFade {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+.services-panel-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+.svc-text-side {
+  flex: 1 1 350px;
+  min-width: 260px;
+  color: #fff;
+}
+.svc-text-side h3 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  color: #fff;
+}
+.svc-text-side p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ddd;
+}
+.svc-text-side ul {
+  margin-bottom: 1.5rem;
+  padding-left: 1.2rem;
+}
+.svc-text-side li {
+  margin-bottom: 0.5rem;
+}
+.svc-media-side, .svc-image-side {
+  flex: 1 1 350px;
+  min-width: 260px;
+}
+.svc-media-side img,
+.svc-media-side video,
+.svc-image-side img,
+.svc-image-side video {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/***************************************************************
+  8) SCENIC-LATERAL BLOCKS
+***************************************************************/
+/* Scenic-Lateral VIDEO Layout */
+***************************************************************
+  SCENIC VIDEO SECTION
+***************************************************************/
+
+.scenic-lateral-video {
+  position: relative;
+  min-height: 60vh;        /* Du kannst 100vh nutzen, wenn Vollbild gewünscht */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* Video im Hintergrund */
+.scenic-video-wrapper {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden; /* Falls Video größer als Container */
+}
+
+.scenic-video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Leichtes Overlay in Schwarz-Silber Look */
+.scenic-overlay {
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Du kannst hier mit dem Gradient experimentieren, 
+     z.B. mehr Silber (#bbb) anstatt reinem Schwarz. */
+  background: linear-gradient(
+    115deg,
+    rgba(0,0,0,0.5) 30%, 
+    rgba(160,160,160,0.1) 70%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Text & Content */
+.scenic-inner {
+  position: relative;
+  z-index: 2;  /* Text oben */
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;   /* Abstand nach Bedarf */
+  text-align: left;       /* oder center, je nach Geschmack */
+}
+
+.scenic-text-col h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  /* Schattierung für Lesbarkeit */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+.scenic-text-col p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #eee;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.scenic-text-col .accent {
+  color: #ff3c2b; /* Knalliges Rot für Hervorhebungen */
+  font-weight: 700;
+}
+.cta-btn {
+  display: inline-block;
+  background: #ff3c2b;   /* Rotes Button-Hintergrund */
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s;
+}
+.cta-btn:hover {
+  background: #e53526; 
+  transform: scale(1.05);
+}
+
+/***************************************************************
+  ANIMATION (FADE-IN)
+***************************************************************/
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeAnim 1.2s ease forwards;
+}
+@keyframes fadeAnim {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .appointment-cta h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  .appointment-cta p {
-    max-width: 600px;
-    margin: 0 auto 2rem;
-    line-height: 1.6;
-    color: #555;
-  }
-  .btn-large {
-    display: inline-block;
-    padding: 0.8rem 1.6rem;
-    background: #181844;
-    color: #fff;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: background 0.3s;
-  }
-  .btn-large:hover {
-    background: #12163b;
-  }
+}
+/***************************************************************
+  9) TESTIMONIALS (SCENIC)
+***************************************************************/
+.testimonials-scenic {
+  position: relative;
+  padding: 4rem 1rem;
+  color: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+.testimonials-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url("../assets/img/10.jpg") center/cover no-repeat;
   
-  /***************************************************************
-    12) FOOTER
-  ***************************************************************/
-  .footer {
-    background: #e0e1f2;
+}
+.testimonials-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.08)
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  z-index: -1;
+}
+.testimonials-content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.testimonials-content h2 {
+  font-size: 2rem;^
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+.testimonial-slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.testimonial-slide {
+  display: none;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(30px);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.testimonial-slide.active {
+  display: block;
+  animation: fadeInSlide 0.6s ease;
+}
+@keyframes fadeInSlide {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+.testimonial-text {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.client-name {
+  font-weight: 600;
+  color: #ffc; 
+}
+
+/* Arrows */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f05a28;
+  color: #fff;
+  border: none;
+  width: 40px; height: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+.slider-arrow:hover {
+  opacity: 1;
+}
+.left-arrow {
+  left: 0; margin-left: -45px;
+}
+.right-arrow {
+  right: 0; margin-right: -45px;
+}
+.slider-dots {
+  margin-top: 1rem;
+}
+.dot {
+  display: inline-block;
+  width: 10px; 
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 5px;
+  background: #ddd;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.dot.active {
+  background: #f05a28;
+}
+
+/***************************************************************
+  10) NEWSLETTER CTA
+***************************************************************/
+.newsletter-scenic {
+  position: relative;
+  padding: 4rem 1rem;
+  color: #fff;
+  overflow: hidden;
+  text-align: center;
+}
+.newsletter-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url("assets/img/a1be.jpg") center/cover no-repeat;
+  z-index: -2;
+}
+.newsletter-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  z-index: -1;
+}
+.newsletter-content {
+  max-width: 700px;
+  margin: 0 auto;
+  backdrop-filter: blur(5px);
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 2rem;
+}
+.newsletter-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.newsletter-content p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+#newsletterFormDe, #newsletterFormEn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#newsletterFormDe input[type="email"], 
+#newsletterFormEn input[type="email"] {
+  padding: 0.7rem;
+  border-radius: 4px;
+  border: 1px solid #999;
+  outline: none;
+}
+.form-group {
+  font-size: 0.9rem;
+  text-align: left;
+  color: #fff;
+}
+.btn-newsletter {
+  display: inline-block;
+  background: #f05a28;
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.btn-newsletter:hover {
+  background: #d54f22;
+}
+
+/***************************************************************
+  11) APPOINTMENT CTA
+***************************************************************/
+.appointment-scenic {
+  position: relative;
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+.appointment-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url("../assets/img/3.jpg") center/cover no-repeat;
+
+}
+.appointment-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 85%);
+}
+.appointment-content {
+  max-width: 800px;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 2rem;
+}
+.appointment-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.appointment-content p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #f8f8f8;
+}
+.btn-appointment {
+  display: inline-block;
+  background: #f05a28;
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-appointment:hover {
+  background: #d54f22;
+  transform: translateY(-2px);
+}
+
+/***************************************************************
+  12) FOOTER
+***************************************************************/
+.footer {
+  background: #1a1a1a;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 3rem;
+  border-top: 1px solid #333;
+}
+.footer p {
+  margin-bottom: 0.5rem;
+}
+.footer a {
+  color: #bbb;
+  text-decoration: underline;
+}
+.footer a:hover {
+  color: #fff;
+}
+
+/***************************************************************
+  13) RESPONSIVE TWEAKS
+***************************************************************/
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
+    clip-path: none;
+    background: #222;
     text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.9rem;
-    color: #444;
   }
-  .footer p {
-    margin-bottom: 0.5rem;
+  .hero-angled-image {
+    margin-top: 2rem;
   }
-  
-  /* Language Toggle Utility Class */
-  .hidden {
-    display: none;
+  .approach-split {
+    flex-direction: column;
   }
+  .advantages-scroll-wrapper {
+    padding-bottom: 1.5rem;
+  }
+}

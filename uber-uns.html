@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Über uns – Job Werke d.o.o. | Ihre Experten für Arbeitsvermittlung & Dienstleistung</title>
+  <title>Über uns – Job Werke d.o.o.</title>
   <meta 
     name="description" 
     content="Erfahren Sie, wie Job Werke d.o.o. gegründet wurde, welche Visionen uns antreiben und wie wir Unternehmen in Europa mit Fachkräften aus aller Welt verbinden – als Arbeitsvermittler und Dienstleister." 
@@ -14,29 +14,16 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
-  
-  <!-- Link to your external CSS file -->
+
+  <!-- Link to external CSS -->
   <link rel="stylesheet" href="css/uber-uns.css" />
 </head>
-
 <body>
 
-  <!-- NAVIGATION BAR -->
+  <!-- ========== NAVIGATION BAR ========== -->
   <header class="navbar">
     <div class="navbar__logo">
-      <a href="#">
-        <video 
-        class="navbar-logo-video"
-        autoplay
-        muted
-        loop
-        playsinline
-      >
-        <source src="assets/img/logogo.mp4" type="video/mp4" />
-        <!-- Fallback text if video fails to load -->
-        Your browser does not support the video tag.
-      </video>
-      </a>
+      <img src="assets/videos/logo33.png" style="max-height: 50px; width: auto;" />
     </div>
 
     <!-- HAMBURGER ICON (mobile) -->
@@ -56,7 +43,6 @@
         <a href="arbeiten.html">Mit uns arbeiten</a>
         <a href="kontakt.html">Kontakt</a>
       </div>
-      
       <!-- ENGLISH LINKS -->
       <div class="navbar__links english hidden">
         <a href="index.html?lang=en">Home</a>
@@ -65,11 +51,8 @@
         <a href="arbeiten.html?lang=en">Work With Us</a>
         <a href="kontakt.html?lang=en">Contact</a>
       </div>
-      
-      <!-- LANGUAGE TOGGLE BUTTON -->
-      <button id="toggleLang" class="lang-btn">
-        English
-      </button>
+      <!-- LANGUAGE TOGGLE -->
+      <button id="toggleLang" class="lang-btn">English</button>
     </nav>
   </header>
 
@@ -77,518 +60,533 @@
        GERMAN CONTENT
   +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div class="german">
-    <!-- ========== HERO BANNER (GER) ========== -->
-    <section class="about-hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>Wer wir sind und was uns antreibt</h1>
+    <!-- ========== HERO SECTION (GER) ========== -->
+    <section class="about-hero-ger">
+      <div class="hero-container">
+        <!-- Left Column: Image or Video -->  
+        <div class="hero-image">
+          <!-- Placeholder or scenic image -->
+         <img src="assets/img/29.jpg" alt="Unsere Geschichte">
+        </div>
+        <!-- Right Column: Intro Text -->
+        <div class="hero-text">
+          <h1>Wer wir sind und was uns antreibt</h1>
+          <p>
+            Entdecken Sie unsere Reise von 
+            <strong>Remix</strong> zu Job Werke d.o.o., 
+            wo wir als <strong>Arbeitsvermittler</strong> 
+            und <strong>Dienstleister</strong> europaweit 
+            Fachkräfte mit Unternehmen verbinden.
+          </p>
+          <p>
+            Erfahren Sie mehr über unsere Vision, 
+            unsere Kultur und das Team, das hinter 
+            unserem Erfolg steht.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOUNDING STORY (GER) ========== -->
+    <section class="founding-cards-ger">
+      <h2>Unsere Anfänge</h2>
+      <div class="founding-cards-container">
+        <!-- Card 1 -->
+        <div class="founding-card">
+          <div class="founding-date">2021</div>
+          <h3>Gründung von Remix</h3>
+          <p>
+            Start in Kroatien mit <em>ausgezeichneten Bau-Dienstleistungen</em> 
+            in Kroatien und Deutschland. 
+            Schnell bekannt für Qualität und Zuverlässigkeit.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div class="founding-card">
+          <div class="founding-date">2023</div>
+          <h3>Partnerschaft mit Trinity (Slowenien)</h3>
+          <p>
+            Beschleunigte Visa- und A1-Prozesse durch unsere 
+            Kooperation in Slowenien. 
+            Ermöglicht schnelle und legale Vermittlung 
+            internationaler Fachkräfte.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div class="founding-card">
+          <div class="founding-date">2023</div>
+          <h3>International Deutschsprach</h3>
+          <p>
+            Sprachtrainings &amp; interkulturelle Vorbereitung, 
+            damit unsere Talente optimal in deutsche Teams passen.
+          </p>
+        </div>
+        <!-- Card 4 -->
+        <div class="founding-card">
+          <div class="founding-date">2025</div>
+          <h3>Expansion nach Deutschland</h3>
+          <p>
+            Geplante offizielle Niederlassung 
+            für persönlichere Betreuung und schnellere Prozesse – 
+            ob in Bau, Gastro oder anderen Branchen.
+          </p>
+        </div>
+      </div>
+      <!-- Founder Quote / Info -->
+      <blockquote class="founder-quote">
+        „Wir möchten Menschen und Chancen zusammenbringen – egal woher sie kommen.“
+        <br />– Drago Ćosić, Gründer &amp; CEO
+      </blockquote>
+    </section>
+
+    <!-- ========== CULTURE & PHILOSOPHY (GER) - HORIZONTAL CAROUSEL ========== -->
+    <section class="culture-carousel-ger">
+      <h2>Unsere Kultur &amp; Philosophie</h2>
+      <p class="carousel-intro">
+        Vielfalt prägt unsere Arbeit: Sprachen, Ideen, Persönlichkeiten –
+        alles fließt zusammen und treibt Innovation und Qualität an.
+      </p>
+      <div class="culture-carousel-track">
+        <!-- Slide 1 -->
+        <div class="culture-slide">
+           <img src="assets/img/26.jpg" alt="">
+          <div class="culture-caption">
+            <p>
+              Team-Events und interkulturelle Workshops 
+              stärken Zusammenhalt und fördern Kreativität.
+            </p>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="culture-slide">
+          <img src="assets/img/24.jpg" alt="">
+          <div class="culture-caption">
+            <p>
+              Regelmäßige Schulungen halten uns 
+              auf dem neuesten Stand – fachlich und kulturell.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STEPS / PROCESS (GER) ========== -->
+    <section class="steps-process-ger">
+      <h2>So funktioniert es</h2>
+      <div class="steps-grid">
+        <!-- Step 1 -->
+        <div class="step-box">
+          <h3>1. Beratung</h3>
+          <p>
+            Wir analysieren Ihren Bedarf, 
+            lernen Ihre Ziele kennen und planen die ideale Strategie.
+          </p>
+        </div>
+        <!-- Step 2 -->
+        <div class="step-box">
+          <h3>2. Formalitäten &amp; Fachkräfte</h3>
+          <p>
+            Von Visa-Prozessen bis zur A1-Bescheinigung – 
+            wir übernehmen die bürokratischen Hürden und 
+            stellen qualifizierte Fachkräfte zur Verfügung.
+          </p>
+        </div>
+        <!-- Step 3 -->
+        <div class="step-box">
+          <h3>3. Umsetzung</h3>
+          <p>
+            Sobald alles steht, starten wir das Projekt 
+            – effizient, zuverlässig und mit 
+            kontinuierlicher Qualitätskontrolle.
+          </p>
+        </div>
+        <!-- Step 4 -->
+        <div class="step-box">
+          <h3>4. Begleitung &amp; Erfolg</h3>
+          <p>
+            Wir bleiben an Ihrer Seite, 
+            bieten fortlaufende Unterstützung 
+            und passen uns schnell an neue Anforderungen an.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ACHIEVEMENTS (GER) ========== -->
+    <section class="achievements-row-ger">
+      <h2>Unsere Meilensteine</h2>
+      <div class="achievements-row">
+        <div class="achievement-item">
+          <h3>50+</h3>
+          <p>Erfolgreiche Baustellen</p>
+        </div>
+        <div class="achievement-item">
+          <h3>1.000+</h3>
+          <p>Vermittelte Fachkräfte</p>
+        </div>
+        <div class="achievement-item">
+          <h3>Award</h3>
+          <p>“Bester Bau-Handlungsdienstleister” (via Remix)</p>
+        </div>
+      </div>
+      <p class="achievements-note">
+        Mehr Infos zu unseren Leistungen oder rechtlichen Rahmenbedingungen?
+        <br />
+        <a href="dienstleistungen.html?lang=de">Dienstleistungen</a> &nbsp;|&nbsp;
+        <a href="arbeiten.html?lang=de">Mit uns arbeiten</a>
+      </p>
+    </section>
+
+    <!-- ========== TEAM (GER) ========== -->
+    <section class="team-grid-ger">
+      <h2>Unser Team</h2>
+      <p>
+        Lernen Sie die Experten kennen, 
+        die unsere Vision vorantreiben und täglich 
+        Fachkräfte erfolgreich vermitteln.
+      </p>
+      <div class="team-card-grid">
+        <!-- Member 1 -->
+        <div class="team-card">
+          <img src="assets/img/34.png" alt="CEO Foto">
+          <h3>Drago Ćosić</h3>
+          <span class="role">CEO &amp; Gründer</span>
+          <p>
+            „Unsere Zukunft liegt in der Vernetzung 
+            von Menschen und Märkten.“
+          </p>
+        </div>
+        <!-- Member 2 -->
+        <div class="team-card">
+          <img src="assets/img/3.jpg" alt="Recruiting Leitung Foto">
+          <h3>Lannon Lee</h3>
+          <span class="role">Leitung Recruiting</span>
+          <p>
+            „Der Mensch steht im Mittelpunkt – alles andere folgt.“
+          </p>
+        </div>
+        <!-- Member 3 -->
+        <div class="team-card">
+          <img src="assets/img/3.jpg" alt="Projektmanager Foto">
+          <h3>Milan Adhikari</h3>
+          <span class="role">Projektmanager Dienstleistung</span>
+          <p>
+            „Effizienz ist der Schlüssel zu reibungsloser Servicequalität.“
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== IMPACT / COMMUNITY (GER) ========== -->
+    <section class="impact-highlight-ger">
+      <h2>Unser Engagement</h2>
+      <p>
+        Wir fördern Sprach- und Berufstrainings in den Herkunftsländern 
+        unserer Fachkräfte – für nachhaltige Integration 
+        und echten kulturellen Austausch.
+      </p>
+      <div class="impact-img-row">
+        <img src="assets/img/25.jpg" alt="Sprachkurs">
+        <img src="assets/img/26.jpg" alt="Training im Partnerland">
+      </div>
+    </section>
+
+    <!-- ========== VISION / FUTURE (GER) ========== -->
+    <section class="vision-section-ger">
+      <div class="vision-content">
+        <h2>Unser Blick nach vorn</h2>
         <p>
-          Unsere Reise von <strong>Remix</strong> (unser Mutterunternehmen) 
-          bis zur Gründung von Job Werke d.o.o.: Erfahren Sie, 
-          wie wir als <strong>Arbeitsvermittler</strong> und 
-          <strong>Dienstleister</strong> europaweit Brücken bauen, 
-          um Fachkräfte aus aller Welt mit Unternehmen zu verbinden. 
-          Lernen Sie unsere Geschichte, Kultur und das Team kennen, 
-          das hinter unserem Erfolg steht.
+          Ob digitale Rekrutierung, neue Branchen oder weitere Standorte – 
+          wir möchten Unternehmen und Mitarbeiter weltweit verbinden. 
+          Dabei bleibt unser Ziel klar: <strong>nachhaltige Vermittlung</strong>, 
+          die für alle Seiten echten Mehrwert schafft.
+        </p>
+        <p>
+          Ab 2025 planen wir eine deutsche Niederlassung, um 
+          unsere Kunden noch enger zu betreuen. 
+          Wir freuen uns auf gemeinsame Projekte und Wachstum!
         </p>
       </div>
     </section>
 
-    <!-- ========== FOUNDING STORY & TIMELINE (GERMAN) ========== -->
-    <section class="founding-section" id="time">
-      <div class="founding-top">
-        <div class="founding-text">
-          <h2>Unsere Anfänge</h2>
-          <p>
-            Job Werke d.o.o. entstand als Tochterfirma von 
-            <strong>Remix</strong> (gegründet 2021), das 
-            mit <em>ausgezeichneten Bau-Dienstleistungen</em> 
-            in Kroatien und Deutschland erste Erfolge feierte.  
-            Um noch mehr Unternehmen zu erreichen und nicht nur 
-            auf Bauprojekte begrenzt zu sein, gründeten wir 
-            Job Werke d.o.o. – mit dem Ziel, <strong>Fachkräfte 
-            europaweit zu vermitteln</strong> und 
-            <strong>komplette Dienstleistungsaufträge</strong> 
-            in verschiedenen Branchen abzudecken.
-          </p>
-          <p>
-            2023 gewann unsere Vision weiteren Schub durch 
-            eine Schlüssel-Partnerschaft in Slowenien, 
-            bei der <strong>Trinity</strong> die Abwicklung 
-            wichtiger Visa- und A1-Prozesse erleichtert. 
-            Zeitgleich führten wir das 
-            <em>International Deutschsprach</em>-Programm ein, 
-            um Kandidaten bestmöglich auf den deutschen Markt vorzubereiten.  
-            Und ab 2025 planen wir eine offizielle Niederlassung 
-            in Deutschland, um unsere Kunden noch direkter zu betreuen.
-          </p>
-          <blockquote>
-            “Wir möchten Menschen und Chancen zusammenbringen –
-            ganz gleich, wo sie herkommen oder wo sie hinwollen.”  
-            <br/>– Drago Ćosić, Gründer &amp; CEO
-          </blockquote>
-        </div>
-        <div class="founding-img">
-          <img src="assets/img/team-placeholder.jpg" alt="Historische Aufnahme: Gründerteam von Job Werke">
-        </div>
+    <!-- ========== CTA (GER) ========== -->
+    <section class="cta-split-ger">
+      <div class="cta-left">
+        <h2>Bereit, mehr zu erfahren?</h2>
+        <p>
+          Entdecken Sie unsere 
+          <a href="dienstleistungen.html?lang=de">Dienstleistungen</a> 
+          oder <a href="arbeiten.html?lang=de">arbeiten Sie mit uns</a> direkt zusammen.
+        </p>
       </div>
-
-      <!-- TIMELINE (GERMAN) -->
-      <div class="full-timeline">
-        <div class="timeline-item">
-          <span class="timeline-date">2021</span>
-          <h3>Gründung von Remix</h3>
-          <p>
-            In Kroatien als Bau-Dienstleister gestartet und 
-            rasch für Qualität &amp; Zuverlässigkeit ausgezeichnet.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2023</span>
-          <h3>Partnerschaft mit Trinity (Slowenien)</h3>
-          <p>
-            Ein wichtiger Schritt, um internationale Fachkräfte 
-            schnell und legal für europäische Projekte einzusetzen.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2023</span>
-          <h3>International Deutschsprach</h3>
-          <p>
-            Sprachtrainings &amp; interkulturelle Vorbereitung, 
-            damit unsere Talente perfekt in deutsche Teams passen.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2025</span>
-          <h3>Expansion nach Deutschland</h3>
-          <p>
-            Eigene Niederlassung für persönlicheren Service 
-            und schnellere Prozesse – 
-            von der Baubranche bis zur Hotellerie.
-          </p>
-        </div>
+      <div class="cta-right">
+        <a href="arbeiten.html?lang=de" class="btn">Mit uns arbeiten</a>
+        <a href="kontakt.html?lang=de#name" class="btn">Kontakt aufnehmen</a>
       </div>
-    </section>
-
-    <!-- ========== CULTURE & PHILOSOPHY (GERMAN) ========== -->
-    <section class="culture">
-      <h2>Unsere Kultur &amp; Philosophie</h2>
-      <p class="culture-intro">
-        Unsere Arbeit lebt von Vielfalt: Verschiedene Sprachen, 
-        Ideen und Persönlichkeiten treffen in unseren Büros zusammen. 
-        Dieses Miteinander inspiriert uns, immer neue Wege zu gehen 
-        und unsere Kunden mit maßgeschneiderten Lösungen zu begeistern.
-      </p>
-      <div class="culture-gallery">
-        <div class="culture-item">
-          <img src="assets/img/team.jpg" alt="Team-Event im Büro">
-          <p>
-            Interkulturelle Team-Events fördern Zusammenhalt und 
-            schaffen ein Umfeld, in dem jeder seine Stärken entfalten kann.
-          </p>
-        </div>
-        <div class="culture-item">
-          <img src="assets/img/workshops.jpg" alt="Workshop: Interkulturelle Schulung">
-          <p>
-            Regelmäßige Workshops und Trainings halten 
-            uns fachlich und kulturell auf dem neuesten Stand.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== TEAM SPOTLIGHTS (GERMAN) ========== -->
-    <section class="team-spotlights" id="teamSpotlightsDe">
-      <h2>Das Team hinter Job Werke</h2>
-      <p>
-        Innovative Köpfe, erfahrene Praktiker und kulturelle Brückenbauer: 
-        Gemeinsam sorgen wir dafür, dass internationale Fachkräfte 
-        und europäische Unternehmen perfekt harmonieren.
-      </p>
-    
-      <div class="team-spotlight-row">
-        <!-- Drago Ćosić -->
-        <div class="spotlight-card">
-          <h3>Drago Ćosić</h3>
-          <div class="role">CEO &amp; Gründer</div>
-          <blockquote class="short-quote">
-            „Unsere Zukunft liegt in der Vernetzung von Menschen und Märkten.“
-          </blockquote>
-          <p class="bio">
-            Entwickelt Visionen, knüpft internationale Partnerschaften 
-            und erschließt neue Märkte.
-          </p>
-        </div>
-    
-        <!-- Lenny Adhikari -->
-        <div class="spotlight-card">
-          <h3>Lannon Lee</h3>
-          <div class="role">Leitung Recruiting</div>
-          <blockquote class="short-quote">
-            „Der Mensch steht im Mittelpunkt – alles andere folgt.“
-          </blockquote>
-          <p class="bio">
-            Verbindet Menschen und Projekte mit Leidenschaft –
-            von der Erstberatung bis zur erfolgreichen Vermittlung.
-          </p>
-        </div>
-    
-        <!-- Milan Adhikari -->
-        <div class="spotlight-card">
-          <h3>Milan Adhikari</h3>
-          <div class="role">Projektmanager Dienstleistung</div>
-          <blockquote class="short-quote">
-            „Effizienz ist der Schlüssel zu reibungsloser Servicequalität.“
-          </blockquote>
-          <p class="bio">
-            Kümmert sich um unsere Service-Teams vor Ort und garantiert 
-            einen reibungslosen Projektablauf – schnell, exakt, zuverlässig.
-          </p>
-        </div>
-      </div><!-- /.team-spotlight-row -->
-    </section>
-
-    <!-- ========== ACHIEVEMENTS (GERMAN) ========== -->
-    <section class="achievements">
-      <h2>Unsere Meilensteine</h2>
-      <div class="achievements-grid">
-        <div class="achievement-card">
-          <h3>50+ erfolgreiche Baustellen</h3>
-          <p>
-            Dank unserer Muttergesellschaft Remix konnten wir in Deutschland 
-      zahlreiche Bauprojekte erfolgreich abschließen.
-          </p>
-        </div>
-        <div class="achievement-card">
-          <h3>1.000+ vermittelte Fachkräfte</h3>
-          <p>
-            Wir feiern jede erfolgreiche Vermittlung – 
-            denn sie ist für Unternehmen und Mitarbeiter ein Gewinn.
-          </p>
-        </div>
-        <div class="achievement-card"><h3>Auszeichnung “Bester Bau-Handlungsdienstleister" (via Remix)</h3>
-          <p>
-            Remix erhielt diese Ehrung für herausragende Leistungen im Bausektor.
-          </p>
-        </div>
-      </div>
-      <p>
-        Möchten Sie mehr über unsere konkreten Leistungen 
-        und rechtliche Rahmenbedingungen erfahren? 
-        Wir beraten Sie gerne.
-      </p>
-      <div class="achievements-cta">
-        <a class="cta-link" href="dienstleistungen.html?lang=de">Dienstleistungen</a>
-        <a class="cta-link" href="arbeiten.html?lang=de">Mit uns arbeiten</a>
-      </div>
-    </section>
-
-    <!-- ========== IMPACT / COMMUNITY (GERMAN) ========== -->
-    <section class="impact">
-      <h2>Unser Engagement</h2>
-      <p>
-        Weit über das Tagesgeschäft hinaus unterstützen wir 
-        Sprach- und Berufstrainings in den Herkunftsländern unserer 
-        Fachkräfte. Damit fördern wir Integration, Entwicklung 
-        und echten kulturellen Austausch.
-      </p>
-      <div class="impact-images">
-        <img src="assets/img/sprachkurs.jpg" alt="Sprachkurs für internationale Fachkräfte">
-        <img src="assets/img/Global Connection.jpg" alt="Praktisches Training im Partnerland">
-      </div>
-    </section>
-
-    <!-- ========== VISION / FUTURE (GERMAN) ========== -->
-    <section class="vision-future">
-      <h2>Unser Blick nach vorn</h2>
-      <p>
-        Ob digitale Rekrutierungsprozesse, neue Branchen 
-        oder weitere Standorte – 
-        wir möchten Unternehmen und Mitarbeiter weltweit verbinden. 
-        Dabei bleibt unser Ziel klar: 
-        <strong>Nachhaltige Vermittlung &amp; Dienstleistung</strong>, 
-        die für alle Seiten echten Mehrwert schafft.
-      </p>
-      <p>
-        Mit der für 2025 geplanten deutschen Niederlassung 
-        rücken wir noch näher an unsere Kunden in Deutschland heran. 
-        Wir freuen uns auf gemeinsame Projekte und Wachstum!
-      </p>
-    </section>
-
-    <!-- ========== FINAL CTA (GERMAN) ========== -->
-    <section class="cta">
-      <h2>Werden Sie Teil unserer Reise</h2>
-      <p>
-        Erfahren Sie mehr über unsere 
-        <a href="dienstleistungen.html?lang=de" style="color: #fff;">Dienstleistungen</a> 
-        oder 
-        <a href="arbeiten.html?lang=de" style="color: #fff;">arbeiten Sie direkt mit uns</a>, 
-        um Ihren Personalbedarf in Bau, Gastro, Büro &amp; mehr 
-        effizient zu decken.
-      </p>
-      <a href="arbeiten.html?lang=de" class="btn">Mit uns arbeiten</a>
-      <a href="kontakt.html?lang=de#name" class="btn">Kontakt aufnehmen</a>
     </section>
   </div>
   <!-- END of German content -->
+
 
   <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
        ENGLISH CONTENT
   +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div class="english hidden">
-    <!-- ========== HERO BANNER (EN) ========== -->
-    <section class="about-hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>Who We Are and What Drives Us</h1>
+    <!-- ========== HERO SECTION (EN) ========== -->
+    <section class="about-hero-en">
+      <div class="hero-container">
+        <!-- Left Column: Image or Video -->
+        <div class="hero-image">
+          <img src="assets/img/29.jpg" alt="Our Story">
+        </div>
+        <!-- Right Column: Intro Text -->
+        <div class="hero-text">
+          <h1>Who We Are &amp; What Drives Us</h1>
+          <p>
+            Discover our evolution from 
+            <strong>Remix</strong> to Job Werke d.o.o., 
+            bridging global <strong>talent</strong> 
+            and European <strong>business</strong> 
+            through direct recruitment or full-service solutions.
+          </p>
+          <p>
+            Learn our vision, our team culture, 
+            and the values that shape our success.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOUNDING STORY (EN) ========== -->
+    <section class="founding-cards-en">
+      <h2>Our Beginnings</h2>
+      <div class="founding-cards-container">
+        <!-- Card 1 -->
+        <div class="founding-card">
+          <div class="founding-date">2021</div>
+          <h3>Remix Founded</h3>
+          <p>
+            Launched in Croatia with 
+            <em>award-winning construction services</em>. 
+            Quickly recognized for quality &amp; reliability.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div class="founding-card">
+          <div class="founding-date">2023</div>
+          <h3>Partnership in Slovenia</h3>
+          <p>
+            Trinity partnership sped up 
+            visa &amp; A1 processing, enabling 
+            a faster, legal deployment of talent across Europe.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div class="founding-card">
+          <div class="founding-date">2023</div>
+          <h3>International Deutschsprach</h3>
+          <p>
+            Language &amp; cultural training 
+            for seamless integration into German-speaking teams.
+          </p>
+        </div>
+        <!-- Card 4 -->
+        <div class="founding-card">
+          <div class="founding-date">2025</div>
+          <h3>Germany Expansion</h3>
+          <p>
+            Official branch planned for more 
+            personalized service and faster processes – 
+            from construction to hospitality and beyond.
+          </p>
+        </div>
+      </div>
+      <!-- Founder Quote / Info -->
+      <blockquote class="founder-quote">
+        “Our aim is to connect people and opportunities – no matter their origin.”
+        <br />– Drago Ćosić, Founder &amp; CEO
+      </blockquote>
+    </section>
+
+    <!-- ========== CULTURE & PHILOSOPHY (EN) - HORIZONTAL CAROUSEL ========== -->
+    <section class="culture-carousel-en">
+      <h2>Our Culture &amp; Philosophy</h2>
+      <p class="carousel-intro">
+        A melting pot of languages, backgrounds, 
+        and ideas fuels our innovation and drives quality results.
+      </p>
+      <div class="culture-carousel-track">
+        <!-- Slide 1 -->
+        <div class="culture-slide">
+          <img src="assets/img/26.jpg" alt="Team event">
+          <div class="culture-caption">
+            <p>
+              Team-building events and workshops 
+              spark new ideas and nurture collaboration.
+            </p>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="culture-slide">
+          <img src="assets/img/24.jpg" alt="Workshop session">
+          <div class="culture-caption">
+            <p>
+              Ongoing training keeps us updated 
+              on industry knowledge and cultural insights.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STEPS / PROCESS (EN) ========== -->
+    <section class="steps-process-en">
+      <h2>Our Approach</h2>
+      <div class="steps-grid">
+        <!-- Step 1 -->
+        <div class="step-box">
+          <h3>1. Consultation</h3>
+          <p>
+            We assess your needs and objectives 
+            to create a tailored strategy.
+          </p>
+        </div>
+        <!-- Step 2 -->
+        <div class="step-box">
+          <h3>2. Paperwork &amp; Talent</h3>
+          <p>
+            From visas to certifications, 
+            we handle the details and 
+            connect you with skilled professionals.
+          </p>
+        </div>
+        <!-- Step 3 -->
+        <div class="step-box">
+          <h3>3. Implementation</h3>
+          <p>
+            Once everything is set, 
+            we launch the project—fast, reliable, 
+            and quality-focused.
+          </p>
+        </div>
+        <!-- Step 4 -->
+        <div class="step-box">
+          <h3>4. Ongoing Support</h3>
+          <p>
+            We stay with you every step, 
+            adapting quickly to new requirements 
+            and ensuring success.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ACHIEVEMENTS (EN) ========== -->
+    <section class="achievements-row-en">
+      <h2>Our Milestones</h2>
+      <div class="achievements-row">
+        <div class="achievement-item">
+          <h3>50+</h3>
+          <p>Successful Construction Projects</p>
+        </div>
+        <div class="achievement-item">
+          <h3>1,000+</h3>
+          <p>Placed Professionals</p>
+        </div>
+        <div class="achievement-item">
+          <h3>Award</h3>
+          <p>“Best Construction Service Provider” (via Remix)</p>
+        </div>
+      </div>
+      <p class="achievements-note">
+        Want to learn more about our services or legal frameworks?
+        <br />
+        <a href="dienstleistungen.html?lang=en">Services</a> &nbsp;|&nbsp;
+        <a href="arbeiten.html?lang=en">Work With Us</a>
+      </p>
+    </section>
+
+    <!-- ========== TEAM (EN) ========== -->
+    <section class="team-grid-en">
+      <h2>Meet the Team</h2>
+      <p>
+        Our experts drive the vision forward, 
+        ensuring talent and businesses connect smoothly.
+      </p>
+      <div class="team-card-grid">
+        <!-- Member 1 -->
+        <div class="team-card">
+          <img src="assets/img/34.png" alt="CEO Photo">
+          <h3>Drago Ćosić</h3>
+          <span class="role">CEO &amp; Founder</span>
+          <p>
+            “Our future relies on bridging cultural gaps and opening new markets.”
+          </p>
+        </div>
+        <!-- Member 2 -->
+        <div class="team-card">
+          <img src="assets/img/3.jpg" alt="Head of Recruiting Photo">
+          <h3>Lannon Lee</h3>
+          <span class="role">Head of Recruiting</span>
+          <p>
+            “People first – everything else follows naturally.”
+          </p>
+        </div>
+        <!-- Member 3 -->
+        <div class="team-card">
+          <img src="assets/img/3.jpg" alt="Project Manager Photo">
+          <h3>Milan Adhikari</h3>
+          <span class="role">Project Manager (Service)</span>
+          <p>
+            “Efficiency is the key to seamless, top-quality service.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== IMPACT / COMMUNITY (EN) ========== -->
+    <section class="impact-highlight-en">
+      <h2>Our Commitment</h2>
+      <p>
+        We support language and skill programs in our candidates’ home countries,
+        fostering long-term integration and cultural exchange.
+      </p>
+      <div class="impact-img-row">
+        <img src="assets/img/25.jpg" alt="Language Classes">
+        <img src="assets/img/26.jpg" alt="Practical Training">
+      </div>
+    </section>
+
+    <!-- ========== VISION / FUTURE (EN) ========== -->
+    <section class="vision-section-en">
+      <div class="vision-content">
+        <h2>Looking Ahead</h2>
         <p>
-          Our path from <strong>Remix</strong> (our parent company) 
-          to founding Job Werke d.o.o.: discover how we connect 
-          international professionals with European businesses, 
-          whether through <strong>direct recruitment</strong> 
-          or <strong>fully outsourced services</strong>. 
-          Learn our story, explore our culture, and meet the team 
-          that powers our success.
+          From digital recruitment to exploring new sectors, 
+          our goal is always to connect people and opportunities 
+          in a sustainable, value-added manner.
+        </p>
+        <p>
+          In 2025, we plan to open a dedicated branch in Germany 
+          for closer client collaboration and growth!
         </p>
       </div>
     </section>
 
-    <!-- FOUNDING STORY & TIMELINE (EN) -->
-    <section class="founding-section" id="time-en">
-      <div class="founding-top">
-        <div class="founding-text">
-          <h2>Our Beginnings</h2>
-          <p>
-            Job Werke d.o.o. emerged as a subsidiary of 
-            <strong>Remix</strong> (est. 2021), which made a name 
-            for itself with award-winning construction services 
-            in Croatia and Germany. Wanting to expand beyond 
-            the construction sector, we founded Job Werke d.o.o. 
-            to provide <strong>professional recruitment</strong> 
-            and <strong>complete service contracts</strong> 
-            in multiple industries.
-          </p>
-          <p>
-            In 2023, a strategic partnership in Slovenia with 
-            <strong>Trinity</strong> boosted our reach 
-            by speeding up visa and A1 processes. 
-            At the same time, our <em>International Deutschsprach</em> 
-            program began preparing candidates 
-            for German-speaking markets. By 2025, 
-            we plan to have our own branch in Germany, 
-            enabling even closer support for clients of all sizes.
-          </p>
-          <blockquote>
-            “We aim to connect people and opportunities –
-            no matter their origin or destination.”
-            <br/>– Drago Ćosić, Founder &amp; CEO
-          </blockquote>
-        </div>
-        <div class="founding-img">
-          <img src="assets/img/team-placeholder.jpg" alt="Historic Photo: Founding Team of Job Werke">
-        </div>
+    <!-- ========== CTA (EN) ========== -->
+    <section class="cta-split-en">
+      <div class="cta-left">
+        <h2>Ready to Learn More?</h2>
+        <p>
+          Discover our 
+          <a href="dienstleistungen.html?lang=en">Services</a> 
+          or <a href="arbeiten.html?lang=en">Work With Us</a> directly.
+        </p>
       </div>
-
-      <!-- FULL TIMELINE (EN) -->
-      <div class="full-timeline">
-        <div class="timeline-item">
-          <span class="timeline-date">2021</span>
-          <h3>Remix Founded</h3>
-          <p>
-            Launches in Croatia with a vision of 
-            “Best Staffing Partner,” earning quick acclaim 
-            in construction services.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2023</span>
-          <h3>Partnership in Slovenia &amp; German-Language Focus</h3>
-          <p>
-            A crucial move to offer both direct hires and 
-            complete service teams, supported by faster 
-            permit approvals.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2023</span>
-          <h3>International Deutschsprach</h3>
-          <p>
-            Emphasizing language and cultural training, 
-            ensuring talent fits smoothly into German-speaking workplaces.
-          </p>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-date">2025</span>
-          <h3>Expansion to Germany</h3>
-          <p>
-            Our own local branch for speedier processes, 
-            regional closeness, and personal consultation – 
-            whether for direct employment or outsourced services.
-          </p>
-        </div>
+      <div class="cta-right">
+        <a href="arbeiten.html?lang=en" class="btn">Work With Us</a>
+        <a href="kontakt.html?lang=en#yourname-en" class="btn">Get in Touch</a>
       </div>
-    </section>
-
-    <!-- CULTURE & PHILOSOPHY (EN) -->
-    <section class="culture">
-      <h2>Our Culture &amp; Philosophy</h2>
-      <p class="culture-intro">
-        Diversity drives us: different languages, backgrounds, 
-        and experiences collide in our offices. This synergy 
-        fuels innovative ideas and ensures we deliver 
-        personalized solutions that delight our clients.
-      </p>
-      <div class="culture-gallery">
-        <div class="culture-item">
-          <img src="assets/img/team.jpg" alt="Team event in the office">
-          <p>
-            Intercultural team evenings and shared expertise 
-            create a welcoming environment where everyone can thrive.
-          </p>
-        </div>
-        <div class="culture-item">
-          <img src="assets/img/zz.webp" alt="Workshop: Intercultural Training">
-          <p>
-            Regular workshops and trainings keep our project managers, 
-            recruiters, and professionals equipped with the latest knowledge.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TEAM SPOTLIGHTS (EN) -->
-    <section class="team-spotlights" id="teamSpotlightsEn">
-      <h2>The Team Behind Job Werke</h2>
-      <p>
-        A blend of innovators, seasoned experts, and cultural connectors:
-        we ensure international professionals and European businesses
-        form perfect matches, whether through recruitment or service contracts.
-      </p>
-    
-      <div class="team-spotlight-row">
-        <!-- Drago Ćosić -->
-        <div class="spotlight-card">
-          <h3>Drago Ćosić</h3>
-          <div class="role">CEO &amp; Founder</div>
-          <blockquote class="short-quote">
-            “Our future relies on bridging cultural gaps and opening new markets.”
-          </blockquote>
-          <p class="bio">
-            Develops our global partner network, coordinating
-            strategic vision and growth.
-          </p>
-        </div>
-    
-        <!-- Lenny Adhikari -->
-        <div class="spotlight-card">
-          <h3>Lannon Lee</h3>
-          <div class="role">Head of Recruiting</div>
-          <blockquote class="short-quote">
-            “People first – everything else will follow.”
-          </blockquote>
-          <p class="bio">
-            Connects people and projects with passion – from initial consultation
-            to successful placement.
-          </p>
-        </div>
-    
-        <!-- Milan Adhikari -->
-        <div class="spotlight-card">
-          <h3>Milan Adhikari</h3>
-          <div class="role">Project Manager (Service)</div>
-          <blockquote class="short-quote">
-            “Efficiency is the key to seamless service delivery.”
-          </blockquote>
-          <p class="bio">
-            Manages our on-site service teams and maintains close client contact
-            to ensure seamless project delivery.
-          </p>
-        </div>
-      </div><!-- /.team-spotlight-row -->
-    </section>
-    <!-- ACHIEVEMENTS (EN) -->
-    <section class="achievements">
-      <h2>Our Milestones</h2>
-      <div class="achievements-grid">
-        <div class="achievement-card">
-          <h3>50+ Successful Construction Projectsn</h3>
-          <p>
-            Thanks to our parent company <em>Remix</em>, we’ve completed numerous 
-      construction sites across Europe with outstanding results.
-          </p>
-        </div>
-        <div class="achievement-card">
-          <h3>1,000+ Placed Professionals</h3>
-          <p>
-            Every successful placement benefits both companies and talent – 
-            a true win-win.
-          </p>
-        </div>
-        <div class="achievement-card">
-          <h3>“Best Construction Service Provider”</h3>
-          <p>
-            was honored for exceptional performance 
-            in the construction sector.
-          </p>
-        </div>
-      </div>
-      <p>
-        Interested in more details about our services or the legal framework? 
-        We’re happy to provide further insights.
-      </p>
-      <div class="achievements-cta">
-        <a class="cta-link" href="dienstleistungen.html?lang=en">Services</a>
-        <a class="cta-link" href="arbeiten.html?lang=en">Work With Us</a>
-      </div>
-    </section>
-
-    <!-- IMPACT / COMMUNITY (EN) -->
-    <section class="impact">
-      <h2>Our Commitment</h2>
-      <p>
-        We go beyond day-to-day operations, supporting language 
-        and vocational programs in our professionals’ home countries. 
-        Our aim is to foster integration, development, 
-        and meaningful cultural exchange.
-      </p>
-      <div class="impact-images">
-        <img src="assets/img/sprachkurs.jpg" alt="Language course for international talents">
-        <img src="assets/img/Global Connection.jpg" alt="Practical training in the partner country">
-      </div>
-    </section>
-
-    <!-- VISION / FUTURE (EN) -->
-    <section class="vision-future">
-      <h2>Looking Ahead</h2>
-      <p>
-        From digital recruitment advancements to exploring new sectors 
-        and regions, our mission remains the same: 
-        <strong>connecting people and opportunities</strong> worldwide 
-        through sustainable placement and service solutions.
-      </p>
-      <p>
-        With our planned German branch in 2025, 
-        we’ll be even closer to our clients in Germany, 
-        ready to collaborate on future growth and success.
-      </p>
-    </section>
-
-    <!-- FINAL CTA (EN) -->
-    <section class="cta">
-      <h2>Join Our Journey</h2>
-      <p>
-        Dive deeper into our 
-        <a href="dienstleistungen.html?lang=en" style="color: #fff;">Services</a>
-        or 
-        <a href="arbeiten.html?lang=en" style="color: #fff;">Work With Us</a> 
-        directly to fulfill your staffing needs across construction, hospitality, office, 
-        and beyond – whether via <em>direct recruitment</em> or a 
-        <em>comprehensive service model</em>.
-      </p>
-      <a href="arbeiten.html?lang=en" class="btn">Work With Us</a>
-      <a href="kontakt.html?lang=en#yourname-en" class="btn">Get in Touch</a>
     </section>
   </div>
   <!-- END of English content -->
@@ -603,10 +601,8 @@
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- Link to your external JS file -->
+  <!-- OPTIONAL: Scripts -->
   <script src="js/uber-uns.js"></script>
-
-  <!-- OPTIONAL: Language toggle script if needed (similar to Home page) -->
   <script>
     // MOBILE NAVBAR
     const mobileToggle = document.getElementById('mobileToggle');
@@ -615,28 +611,17 @@
       navbarMenu.classList.toggle('nav-open');
     });
 
-    // LANGUAGE TOGGLE (if not handled in uber-uns.js)
+    // LANGUAGE TOGGLE
     const langBtn = document.getElementById('toggleLang');
     const germanDivs = document.querySelectorAll('.german');
     const englishDivs = document.querySelectorAll('.english');
     let isGerman = true;
 
     langBtn.addEventListener('click', () => {
-      const scrollY = window.pageYOffset;
-      const docHeight = document.body.scrollHeight;
-      const ratio = docHeight ? (scrollY / docHeight) : 0;
-
       isGerman = !isGerman;
       germanDivs.forEach(el => el.classList.toggle('hidden', !isGerman));
       englishDivs.forEach(el => el.classList.toggle('hidden', isGerman));
-
       langBtn.textContent = isGerman ? 'English' : 'Deutsch';
-
-      setTimeout(() => {
-        const newHeight = document.body.scrollHeight;
-        const newScroll = Math.round(ratio * newHeight);
-        window.scrollTo(0, newScroll);
-      }, 50);
     });
   </script>
 </body>

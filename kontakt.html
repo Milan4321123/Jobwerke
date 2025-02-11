@@ -2,63 +2,50 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Job Werke d.o.o. – Kontakt</title>
-  <meta 
-    name="description" 
-    content="Kontaktieren Sie Job Werke d.o.o. – Ihr Partner für internationales Recruiting. Schreiben Sie uns eine Nachricht oder vereinbaren Sie einen Termin."
+  <title>Kontakt – Job Werke d.o.o.</title>
+  <meta
+    name="description"
+    content="Kontaktieren Sie Job Werke d.o.o. – Ihr Partner für internationales Recruiting. Schreiben Sie uns eine Nachricht, vereinbaren Sie einen Termin oder besuchen Sie uns an unseren Standorten."
   />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Google Font -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
     rel="stylesheet"
   />
-  <!-- FontAwesome (for icons) -->
+  <!-- Optional: FontAwesome (if you want icons) -->
   <script
     src="https://kit.fontawesome.com/a076d05399.js"
     crossorigin="anonymous"
   ></script>
 
-  <!-- Link to your external CSS file -->
+  <!-- Placeholder for your black-silver CSS (to be created next) -->
   <link rel="stylesheet" href="css/kontakt.css" />
 </head>
 <body>
-  <!-- ========== NAVBAR ========== -->
+  <!-- ================== NAVBAR ================== -->
   <header class="navbar">
     <div class="navbar__logo">
-      <a href="index.html?lang=de">
-        <video 
-        class="navbar-logo-video"
-        autoplay
-        muted
-        loop
-        playsinline
-      >
-        <source src="assets/img/logogo.mp4" type="video/mp4" />
-        <!-- Fallback text if video fails to load -->
-        Your browser does not support the video tag.
-      </video>
-      </a>
+      <img src="assets/videos/logo33.png" style="max-height: 50px; width: auto;" />
     </div>
-
+    <!-- Hamburger (mobile) -->
     <div class="navbar__toggle" id="mobileToggle">
       <span></span>
       <span></span>
       <span></span>
     </div>
-
-    <!-- Main Menu -->
+    <!-- Menu -->
     <nav class="navbar__menu" id="navbarMenu">
-      <!-- GERMAN NAV LINKS -->
+      <!-- GERMAN LINKS -->
       <div class="navbar__links german">
         <a href="index.html">Home</a>
         <a href="uber-uns.html">Über uns</a>
         <a href="dienstleistungen.html">Dienstleistungen</a>
-        <a href="arbeiten.html?lang=de">Mit uns arbeiten</a>
-        <a href="#" class="active">Kontakt</a>
+        <a href="arbeiten.html">Mit uns arbeiten</a>
+        <a href="kontakt.html" class="active">Kontakt</a>
       </div>
-      <!-- ENGLISH NAV LINKS -->
+      <!-- ENGLISH LINKS -->
       <div class="navbar__links english hidden">
         <a href="index.html?lang=en">Home</a>
         <a href="uber-uns.html?lang=en">About Us</a>
@@ -66,263 +53,274 @@
         <a href="arbeiten.html?lang=en">Work With Us</a>
         <a href="kontakt.html?lang=en" class="active">Contact</a>
       </div>
-
-      <!-- Language Toggle Button -->
-      <button id="toggleLang" class="lang-btn">
-        English
-      </button>
+      <!-- Language Toggle -->
+      <button id="toggleLang" class="lang-btn">English</button>
     </nav>
   </header>
 
-  <!-- =================================
+
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
        GERMAN CONTENT
-  ================================== -->
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div class="german">
-    <!-- HERO SECTION (GER) -->
-    <section id="parallaxHero" class="hero-section fade-section">
-      <img src="assets/img/appointment (1).jpg" alt="Kontakt Hero Image" />
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>Kontakt</h1>
-        <p>Senden Sie uns eine Nachricht oder vereinbaren Sie direkt einen Termin.</p>
-      </div>
-    </section>
-
-    <!-- CONTACT INTRO (GER) -->
-    <section class="contact-intro fade-section">
-      <div class="intro-wrapper">
-        <div class="intro-image">
-          <img src="assets/img/appointment.jpg" alt="Kontakt Illustration" />
-        </div>
-        <div class="intro-content">
-          <h2>Termin Vereinbaren</h2>
+    <!-- ========== ANGLED HERO (GER) ========== -->
+    <section class="hero-angled-de">
+      <div class="hero-de-inner">
+        <div class="hero-text-block">
+          <h1>Kontakt</h1>
           <p>
-            Ob Sie Fragen zu unseren Dienstleistungen haben oder schon
-            konkrete Vorstellungen – wir sind für Sie da.
-            Rufen Sie uns an, schreiben Sie uns eine E-Mail oder
-            nutzen Sie unser Kontaktformular.
+            Sie haben Fragen, möchten einen Termin vereinbaren 
+            oder unsere Standorte besuchen? Wir sind gerne für Sie da.
           </p>
-          <p class="highlight">
-            Gemeinsam finden wir die beste Lösung für Ihren
-            Personalbedarf und begleiten Sie Schritt für Schritt.
-          </p>
-          <a href="#yourname" class="btn-cta">Jetzt Kontakt aufnehmen</a>
+          <a href="#contactMethodsDe" class="hero-btn">Mehr erfahren</a>
+        </div>
+        <div class="hero-image-block">
+          <img
+            src="assets/img/18.jpg"
+            alt="Kontakt Hero: Office environment"
+          />
         </div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION (GER) -->
-    <section class="contact-section">
-      <div class="contact-heading" id="name">
-        <h1>Kontakt</h1>
-        <p>
-          Haben Sie Fragen oder möchten direkt einen Termin vereinbaren?
-          Wir sind gerne für Sie da.
-          Nutzen Sie einfach das Kontaktformular oder schreiben Sie uns via WhatsApp.
-        </p>
-      </div>
-
-      <div class="contact-container">
-        <!-- INFO COLUMN -->
-        <div class="info-column">
-          <h2>Kontaktinformationen</h2>
-          <ul class="info-list">
-            <li class="info-item">
-              <i class="fas fa-envelope info-icon"></i>
-              <div class="info-text">
-                <strong>E-Mail:</strong><br />
-                <a href="mailto:job.werke@web.de">job.werke@web.de</a>
-              </div>
-            </li>
-            <li class="info-item">
-              <i class="fab fa-whatsapp info-icon"></i>
-              <div class="info-text">
-                <strong>WhatsApp (1):</strong><br />
-                <a
-                  href="https://wa.me/385995321237?text=Hallo%20Job%20Werke!"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="whatsapp-btn"
-                >
-                  +385 (99) 532 1237
-                </a>
-              </div>
-            </li>
-            <li class="info-item">
-              <i class="fab fa-whatsapp info-icon"></i>
-              <div class="info-text">
-                <strong>WhatsApp (2):</strong><br />
-                <a
-                  href="https://wa.me/385992088076?text=Hallo%20Job%20Werke!"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="whatsapp-btn"
-                >
-                  +385 (99) 208 8076
-                </a>
-              </div>
-            </li>
-          </ul>
-          <div class="watermark-container">
-            <video class="watermark-video" autoplay muted loop playsinline>
-              <source src="assets/img/logog.mp4" type="video/mp4" />
-              <!-- fallback text -->
-              Your browser does not support the video tag.
-            </video>
+    <!-- ========== WHY CONTACT US (GER) ========== -->
+    <section class="why-contact-de" id="contactMethodsDe">
+      <h2>Warum uns kontaktieren?</h2>
+      <p class="why-desc">
+        Ob für ein konkretes Angebot, generelle Fragen 
+        oder ein persönliches Kennenlernen – 
+        wir freuen uns, von Ihnen zu hören.
+      </p>
+      <div class="why-cards-container">
+        <div class="why-card">
+          <i class="fas fa-comments"></i>
+          <div class="step-icon">
+            <!-- Place an icon or number here -->
+            <img src="assets/icons/icons8-questions-50.png" alt="Step 1">
+         
           </div>
+          <h3>Fragen &amp; Beratung</h3>
+          <p>
+            Unser Team beantwortet Ihnen gerne alle Fragen 
+            rund um unsere Dienstleistungen und Prozesse.
+          </p>
         </div>
-
-        <!-- FORM COLUMN -->
-        <div class="form-column" id="yourname">
-          <h2>Kontaktformular</h2>
-          <!-- CLASSIC FORM: posts to /send-email -->
-          <form
-            class="contact-form"
-            action="/send-email"
-            method="POST"
-            style="margin-top: 1rem;"
-          >
-            <div class="form-group">
-              <label for="yourname-de">Name <span style="color:red;">*</span></label>
-              <!-- name="name" => So server sees req.body.name -->
-              <input 
-                type="text"
-                id="yourname-de"
-                name="name"
-                placeholder="Ihr Name" 
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="email-de">E-Mail-Adresse <span style="color:red;">*</span></label>
-              <!-- name="email" => So server sees req.body.email -->
-              <input
-                type="email"
-                id="email-de"
-                name="email"
-                placeholder="Ihre E-Mail-Adresse"
-                required
-              />
-            </div>
-
-            <!-- Radio: message vs. appointment -->
-            <div class="form-group">
-              <label>Ihr Anliegen</label>
-              <div>
-                <!-- name="wantsAppointment" => if value="on" => user wants appointment -->
-                <!-- or we can do  value="message" for normal message. It's up to your server logic. -->
-                <input
-                  type="radio"
-                  id="anliegen-message"
-                  name="wantsAppointment"
-                  value=""
-                  checked
-                />
-                <label for="anliegen-message">Nur eine Nachricht senden</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="anliegen-appointment"
-                  name="wantsAppointment"
-                  value="on"
-                />
-                <label for="anliegen-appointment">Einen Termin vereinbaren</label>
-              </div>
-            </div>
-
-            <!-- Appointment fields (shown/hidden by JavaScript) -->
-            <div id="appointment-fields">
-              <div class="form-group">
-                <label for="terminDate-de">Gewünschtes Datum</label>
-                <input type="date" id="terminDate-de" name="terminDate" />
-              </div>
-              <div class="form-group">
-                <label for="terminTime-de">Gewünschte Uhrzeit</label>
-                <input type="time" id="terminTime-de" name="terminTime" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="msg-de">Nachricht <span style="color:red;">*</span></label>
-              <!-- name="message" => So server sees req.body.message -->
-              <textarea
-                id="msg-de"
-                name="message"
-                rows="5"
-                placeholder="Ihre Nachricht..."
-                required
-              ></textarea>
-            </div>
-
-            <!-- Honeypot -->
-            <div style="display:none;">
-              <label for="hp-de">Honeypot:</label>
-              <input type="text" id="hp-de" name="hp" />
-            </div>
-            <div class="form-group">
-              <input
-                type="checkbox"
-                id="privacyNewsletter"
-                name="privacyNewsletter"
-                required
-              />
-              <label for="privacyNewsletter">
-                Ich habe die 
-                <a href="datenschutz.html" target="_blank" style="color: blue; text-decoration: underline;">Datenschutzerklärung</a> 
-                gelesen und akzeptiere die Verarbeitung meiner Daten.
-              </label>
-            </div>
-
-             <!-- Language field (Deutsch) -->
-            <input type="hidden" name="language" value="de" />
-            <!-- SUBMIT -->
-            <button type="submit" class="btn-submit">Absenden</button>
-          </form>
+        <div class="why-card">
+          <i class="fas fa-calendar-check"></i>
+          <div class="step-icon">
+            <!-- Place an icon or number here -->
+            <img src="assets/icons/icons8-appointment-50.png" alt="Step 1">
+         
+          </div>
+          <h3>Terminvereinbarung</h3>
+          <p>
+            Buchen Sie ein unverbindliches Gespräch, 
+            um Anforderungen oder Projekte zu besprechen.
+          </p>
+        </div>
+        <div class="why-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="step-icon">
+            <!-- Place an icon or number here -->
+            <img src="assets/icons/icons8-visit-48.png" alt="Step 1">
+         
+          </div>
+          <h3>Standorte besuchen</h3>
+          <p>
+            Lernen Sie uns persönlich kennen 
+            in Deutschland oder Kroatien – 
+            unsere Türen stehen Ihnen offen.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ADDRESS SECTION (GER) -->
-    <section class="address-section fade-section">
+  <!-- ==========================
+     CONTACT METHODS (GERMAN)
+========================== -->
+<section class="contact-methods-de">
+  <div class="contact-methods-inner">
+    <h2>Kontaktmöglichkeiten</h2>
+    <p>
+      Wählen Sie den für Sie passenden Kanal – ob E-Mail, WhatsApp oder direkte Anfrage. 
+      Klicken Sie auf den Button, um sofort loszulegen!
+    </p>
+    <div class="methods-grid">
+      <!-- Email Method -->
+      <div class="method-box">
+        <div class="method-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>E-Mail</h3>
+        <button class="method-btn" onclick="window.location.href='mailto:inf@jobwerke.com'">E-Mail senden</button>
+      </div>
+      <!-- WhatsApp Method 1 -->
+      <div class="method-box">
+        <div class="method-icon">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3>WhatsApp (1)</h3>
+        <button class="method-btn" onclick="window.open('https://wa.me/385995321237?text=Hallo%20Job%20Werke!', '_blank')">+385 (99) 532 1237</button>
+      </div>
+      <!-- WhatsApp Method 2 -->
+      <div class="method-box">
+        <div class="method-icon">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3>WhatsApp (2)</h3>
+        <button class="method-btn" onclick="window.open('https://wa.me/385992088076?text=Hallo%20Job%20Werke!', '_blank')">+385 (99) 208 8076</button>
+      </div>
+      <!-- Direct Inquiry -->
+      <div class="method-box">
+        <div class="method-icon">
+          <i class="fas fa-calendar-plus"></i>
+        </div>
+        <h3>Termin anfragen</h3>
+        <button class="method-btn" onclick="window.location.href='kontakt.html#de-name'">Jetzt anfragen</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ========== CONTACT FORM (GER) ========== -->
+    <section class="contact-form-de" id="formDe">
+      <div class="form-de-inner">
+        <h2>Kontaktformular</h2>
+        <p>
+          Nutzen Sie unser kurzes Formular, um uns Ihre Anfrage
+          oder Terminwunsch zu senden.
+        </p>
+        <form
+          class="de-form"
+          action="/send-email"
+          method="POST"
+          style="margin-top: 1.5rem;"
+        >
+          <div class="form-group">
+            <label for="de-name">Ihr Name <span style="color:red;">*</span></label>
+            <input
+              type="text"
+              id="de-name"
+              name="name"
+              placeholder="Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="de-email">E-Mail <span style="color:red;">*</span></label>
+            <input
+              type="email"
+              id="de-email"
+              name="email"
+              placeholder="Ihre E-Mail"
+              required
+            />
+          </div>
+          <!-- Radio: message vs. appointment -->
+          <div class="form-group">
+            <label>Anliegen</label>
+            <div>
+              <input
+                type="radio"
+                id="message"
+                name="wantsAppointment"
+                value=""
+                checked
+              />
+              <label for="de-justMessage">Nur eine Nachricht</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="appoint"
+                name="wantsAppointment"
+                value="on"
+              />
+              <label for="de-appoint">Einen Termin vereinbaren</label>
+            </div>
+          </div>
+          <div id="appointment-fields">
+            <div class="form-group">
+              <label for="de-date">Gewünschtes Datum</label>
+              <input type="date" id="de-date" name="terminDate" />
+            </div>
+            <div class="form-group">
+              <label for="de-time">Gewünschte Uhrzeit</label>
+              <input type="time" id="de-time" name="terminTime" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="de-message">Nachricht <span style="color:red;">*</span></label>
+            <textarea
+              id="de-message"
+              name="message"
+              rows="5"
+              placeholder="Ihre Nachricht..."
+              required
+            ></textarea>
+          </div>
+          <!-- honeypot hidden -->
+          <div style="display:none;">
+            <input type="text" name="hp" />
+          </div>
+          <input type="hidden" name="language" value="de" />
+          <div class="form-group">
+            <input type="checkbox" id="privacyDe" name="privacy" required />
+            <label for="privacyDe">
+              Ich akzeptiere die
+              <a
+                href="datenschutz.html"
+                target="_blank"
+                style="color: #aaa; text-decoration: underline;"
+              >
+                Datenschutzbestimmungen
+              </a>.
+            </label>
+          </div>
+
+        </form>
+      </div>
+    </section>
+
+    <!-- ========== LOCATIONS (GER) ========== -->
+    <section class="locations-de">
       <h2>Unsere Standorte</h2>
-      <div class="address-container">
-        <!-- Germany -->
-        <div class="address-box">
-          <h3>Adresse (Deutschland)</h3>
+      <p>
+        Besuchen Sie uns gerne an unseren Niederlassungen – 
+        in Deutschland oder Kroatien.
+      </p>
+      <div class="locations-grid">
+        <div class="location-box">
+          <h3>Deutschland (Friedrichsdorf)</h3>
           <p>
-            Job Werke d.o.o.<br/>
             Industriestraße 27<br/>
-            61381 Friedrichsdorf<br/>
-            Deutschland
+            61381 Friedrichsdorf
           </p>
           <a
-            href="https://www.google.com/maps/dir/?api=1&destination=Industriestra%C3%9Fe+27+61381+Friedrichsdorf+Deutschland"
+            href="https://www.google.com/maps/dir/?api=1&destination=Industriestra%C3%9Fe+27+61381+Friedrichsdorf"
             target="_blank"
             rel="noopener noreferrer"
           >
             Navigation starten
           </a>
-          <div class="map-container">
+          <div class="map-frame">
+            <!-- Google Maps iframe for Germany -->
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.238816847897!2d8.63693149060038!3d50.25012379821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd071724ca921f%3A0x77d381e970bc2d2d!2sIndustriestra%C3%9Fe%2027%2C%2061381%20Friedrichsdorf!5e0!3m2!1sen!2sde!4v1735644093405!5m2!1sen!2sde"
-              width="600"
-              height="450"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.238816847897!2d8.63693149060038!3d50.25012379821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd071724ca921f%3A0x77d381e970bc2d2d!2sIndustriestra%C3%9Fe%2027%2C%2061381%20Friedrichsdorf!5e0!3m2!1sen!2sde!4v1735644093405!5m2!1sen!2sde"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
           </div>
         </div>
-        <!-- Croatia -->
-        <div class="address-box">
-          <h3>Adresse (Kroatien)</h3>
+        <div class="location-box">
+          <h3>Kroatien (Rijeka)</h3>
           <p>
-            Job Werke d.o.o.<br/>
             Marije Grbac 14<br/>
-            51000 Rijeka<br/>
-            Croatia
+            51000 Rijeka
           </p>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=Marije+Grbac+14+51000+Rijeka+Croatia"
@@ -331,7 +329,8 @@
           >
             Navigation starten
           </a>
-          <div class="map-container">
+          <div class="map-frame">
+            <!-- Google Maps iframe for Croatia -->
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2803.9498217151754!2d14.375826776450756!3d45.34982517107221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a6f16fbd36df%3A0x5c6fb0f9e9b1d632!2sUl.%20Marije%20Grbac%2014%2C%2051000%2C%20Rijeka%2C%20Croatia!5e0!3m2!1sen!2sde!4v1735648157157!5m2!1sen!2sde"
               width="600"
@@ -345,248 +344,234 @@
         </div>
       </div>
     </section>
-  </div><!-- End .german -->
- 
- 
+  </div> <!-- /.german -->
 
 
-  <!-- =================================
+
+  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
        ENGLISH CONTENT
-  ================================== -->
+  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div class="english hidden">
-    <!-- HERO (EN) -->
-    <section id="parallaxHero" class="hero-section fade-section">
-      <img src="assets/img/appointment (1).jpg" alt="Contact Hero Image" />
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>Contact</h1>
-        <p>Send us a message or schedule an appointment right away.</p>
-      </div>
-    </section>
 
-    <!-- CONTACT INTRO (EN) -->
-    <section class="contact-intro fade-section">
-      <div class="intro-wrapper">
-        <div class="intro-image">
-          <img src="assets/img/appointment.jpg" alt="Contact Illustration" />
-        </div>
-        <div class="intro-content">
-          <h2>Schedule an Appointment</h2>
+    <!-- ========== ANGLED HERO (EN) ========== -->
+    <section class="hero-angled-en">
+      <div class="hero-en-inner">
+        <div class="hero-text-block">
+          <h1>Contact</h1>
           <p>
-            Whether you have questions about our services or already
-            have specific ideas – we’re here for you.
-            Give us a call, send us an email, or
-            use our contact form.
+            Whether you have questions, want to schedule a meeting, 
+            or plan a visit to our offices – we’re here for you.
           </p>
-          <p class="highlight">
-            Together we’ll find the best solution for your
-            staffing needs and guide you every step of the way.
-          </p>
-          <a href="#yourname-en" class="btn-cta">Get in Touch Now</a>
+          <a href="#contactMethodsEn" class="hero-btn">Learn More</a>
+        </div>
+        <div class="hero-image-block">
+          <img
+            src="assets/img/18.jpg"
+            alt="Contact Hero: International cooperation"
+          />
         </div>
       </div>
     </section>
 
-    <!-- CONTACT SECTION (EN) -->
-    <section class="contact-section">
-      <div class="contact-heading" id="name-en">
-        <h1>Contact</h1>
-        <p>
-          Do you have questions or want to schedule an appointment right away?
-          We are happy to help.
-          Just use the contact form or message us on WhatsApp.
-        </p>
-      </div>
-
-      <div class="contact-container">
-        <div class="info-column">
-          <h2>Contact Information</h2>
-          <ul class="info-list">
-            <!-- EMAIL -->
-            <li class="info-item">
-              <i class="fas fa-envelope info-icon"></i>
-              <div class="info-text">
-                <strong>Email:</strong><br />
-                <a href="mailto:job.werke@web.de">job.werke@web.de</a>
-              </div>
-            </li>
-            <!-- WHATSAPP 1 -->
-            <li class="info-item">
-              <i class="fab fa-whatsapp info-icon"></i>
-              <div class="info-text">
-                <strong>WhatsApp (1):</strong><br />
-                <a
-                  href="https://wa.me/385995321237?text=Hello%20Job%20Werke!"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="whatsapp-btn"
-                >
-                  +385 (99) 532 1237
-                </a>
-              </div>
-            </li>
-            <!-- WHATSAPP 2 -->
-            <li class="info-item">
-              <i class="fab fa-whatsapp info-icon"></i>
-              <div class="info-text">
-                <strong>WhatsApp (2):</strong><br />
-                <a
-                  href="https://wa.me/385992088076?text=Hello%20Job%20Werke!"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="whatsapp-btn"
-                >
-                  +385 (99) 208 8076
-                </a>
-              </div>
-            </li>
-          </ul>
-          <div class="watermark-container">
-            <video class="watermark-video" autoplay muted loop playsinline>
-              <source src="assets/img/logog.mp4" type="video/mp4" />
-              <!-- fallback text -->
-              Your browser does not support the video tag.
-            </video>
+    <!-- ========== WHY CONTACT US (EN) ========== -->
+    <section class="why-contact-en" id="contactMethodsEn">
+      <h2>Why Get in Touch?</h2>
+      <p class="why-desc">
+        Whether it’s for a quote, simple questions, 
+        or a personal introduction – 
+        we look forward to hearing from you.
+      </p>
+      <div class="why-cards-container">
+        <div class="why-card">
+          <i class="fas fa-comments"></i>
+          <h3>Questions &amp; Advice</h3>
+          <div class="step-icon">
+            <!-- Place an icon or number here -->
+            <img src="assets/icons/icons8-questions-50.png" alt="Step 1">
+         
           </div>
+          <p>
+            Our team is happy to answer any inquiries about
+            our services and processes.
+          </p>
         </div>
-
-        <!-- EN form -->
-        <div class="form-column" id="yourname-en">
-          <h2>Contact Form</h2>
-          <form
-            class="contact-form"
-            action="/send-email"
-            method="POST"
-            style="margin-top: 1rem;"
-          >
-            <div class="form-group">
-              <label for="yourname-en">Name <span style="color:red;">*</span></label>
-              <input
-                type="text"
-                id="yourname-en"
-                name="name"
-                placeholder="Your Name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label for="email-en">Email Address <span style="color:red;">*</span></label>
-              <input
-                type="email"
-                id="email-en"
-                name="email"
-                placeholder="Your Email Address"
-                required
-              />
-            </div>
-            <!-- Radio: message vs. appointment -->
-            <div class="form-group">
-              <label>Your Request</label>
-              <div>
-                <input
-                  type="radio"
-                  id="en-anliegen-message"
-                  name="wantsAppointment"
-                  value=""
-                  checked
-                />
-                <label for="en-anliegen-message">Just send a message</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="en-anliegen-appointment"
-                  name="wantsAppointment"
-                  value="on"
-                />
-                <label for="en-anliegen-appointment">Schedule an appointment</label>
-              </div>
-            </div>
-            <div id="appointment-fields">
-              <div class="form-group">
-                <label for="terminDate-en">Desired Date</label>
-                <input type="date" id="terminDate-en" name="terminDate" />
-              </div>
-              <div class="form-group">
-                <label for="terminTime-en">Desired Time</label>
-                <input type="time" id="terminTime-en" name="terminTime" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="msg-en">Message <span style="color:red;">*</span></label>
-              <textarea
-                id="msg-en"
-                name="message"
-                rows="5"
-                placeholder="Your Message..."
-                required
-              ></textarea>
-            </div>
-            <div style="display:none;">
-              <label for="hp-en">Honeypot:</label>
-              <input type="text" id="hp-en" name="hp" />
-            </div>
-            <!-- Language field (English) -->
-            <input type="hidden" name="language" value="en" />
-            <div class="form-group">
-              <input
-                type="checkbox"
-                id="privacyNewsletter"
-                name="privacyNewsletter"
-                required
-              />
-              <label for="privacyNewsletter">
-                I have read the 
-                <a href="datenschutzEn.html" target="_blank" style="color: blue; text-decoration: underline;">Data privacy</a> 
-                and consent to the processing of my data.
-              </label>
-            </div>
-            <button type="submit" class="btn-submit">Send</button>
-          </form>
+        <div class="why-card">
+          <i class="fas fa-calendar-check"></i>
+          <div class="step-icon">
+            <!-- Place an icon or number here -->
+            <img src="assets/icons/icons8-appointment-50.png" alt="Step 1">
+         
+          </div>
+          <h3>Schedule a Meeting</h3>
+          <p>
+            Book an appointment to discuss your needs or
+            potential projects – no obligation.
+          </p>
+        </div>
+        <div class="why-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="step-icon">
+            <!-- Place an icon or number here -->
+            <img src="assets/icons/icons8-visit-48.png" alt="Step 1">
+         
+          </div>
+          <h3>Visit Our Locations</h3>
+          <p>
+            Meet us in person in Germany or Croatia –
+            our doors are open for you.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ADDRESS SECTION (EN) -->
-    <section class="address-section fade-section">
+   <!-- ==========================
+     CONTACT METHODS (ENGLISH)
+========================== -->
+<section class="contact-methods-en ">
+  <div class="contact-methods-inner">
+    <h2>Contact Methods</h2>
+    <p>
+      Choose the channel that suits you best – whether it’s E-mail, WhatsApp, or a direct inquiry. 
+      Click the button to get started instantly!
+    </p>
+    <div class="methods-grid">
+      <!-- Email Method -->
+      <div class="method-box">
+        <div class="method-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>E-mail</h3>
+        <button class="method-btn" onclick="window.location.href='mailto:info@jobwerke.com'">Send E-mail</button>
+      </div>
+      <!-- WhatsApp Method 1 -->
+      <div class="method-box">
+        <div class="method-icon">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3>WhatsApp (1)</h3>
+        <button class="method-btn" onclick="window.open('https://wa.me/385995321237?text=Hello%20Job%20Werke!', '_blank')">+385 (99) 532 1237</button>
+      </div>
+      <!-- WhatsApp Method 2 -->
+      <div class="method-box">
+        <div class="method-icon">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3>WhatsApp (2)</h3>
+        <button class="method-btn" onclick="window.open('https://wa.me/385992088076?text=Hello%20Job%20Werke!', '_blank')">+385 (99) 208 8076</button>
+      </div>
+      <!-- Direct Inquiry -->
+      <div class="method-box">
+        <div class="method-icon">
+          <i class="fas fa-calendar-plus"></i>
+        </div>
+        <h3>Appointment</h3>
+        <button class="method-btn" onclick="window.location.href='kontakt.html?lang=en#name-en'">Request Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ========== CONTACT FORM (EN) ========== -->
+<section class="contact-form-en" id="formEn">
+  <div class="form-en-inner">
+    <h2>Contact Form</h2>
+    <p>
+      Use our short form to send us your message or appointment request.
+    </p>
+    <form class="en-form" action="/send-email" method="POST" style="margin-top: 1.5rem;">
+      <div class="form-group">
+        <label for="en-name">Name <span style="color:red;">*</span></label>
+        <input type="text" id="en-name" name="name" placeholder="Your Name" required />
+      </div>
+      <div class="form-group">
+        <label for="en-email">Email <span style="color:red;">*</span></label>
+        <input type="email" id="en-email" name="email" placeholder="Your Email" required />
+      </div>
+      <!-- Radio selection: Message vs. Appointment -->
+      <div class="form-group">
+        <label>Your Request</label>
+        <div>
+          <input type="radio" id="en-anliegen-message" name="wantsAppointment" value="" checked />
+          <label for="justMessage">Just a message</label>
+        </div>
+        <div>
+          <input type="radio" id="en-anliegen-appointment" name="wantsAppointment" value="on" />
+          <label for="appoint">Schedule an appointment</label>
+        </div>
+      </div>
+      <!-- Appointment fields (initially hidden) -->
+      <div id="appointment-fields-en" style="display:none;">
+        <div class="form-group">
+          <label for="en-date">Desired Date</label>
+          <input type="date" id="en-date" name="terminDate" />
+        </div>
+        <div class="form-group">
+          <label for="en-time">Desired Time</label>
+          <input type="time" id="en-time" name="terminTime" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="en-message">Message <span style="color:red;">*</span></label>
+        <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
+      </div>
+      <!-- Honeypot (hidden) -->
+      <div style="display:none;">
+        <input type="text" name="hp" />
+      </div>
+      <input type="hidden" name="language" value="en" />
+      <div class="form-group">
+        <input type="checkbox" id="privacyEn" name="privacy" required />
+        <label for="privacyEn">
+          I accept the
+          <a href="datenschutzEn.html" target="_blank" style="color: #aaa; text-decoration: underline;">
+            Data Privacy Policy
+          </a>.
+        </label>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+    <!-- ========== LOCATIONS (EN) ========== -->
+    <section class="locations-en">
       <h2>Our Locations</h2>
-      <div class="address-container">
-        <!-- Germany -->
-        <div class="address-box">
-          <h3>Address (Germany)</h3>
+      <p>
+        Feel free to visit us in Germany or Croatia – 
+        we look forward to meeting you in person.
+      </p>
+      <div class="locations-grid">
+        <div class="location-box">
+          <h3>Germany (Friedrichsdorf)</h3>
           <p>
-            Job Werke d.o.o.<br/>
             Industriestraße 27<br/>
-            61381 Friedrichsdorf<br/>
-            Germany
+            61381 Friedrichsdorf
           </p>
           <a
-            href="https://www.google.com/maps/dir/?api=1&destination=Industriestra%C3%9Fe+27+61381+Friedrichsdorf+Deutschland"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          href="https://www.google.com/maps/dir/?api=1&destination=Industriestra%C3%9Fe+27+61381+Friedrichsdorf+Deutschland"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
             Start Navigation
           </a>
-          <div class="map-container">
+          <div class="map-frame">
+            <!-- Google Maps iframe for Germany -->
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.238816847897!2d8.63693149060038!3d50.25012379821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd071724ca921f%3A0x77d381e970bc2d2d!2sIndustriestra%C3%9Fe%2027%2C%2061381%20Friedrichsdorf!5e0!3m2!1sen!2sde!4v1735644093405!5m2!1sen!2sde"
-              width="600"
-              height="450"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.238816847897!2d8.63693149060038!3d50.25012379821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd071724ca921f%3A0x77d381e970bc2d2d!2sIndustriestra%C3%9Fe%2027%2C%2061381%20Friedrichsdorf!5e0!3m2!1sen!2sde!4v1735644093405!5m2!1sen!2sde"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
           </div>
         </div>
-        <!-- Croatia -->
-        <div class="address-box">
-          <h3>Address (Croatia)</h3>
+        <div class="location-box">
+          <h3>Croatia (Rijeka)</h3>
           <p>
-            Job Werke d.o.o.<br/>
             Marije Grbac 14<br/>
-            51000 Rijeka<br/>
-            Croatia
+            51000 Rijeka
           </p>
           <a
             href="https://www.google.com/maps/dir/?api=1&destination=Marije+Grbac+14+51000+Rijeka+Croatia"
@@ -595,7 +580,8 @@
           >
             Start Navigation
           </a>
-          <div class="map-container">
+          <div class="map-frame">
+            <!-- Google Maps iframe for Croatia -->
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2803.9498217151754!2d14.375826776450756!3d45.34982517107221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a6f16fbd36df%3A0x5c6fb0f9e9b1d632!2sUl.%20Marije%20Grbac%2014%2C%2051000%2C%20Rijeka%2C%20Croatia!5e0!3m2!1sen!2sde!4v1735648157157!5m2!1sen!2sde"
               width="600"
@@ -608,17 +594,38 @@
           </div>
         </div>
       </div>
- 
     </section>
-  </div><!-- End .english -->
+  </div><!-- /.english -->
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer fade-section">
+
+  <!-- ================== FOOTER ================== -->
+  <footer class="footer">
     <p>Impressum &bull; Datenschutz &bull; Cookie-Einstellungen</p>
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- Link to external JS file -->
+  <!-- OPTIONAL: JavaScript for toggles, date/time fields, etc. -->
   <script src="js/kontakt.js"></script>
+  <script>
+    // MOBILE NAV
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+    mobileToggle.addEventListener('click', () => {
+      navbarMenu.classList.toggle('nav-open');
+    });
+
+    // LANG TOGGLE
+    const langBtn = document.getElementById('toggleLang');
+    const germanDivs = document.querySelectorAll('.german');
+    const englishDivs = document.querySelectorAll('.english');
+    let isGerman = true;
+
+    langBtn.addEventListener('click', () => {
+      isGerman = !isGerman;
+      germanDivs.forEach(div => div.classList.toggle('hidden', !isGerman));
+      englishDivs.forEach(div => div.classList.toggle('hidden', isGerman));
+      langBtn.textContent = isGerman ? 'English' : 'Deutsch';
+    });
+  </script>
 </body>
 </html>
