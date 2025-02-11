@@ -1,488 +1,674 @@
 /***************************************************************
-  1) GLOBAL RESET & BASE STYLES
+  1) GLOBAL RESET & BASE
 ***************************************************************/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-    color: #333;
-    line-height: 1.6;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    position: relative;
-  }
-  /* Basic link hover */
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  a:hover {
-    color: #181844; 
-  }
-  img, video {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  h1, h2, h3 {
-    margin-bottom: 0.8rem;
-  }
-  p {
-    margin-bottom: 1rem;
-  }
-  /* For language toggles */
-  .hidden {
-    display: none !important;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background: #0b0b0b; /* overall black background */
+  color: #ccc;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #fff;
+}
+img, video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hidden {
+  display: none !important;
+}
+/* body offset for navbar if it's fixed */
+body::before {
+  content: "";
+  display: block;
+  height: 70px;
+}
+
+/***************************************************************
+  2) NAVBAR
+***************************************************************/
+.navbar {
+  position: fixed;
+  /* Positioning */
+  top: 1rem;            /* space from the top */
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%);
   
-  /***************************************************************
-    2) NAVBAR (WITH HAMBURGER)
-  ***************************************************************/
-  /* Base Navbar Container */
+  /* Size & layout */
+  width: 80%;           /* or however wide you want it */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  /* Look & feel */
+  background: linear-gradient(360deg, #7f6060, #f90000);  /* gradient color */
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;     /* large radius for that “pill” shape */
+  
+  /* Glow / Shadow */
+  box-shadow: 0 0 10px rgba(175, 27, 27, 0.7),
+              0 0 25px rgba(182, 62, 62, 0.4);
+  
+  /* Layer above page content */
+  z-index: 9999;
+}
+.navbar__logo {
+  flex-shrink: 0;
+}
+.navbar-logo-video {
+  max-height: 50px;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+.navbar__logo:hover .navbar-logo-video {
+  transform: scale(1.05);
+}
+
+/* Hamburger for mobile */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: auto;
+  cursor: pointer;
+}
+.navbar__toggle span {
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Desktop menu */
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+/* Nav links */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+}
+.navbar__links a {
+  font-weight: 1000;
+  color: #f5f5f5;
+  position: relative;
+  padding: 0.2rem 0;
+}
+.navbar__links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: #888; /* subtle silver for active link */
+}
+.navbar__links a:hover {
+  color: #fff; 
+}
+
+/* Language btn */
+.lang-btn {
+  background: #a52121;
+  color: #eee;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-weight: 500;
+  border: 2px solid rgba(255, 255, 255, 0.5); /* solid blur border */
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* shiny effect */
+}
+.lang-btn:hover {
+  background: #666;
+  border-color: rgba(255, 255, 255, 0.8); /* more shiny on hover */
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
   .navbar {
-    position: fixed;
-    top: 0; 
-    left: 0;
-    width: 100%;
-    height: 70px; 
-    display: flex;
-    align-items: center;
-    background: #181844; 
-    padding: 0 2rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    z-index: 9999;
+    height: 60px;
   }
-  /* Logo Area */
-  .navbar__logo .navbar-logo-video {
-    pointer-events: none;
-    max-height: 60px;
-    width: auto;
-    transition: transform 0.3s;
-    margin: 5px 0;
-    object-fit: contain;
-  }
-  .navbar__logo img:hover {
-    transform: scale(1.05);
-  }
-  /* Hamburger (hidden on desktop, shown on mobile) */
   .navbar__toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
+    display: flex;
+    margin-left: auto;
   }
-  .navbar__toggle span {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
-  /* Nav Menu (desktop) */
   .navbar__menu {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    background: #1a1a1a;
+    padding: 1rem 2rem;
+    transform: translateY(-120%);
+    transition: transform 0.3s ease;
+    z-index: 99;
   }
-  /* Nav Links */
+  .navbar__menu.nav-open {
+    transform: translateY(0);
+  }
   .navbar__links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 0.75rem;
   }
-  .navbar__links a {
-    font-weight: 500;
-    color: #fff;
-    transition: color 0.3s;
-    padding: 0.3rem 0;
+}
+/***************************************************************
+  3) HERO ANGLED (GER/EN)
+***************************************************************/
+.hero-angled-de, .hero-angled-en {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  background: #0b0b0b;
+  margin-bottom: 2rem;
+}
+.hero-de-inner, .hero-en-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  /* angled background using clip-path */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  background: linear-gradient(to right, #111, #333);
+}
+.hero-text-block {
+  flex: 1 1 400px;
+  color: #ccc;
+  padding: 1rem;
+}
+.hero-text-block h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.hero-text-block p {
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  color: #ccc;
+}
+/* ============== BRAND-RED FOR .hero-btn ============== */
+.hero-text-block a.hero-btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #f05a28; /* brand red */
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.hero-text-block a.hero-btn:hover {
+  background: #d54f22; /* deeper red */
+  transform: translateY(-2px);
+}
+/* hero image block */
+.hero-image-block {
+  flex: 1 1 400px;
+  overflow: hidden;
+  text-align: center;
+}
+.hero-image-block img {
+  max-height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(255,255,255,0.05);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.hero-image-block:hover img {
+  transform: scale(1.04);
+}
+@media (max-width: 768px) {
+  .hero-de-inner, .hero-en-inner {
+    clip-path: none;
+    background: #222;
+    flex-direction: column;
+    text-align: center;
   }
-  .navbar__links a:hover {
-    color: #bbb;
+  .hero-image-block img {
+    max-height: 200px;
+    margin-top: 1rem;
   }
-  .navbar__links a.active {
-    border-bottom: 2px solid #fff;
+}
+
+/***************************************************************
+  4) WORKFLOW (GER/EN)
+***************************************************************/
+.workflow-de, .workflow-en {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.workflow-de h2, .workflow-en h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.workflow-de p, .workflow-en p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #bbb;
+}
+.workflow-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 2rem;
+}
+.workflow-step {
+  background: #1a1a1a;
+  border-radius: 6px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(255,255,255,0.05);
+  transition: transform 0.3s ease;
+}
+.workflow-step:hover {
+  transform: translateY(-3px);
+}
+.step-icon {
+  margin-bottom: 1rem;
+}
+.step-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.step-icon img {
+  display: block;
+  margin: 0 auto;
+}
+
+.step-text h3 {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.step-text p {
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/***************************************************************
+  5) ZIGZAG SECTION (GER/EN)
+***************************************************************/
+.zigzag-section-de, .zigzag-section-en {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+.zigzag-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.zigzag-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+}
+.zigzag-image {
+  flex: 1 1 400px;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 3px 12px rgba(255,255,255,0.05);
+  transition: transform 0.3s ease;
+}
+.zigzag-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.zigzag-text {
+  flex: 1 1 400px;
+  color: #ccc;
+}
+.zigzag-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;c
+  color: #fff;
+}
+.zigzag-text p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.zigzag-text ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+.zigzag-item:hover .zigzag-image {
+  transform: scale(1.02);
+}
+/* Reverse layout for every second item */
+.zigzag-item.reverse {
+  flex-direction: row-reverse;
+}
+@media (max-width: 768px) {
+  .zigzag-item, .zigzag-item.reverse {
+    flex-direction: column;
   }
-  /* Language Button */
-  .lang-btn {
-    margin-left: 1rem;
-    background: #0808d3; /* same color for all pages */
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
+}
+
+/***************************************************************
+  6) ROLES & RESPONSIBILITIES (GER/EN)
+***************************************************************/
+.roles-responsibilities-de, .roles-responsibilities-en {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.roles-responsibilities-de h2, .roles-responsibilities-en h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.roles-de-inner, .roles-en-inner {
+  margin-top: 1rem;
+  color: #bbb;
+}
+.roles-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.role-col {
+  flex: 1 1 300px;
+  background: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(255,255,255,0.05);
+  transition: transform 0.3s ease;
+}
+.role-col:hover {
+  transform: translateY(-3px);
+}
+.role-col h3 {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 0.75rem;
+}
+.role-col ul {
+  list-style: square;
+  margin-left: 1.5rem;
+  color: #aaa;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/***************************************************************
+  7) MINI CASES (GER/EN)
+***************************************************************/
+.mini-cases-de, .mini-cases-en {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.mini-cases-de h2, .mini-cases-en h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.mini-case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+}
+.case-card {
+  background: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(255,255,255,0.05);
+  transition: transform 0.3s ease;
+}
+.case-card:hover {
+  transform: translateY(-3px);
+}
+.case-card h3 {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+}
+.case-card p {
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+/***************************************************************
+  8) FAQ ACCORDION (GER/EN)
+***************************************************************/
+.faq-accordion-de, .faq-accordion-en {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  color: #ccc;
+}
+.faq-accordion-de h2, .faq-accordion-en h2 {
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.faq-accordion-wrapper {
+  margin-top: 1rem;
+}
+.faq-accordion-item {
+  background: #1a1a1a;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 10px rgba(255,255,255,0.03);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.faq-accordion-item:hover {
+  transform: translateY(-3px);
+}
+.faq-accordion-question {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #ccc;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.faq-accordion-question:hover {
+  background: #2a2a2a;
+}
+.faq-accordion-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: #222;
+  padding: 0 1rem;
+}
+.faq-accordion-answer p {
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+/***************************************************************
+  9) FINAL CTA SECTION (GER/EN)
+***************************************************************/
+.final-cta-de, .final-cta-en {
+  background: #111;
+  color: #ccc;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  margin-top: 3rem;
+}
+.final-cta-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.final-cta-inner h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.final-cta-inner p {
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+/* =========== BRAND-RED FOR CTA BUTTON =========== */
+.cta-btn {
+  display: inline-block;
+  background: #f05a28; /* brand red */
+  color: #fff;
+  padding: 0.8rem 1.4rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.cta-btn:hover {
+  background: #d54f22; /* deeper red on hover */
+  transform: translateY(-2px);
+}
+
+/***************************************************************
+  10) FOOTER
+***************************************************************/
+.footer {
+  background: #1a1a1a;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #999;
+}
+.footer p {
+  margin-bottom: 0.5rem;
+}
+.footer a {
+  color: #bbb;
+  text-decoration: underline;
+}
+.footer a:hover {
+  color: #fff;
+}
+
+/***************************************************************
+  11) RESPONSIVE TWEAKS
+***************************************************************/
+@media (max-width: 768px) {
+  .hero-de-inner, .hero-en-inner {
+    flex-direction: column;
+    clip-path: none;
+    background: #222;
   }
-  .lang-btn:hover {
-    background: #1c1c5f; /* consistent hover color */
+  .hero-text-block, .hero-image-block {
+    flex: 1 1 100%;
+    text-align: center;
   }
-  /* Offset content below fixed navbar */
-  body::before {
-    content: "";
-    display: block;
-    height: 70px; /* matches .navbar height */
+  .zigzag-item, .zigzag-item.reverse {
+    flex-direction: column;
   }
-  /* Responsive Navbar (max-width: 768px) */
-  @media (max-width: 768px) {
-    .navbar {
-      height: 60px;
-      padding: 0 1rem;
-    }
-    .navbar__logo img {
-      max-height: 50px;
-    }
-    .navbar__toggle {
-      display: flex;
-      margin-left: auto;
-    }
-    .navbar__menu {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      flex-direction: column;
-      gap: 1rem;
-      background: #181844;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      padding: 1rem 2rem;
-      transform: translateY(-130%);
-      transition: transform 0.3s ease;
-    }
-    .navbar__menu.nav-open {
-      transform: translateY(0);
-    }
-    .navbar__links {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+  .zigzag-item.reverse {
+    flex-direction: column-reverse;
   }
-  
-      /****************************************
-       3) .hidden CLASS (FOR LANG TOGGLE)
-      *****************************************/
-      .hidden {
-        display: none;
-      }
-  
-      /****************************************
-       4) HERO SECTION
-      *****************************************/
-      .hero {
-        position: relative;
-        width: 100%;
-        min-height: 85vh;
-        background: url("../assets/img/uii.jpg") center/cover no-repeat;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: #fff;
-        overflow: hidden;
-      }
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          135deg,
-          rgba(24, 24, 68, 0.7),
-          rgba(18, 22, 59, 0.5),
-          rgba(28, 28, 75, 0.5)
-        );
-        z-index: 1;
-        transform-origin: top left;
-        transform: skewY(-3deg);
-      }
-      .hero-content {
-        position: relative;
-        z-index: 2;
-        max-width: 700px;
-        padding: 2rem;
-      }
-      .hero-content h1 {
-        font-size: 2.8rem;
-        margin-bottom: 1rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-      }
-      .hero-content p {
-        font-size: 1.15rem;
-        line-height: 1.4;
-      }
-      .hero-wave {
-        position: absolute;
-        bottom: 0; left: 0;
-        width: 100%;
-        height: 120px;
-        background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTQ0MCAxMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTAgMGgxNDR2OTIuNzQ5QzMwMC44MDMgMTM3LjIxNyA1Ny41NyAxMjAuNDU3IDcwMCAxMTkuNzE0YzIwMi4xNy0uNzE1IDQwMy4wMTUgLTMuODkzIDcwMC0xMS44NzVWMTIwSDB6Ii8+PC9zdmc=")
-          no-repeat center / cover;
-        z-index: 2;
-        opacity: 0.9;
-        transform: translateY(1px);
-      }
-      @media (max-width: 768px) {
-        .hero-content h1 {
-          font-size: 2rem;
-        }
-        .hero-content p {
-          font-size: 1rem;
-        }
-      }
-  
-      /****************************************
-       5) SPLIT SECTIONS
-      *****************************************/
-      .split-section {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 4rem 1rem;
-        align-items: center;
-      }
-      .split-section:nth-of-type(even) {
-        background: #f4f8ff;
-      }
-      .text-area {
-        padding: 1rem;
-      }
-      .text-area h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-      }
-      .text-area p {
-        margin-bottom: 1rem;
-        color: #555;
-        line-height: 1.5;
-      }
-      .text-area ul {
-        list-style: disc;
-        margin-left: 1.5rem;
-        margin-top: 1rem;
-        color: #555;
-      }
-      .text-area ul li {
-        margin-bottom: 0.5rem;
-      }
-      .image-area {
-        display: flex;
-        justify-content: center;
-      }
-      .image-area img {
-        max-width: 700px;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-      }
-      @media (max-width: 768px) {
-        .split-section {
-          grid-template-columns: 1fr;
-        }
-        .split-section .image-area {
-          margin-top: 1rem;
-        }
-      }
-  
-      /****************************************
-       6) ROLES SECTION
-      *****************************************/
-      .roles {
-        background: #fff;
-        padding: 4rem 1rem;
-        text-align: center;
-      }
-      .roles h2 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-      }
-      .roles-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        max-width: 1000px;
-        margin: 0 auto;
-        margin-top: 2rem;
-      }
-      .role-box {
-        background: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        padding: 2rem;
-        transition: transform 0.3s;
-      }
-      .role-box:hover {
-        transform: translateY(-3px);
-      }
-      .role-box h3 {
-        font-size: 1.2rem;
-        margin-bottom: 0.8rem;
-        color: #333;
-      }
-      .role-box ul {
-        list-style: disc;
-        margin-left: 1.2rem;
-        margin-top: 0.5rem;
-      }
-      .role-box ul li {
-        margin-bottom: 0.5rem;
-        font-size: 0.9rem;
-        color: #555;
-      }
-      @media (max-width: 768px) {
-        .roles-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-  
-      /****************************************
-       7) PARTNERS SECTION
-      *****************************************/
-      .partners {
-        background: #f4f8ff;
-        text-align: center;
-        padding: 4rem 1rem;
-      }
-      .partners h2 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-      }
-      .partners p {
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        line-height: 1.4;
-        color: #555;
-      }
-      .partner-logos {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      .partner-logos img {
-        width: 120px;
-        opacity: 0.8;
-        transition: opacity 0.3s;
-      }
-      .partner-logos img:hover {
-        opacity: 1;
-      }
-  
-      /****************************************
-       8) FAQ SECTION (HIDDEN ANSWERS)
-      *****************************************/
-      .faq-section {
-        background: #fff;
-        text-align: center;
-        padding: 4rem 1rem;
-      }
-      .faq-section h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-      }
-      .faq-container {
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      .faq-item {
-        background: #fdfdfd;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        transition: background 0.3s, box-shadow 0.3s;
-        overflow: hidden;
-      }
-      .faq-item:hover {
-        background: rgba(165, 165, 214, 0.65);
-      }
-      .faq-question {
-        margin: 0;
-        padding: 1rem;
-        cursor: pointer;
-        position: relative;
-        font-weight: 600;
-        font-size: 1.1rem;
-        color: #333;
-      }
-      .faq-question::after {
-        content: "+";
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
-        font-size: 1.3rem;
-        color: #181844;
-        transition: transform 0.3s;
-      }
-      .faq-item.active .faq-question::after {
-        transform: rotate(45deg);
-        content: "–";
-      }
-      .faq-answer {
-        display: none;
-        padding: 0 1rem 1rem;
-        font-size: 0.95rem;
-        color: #555;
-        line-height: 1.5;
-      }
-      .faq-item.active .faq-answer {
-        display: block;
-      }
-  
-      /****************************************
-       9) CTA SECTION
-      *****************************************/
-      .cta-section {
-        background: #181844; 
-        color: #fff;
-        text-align: center;
-        padding: 3rem 1rem;
-      }
-      .cta-section h2 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-      }
-      .cta-section p {
-        max-width: 600px;
-        margin: 0 auto 2rem;
-        line-height: 1.4;
-      }
-      .btn-contact {
-        display: inline-block;
-        background: #fff;
-        color: #181844;
-        padding: 0.8rem 1.4rem;
-        border-radius: 4px;
-        font-weight: 600;
-        transition: background 0.3s, color 0.3s;
-      }
-      .btn-contact:hover {
-        background: #ebebeb;
-        color: #12163b;
-      }
-  
-      /****************************************
-       10) FOOTER
-      *****************************************/
-      .footer {
-        background: #e7e9fc;
-        text-align: center;
-        padding: 2rem 1rem;
-        font-size: 0.9rem;
-        color: #444;
-      }
-      .footer p {
-        margin-bottom: 0.5rem;
-      }
+  .roles-columns {
+    flex-direction: column;
+  }
+  .workflow-steps {
+    grid-template-columns: 1fr;
+  }
+  .mini-case-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+   OPTIONAL EXTRA CLASSES FOR BRAND-RED HIGHLIGHTS
+   (Badges, highlight words, accent boxes, etc.)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* 1) Full-Red Headings:
+   Apply <h2 class="title-red">...<h2> to color that heading red. */
+.title-red {
+  color: #f05a28;
+}
+
+/* 2) Single-word highlight inside headings or text:
+   <span class="highlight-red">word</span> */
+.highlight-red {
+  color: #f05a28;
+  font-weight: 600;
+}
+
+/* 3) A small brand-red "badge" next to text:
+   <span class="notification-badge">NEU</span> */
+.notification-badge {
+  display: inline-block;
+  background: #f05a28;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+/* 4) An accent box with a brand-red left border:
+   <div class="accent-box">Content here</div> */
+.accent-box {
+  border-left: 4px solid #f05a28;
+  background: rgba(240, 90, 40, 0.08);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* 5) Large stats with brand-red numbers:
+   <div class="big-stats"><span class="number">1,000+</span> Fachkräfte</div> */
+.big-stats {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+.big-stats .number {
+  color: #f05a28; /* brand red number */
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 0.3rem;
+}

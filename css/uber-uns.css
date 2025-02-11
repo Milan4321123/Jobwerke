@@ -1,704 +1,659 @@
 /***************************************************************
-  1) GLOBAL RESET & BASE STYLES
+  1) GLOBAL RESET & BASE
 ***************************************************************/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
-    color: #333;
-    line-height: 1.6;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    position: relative;
-  }
-  /* Basic link hover */
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  a:hover {
-    color: #181844; 
-  }
-  img, video {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  h1, h2, h3 {
-    margin-bottom: 0.8rem;
-  }
-  p {
-    margin-bottom: 1rem;
-  }
-  /* For language toggles */
-  .hidden {
-    display: none !important;
-  }
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box;
+}
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #0e0e0e; /* overall black background */
+  color: #ccc;              /* default text color: silver-ish */
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #ffffff; /* full white on hover for links */
+}
+img, video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+h1, h2, h3 {
+  margin-bottom: 0.75rem;
+  color: #fafafa; /* headings in a lighter silver/white */
+  line-height: 1.2;
+}
+p {
+  margin-bottom: 1rem;
+}
+
+/* Language toggle hidden class */
+.hidden {
+  display: none !important;
+}
+
+/* Body offset for fixed navbar */
+body::before {
+  content: "";
+  display: block;
+  height: 72px; /* matches .navbar height */
+}
+
+/***************************************************************
+  2) NAVBAR
+***************************************************************/
+.navbar {
+  position: fixed;
+  /* Positioning */
+  top: 1rem;            /* space from the top */
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%);
   
-  /***************************************************************
-    2) NAVBAR (WITH HAMBURGER)
-  ***************************************************************/
-  /* Base Navbar Container */
+  /* Size & layout */
+  width: 80%;           /* or however wide you want it */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  /* Look & feel */
+  background: linear-gradient(360deg, #7f6060, #f90000);  /* gradient color */
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;     /* large radius for that “pill” shape */
+  
+  /* Glow / Shadow */
+  box-shadow: 0 0 10px rgba(175, 27, 27, 0.7),
+              0 0 25px rgba(182, 62, 62, 0.4);
+  
+  /* Layer above page content */
+  z-index: 9999;
+}
+.navbar__logo {
+  flex-shrink: 0;
+}
+.navbar-logo-video {
+  max-height: 50px;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+.navbar__logo:hover .navbar-logo-video {
+  transform: scale(1.05);
+}
+
+/* Hamburger for mobile */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: auto;
+  cursor: pointer;
+}
+.navbar__toggle span {
+  width: 24px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Desktop menu */
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+
+/* Nav links */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+}
+.navbar__links a {
+  font-weight: 1000;
+  color: #f5f5f5;
+  position: relative;
+  padding: 0.2rem 0;
+}
+.navbar__links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: #888; /* subtle silver for active link */
+}
+.navbar__links a:hover {
+  color: #fff; 
+}
+
+/* Language btn */
+.lang-btn {
+  background: #a52121;
+  color: #eee;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-weight: 500;
+  border: 2px solid rgba(255, 255, 255, 0.5); /* solid blur border */
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* shiny effect */
+}
+.lang-btn:hover {
+  background: #666;
+  border-color: rgba(255, 255, 255, 0.8); /* more shiny on hover */
+}
+/* Mobile nav */
+@media (max-width: 768px) {
   .navbar {
-    position: fixed;
-    top: 0; 
-    left: 0;
-    width: 100%;
-    height: 70px; 
-    display: flex;
-    align-items: center;
-    background: #181844; 
-    padding: 0 2rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    z-index: 9999;
+    height: 60px;
   }
-  /* Logo Area */
-  .navbar__logo .navbar-logo-video {
-    pointer-events: none;
-    max-height: 60px;
-    width: auto;
-    transition: transform 0.3s;
-    margin: 5px 0;
-    object-fit: contain;
-  }
-  .navbar__logo img:hover {
-    transform: scale(1.05);
-  }
-  /* Hamburger (hidden on desktop, shown on mobile) */
   .navbar__toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
+    display: flex;
+    margin-left: auto;
   }
-  .navbar__toggle span {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
-  /* Nav Menu (desktop) */
   .navbar__menu {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
-  }
-  /* Nav Links */
-  .navbar__links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-  .navbar__links a {
-    font-weight: 500;
-    color: #fff;
-    transition: color 0.3s;
-    padding: 0.3rem 0;
-  }
-  .navbar__links a:hover {
-    color: #bbb;
-  }
-  .navbar__links a.active {
-    border-bottom: 2px solid #fff;
-  }
-  /* Language Button */
-  .lang-btn {
-    margin-left: 1rem;
-    background: #24247b; /* same color for all pages */
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .lang-btn:hover {
-    background: #1c1c5f; /* consistent hover color */
-  }
-  /* Offset content below fixed navbar */
-  body::before {
-    content: "";
-    display: block;
-    height: 70px; /* matches .navbar height */
-  }
-  /* Responsive Navbar (max-width: 768px) */
-  @media (max-width: 768px) {
-    .navbar {
-      height: 60px;
-      padding: 0 1rem;
-    }
-    .navbar__logo img {
-      max-height: 50px;
-    }
-    .navbar__toggle {
-      display: flex;
-      margin-left: auto;
-    }
-    .navbar__menu {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      flex-direction: column;
-      gap: 1rem;
-      background: #181844;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      padding: 1rem 2rem;
-      transform: translateY(-130%);
-      transition: transform 0.3s ease;
-    }
-    .navbar__menu.nav-open {
-      transform: translateY(0);
-    }
-    .navbar__links {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-  }
-  /***************************************************************
-    3) HERO (VIDEO BACKGROUND)
-  ***************************************************************/
-  .hero {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* full-screen hero */
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-  }
-  .hero-video {
     position: absolute;
-    top: 0; left: 0;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -2;
-  }
-  .hero-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(9, 9, 25, 0.65);
-    z-index: -1;
-  }
-  .hero-content {
-    max-width: 700px;
-    padding: 1rem;
-  }
-  .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-  }
-  .hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  }
-  .btn-primary {
-    display: inline-block;
-    padding: 0.8rem 1.6rem;
-    background: #181844;
-    color: #fff;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: background 0.3s;
-  }
-  .btn-primary:hover {
-    background: #12163b;
-  }
-  @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2.2rem;
-    }
-    .hero-content p {
-      font-size: 1rem;
-    }
-  }
-  .hidden {
-    display: none;
-  }
-  
-  /****************************************
-    3) HERO BANNER (FROSTED CARD)
-  ****************************************/
-  .about-hero {
-    position: relative;
-    width: 100%;
-    min-height: 50vh;
-    background: url("../assets/img/about-placeholder.jpg") center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    overflow: hidden;
-  }
-  .about-hero .hero-overlay {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; 
-    height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.6));
-    z-index: 1;
-  }
-  .about-hero .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 700px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(6px);
-    border-radius: 8px;
-    padding: 2rem;
-    text-align: center;
-    color: #333;
-  }
-  .about-hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #181844;
-  }
-  .about-hero p {
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-    color: #444;
-  }
-  @media (max-width: 768px) {
-    .about-hero {
-      min-height: 40vh;
-      padding: 1.5rem;
-    }
-    .about-hero h1 {
-      font-size: 2rem;
-    }
-  }
-  
-  /****************************************
-    4) FOUNDING STORY + TIMELINE
-  ****************************************/
-  .founding-section {
-    background: #fff;
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .founding-top {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-  .founding-text {
-    flex: 1 1 400px;
-    max-width: 600px;
-  }
-  .founding-text h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-  .founding-text p {
-    margin-bottom: 1rem;
-    color: #555;
-    line-height: 1.6;
-  }
-  .founding-text blockquote {
-    margin: 1rem 0;
-    padding: 1rem;
-    background: #f9f9f9;
-    border-left: 4px solid #181844;
-    font-style: italic;
-  }
-  .founding-img {
-    flex: 1 1 300px;
-    max-width: 500px;
-  }
-  .founding-img img {
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
-  }
-  @media (max-width: 768px) {
-    .founding-top {
-      flex-direction: column;
-    }
-    .founding-img {
-      margin: 2rem auto 0;
-    }
-  }
-  
-  .full-timeline {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-  .timeline-item {
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    padding: 1.5rem;
-    transition: transform 0.3s;
-  }
-  .timeline-item:hover {
-    transform: translateY(-3px);
-  }
-  .timeline-date {
-    display: inline-block;
-    background: #181844;
-    color: #fff;
-    font-weight: 600;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    margin-bottom: 0.5rem;
-  }
-  .timeline-item h3 {
-    margin-bottom: 0.4rem;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  .timeline-item p {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.5;
-  }
-  
-  /****************************************
-    5) CULTURE & PHILOSOPHY
-  ****************************************/
-  .culture {
-    background: #f4f8ff;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-  .culture-intro {
-    max-width: 800px;
-    margin: 0 auto 2rem;
-    color: #555;
-    line-height: 1.6;
-  }
-  .culture-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .culture-item {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    overflow: hidden;
-    transition: transform 0.3s;
-  }
-  .culture-item:hover {
-    transform: translateY(-4px);
-  }
-  .culture-item img {
-    object-fit: cover;
-    width: 100%;
-    height: 180px;
-  }
-  .culture-item p {
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.5;
-  }
-  
-  /****************************************
-    6) TEAM SPOTLIGHTS
- /**************************************
- * TEAM SPOTLIGHTS SECTION (Horizontal)
- **************************************/
-.team-spotlights {
-    /* Subtle gradient background for the entire section */
-    background: linear-gradient(120deg, #fdfdfd, #f7f7f7);
-    padding: 3rem 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .team-spotlights h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  .team-spotlights p {
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    color: #555;
-    line-height: 1.6;
-  }
-  
-  /* Horizontal row container for the "cards" */
-  .team-spotlight-row {
-    display: flex;
-    flex-wrap: nowrap;       /* keep in a row */
-    gap: 2rem;
-    overflow-x: auto;        /* horizontal scroll if not fitting on screen */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 1rem;    /* space for scroll bar area if needed */
-    align-items: flex-start;
-    justify-content: center; 
-  }
-  
-  /* Each card */
-  .spotlight-card {
-    flex: 0 0 auto;          /* don't shrink; keep fixed width */
-    width: 280px;            /* adjust as needed for your design */
-    background: #fff;        /* white card */
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    padding: 1.5rem 1.25rem;
-    text-align: left;        /* left-align text inside the card */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 1rem;     /* optional bottom space for aesthetic */
-    transform: rotate(1.5deg);  /* slight tilt for a fun, creative vibe */
-    position: relative;
-  }
-  
-  /* Card hover effect: straighten tilt & deepen shadow */
-  .spotlight-card:hover {
-    transform: rotate(0deg) translateY(-2px);
-    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-  }
-  
-  /* Team member name & role styling */
-  .spotlight-card h3 {
-    margin: 0.5rem 0 0.25rem;
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .role {
-    color: #0086c2;      /* accent color for roles */
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    font-size: 0.95rem;
-  }
-  
-  /* The stylized quote box */
-  .short-quote {
-    font-style: italic;
-    background: #f1f1f1;
-    border-left: 3px solid #0086c2;
-    padding: 0.75rem 1rem;
-    margin: 0.75rem 0 1rem;
-    border-radius: 4px;
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.4;
-  }
-  
-  /* Bio text */
-  .bio {
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.45;
-  }
-  
-  /* Make sure text is never too wide within each card */
-  .spotlight-card p {
-    max-width: 250px;
-    margin: 0.5rem 0 0 0; /* slight top margin */
-  }
-  
-  /* Responsive tweaks for smaller screens */
-  @media (max-width: 600px) {
-    .team-spotlight-row {
-      flex-wrap: wrap;        /* let cards wrap on multiple lines */
-      overflow-x: hidden;     /* no horizontal scroll needed if wrapping */
-      justify-content: center;
-    }
-    .spotlight-card {
-      width: 85%;
-      margin: 0 auto 1rem;
-      transform: rotate(0deg); /* remove tilt for better reading on mobile */
-    }
-  }
-  /****************************************
-    7) ACHIEVEMENTS
-  ****************************************/
-  .achievements {
-    background: #f4f4f4;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-  .achievements h2 {
-    margin-bottom: 2rem;
-  }
-  .achievements-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .achievement-card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    padding: 2rem;
-    transition: transform 0.3s;
-  }
-  .achievement-card:hover {
-    transform: translateY(-3px);
-  }
-  .achievement-card h3 {
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-  }
-  .achievement-card p {
-    font-size: 0.9rem;
-    color: #555;
-    line-height: 1.4;
-  }
-  .achievements p {
-    max-width: 700px; 
-    margin: 2rem auto 0; 
-    color: #555; 
-    line-height: 1.6;
-  }
-  .achievements-cta {
-    text-align: center; 
-    margin-top: 1rem;
-  }
-  .achievements-cta a.cta-link {
-    display: inline-block;
-    margin: 0 0.5rem;
-    padding: 0.4rem 0.8rem;
-    background: #181844;
-    color: #fff !important;
-    border-radius: 4px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-  @media (max-width: 768px) {
-    .achievements-cta a.cta-link {
-      display: block;
-      margin: 0.5rem auto;
-      width: max-content;
-    }
-  }
-  
-  /****************************************
-    8) IMPACT / COMMUNITY
-  ****************************************/
-  .impact {
-    background: #fff;
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-  .impact h2 {
-    margin-bottom: 1.5rem;
-  }
-  .impact p {
-    max-width: 800px;
-    margin: 0 auto 2rem;
-    color: #555;
-    line-height: 1.6;
-  }
-  .impact-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1rem;
-    max-width: 800px;
-    margin: 0 auto;
+    background: #1a1a1a;
+    padding: 1rem 2rem;
+    transform: translateY(-120%);
+    transition: transform 0.3s ease;
+    z-index: 99;
   }
-  .impact-images img {
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    object-fit: cover;
-    height: 180px;
-    width: 100%;
+  .navbar__menu.nav-open {
+    transform: translateY(0);
   }
-  
-  /****************************************
-    9) VISION / FUTURE
-  ****************************************/
-  .vision-future {
-    background: #f4f8ff;
-    padding: 4rem 2rem;
+  .navbar__links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+/***************************************************************
+  3) REUSABLE SECTION STYLES
+***************************************************************/
+section {
+  padding: 4rem 2rem;
+}
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+.text-center {
+  text-align: center;
+}
+.shadow {
+  box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+}
+
+/***************************************************************
+  4) HERO (GER + EN) - TWO-COLUMN LAYOUT
+***************************************************************/
+.hero-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.hero-image {
+  flex: 1 1 400px;
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(255,255,255,0.05);
+}
+.hero-image img {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.hero-image:hover img {
+  transform: scale(1.05);
+}
+.hero-text {
+  flex: 1 1 400px;
+  color: #ccc;
+}
+.hero-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.hero-text p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  max-width: 500px;
+  line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .hero-container {
+    flex-direction: column;
     text-align: center;
   }
-  .vision-future h2 {
-    margin-bottom: 1.5rem;
+  .hero-text {
+    order: -1; /* put text above image on mobile if you want */
   }
-  .vision-future p {
-    max-width: 800px;
-    margin: 0 auto 1.5rem;
-    color: #555;
-    line-height: 1.6;
-  }
-  
-  /****************************************
-    10) CTA SECTION
-  ****************************************/
-  .cta {
-    background: #181844;
-    color: #fff;
+}
+
+/***************************************************************
+  5) FOUNDING CARDS (GER/EN)
+***************************************************************/
+.founding-cards-ger, .founding-cards-en {
+  background: #1a1a1a;
+  color: #ddd;
+  text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+}
+.founding-cards-ger h2, .founding-cards-en h2 {
+  color: #fff;
+}
+.founding-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.founding-card {
+  background: #252525;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+.founding-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(255,255,255,0.06);
+}
+.founding-date {
+  display: inline-block;
+  background: 	#f05a28;
+  color: 	#fcf9f8;
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.founding-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+}
+.founding-card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #bbb;
+}
+.founder-quote {
+  margin: 2rem auto 0;
+  max-width: 700px;
+  font-style: italic;
+  color: #ccc;
+  background: rgba(255,255,255,0.03);
+  border-left: 4px solid #888;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+/***************************************************************
+  6) CULTURE CAROUSEL (GER/EN)
+***************************************************************/
+.culture-carousel-ger, .culture-carousel-en {
+  background: #0e0e0e;
+}
+.culture-carousel-ger h2, .culture-carousel-en h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.carousel-intro {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  color: #ccc;
+}
+.culture-carousel-track {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+  justify-content: center;
+}
+.culture-slide {
+  flex: 0 0 auto;
+  width: 500px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /
+}
+.culture-slide:hover {
+  transform: translateY(-3px);
+}
+.culture-slide img {
+  object-fit: cover;
+  width: 100%;
+  height: 180px;
+}
+.culture-caption {
+  padding: 1rem;
+}
+.culture-caption p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #ccc;
+}
+
+/***************************************************************
+  7) STEPS / PROCESS (GER/EN)
+***************************************************************/
+.steps-process-ger, .steps-process-en {
+  background: #151515;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+  text-align: center;
+}
+.steps-process-ger h2, .steps-process-en h2 {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.step-box {
+  background: #1f1f1f;
+  border-radius: 6px;
+  padding: 2rem;
+  transition: box-shadow 0.3s ease;
+}
+.step-box:hover {
+  box-shadow: 0 4px 12px rgba(255,255,255,0.05);
+}
+.step-box h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: 	#f05a28;
+}
+.step-box p {
+  font-size: 0.9rem;
+  color: #bbb;
+  line-height: 1.5;
+}
+
+/***************************************************************
+  8) ACHIEVEMENTS ROW (GER/EN)
+***************************************************************/
+.achievements-row-ger, .achievements-row-en {
+  background: #0e0e0e;
+  text-align: center;
+}
+.achievements-row-ger h2, .achievements-row-en h2 {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+.achievements-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.achievement-item {
+  background: #222;
+  border-radius: 6px;
+  width: 200px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+.achievement-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255,255,255,0.05);
+}
+.achievement-item h3 {
+  font-size: 2rem;
+  color: 	#f05a28;
+  margin-bottom: 0.5rem;
+}
+.achievement-item p {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+.achievements-note {
+  margin-top: 2rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+.achievements-note a {
+  color: 	#f05a28;
+  text-decoration: underline;
+}
+.achievements-note a:hover {
+  color: #ddd;
+}
+
+/***************************************************************
+  9) TEAM GRID (GER/EN)
+***************************************************************/
+.team-grid-ger, .team-grid-en {
+  background: #1a1a1a;
+  text-align: center;
+}
+.team-grid-ger h2, .team-grid-en h2 {
+  color: #fff;
+}
+.team-grid-ger p, .team-grid-en p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #ccc;
+}
+.team-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.team-card {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.team-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(255,255,255,0.08);
+}
+.team-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+.team-card h3 {
+  margin-bottom: 0.3rem;
+  color: #fff;
+}
+.team-card .role {
+  display: block;
+  color: #aaa;
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.team-card p {
+  color: #ccc;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/***************************************************************
+  10) IMPACT HIGHLIGHT (GER/EN)
+***************************************************************/
+.impact-highlight-ger, .impact-highlight-en {
+  background: #111;
+  text-align: center;
+}
+.impact-highlight-ger h2, .impact-highlight-en h2 {
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.impact-highlight-ger p, .impact-highlight-en p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #ccc;
+  line-height: 1.6;
+}
+.impact-img-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+.impact-img-row img {
+  width: 300px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(255,255,255,0.05);
+  transition: transform 0.3s ease;
+}
+.impact-img-row img:hover {
+  transform: scale(1.03);
+}
+
+/***************************************************************
+  11) VISION SECTION (GER/EN)
+***************************************************************/
+.vision-section-ger, .vision-section-en {
+  background: #1f1f1f;
+}
+.vision-section-ger .vision-content,
+.vision-section-en .vision-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  color: #ccc;
+}
+.vision-section-ger h2, .vision-section-en h2 {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.vision-section-ger p, .vision-section-en p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+/***************************************************************
+  12) CTA SPLIT (GER/EN)
+***************************************************************/
+.cta-split-ger, .cta-split-en {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #222, #444);
+  padding: 3rem 2rem;
+  color: #fff;
+}
+.cta-left {
+  flex: 1 1 300px;
+}
+.cta-left h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.cta-left p {
+  line-height: 1.6;
+}
+.cta-left a {
+  color: #fff;
+  text-decoration: underline;
+}
+.cta-right {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+/* ============ BRAND-RED FOR CTA SPLIT BUTTONS ============ */
+.cta-right .btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #f05a28; /* brand red */
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.cta-right .btn:hover {
+  background: #d54f22; /* deeper red hover */
+  transform: translateY(-2px);
+}
+@media (max-width: 768px) {
+  .cta-split-ger, .cta-split-en {
+    flex-direction: column;
     text-align: center;
-    padding: 3rem 2rem;
   }
-  .cta h2 {
-    margin-bottom: 1rem;
+  .cta-right {
+    justify-content: center;
   }
-  .cta p {
-    max-width: 600px;
-    margin: 0 auto 1.5rem;
-    line-height: 1.4;
-  }
-  .btn {
-    display: inline-block;
-    padding: 0.8rem 1.4rem;
-    background: #fff;
-    color: #181844;
-    border-radius: 4px;
-    font-weight: 600;
-    transition: background 0.3s, color 0.3s;
-  }
-  .btn:hover {
-    background: #ebebeb;
-    color: #12163b;
-  }
-  .cta .btn {
-    margin: 0 0.5rem;
-  }
-  @media (max-width: 768px) {
-    .cta .btn {
-      display: block;
-      margin: 0.5rem auto;
-      width: max-content;
-    }
-  }
-  
-  /****************************************
-    11) FOOTER
-  ****************************************/
-  .footer {
-    background: #e7e9fc;
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.9rem;
-    color: #444;
-  }
-  .footer p {
-    margin-bottom: 0.5rem;
-  }
+}
+
+/***************************************************************
+  13) FOOTER
+***************************************************************/
+.footer {
+  background: #000;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #999;
+  border-top: 1px solid #333;
+}
+.footer p {
+  margin-bottom: 0.5rem;
+}
+.footer a {
+  color: #ccc;
+  text-decoration: underline;
+}
+.footer a:hover {
+  color: #fff;
+}

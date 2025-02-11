@@ -1,144 +1,167 @@
 /***************************************************************
-  1) GLOBAL RESET & BASE STYLES
+  1) GLOBAL RESET & BASE
 ***************************************************************/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body {
-  font-family: 'Poppins', sans-serif;
-  background: #fafafa;
-  color: #333;
+
+html, body {
+  font-family: "Poppins", sans-serif;
+  background: #0c0c0c; /* overall black background */
+  color: #ccc;
   line-height: 1.6;
-  overflow-x: hidden;
   scroll-behavior: smooth;
-  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-/* Basic link hover */
+
 a {
-  color: inherit;
   text-decoration: none;
-  transition: color 0.3s;
+  color: inherit;
+  transition: color 0.3s ease;
 }
+
 a:hover {
-  color: #181844; 
+  color: #fff;
 }
+
 img, video {
   display: block;
   width: 100%;
   height: auto;
 }
-h1, h2, h3 {
-  margin-bottom: 0.8rem;
-}
-p {
-  margin-bottom: 1rem;
-}
-/* For language toggles */
+
 .hidden {
   display: none !important;
 }
 
+/* Offset content if navbar is fixed */
+body::before {
+  content: "";
+  display: block;
+  height: 70px; /* match .navbar height if you want space below it */
+}
+
 /***************************************************************
-  2) NAVBAR (WITH HAMBURGER)
+  2) NAVBAR
 ***************************************************************/
-/* Base Navbar Container */
 .navbar {
   position: fixed;
-  top: 0; 
-  left: 0;
-  width: 100%;
-  height: 70px; 
+  /* Positioning */
+  top: 1rem;            /* space from the top */
+  left: 50%;            /* center horizontally */
+  transform: translateX(-50%);
+  
+  /* Size & layout */
+  width: 80%;           /* or however wide you want it */
   display: flex;
   align-items: center;
-  background: #181844; 
-  padding: 0 2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  justify-content: space-between;
+  
+  /* Look & feel */
+  background: linear-gradient(360deg, #7f6060, #f90000);  /* gradient color */
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;     /* large radius for that “pill” shape */
+  
+  /* Glow / Shadow */
+  box-shadow: 0 0 10px rgba(175, 27, 27, 0.7),
+              0 0 25px rgba(182, 62, 62, 0.4);
+  
+  /* Layer above page content */
   z-index: 9999;
 }
-/* Logo Area */
-.navbar__logo .navbar-logo-video {
-  pointer-events: none;
-  max-height: 60px;
-  width: auto;
-  transition: transform 0.3s;
-  margin: 5px 0;
-  object-fit: contain;
+.navbar__logo {
+  flex-shrink: 0;
 }
-.navbar__logo img:hover {
+.navbar-logo-video {
+  max-height: 50px;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+.navbar__logo:hover .navbar-logo-video {
   transform: scale(1.05);
 }
-/* Hamburger (hidden on desktop, shown on mobile) */
+
+/* Hamburger for mobile */
 .navbar__toggle {
   display: none;
   flex-direction: column;
   gap: 4px;
+  margin-left: auto;
   cursor: pointer;
 }
 .navbar__toggle span {
-  width: 25px;
+  width: 24px;
   height: 3px;
   background: #fff;
   border-radius: 2px;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
 }
-/* Nav Menu (desktop) */
+
+/* Desktop menu */
 .navbar__menu {
-  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 2rem;
+  gap: 1.5rem;
+  margin-left: auto;
 }
-/* Nav Links */
+
+/* Nav links */
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
 }
 .navbar__links a {
-  font-weight: 500;
-  color: #fff;
-  transition: color 0.3s;
-  padding: 0.3rem 0;
+  font-weight: 1000;
+  color: #f5f5f5;
+  position: relative;
+  padding: 0.2rem 0;
+}
+.navbar__links a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: #888; /* subtle silver for active link */
 }
 .navbar__links a:hover {
-  color: #bbb;
+  color: #fff; 
 }
-.navbar__links a.active {
-  border-bottom: 2px solid #fff;
-}
-/* Language Button */
+
+/* Language btn */
 .lang-btn {
-  margin-left: 1rem;
-  background: #24247b; /* same color for all pages */
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-weight: 600;
-  border: none;
+  background: #a52121;
+  color: #eee;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  font-weight: 500;
+  border: 2px solid rgba(255, 255, 255, 0.5); /* solid blur border */
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* shiny effect */
 }
 .lang-btn:hover {
-  background: #1c1c5f; /* consistent hover color */
+  background: #666;
+  border-color: rgba(255, 255, 255, 0.8); /* more shiny on hover */
 }
-/* Offset content below fixed navbar */
-body::before {
-  content: "";
-  display: block;
-  height: 70px; /* matches .navbar height */
-}
-/* Responsive Navbar (max-width: 768px) */
+
+/* Mobile nav */
 @media (max-width: 768px) {
   .navbar {
     height: 60px;
-    padding: 0 1rem;
-  }
-  .navbar__logo .navbar-logo-video {
-    pointer-events: none;
-    max-height: 50px;
   }
   .navbar__toggle {
     display: flex;
@@ -148,390 +171,579 @@ body::before {
     position: absolute;
     top: 60px;
     left: 0;
-    width: 100%;
     flex-direction: column;
+    width: 100%;
     gap: 1rem;
-    background: #181844;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    background: #1a1a1a;
     padding: 1rem 2rem;
-    transform: translateY(-130%);
+    transform: translateY(-120%);
     transition: transform 0.3s ease;
+    z-index: 99;
   }
   .navbar__menu.nav-open {
     transform: translateY(0);
   }
   .navbar__links {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 }
-/* .hidden => display:none; */
-.hidden {
-  display: none;
-}
-
-/* ========== HERO SECTION ========== */
-.hero-section {
+/***************************************************************
+  3) ANGLED HERO (DE / EN)
+***************************************************************/
+.hero-angled-de, .hero-angled-en {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  height: 60vh;
-  overflow: hidden;
-  color: #fff;
-  text-align: center;
-  background: #181844; /* fallback */
-}
-.hero-section img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-.hero-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(24,24,68,0.65);
-  z-index: 1;
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  padding: 1rem;
-}
-.hero-content h1 {
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-}
-.hero-content p {
-  font-size: 1.2rem;
+  min-height: 60vh;
   margin-bottom: 2rem;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  overflow: hidden;
+  background: #0c0c0c;
 }
-
-/* ========== CONTACT INTRO ========== */
-.contact-intro {
-  background: #fafafa;
-  padding: 4rem 2rem;
-}
-.intro-wrapper {
+.hero-de-inner, .hero-en-inner {
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  align-items: center;
-  justify-content: center;
+  padding: 3rem 1.5rem;
+  /* Angled background with clip-path */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  background: linear-gradient(to right, #111, #333);
 }
-.intro-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
+.hero-text-block {
+  flex: 1 1 400px;
+  color: #ccc;
+  padding: 1rem;
 }
-.intro-image img {
-  max-width: 80%;
-  border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-.intro-content {
-  flex: 1;
-}
-.intro-content h2 {
-  font-size: 2rem;
-  color: #181844;
+.step-icon {
   margin-bottom: 1rem;
 }
-.intro-content p {
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
+.step-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
 }
-.intro-content .highlight {
-  color: #181844;
-  font-weight: 600;
+
+.step-icon img {
+  display: block;
+  margin: 0 auto;
 }
-.btn-cta {
+
+.hero-text-block h1 {
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.hero-text-block p {
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+.hero-text-block a.hero-btn {
   display: inline-block;
-  padding: 0.9rem 2rem;
-  background: #181844;
+  padding: 0.6rem 1.2rem;
+  background: #cd1313;
   color: #fff;
   border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
-.btn-cta:hover {
-  background: #131237;
+.hero-text-block a.hero-btn:hover {
+  background: #555;
+  transform: translateY(-2px);
 }
+.hero-image-block {
+  flex: 1 1 400px;
+  overflow: hidden;
+  text-align: center;
+}
+.hero-image-block img {
+  max-height: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(255,255,255,0.05);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.hero-image-block:hover img {
+  transform: scale(1.04);
+}
+.her-bt
 @media (max-width: 768px) {
-  .intro-wrapper {
+  .hero-de-inner, .hero-en-inner {
     flex-direction: column;
+    clip-path: none;
+    background: #222;
     text-align: center;
   }
-  .intro-image img {
-    max-width: 60%;
-    margin-bottom: 2rem;
+  .hero-image-block img {
+    max-height: 200px;
+    margin-top: 1rem;
   }
 }
 
-/* ========== MAIN CONTACT SECTION ========== */
-.contact-section {
-  background: linear-gradient(
-    135deg,
-    #f9f9fc 0%,
-    #f1f3f6 100%
-  );
-  padding: 4rem 2rem;
-}
-.contact-heading {
+/***************************************************************
+  4) WHY CONTACT SECTION (DE / EN)
+***************************************************************/
+.why-contact-de, .why-contact-en {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
   text-align: center;
-  margin-bottom: 3rem;
+  color: #ccc;
 }
-.contact-heading h1 {
-  font-size: 2.2rem;
-  color: #181844;
+.why-contact-de h2, .why-contact-en h2 {
+  font-size: 2rem;
+  color: #fff;
   margin-bottom: 1rem;
 }
-.contact-heading p {
-  color: #555;
-  max-width: 600px;
-  margin: 0.5rem auto 0 auto;
+.why-desc {
+  max-width: 700px;
+  margin: 0 auto 2rem;
   line-height: 1.5;
+  color: #bbb;
 }
-.contact-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
+.why-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 2rem;
 }
-.info-column {
-  position: relative;
-  flex: 1 1 400px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  padding: 2rem;
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+.why-card {
+  background: #1a1a1a;
+  border-radius: 6px;
+  box-shadow: 0 3px 12px rgba(255,255,255,0.05);
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
 }
-.info-column h2 {
-  font-size: 1.6rem;
-  color: #181844;
+.why-card:hover {
+  transform: translateY(-3px);
+}
+.why-card i {
+  font-size: 2rem;
+  color: #888;
   margin-bottom: 1rem;
 }
-.info-list {
-  list-style: none;
-  margin: 1.5rem 0 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
+.why-card h3 {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 0.5rem;
 }
-.info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  justify-content: center;
-}
-.info-icon {
-  font-size: 1.5rem;
-  color: #181844;
-  margin-top: 3px;
-}
-.info-text {
-  color: #555;
+.why-card p {
+  font-size: 0.9rem;
+  color: #aaa;
   line-height: 1.4;
 }
-.info-text strong {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-.info-text a {
-  color: #6e00c2;
-  font-weight: 600;
-}
-.whatsapp-btn {
-  display: inline-block;
-  margin-top: 4px;
-  padding: 0.6rem 1rem;
-  background-color: #25D366;
-  color: #fff;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: background-color 0.3s;
-}
-.whatsapp-btn:hover {
-  background-color: #1ebe5a;
-}
-.watermark-container {
-  /* no specific width/height needed unless you want to restrict the video’s bounding box */
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  bottom: 0;
 
-  /* ensures the container covers the entire .info-column area
-     so we can center the video background-style inside it */
-  pointer-events: none; /* clicks pass through */
-  z-index: 0;           /* behind other content in .info-column if they are z-index:1 or auto */
-}
-
-.watermark-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  width: 300px;   /* or any size you prefer for the “watermark” */
-  height: 250px;
-  object-fit: contain;  /* or 'contain' if you don’t want cropping */
-
-  pointer-events: none; /* ensures user can still click links in .info-column */
-  opacity: 0.7;         /* reduce opacity to look more like a watermark */
-  z-index: 0;           /* ensures the video is behind the text */
-}
-.form-column {
-  flex: 1 1 500px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  padding: 2rem;
-  min-width: 280px;
-}
-.form-column h2 {
-  font-size: 1.6rem;
-  color: #181844;
-  margin-bottom: 1.2rem;
-}
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.form-group label {
-  font-weight: 600;
-  color: #181844;
-}
-.form-group input,
-.form-group textarea {
-  padding: 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  outline: none;
-}
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #181844;
-}
-.btn-submit {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  background: #181844;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.btn-submit:hover {
-  background-color: #131237;
-}
-#appointment-fields {
-  display: none;
-  background-color: #f1f1f1;
-  padding: 1rem;
-  border-radius: 6px;
-}
-@media (max-width: 768px) {
-  .contact-container {
-    flex-direction: column;
-  }
-}
-
-/* ========== ADDRESS SECTION ========== */
-.address-section {
-  background: #fafafa;
-  padding: 3rem 2rem;
-}
-.address-section h2 {
+/***************************************************************
+  5) CONTACT METHODS (DE / EN)
+***************************************************************/
+.contact-methods-de, .contact-methods-en {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
   text-align: center;
+  color: #ccc;
+}
+.contact-methods-de h2, .contact-methods-en h2 {
   font-size: 2rem;
-  color: #181844;
-  margin-bottom: 2rem;
-}
-.address-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.address-box {
-  flex: 1 1 500px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-  padding: 2rem;
-  min-width: 300px;
-}
-.address-box h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
-  color: #181844;
-}
-.address-box p {
   margin-bottom: 1rem;
-  color: #555;
-  line-height: 1.6;
-}
-.address-box a {
-  display: inline-block;
-  padding: 0.6rem 1rem;
-  background: #181844;
   color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 600;
-  margin-top: 0.5rem;
 }
-.map-container {
-  margin-top: 1rem;
-  border: 2px solid #eee;
+.contact-methods-de p, .contact-methods-en p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #bbb;
+  line-height: 1.5;
+}
+.methods-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 2rem;
+}
+.method-box {
+  background: #0b0909;
   border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 12px rgba(255,255,255,0.05);
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+.method-box:hover {
+  transform: translateY(-3px);
+}
+.method-box i {
+  font-size: 2rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+.method-btn {
+  display: inline-block;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(135deg, #4c8d5f, #3a6f47);
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  text-align: center;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.method-btn:hover {
+  background: #a31212;
+  transform: translateY(-2px);
+}
+.method-box h3 {
+  font-size: 1.1rem;
+  color: #bd1c1c;
+  margin-bottom: 0.5rem;
+}
+.method-box p {
+  font-size: 0.9rem;
+  color: #aaa;
 }
 
-/* ========== FOOTER ========== */
+/***************************************************************
+  6) CONTACT FORM (DE / EN)
+***************************************************************/
+.contact-form-de,
+.contact-form-en {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  color: #ccc;
+}
+
+/* Form headings and text */
+.contact-form-de h2,
+.contact-form-en h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.contact-form-de p,
+.contact-form-en p {
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.5;
+  color: #bbb;
+}
+
+/* The inner container with a "red glow" */
+.form-de-inner,
+.form-en-inner {
+  /* Dark background with subtle red gradient */
+  background: linear-gradient(135deg, #3e1717, #972626 60%, #8f0202 100%);
+  border-radius: 60px;
+  position: relative; /* for the pseudo-element glow */
+  padding: 2rem;
+  box-shadow:
+    0 4px 14px rgba(255, 255, 255, 0.05), /* existing subtle shadow */
+    0 0 8px rgba(255, 0, 0, 0.4);        /* extra red glow outside */
+}
+
+/* Create a blurred red glow behind the container */
+.form-de-inner::before,
+.form-en-inner::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 12px;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0.7),
+    rgba(180, 0, 0, 0.2),
+    rgba(255, 0, 0, 0.7)
+  );
+  filter: blur(8px);
+  z-index: -1; /* keep the glow behind the form */
+}
+
+/* The form itself */
+.contact-form-de form,
+.contact-form-en form {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+form label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: #aaa;
+}
+
+/* Form inputs */
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form input[type="time"],
+form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #060000;
+  font-size: 0.9rem;
+  transition: border 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="date"]:focus,
+form input[type="time"]:focus,
+form textarea:focus {
+  border: 1px solid #666;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+form [type="radio"] {
+  margin-right: 0.3rem;
+}
+
+/* Appointment fields hidden by default */
+#appointment-fields-de,
+#appointment-fields-en {
+  display: none;
+}
+
+/* Checkboxes a bit larger */
+form input[type="checkbox"] {
+  transform: scale(1.1);
+  margin-right: 0.3rem;
+}
+
+/* Submit buttons with a red-ish hover */
+.btn-submit-de,
+.btn-submit-en {
+  display: inline-block;
+  background: linear-gradient(135deg, #330000, #660000 80%, #330000 100%);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.3s;
+  margin-top: 1rem;
+}
+
+.btn-submit-de:hover,
+.btn-submit-en:hover {
+  background: linear-gradient(135deg, #550000, #880000);
+  transform: translateY(-2px);
+}
+/***************************************************************
+  7) LOCATIONS (DE / EN)
+***************************************************************/
+.locations-de,
+.locations-en {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+  color: #ccc;
+
+  /* Add a subtle background gradient, plus relative positioning
+     if you’d like to add a “glow behind the entire section” pseudo‑element. */
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a 60%, #1a1a1a 100%);
+  border-radius: 10px;
+  position: relative; /* for optional glow with ::before */
+  overflow: hidden;   /* so glow doesn’t extend beyond corners */
+}
+
+.locations-de::before,
+.locations-en::before {
+  /* Optional: a faint, large red glow behind the entire container */
+  content: "";
+  position: absolute;
+  top: -4px; 
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 12px;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0.7),
+    rgba(180, 0, 0, 0.2),
+    rgba(255, 0, 0, 0.7)
+  );
+  filter: blur(10px);
+  z-index: -1; /* keep behind content */
+}
+
+.locations-de h2,
+.locations-en h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.locations-de p,
+.locations-en p {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #bbb;
+  line-height: 1.5;
+}
+
+/* The grid of location boxes */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Individual location box with a shiny look */
+.location-box {
+  /* Dark background with slight red gradient and glow */
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a 60%, #1a1a1a 100%);
+  border-radius: 8px;
+  box-shadow:
+    0 3px 12px rgba(255, 255, 255, 0.05),
+    0 0 5px rgba(255, 0, 0, 0.3);
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+  color: #ccc;
+  text-align: left;
+  position: relative; /* for optional pseudo-element inside box */
+  overflow: hidden;
+}
+
+.location-box::before {
+  /* Optional: a subtle internal red glow ring for each box */
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 8px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.4),
+    rgba(160, 0, 0, 0.1),
+    rgba(255, 0, 0, 0.4)
+  );
+  filter: blur(8px);
+  z-index: -1; 
+}
+
+.location-box:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 5px 16px rgba(255, 255, 255, 0.08),
+    0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+.location-box h3 {
+  font-size: 1.1rem;
+  color: #ccc;
+  margin-bottom: 0.5rem;
+}
+
+.location-box p {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.location-box a {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #999;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+.location-box a:hover {
+  color: #fff;
+}
+
+/* Map container styling */
+.map-frame {
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+
+/***************************************************************
+  8) FOOTER
+***************************************************************/
 .footer {
-  background: #e7e9fc;
+  /* Dark-to-deep red gradient to match the new scheme */
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a 60%, #1a1a1a 100%);
   text-align: center;
   padding: 2rem 1rem;
   font-size: 0.9rem;
-  color: #444;
+  color: #999;
+  margin-top: 3rem;
+  border-top: 1px solid #333;
+  position: relative;
+  overflow: hidden;
 }
+
+/* Optional glow behind the footer */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.5),
+    rgba(160, 0, 0, 0.1),
+    rgba(255, 0, 0, 0.5)
+  );
+  filter: blur(10px);
+  z-index: -1;
+}
+
 .footer p {
   margin-bottom: 0.5rem;
+}
+
+.footer a {
+  color: #bbb;
+  text-decoration: underline;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  padding: 0.2rem 0.5rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.footer a:hover {
+  color: #fff;
+  background: #bbb;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+/***************************************************************
+  9) MOBILE TWEAKS
+***************************************************************/
+@media (max-width: 768px) {
+  /* Keep your existing mobile styles if desired */
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+  /* ...other mobile tweaks unchanged... */
 }

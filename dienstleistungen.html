@@ -11,41 +11,26 @@
     rel="stylesheet"
   />
 
-  <!-- Your main CSS -->
+  <!-- Main CSS (replace with your actual CSS file) -->
   <link rel="stylesheet" href="css/dienstleistungen.css" />
 </head>
 <body>
 
-  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++
-       NAVBAR
-  +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- ========== NAVBAR ========== -->
   <header class="navbar">
     <div class="navbar__logo">
-      <a href="index.html">
-        <video 
-      class="navbar-logo-video"
-      autoplay
-      muted
-      loop
-      playsinline
-    >
-      <source src="assets/img/logogo.mp4" type="video/mp4" />
-      <!-- Fallback text if video fails to load -->
-      Your browser does not support the video tag.
-    </video>
-      </a>
+      <img src="assets/videos/logo33.png" style="max-height: 50px; width: auto;" />
     </div>
-  
-    <!-- Hamburger icon (mobile) -->
+    <!-- HAMBURGER (mobile) -->
     <div class="navbar__toggle" id="mobileToggle">
       <span></span>
       <span></span>
       <span></span>
     </div>
-  
-    <!-- Main Menu -->
+
+    <!-- NAV MENU -->
     <nav class="navbar__menu" id="navbarMenu">
-      <!-- GERMAN NAV LINKS -->
+      <!-- GERMAN LINKS -->
       <div class="navbar__links german">
         <a href="index.html">Home</a>
         <a href="uber-uns.html">Über uns</a>
@@ -53,7 +38,7 @@
         <a href="arbeiten.html">Mit uns arbeiten</a>
         <a href="kontakt.html">Kontakt</a>
       </div>
-      <!-- ENGLISH NAV LINKS -->
+      <!-- ENGLISH LINKS -->
       <div class="navbar__links english hidden">
         <a href="index.html?lang=en">Home</a>
         <a href="uber-uns.html?lang=en">About Us</a>
@@ -61,662 +46,648 @@
         <a href="arbeiten.html?lang=en">Work With Us</a>
         <a href="kontakt.html?lang=en">Contact</a>
       </div>
-  
-      <!-- Language Toggle Button -->
+
+      <!-- LANGUAGE TOGGLE -->
       <button id="toggleLang" class="lang-btn">
         English
       </button>
     </nav>
   </header>
 
-  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
        GERMAN CONTENT
-  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div class="german">
-    <!-- ========== HERO SECTION (GERMAN) ========== -->
-    <section class="hero" id="heroSectionDe">
-      <div class="hero-content">
-        <h1>Dienstleistungen</h1>
-        <div class="typing-text" id="typingTextDe"></div>
-        <p class="hero-subtext">
-          Qualität &amp; Verantwortung.<br/>
-          Erleben Sie maßgeschneiderte Outsourcing-Lösungen.<br/>
-          Unsere Service-Teams sind in unserem Unternehmen angestellt – 
-          Sie profitieren von vollem Service ohne Personalsorgen.
-        </p>
-        <div class="scroll-prompt">▼ Scroll Down ▼</div>
-      </div>
-    </section>
-
-    <!-- KERNLEISTUNGEN (GERMAN) -->
-    <section class="kernleistungen" id="kernleistungenSection">
-      <h2 class="section-title">Unsere Kernleistungen</h2>
-      <p class="intro-text">
-        Anstatt Arbeitnehmerüberlassung setzen wir auf 
-        <strong>Dienstleistungsverträge</strong>. 
-        Das bedeutet: Unser Personal bleibt bei uns angestellt, 
-        während wir Aufgaben für Ihr Unternehmen übernehmen. 
-        So genießen Sie volle Flexibilität, rechtliche Sicherheit 
-        und können sich ganz auf Ihr Kerngeschäft konzentrieren.
-      </p>
-
-      <!-- Row 1 -->
-      <div class="kl-row">
-        <div class="kl-image-col">
-          <img src="assets/img/a1be.jpg" alt="Beratungsgespräch" />
-        </div>
-        <div class="kl-text-col">
-          <h3>1. Individuelle Beratung</h3>
-          <p>
-            Gemeinsam erarbeiten wir, welche Bereiche Sie entlasten möchten – 
-            sei es im Backoffice, Empfang, IT-Support oder anderen Feldern. 
-            Auf Basis Ihrer Anforderungen stellen wir das optimale Team zusammen.
-          </p>
-          <p class="extra-text">
-            Durch unsere Partner (Remix, Trinity) können wir auf Fachkräfte 
-            aus Europa und Asien zurückgreifen. Wichtig ist uns dabei 
-            immer ein Qualitätsbriefing, damit unsere Mitarbeitenden 
-            passgenau für Ihre Branche geschult werden.
-          </p>
-          <button class="btn-toggle">Mehr anzeigen</button>
-        </div>
-      </div>
-      <!-- Row 2 -->
-      <div class="kl-row">
-        <div class="kl-image-col">
-          <img src="assets/img/internationlges.jpg" alt="Internationaler Service" />
-        </div>
-        <div class="kl-text-col">
-          <h3>2. Professionelles Outsourcing</h3>
-          <p>
-            Unsere Mitarbeitenden arbeiten für Sie, bleiben aber 
-            unserem Unternehmen unterstellt. Das erspart Ihnen 
-            hohe Personalkosten, administrative Aufwände und 
-            das Risiko einer Arbeitnehmerüberlassung.
-          </p>
-          <p class="extra-text">
-            Wir koordinieren alle Einsätze, stellen sicher, 
-            dass Richtlinien eingehalten werden, und führen 
-            regelmäßige Qualitätschecks durch.
-          </p>
-          <button class="btn-toggle">Mehr anzeigen</button>
-        </div>
-      </div>
-      <!-- Row 3 -->
-      <div class="kl-row">
-        <div class="kl-image-col">
-          <img src="assets/img/kernlseitung.jpg" alt="Qualitätssicherung" />
-        </div>
-        <div class="kl-text-col">
-          <h3>3. Training &amp; Qualitätsmanagement</h3>
-          <p>
-            Um Ihre Standards zu erfüllen, schulen wir unser Personal 
-            branchenspezifisch. Wir bleiben in engem Austausch mit Ihnen, 
-            um bei Bedarf schnell reagieren zu können.
-          </p>
-          <p class="extra-text">
-            Durch unser bewährtes Schulungssystem (inkl. Deutschsprach- 
-            und Kulturtraining) können wir auch internationale Fachkräfte 
-            effizient integrieren.
-          </p>
-          <button class="btn-toggle">Mehr anzeigen</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ANGLED SECTION (INDUSTRIES) GERMAN -->
-    <section class="angled-section" id="industriesSectionDe">
-      <h2>Branchen &amp; Einsatzbereiche</h2>
+<section class="services-hero-de">
+  <div class="hero-container">
+    <div class="hero-text-block">
+      <h1>Bauleistungen aus einer Hand</h1>
       <p>
-        Unsere Dienstleistungen decken ein breites Spektrum ab – 
-        von Bau und Logistik über Gastronomie und Hotellerie 
-        bis hin zu Büro- und Empfangsdiensten.
+        Generalübernehmer für Hochbauprojekte - 
+        Von der Planung bis zur schlüsselfertigen Übergabe
       </p>
-      <div class="industry-grid">
-        <div class="industry-card">
-          <img src="assets/img/ii.webp" alt="Baugewerbe" />
-          <h3>Baugewerbe &amp; Logistik</h3>
-          <p>Administrative Unterstützung, Baustellenkoordination, Lager/Logistik-Hilfe</p>
-        </div>
-        <div class="industry-card">
-          <img src="assets/img/Gastronomie & Hotellerie.jpg" alt="Gastronomie" />
-          <h3>Gastronomie &amp; Hotellerie</h3>
-          <p>Servicepersonal, Housekeeping, Rezeption oder Reservierungsservice</p>
-        </div>
-        <div class="industry-card">
-          <img src="assets/img/Büro- & Empfangsdienste.jpg" alt="Büro" />
-          <h3>Büro- &amp; Empfangsdienste</h3>
-          <p>Virtuelles Backoffice, Telefonzentrale, Dokumentenverwaltung, Datenerfassung</p>
-        </div>
-        <div class="industry-card">
-          <img src="assets/img/services-placeholder.jpg" alt="Weitere Branchen" />
-          <h3>... und mehr!</h3>
-          <p>Sie haben andere Bereiche? Kontaktieren Sie uns – wir finden eine Lösung.</p>
-        </div>
-      </div>
-    </section>
+      <a href="#approachDe" class="hero-btn">Projektstarter</a>
+    </div>
+    <div class="hero-angled-image">
+      <img src="assets/img/14.jpg" alt="Moderne Baustelle" />
+    </div>
+  </div>
+</section>
 
-    <!-- COMPLIANCE (GERMAN) -->
-    <section class="compliance-section">
-      <div class="angled-bg"></div>
-      <div class="compliance-content">
-        <h2>Rechtliche Konformität</h2>
-        <p class="intro-paragraph">
-          Unsere Service-Teams bleiben bei Job Werke d.o.o. angestellt, 
-          wodurch Sie keine komplizierte Arbeitnehmerüberlassung 
-          befürchten müssen. Wir schließen einen klar definierten 
-          Dienstleistungsvertrag mit Ihnen – Sie konzentrieren sich 
-          auf Ihr Business, wir übernehmen den Rest.
-        </p>
-        <div class="compliance-grid">
-          <div class="compliance-card">
-            <video autoplay muted loop playsinline class="usp-video">
-              <source src="assets/img/2mVW.mp4" type="video/mp4" />
-              <!-- Optional fallback or message -->
-              Ihr Browser unterstützt kein HTML5-Video.
-            </video>
-            <h3>Dienstleistungsvertrag</h3>
-            <p>
-              Sie definieren die Ziele, wir bleiben jedoch 
-              weisungsbefugt gegenüber unserem Personal. 
-              So herrscht klare Trennung von Auftraggeber 
-              und Dienstleister.
-            </p>
-          </div>
-          <div class="compliance-card">
-            <video autoplay muted loop playsinline class="usp-video">
-              <source src="assets/img/Pskr.mp4" type="video/mp4" />
-              <!-- Optional fallback or message -->
-              Ihr Browser unterstützt kein HTML5-Video.
-            </video>
-            <h3>Steuer &amp; Sozialabgaben</h3>
-            <p>
-              Unsere Mitarbeitenden sind voll versichert 
-              und bei uns angestellt. Keine Risiken für 
-              Scheinselbstständigkeit oder Haftungsfragen.
-            </p>
-          </div>
-          <div class="compliance-card">
-            <video autoplay muted loop playsinline class="usp-video">
-              <source src="assets/img/worker.mp4" type="video/mp4" />
-              <!-- Optional fallback or message -->
-              Ihr Browser unterstützt kein HTML5-Video.
-            </video>
-            <h3>Verantwortung &amp; Haftung</h3>
-            <p>
-              Ob Qualitätsmängel, Schadensfall oder 
-              Arbeitsschutz – wir stehen in der Pflicht, 
-              und Sie sind entlastet.
-            </p>
-          </div>
+<!-- ========================= SECTION 2: OUR APPROACH ========================= -->
+<section class="services-approach-de" id="approachDe">
+  <div class="approach-de-inner">
+    <h2>Unsere Bauphilosophie</h2>
+    <p>
+      Als <strong>Baudienstleister mit System</strong> kombinieren wir 
+      handwerkliche Präzision mit digitaler Prozesssteuerung 
+      für termingerechte Projektrealisierung.
+    </p>
+    <div class="approach-split">
+      <div class="approach-steps">
+        <div class="step-box">
+          <h3>1. Projektentwicklung</h3>
+          <p>
+            BIM-gestützte Planung mit Kostenprognose 
+            und Risikoanalyse
+          </p>
+        </div>
+        <div class="step-box">
+          <h3>2. Genehmigungsmanagement</h3>
+          <p>
+            Vollumfängliche Baugenehmigungseinholung 
+            inklusive Gutachten
+          </p>
+        </div>
+        <div class="step-box">
+          <h3>3. Baudurchführung</h3>
+          <p>
+            Eigenes Fachpersonal für Rohbau, 
+            Trockenbau und technische Installationen
+          </p>
         </div>
       </div>
-    </section>
-
-    <!-- ADVANTAGES (GERMAN) -->
-    <section class="advantages-alt" id="advantagesSectionDe">
-      <div class="advantages-bg">
-        <div class="advantages-overlay"></div>
+      <div class="approach-visual">
+        <img src="assets/img/8.jpg" alt="BIM Planung" />
       </div>
-      <div class="advantages-content">
-        <h2>Ihre Vorteile</h2>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================== SECTION 3: KEY SERVICES GRID ===================================== -->
+<section class="key-services-de">
+  <h2>Kernkompetenzen</h2>
+  <p class="key-services-desc">
+    Von der Bodenplatte bis zum Dachfirst - 
+    Leistungspakete für gewerbliche und private Bauherren
+  </p>
+  <div class="key-services-grid">
+    <div class="key-service-card">
+      <img src="assets/img/12.jpg" alt="Bauplanung">
+      <div class="card-content">
+        <h3>Planung & Statik</h3>
         <p>
-          Setzen Sie auf einen erfahrenen Dienstleister, 
-          der Ihnen nicht nur Personal, sondern 
-          ganzheitliche Lösungsansätze bietet.
+          Tragwerksplanung nach DIN-Normen mit 
+          3D-Visualisierung
         </p>
-        <div class="advantage-scroll">
-          <div class="advantage-item">
-            <h3>Unkomplizierter Start</h3>
-            <p>Bereits nach kurzer Briefing-Phase können wir loslegen.</p>
-          </div>
-          <div class="advantage-item">
-            <h3>Minimales Risiko</h3>
-            <p>Wir übernehmen Personal- und Rechtsverantwortung, 
-               Sie behalten volle Kostenkontrolle.</p>
-          </div>
-          <div class="advantage-item">
-            <h3>Hohe Flexibilität</h3>
-            <p>Bei Bedarf aufstocken oder reduzieren – 
-               wir passen uns an Ihre Auslastung an.</p>
-          </div>
-          <div class="advantage-item">
-            <h3>Garantierte Qualität</h3>
-            <p>Wir schulen unser Team kontinuierlich und 
-               sichern mit regelmäßigen Checks die Leistung.</p>
-          </div>
-        </div>
       </div>
-    </section>
-
-    <!-- CASE STUDIES (GERMAN) -->
-    <section class="case-studies" id="caseStudiesSectionDe">
-      <h2>Erfolgsbeispiele</h2>
-      <div class="case-grid">
-        
-        <!-- Case 1: Sanierung -->
-        <div class="case-item">
-          <h3>Sanierung eines Altbaus</h3>
-          <p>
-            Unser Service-Team übernahm die komplette Koordination der Sanierungsarbeiten 
-            (Entkernung, Verputzen, einfache Maler- und Bodenbelagsarbeiten). 
-            Der Kunde profitierte von sauberer Dokumentation, klaren Zeitplänen 
-            und einer spürbaren Entlastung im Projektmanagement.
-          </p>
-          <p class="client-quote">
-            „Dank Job Werke lief die Altbau-Sanierung wie am Schnürchen – 
-            wir mussten uns kaum um Details kümmern.“  
-            – Architektin Meier
-          </p>
-        </div>
-        
-        <!-- Case 2: Reinigung -->
-        <div class="case-item">
-          <h3>Reinigung für Bürokomplex</h3>
-          <p>
-            Für einen großen Bürokomplex stellten wir ein eingespieltes Reinigungsteam, 
-            das täglich für Sauberkeit und Desinfektion sorgte. 
-            Durch klare Arbeitspläne und regelmäßige Qualitätskontrollen 
-            konnte der Kunde seine Gebäudekosten optimieren und zugleich 
-            das Mitarbeiter-Wohlbefinden steigern.
-          </p>
-          <p class="client-quote">
-            „Die Reinigungsleistungen von Job Werke sind top – 
-            endlich keine Personalengpässe mehr, alles läuft reibungslos.“  
-            – Facility Managerin Schulz
-          </p>
-        </div>
-        
-        <!-- Case 3: Logistik -->
-        <div class="case-item">
-          <h3>Effiziente Logistikprozesse</h3>
-          <p>
-            In einem Logistikzentrum übernahmen unsere Fachkräfte 
-            Aufgaben wie Wareneingang, Inventur und Versandvorbereitung. 
-            Der Kunde profitierte von schlankeren Abläufen, 
-            weniger Fehlbeständen und einer reibungslosen Zusammenarbeit 
-            zwischen Lager und Transportdienstleistern.
-          </p>
-          <p class="client-quote">
-            „Wir hätten nie gedacht, wie sehr ein eingespieltes Team 
-            unsere Logistikprozesse beschleunigt.“  
-            – Lagerleiter Hoffmann
-          </p>
-        </div>
-    
+    </div>
+    <div class="key-service-card">
+      <img src="assets/img/22.jpg" alt="Hochbau">
+      <div class="card-content">
+        <h3>Rohbau & Ausbau</h3>
+        <p>
+          Massivbauweise in Stahlbeton mit 
+          Qualitätszertifizierung
+        </p>
       </div>
-    </section>
-    
-
-    <!-- FAQ (GERMAN) -->
-    <section class="faq-section">
-      <h2 class="faq-heading">Häufige Fragen (FAQ)</h2>
-      <div class="faq-container">
-        <div class="faq-item">
-          <h3 class="faq-question">Wie unterscheiden Sie sich von Zeitarbeit?</h3>
-          <div class="faq-answer">
-            <p>
-              Wir schließen Dienstleistungsverträge ab und bleiben weisungsbefugt. 
-              Somit ist es keine Arbeitnehmerüberlassung. Sie haben ein fertiges 
-              Service-Paket statt stundenbasierter Zeitarbeitskräfte.
-            </p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <h3 class="faq-question">Besteht das Risiko von Scheinselbstständigkeit?</h3>
-          <div class="faq-answer">
-            <p>
-              Nein, unsere Leute sind bei uns angestellt. 
-              Wir zahlen Sozialabgaben und Steuern – 
-              das Risiko liegt nicht bei Ihnen.
-            </p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <h3 class="faq-question">Können wir das Team später übernehmen?</h3>
-          <div class="faq-answer">
-            <p>
-              Auf Wunsch erarbeiten wir gerne individuelle Lösungen, 
-              falls Sie einzelne Mitarbeitende in Ihr Unternehmen 
-              integrieren möchten. Sprechen Sie uns an!
-            </p>
-          </div>
-        </div>
+    </div>
+    <div class="key-service-card">
+      <img src="assets/img/7.jpg" alt="Sanierung">
+      <div class="card-content">
+        <h3>Altbausanierung</h3>
+        <p>
+          Denkmalschutzgerechte Sanierung 
+          mit moderner Haustechnik
+        </p>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- FINAL CTA (GERMAN) -->
-    <section class="cta-section" id="ctaSectionDe">
-      <h2>Bereit, unsere Dienstleistung zu nutzen?</h2>
+<!-- ===================================================== SECTION 4: INDUSTRIES ===================================================== -->
+<section class="industries-overview-de" id="industries-de">
+  <h2>Bauprojekttypen</h2>
+  <p>
+    Gewerbeimmobilien, Wohnungsbau, Industrieanlagen - 
+    Wir realisieren komplexe Bauvorhaben
+  </p>
+  <div class="industries-de-cards">
+    <div class="industry-tile">
+      <img src="assets/img/12.jpg" alt="Wohnungsbau">
+      <h3>Wohnungsbau</h3>
+    </div>
+    <div class="industry-tile">
+      <img src="assets/img/13.jpg" alt="Gewerbeimmobilien">
+      <h3>Gewerbeimmobilien</h3>
+    </div>
+    <div class="industry-tile">
+      <img src="assets/img/15.jpg" alt="Industriebau">
+      <h3>Industriebau</h3>
+    </div>
+    <div class="industry-tile">
+      <img src="assets/img/14.jpg" alt="Infrastruktur">
+      <h3>Tiefbau</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SECTION 5: COMPLIANCE ============================== -->
+<section class="compliance-de">
+  <div class="compliance-content">
+    <h2>Rechtssichere Abwicklung</h2>
+    <p>
+      Volle Transparenz durch HOAI-konforme Leistungsphasen 
+      und geprüfte Qualitätsstandards
+    </p>
+    <div class="compliance-highlights">
+      <div class="compliance-box">
+        <img src="assets/img/22.jpg" alt="Verträge">
+        <h3>Feste Preisbindung</h3>
+        <p>
+          Kostensicherheit durch bindende Angebote 
+          nach Leistungsverzeichnis
+        </p>
+      </div>
+      <div class="compliance-box">
+        <img src="assets/img/15.jpg" alt="Sicherheit">
+        <h3>Baustellensicherheit</h3>
+        <p>
+          DGUV-zertifizierte Sicherheitskonzepte 
+          für jeden Projektabschnitt
+        </p>
+      </div>
+      <div class="compliance-box">
+        <img src="assets/img/12.jpg" alt="Garantie">
+        <h3>5-Jahres-Garantie</h3>
+        <p>
+          Volle Gewährleistung für alle 
+          von uns ausgeführten Leistungen
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================= SECTION 6: ADVANTAGES ============================================= -->
+<section class="advantages-scroll-de">
+  <h2>Ihre Vorteile</h2>
+  <div class="advantages-scroll-wrapper">
+    <div class="adv-slide">
+      <h3>Festpreisgarantie</h3>
       <p>
-        Schicken Sie uns noch heute Ihre Anfrage. 
-        Gemeinsam finden wir das perfekte Dienstleistungskonzept 
-        für Ihren Betrieb – effizient, sicher und professionell.
+        Keine versteckten Kosten - 
+        alle Leistungen im vertraglich fixierten Rahmen
       </p>
-      <a href="kontakt.html#name" class="btn-contact">Jetzt Anfrage senden</a>
-    </section>
-  </div><!-- End .german -->
+    </div>
+    <div class="adv-slide">
+      <h3>BIM-Planung</h3>
+      <p>
+        Digitale Zwillinge aller Bauwerke 
+        für perfekte Planungssicherheit
+      </p>
+    </div>
+    <div class="adv-slide">
+      <h3>Eigenes Fachpersonal</h3>
+      <p>
+        Geprüfte Fachkräfte mit 
+        gewerkespezifischen Zertifizierungen
+      </p>
+    </div>
+    <div class="adv-slide">
+      <h3>Rohbau in Rekordzeit</h3>
+      <p>
+        Modernste Schalungstechnik für 
+        schnellen Baufortschritt
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= SECTION 7: CASE STUDIES ============================= -->
+<section class="case-studies-de">
+  <h2>Referenzprojekte</h2>
+  <div class="case-de-wrapper">
+    <div class="case-de-box">
+      <h3>Bürokomplex Berlin</h3>
+      <p>
+        12.000 m² Neubau in Stahlbetonbauweise 
+        mit LEED-Zertifizierung
+      </p>
+      <blockquote>„Termintreue trotz komplexer Logistik“</blockquote>
+    </div>
+    <div class="case-de-box">
+      <h3>Altbauvilla München</h3>
+      <p>
+        Denkmalschutzsanierung mit 
+        energieeffizienter Modernisierung
+      </p>
+      <blockquote>„Perfekter Erhalt historischer Substanz“</blockquote>
+    </div>
+    <div class="case-de-box">
+      <h3>Logistikzentrum Hamburg</h3>
+      <p>
+        25.000 m² Hallenbau mit 
+        hochwertiger Bodenbeschichtung
+      </p>
+      <blockquote>„Reibungslose Koordination aller Gewerke“</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== SECTION 8: FAQ ======================== -->
+<section class="faq-accordion-de">
+  <h2>Häufige Fragen</h2>
+  <div class="faq-accordion-wrapper">
+    <div class="faq-accordion-item">
+      <button class="faq-accordion-question">
+        Wie garantieren Sie Termintreue?
+      </button>
+      <div class="faq-accordion-answer">
+        <p>
+          Durch BIM-gestützte Bauzeitenplanung und 
+          eigenes Fachpersonal halten wir 98% aller 
+          Meilensteine ein.
+        </p>
+      </div>
+    </div>
+    <div class="faq-accordion-item">
+      <button class="faq-accordion-question">
+        Wer haftet für Baumängel?
+      </button>
+      <div class="faq-accordion-answer">
+        <p>
+          Wir übernehmen 5 Jahre Gewährleistung 
+          für alle von uns ausgeführten Arbeiten.
+        </p>
+      </div>
+    </div>
+    <div class="faq-accordion-item">
+      <button class="faq-accordion-question">
+        Eigenpersonal oder Subunternehmer?
+      </button>
+      <div class="faq-accordion-answer">
+        <p>
+          80% der Arbeiten führen wir mit eigenem Personal aus - 
+          bei Spezialgewerken nur zertifizierte Partner.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= SECTION 9: FINAL CTA ========================= -->
+<section class="final-cta-de">
+  <div class="final-cta-inner">
+    <h2>Starten wir Ihr Bauvorhaben?</h2>
+    <p>
+      Vereinbaren Sie jetzt ein unverbindliches 
+      Planungsgespräch mit unseren Baudirektoren.
+    </p>
+    <a href="kontakt.html#name" class="cta-btn">Kostenlose Erstberatung</a>
+  </div>
+</section>
+
+  </div><!-- END .german -->
 
 
-  <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-       ENGLISH CONTENT (HIDDEN)
-  ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       ENGLISH CONTENT
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <div class="english hidden">
-    <!-- ========== HERO SECTION (EN) ========== -->
-    <section class="hero" id="heroSectionEn">
-      <div class="hero-content">
-        <h1>Services</h1>
-        <div class="typing-text" id="typingTextEn"></div>
-        <p class="hero-subtext">
-          Quality &amp; Accountability.<br/>
-          Discover tailored outsourcing solutions.<br/>
-          Our service teams are fully employed by us, 
-          so you can focus on what matters.
+
+    <!-- ==========================
+         SECTION 1: ANGLED HERO (EN)
+    ========================== -->
+    <section class="services-hero-en">
+      <div class="hero-container">
+        <!-- Left text block -->
+        <div class="hero-text-block">
+          <h1>Services</h1>
+          <p>
+            Innovative outsourcing solutions,
+            free from the hassles of labor leasing.
+          </p>
+          <a href="#approachEn" class="hero-btn">Learn More</a>
+        </div>
+        <!-- Right angled image/graphic -->
+        <div class="hero-angled-image">
+          <img src="assets/img/14.jpg" alt="Service Hero" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         SECTION 2: OUR APPROACH (EN)
+    ============================== -->
+    <section class="services-approach-en" id="approachEn">
+      <div class="approach-en-inner">
+        <h2>Our Approach</h2>
+        <p>
+          We rely on <strong>service contracts</strong>, 
+          not temp staffing. 
+          Our teams remain employed by us, 
+          delivering flexible, fully-managed support 
+          with maximum legal clarity.
         </p>
-        <div class="scroll-prompt">▼ Scroll Down ▼</div>
+        <!-- A diagonal split layout -->
+        <div class="approach-split">
+          <!-- Left column: text steps -->
+          <div class="approach-steps">
+            <div class="step-box">
+              <h3>1. Consultation</h3>
+              <p>
+                We’ll identify which roles or tasks you’d like to outsource 
+                – from hospitality to office reception, logistics, or beyond.
+              </p>
+            </div>
+            <div class="step-box">
+              <h3>2. Service Agreement</h3>
+              <p>
+                Our staff remains on our payroll. 
+                No temp leasing or shared liability – 
+                a simple, secure setup.
+              </p>
+            </div>
+            <div class="step-box">
+              <h3>3. Execution & Quality</h3>
+              <p>
+                We handle training, scheduling, 
+                and ongoing quality checks, 
+                letting you focus on your core business.
+              </p>
+            </div>
+          </div>
+          <!-- Right column: image or video -->
+          <div class="approach-visual">
+            <img src="assets/img/8.jpg" alt="Approach Visual" />
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- CORE SERVICES (EN) -->
-    <section class="kernleistungen" id="kernleistungenSection-en">
-      <h2 class="section-title">Our Core Services</h2>
-      <p class="intro-text">
-        Instead of temporary staffing, we use 
-        <strong>service contracts</strong>. 
-        That means our personnel remain employed by us, 
-        while performing tasks for your company. 
-        Enjoy maximum flexibility, legal compliance, 
-        and the freedom to focus on your core operations.
+    <!-- =====================================
+         SECTION 3: KEY SERVICES GRID (EN)
+    ===================================== -->
+    <section class="key-services-en">
+      <h2>Core Services</h2>
+      <p class="key-services-desc">
+        Whether back office, reception, construction helpers, 
+        or IT support – our specialists take on diverse roles 
+        while you stay free from staffing worries.
       </p>
-
-      <!-- Row 1 -->
-      <div class="kl-row">
-        <div class="kl-image-col">
-          <img src="assets/img/a1be.jpg" alt="Consulting" />
+      <div class="key-services-grid">
+        <!-- Card 1 -->
+        <div class="key-service-card">
+          <img src="assets/img/12.jpg" alt="Consulting">
+          <div class="card-content">
+            <h3>Consulting & Planning</h3>
+            <p>
+              We assess your company’s workflow 
+              and tailor an outsourcing approach.
+            </p>
+          </div>
         </div>
-        <div class="kl-text-col">
-          <h3>1. Customized Consulting</h3>
-          <p>
-            We begin with a thorough briefing to identify which areas 
-            you’d like to outsource—whether back office, reception, 
-            IT support, or other fields. Based on your requirements, 
-            we assemble the optimal team.
-          </p>
-          <p class="extra-text">
-            With the help of our partners (Remix, Trinity), 
-            we can draw upon professionals from Europe and Asia. 
-            A detailed quality briefing ensures our staff 
-            are trained for your specific industry demands.
-          </p>
-          <button class="btn-toggle">Show more</button>
+        <!-- Card 2 -->
+        <div class="key-service-card">
+          <img src="assets/img/22.jpg" alt="Outsourcing">
+          <div class="card-content">
+            <h3>Outsourcing Specialists</h3>
+            <p>
+              Our staff remain our employees – 
+              guaranteeing compliance and efficiency.
+            </p>
+          </div>
         </div>
-      </div>
-      <!-- Row 2 -->
-      <div class="kl-row">
-        <div class="kl-image-col">
-          <img src="assets/img/internationlges.jpg" alt="International Service" />
-        </div>
-        <div class="kl-text-col">
-          <h3>2. Professional Outsourcing</h3>
-          <p>
-            Our employees work for you but remain under our authority. 
-            This spares you high personnel costs, administrative burdens, 
-            and the complexities of temp staffing.
-          </p>
-          <p class="extra-text">
-            We coordinate all deployments, ensure compliance, 
-            and conduct regular quality checks.
-          </p>
-          <button class="btn-toggle">Show more</button>
-        </div>
-      </div>
-      <!-- Row 3 -->
-      <div class="kl-row">
-        <div class="kl-image-col">
-          <img src="assets/img/kernlseitung.jpg" alt="Quality Assurance" />
-        </div>
-        <div class="kl-text-col">
-          <h3>3. Training &amp; Quality Management</h3>
-          <p>
-            To meet your standards, we conduct industry-specific training for our staff. 
-            We remain in close communication with you to adapt quickly if needs change.
-          </p>
-          <p class="extra-text">
-            Our proven training system (including language and cultural sessions) 
-            allows us to efficiently integrate international professionals into your workflow.
-          </p>
-          <button class="btn-toggle">Show more</button>
+        <!-- Card 3 -->
+        <div class="key-service-card">
+          <img src="assets/img/7.jpg" alt="Quality Assurance">
+          <div class="card-content">
+            <h3>Training & Quality</h3>
+            <p>
+              Industry-specific sessions, 
+              language training, and routine audits 
+              keep performance high.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ANGLED SECTION (INDUSTRIES) EN -->
-    <section class="angled-section" id="industriesSectionEn">
-      <h2>Industries &amp; Use Cases</h2>
+    <!-- ============================
+         SECTION 4: INDUSTRIES (EN)
+    ============================ -->
+    <section class="industries-overview-en" id="industries-en">
+      <h2>Industries & Sectors</h2>
       <p>
-        Our services cover a wide range of sectors – 
-        from construction and logistics to hospitality and office support.
+        From construction & logistics to hospitality 
+        and admin support, we place the right experts 
+        where you need them.
       </p>
-      <div class="industry-grid">
-        <div class="industry-card">
-          <img src="assets/img/ii.webp" alt="Construction" />
-          <h3>Construction &amp; Logistics</h3>
-          <p>Administrative assistance, site coordination, warehouse/logistics help</p>
+      <div class="industries-en-cards">
+        <div class="industry-tile">
+          <img src="assets/img/12.jpg" alt="Construction & Logistics">
+          <h3>Construction & Logistics</h3>
         </div>
-        <div class="industry-card">
-          <img src="assets/img/Gastronomie & Hotellerie.jpg" alt="Hospitality" />
-          <h3>Gastronomy &amp; Hotels</h3>
-          <p>Front desk, reservation service, remote guest handling</p>
+        <div class="industry-tile">
+          <img src="assets/img/13.jpg" alt="Hospitality">
+          <h3>Hospitality & Hotels</h3>
         </div>
-        <div class="industry-card">
-          <img src="assets/img/Büro- & Empfangsdienste.jpg" alt="Office" />
-          <h3>Office &amp; Admin</h3>
-          <p>Virtual back office, call center, document management, data entry</p>
+        <div class="industry-tile">
+          <img src="assets/img/15.jpg" alt="Office">
+          <h3>Office & Reception</h3>
         </div>
-        <div class="industry-card">
-          <img src="assets/img/services-placeholder.jpg" alt="More Industries" />
-          <h3>... and beyond!</h3>
-          <p>Not seeing your sector? Just ask – we’ll find a way to help.</p>
+        <div class="industry-tile">
+          <img src="../assets/img/14.jpg" alt="Others">
+          <h3>And More…</h3>
         </div>
       </div>
     </section>
 
-    <!-- COMPLIANCE (EN) -->
-    <section class="compliance-section">
-      <div class="angled-bg"></div>
+    <!-- =======================
+         SECTION 5: COMPLIANCE (EN)
+    ======================= -->
+    <section class="compliance-en">
       <div class="compliance-content">
         <h2>Legal Compliance</h2>
-        <p class="intro-paragraph">
-          Our service teams remain employed by Job Werke d.o.o., 
-          so you avoid the complexities of staff leasing regulations. 
-          We sign a clear service contract, letting you focus 
-          on your core business while we handle the rest.
-        </p>
-        <div class="compliance-grid">
-          <div class="compliance-card">
-            <video autoplay muted loop playsinline class="usp-video">
-              <source src="assets/img/2mVW.mp4" type="video/mp4" />
-              <!-- Optional fallback or message -->
-              Ihr Browser unterstützt kein HTML5-Video.
-            </video>
-            <h3>Service Contract</h3>
-            <p>
-              You define the goals, while we maintain direct authority 
-              over our staff, ensuring distinct roles for client and provider.
-            </p>
-          </div>
-          <div class="compliance-card">
-            <video autoplay muted loop playsinline class="usp-video">
-              <source src="assets/img/Pskr.mp4" type="video/mp4" />
-              <!-- Optional fallback or message -->
-              Ihr Browser unterstützt kein HTML5-Video.
-            </video>
-            <h3>Taxes &amp; Social Security</h3>
-            <p>
-              Our employees are fully insured under our payroll. 
-              No risks of bogus self-employment or legal gray areas.
-            </p>
-          </div>
-          <div class="compliance-card">
-            <video autoplay muted loop playsinline class="usp-video">
-              <source src="assets/img/worker.mp4" type="video/mp4" />
-              <!-- Optional fallback or message -->
-              Ihr Browser unterstützt kein HTML5-Video.
-            </video>
-            <h3>Responsibility &amp; Liability</h3>
-            <p>
-              From quality issues to damages or safety compliance – 
-              we take responsibility, giving you peace of mind.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ADVANTAGES (EN) -->
-    <section class="advantages-alt" id="advantagesSectionEn">
-      <div class="advantages-bg">
-        <div class="advantages-overlay"></div>
-      </div>
-      <div class="advantages-content">
-        <h2>Your Advantages</h2>
         <p>
-          Collaborate with an experienced service provider 
-          that offers not just personnel but holistic solutions 
-          to support your processes.
+          A clear service agreement keeps you 
+          safe from misclassification and 
+          staff leasing complexities.
         </p>
-        <div class="advantage-scroll">
-          <div class="advantage-item">
-            <h3>Quick Onboarding</h3>
-            <p>A short briefing period and we’re ready to go.</p>
+        <div class="compliance-highlights">
+          <div class="compliance-box">
+            <video autoplay muted loop playsinline>
+              <img src="assets/img/22.jpg" alt="Verträge">
+            </video>
+            <h3>Well-Defined Terms</h3>
+            <p>Roles & responsibilities are clearly documented.</p>
           </div>
-          <div class="advantage-item">
-            <h3>Minimal Risk</h3>
-            <p>We handle staff and legal compliance; 
-               you retain full cost control.</p>
+          <div class="compliance-box">
+            <video autoplay muted loop playsinline>
+              <img src="assets/img/15.jpg" alt="Sicherheit">
+            </video>
+            <h3>Fully Employed Staff</h3>
+            <p>We handle payroll and taxes, 
+               so there’s no burden on you.</p>
           </div>
-          <div class="advantage-item">
-            <h3>High Flexibility</h3>
-            <p>Scale up or down based on your workload, swiftly adapting to change.</p>
-          </div>
-          <div class="advantage-item">
-            <h3>Proven Quality</h3>
-            <p>We continuously train our teams and perform regular checks to ensure top performance.</p>
+          <div class="compliance-box">
+            <video autoplay muted loop playsinline>
+              <img src="assets/img/12.jpg" alt="Garantie">
+            </video>
+            <h3>Liability & Security</h3>
+            <p>
+              Safety, quality issues, or damages – 
+              we take responsibility.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CASE STUDIES (EN) -->
-    <section class="case-studies" id="caseStudiesSectionEn">
+    <!-- =======================================
+         SECTION 6: ADVANTAGES in Horizontal Scroll (EN)
+    ======================================= -->
+    <section class="advantages-scroll-en">
+      <h2>Your Benefits</h2>
+      <div class="advantages-scroll-wrapper">
+        <div class="adv-slide">
+          <h3>Fast Onboarding</h3>
+          <p>We can quickly ramp up once we have your requirements.</p>
+        </div>
+        <div class="adv-slide">
+          <h3>No Staffing Hassles</h3>
+          <p>All HR, payroll, and admin tasks remain on our side.</p>
+        </div>
+        <div class="adv-slide">
+          <h3>Quality Guaranteed</h3>
+          <p>We regularly train our teams, ensuring consistent excellence.</p>
+        </div>
+        <div class="adv-slide">
+          <h3>Scalable Resources</h3>
+          <p>Scale up or down as your demands shift, without extra complications.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         SECTION 7: CASE STUDIES (EN)
+    ========================= -->
+    <section class="case-studies-en">
       <h2>Success Stories</h2>
-      <div class="case-grid">
-        
-        <!-- Case 1: Renovation -->
-        <div class="case-item">
-          <h3>Renovation of a Historic Building</h3>
+      <div class="case-en-wrapper">
+        <!-- Case 1 -->
+        <div class="case-en-box">
+          <h3>Historic Renovation</h3>
           <p>
-            Our service team managed the entire renovation process 
-            (stripping, plastering, basic painting, floor installation). 
-            The client benefited from thorough documentation, 
-            clear timelines, and significantly less project management stress.
+            From stripping walls to final touch-ups, 
+            our service team handled it all, 
+            streamlining the entire project.
           </p>
-          <p class="client-quote">
-            “Thanks to Job Werke, the building renovation ran like clockwork – 
-            we barely had to worry about the details.”  
-            – Architect Meier
-          </p>
+          <blockquote>“We never knew outsourcing could be so effective.”</blockquote>
         </div>
-        
-        <!-- Case 2: Cleaning -->
-        <div class="case-item">
-          <h3>Cleaning a Large Office Complex</h3>
+        <!-- Case 2 -->
+        <div class="case-en-box">
+          <h3>Cleaning & Sanitation</h3>
           <p>
-            For a major office facility, we provided a dedicated cleaning crew 
-            to ensure daily cleanliness and disinfection. 
-            By following strict schedules and frequent quality checks, 
-            the client optimized building costs and improved employee well-being.
+            A dedicated crew kept a large office complex spotless, 
+            boosting employee satisfaction and cutting overhead costs.
           </p>
-          <p class="client-quote">
-            “Job Werke’s cleaning services are top-notch – 
-            no more staff shortages, everything runs smoothly.”  
-            – Facility Manager Schulz
-          </p>
+          <blockquote>“One less thing to worry about in our daily operations.”</blockquote>
         </div>
-        
-        <!-- Case 3: Logistics -->
-        <div class="case-item">
-          <h3>Streamlined Logistics Operations</h3>
+        <!-- Case 3 -->
+        <div class="case-en-box">
+          <h3>Efficient Logistics</h3>
           <p>
-            In a logistics center, our specialists handled tasks 
-            such as goods receipt, inventory tracking, and shipment preparation. 
-            The client enjoyed leaner workflows, fewer stock discrepancies, 
-            and seamless coordination between warehouse and transport providers.
+            Our specialists optimized goods receiving 
+            and shipping, reducing errors and speeding deliveries.
           </p>
-          <p class="client-quote">
-            “We never realized how much a well-coordinated team 
-            could accelerate our logistics processes.”  
-            – Warehouse Manager Hoffmann
-          </p>
+          <blockquote>“A noticeable improvement in turnaround times.”</blockquote>
         </div>
-    
       </div>
     </section>
 
-    <!-- FAQ (EN) -->
-    <section class="faq-section">
-      <h2 class="faq-heading">Frequently Asked Questions (FAQ)</h2>
-      <div class="faq-container">
-        <div class="faq-item">
-          <h3 class="faq-question">How do you differ from temp agencies?</h3>
-          <div class="faq-answer">
+    <!-- ========================
+         SECTION 8: FAQ (EN)
+    ======================== -->
+    <section class="faq-accordion-en">
+      <h2>FAQ</h2>
+      <div class="faq-accordion-wrapper">
+        <div class="faq-accordion-item">
+          <button class="faq-accordion-question">
+            How is this different from temp agencies?
+          </button>
+          <div class="faq-accordion-answer">
             <p>
-              We sign service contracts and maintain authority over our employees. 
-              This is not staff leasing – you get a defined service package 
-              instead of hourly workers.
+              We operate under a direct service contract. 
+              Our staff remain employed by us, 
+              removing any leasing complexities.
             </p>
           </div>
         </div>
-        <div class="faq-item">
-          <h3 class="faq-question">Is there a risk of bogus self-employment?</h3>
-          <div class="faq-answer">
+        <div class="faq-accordion-item">
+          <button class="faq-accordion-question">
+            Any risk of misclassification?
+          </button>
+          <div class="faq-accordion-answer">
             <p>
-              No, our team is fully employed by us. 
-              We cover social security and taxes – 
-              no legal liabilities shift to you.
+              No – our workforce is fully employed and insured within our company, 
+              so you don’t assume liability.
             </p>
           </div>
         </div>
-        <div class="faq-item">
-          <h3 class="faq-question">Can we hire the team later on?</h3>
-          <div class="faq-answer">
+        <div class="faq-accordion-item">
+          <button class="faq-accordion-question">
+            Can we hire your staff later?
+          </button>
+          <div class="faq-accordion-answer">
             <p>
-              If you’d like to integrate specific employees into your company, 
-              we’re open to discussing individual arrangements. Just let us know!
+              Absolutely. We’re happy to discuss transitions 
+              if you wish to bring certain professionals into your own team.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FINAL CTA (EN) -->
-    <section class="cta-section" id="ctaSectionEn">
-      <h2>Ready to Use Our Services?</h2>
-      <p>
-        Send us your inquiry today. Together, we’ll craft the perfect service concept 
-        for your operations – efficient, secure, and professional.
-      </p>
-      <a href="kontakt.html?lang=en#name-en" class="btn-contact">Send Inquiry Now</a>
+    <!-- =========================
+         SECTION 9: FINAL CTA (EN)
+    ========================= -->
+    <section class="final-cta-en">
+      <div class="final-cta-inner">
+        <h2>Ready to Outsource?</h2>
+        <p>
+          Drop us your inquiry, and we’ll build a 
+          tailored solution for your operational needs.
+        </p>
+        <a href="kontakt.html?lang=en#name-en" class="cta-btn">Send Inquiry</a>
+      </div>
     </section>
-  </div><!-- End .english -->
 
-  <!-- ========== FOOTER ========== -->
+  </div><!-- END .english -->
+
+
+  <!-- ========== FOOTER (SAME FOR BOTH LANGS) ========== -->
   <footer class="footer">
     <p>Impressum &bull; Datenschutz &bull; Cookie-Einstellungen</p>
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- Link to your JS file for toggles, typing text, etc. -->
+
+  <!-- OPTIONAL: Link to your JS for toggles, etc. -->
   <script src="js/dienstleistungen.js"></script>
+  <script>
+    // MOBILE NAV TOGGLE
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+    mobileToggle.addEventListener('click', () => {
+      navbarMenu.classList.toggle('nav-open');
+    });
+
+    // LANGUAGE TOGGLE
+    const langBtn = document.getElementById('toggleLang');
+    const germanDivs = document.querySelectorAll('.german');
+    const englishDivs = document.querySelectorAll('.english');
+    let isGerman = true;
+
+    langBtn.addEventListener('click', () => {
+      isGerman = !isGerman;
+      germanDivs.forEach(el => el.classList.toggle('hidden', !isGerman));
+      englishDivs.forEach(el => el.classList.toggle('hidden', isGerman));
+      langBtn.textContent = isGerman ? 'English' : 'Deutsch';
+    });
+  </script>
+
 </body>
 </html>

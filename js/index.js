@@ -22,127 +22,94 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2) FADE-IN OBSERVER
     // ======================================================================
     const fadeElems = document.querySelectorAll('.fade-in');
-    const ioOptions = { threshold: 0.1 };
-    const observer = new IntersectionObserver((entries, obs) => {
+    const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if(entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          obs.unobserve(entry.target);
+          io.unobserve(entry.target);
         }
       });
-    }, ioOptions);
+    }, {threshold: 0.2});
+    fadeElems.forEach(el => io.observe(el));
   
-    fadeElems.forEach(el => observer.observe(el));
-  
-    // ======================================================================
-    // 3) TABS SWITCHING LOGIC (.svc-step)
-    // ======================================================================
-    const steps = document.querySelectorAll('.svc-step');
-    const panels = document.querySelectorAll('.svc-step-panel');
-  
-    steps.forEach(step => {
-      step.addEventListener('click', () => {
-        // Remove 'active' from all steps/panels
-        steps.forEach(s => s.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
-  
-        // Mark this step active
-        step.classList.add('active');
-  
-        // Build panel ID from data-step attribute
-        const stepNumber = step.getAttribute('data-step'); 
-        const panelId = `panel-${stepNumber}`;
-  
-        // Activate the target panel
-        const targetPanel = document.getElementById(panelId);
-        if (targetPanel) {
-          targetPanel.classList.add('active');
-        }
-      });
+      // 2) TABBED SERVICES
+  const tabButtons = document.querySelectorAll('.svc-tab-btn');
+  const panels = document.querySelectorAll('.services-panel');
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Clear active states
+      tabButtons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+
+      // Set this button active
+      btn.classList.add('active');
+      // Show the panel
+      const targetId = btn.getAttribute('data-tab');
+      const targetPanel = document.getElementById(targetId);
+      if(targetPanel) {
+        targetPanel.classList.add('active');
+      }
     });
+  });
+  // 2) TESTIMONIALS SLIDER (German)
+  const slidesDe = document.querySelectorAll('#testimonialSliderDe .testimonial-slide');
+  const arrowLeftDe = document.getElementById('arrowLeftDe');
+  const arrowRightDe = document.getElementById('arrowRightDe');
+  const dotsDe = document.querySelectorAll('#dotsDe .dot');
+  let currentSlideDe = 0;
+
+  function showSlideDe(index) {
+    slidesDe.forEach(s => s.classList.remove('active'));
+    dotsDe.forEach(d => d.classList.remove('active'));
+    slidesDe[index].classList.add('active');
+    dotsDe[index].classList.add('active');
+  }
+  showSlideDe(currentSlideDe);
+
+  arrowLeftDe.addEventListener('click', () => {
+    currentSlideDe = (currentSlideDe - 1 + slidesDe.length) % slidesDe.length;
+    showSlideDe(currentSlideDe);
+  });
+  arrowRightDe.addEventListener('click', () => {
+    currentSlideDe = (currentSlideDe + 1) % slidesDe.length;
+    showSlideDe(currentSlideDe);
+  });
+  dotsDe.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      currentSlideDe = idx;
+      showSlideDe(idx);
+    });
+  });
+  // ===========================
+  // 2) TIMELINE PROGRESS BAR
+  // ===========================
+  const progressIndicator = document.getElementById('progressIndicator');
+  const progressBar = document.querySelector('.progress-indicator .progress-bar');
   
-    // ======================================================================
-    // 4) TESTIMONIALS SLIDER – GERMAN
-    // ======================================================================
-    (function initGermanSlider() {
-      const slidesDe = document.querySelectorAll('#testimonialSliderDe .testimonial-slide');
-      const arrowLeftDe = document.getElementById('arrowLeftDe');
-      const arrowRightDe = document.getElementById('arrowRightDe');
-      const dotsDe = document.querySelectorAll('#dotsDe .dot');
-  
-      let currentSlideDe = 0;
-  
-      function showSlideDe(index) {
-        slidesDe.forEach(s => s.classList.remove('active'));
-        slidesDe[index].classList.add('active');
-        dotsDe.forEach(d => d.classList.remove('active'));
-        dotsDe[index].classList.add('active');
+  // If you want to show the sticky bar, remove "display: none" from CSS:
+  // progressIndicator.style.display = 'block'; // optionally
+
+  const timeline = document.querySelector('.timeline-steps');
+  if(progressIndicator && timeline) {
+    window.addEventListener('scroll', () => {
+      const rect = timeline.getBoundingClientRect();
+      const start = rect.top + window.pageYOffset;
+      const end = rect.bottom + window.pageYOffset - window.innerHeight;
+      const scrollY = window.pageYOffset;
+
+      if(scrollY < start) {
+        // Before timeline
+        progressBar.style.height = `0%`;
+      } else if(scrollY > end) {
+        // Past the end of timeline
+        progressBar.style.height = `100%`;
+      } else {
+        // In the timeline range
+        const ratio = ((scrollY - start) / (end - start)) * 100;
+        progressBar.style.height = `${ratio}%`;
       }
-  
-      if (slidesDe.length > 0) {
-        showSlideDe(currentSlideDe);
-      }
-  
-      if (arrowLeftDe && arrowRightDe) {
-        arrowLeftDe.addEventListener('click', () => {
-          currentSlideDe = (currentSlideDe - 1 + slidesDe.length) % slidesDe.length;
-          showSlideDe(currentSlideDe);
-        });
-        arrowRightDe.addEventListener('click', () => {
-          currentSlideDe = (currentSlideDe + 1) % slidesDe.length;
-          showSlideDe(currentSlideDe);
-        });
-      }
-  
-      dotsDe.forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
-          currentSlideDe = idx;
-          showSlideDe(idx);
-        });
-      });
-    })();
-  
-    // ======================================================================
-    // 5) TESTIMONIALS SLIDER – ENGLISH
-    // ======================================================================
-    (function initEnglishSlider() {
-      const slidesEn = document.querySelectorAll('#testimonialSliderEn .testimonial-slide');
-      const arrowLeftEn = document.getElementById('arrowLeftEn');
-      const arrowRightEn = document.getElementById('arrowRightEn');
-      const dotsEn = document.querySelectorAll('#dotsEn .dot');
-  
-      let currentSlideEn = 0;
-  
-      function showSlideEn(index) {
-        slidesEn.forEach(s => s.classList.remove('active'));
-        slidesEn[index].classList.add('active');
-        dotsEn.forEach(d => d.classList.remove('active'));
-        dotsEn[index].classList.add('active');
-      }
-  
-      if (slidesEn.length > 0) {
-        showSlideEn(currentSlideEn);
-      }
-  
-      if (arrowLeftEn && arrowRightEn) {
-        arrowLeftEn.addEventListener('click', () => {
-          currentSlideEn = (currentSlideEn - 1 + slidesEn.length) % slidesEn.length;
-          showSlideEn(currentSlideEn);
-        });
-        arrowRightEn.addEventListener('click', () => {
-          currentSlideEn = (currentSlideEn + 1) % slidesEn.length;
-          showSlideEn(currentSlideEn);
-        });
-      }
-  
-      dotsEn.forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
-          currentSlideEn = idx;
-          showSlideEn(idx);
-        });
-      });
-    })();
-  
+    });
+  }
     // ======================================================================
     // 6) LANGUAGE TOGGLE WITH SCROLL PRESERVATION
     // ======================================================================
@@ -197,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
    
-    // ENGLISH newsletter form
+    
   
   });
  
