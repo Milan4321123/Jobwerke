@@ -17,6 +17,8 @@
   
   <!-- Main CSS (to be provided later) -->
   <link rel="stylesheet" href="css/arbeiten.css" />
+  <!-- Link to the CSS for Arbeiten -->
+  <link rel="stylesheet" href="./css/arbeiten.css" />
 </head>
 <body>
   <!-- ================= NAVBAR ================= -->
@@ -29,6 +31,9 @@
       <span></span>
       <span></span>
       <span></span>
+      <!-- Replace the path with your real logo image -->
+      <img src="./assets/img/jobwerke-logo.png" alt="Job Werke Logo" />
+      <span>Job Werke d.o.o.</span>
     </div>
 
     <!-- NAV Menu -->
@@ -356,6 +361,23 @@
         </div>
       </div>
     </section>
+  <!-- ========== ANGLED HERO SECTION ========== -->
+  <!-- We use angled background layering for a more dynamic vibe -->
+  <section class="hero-section fade-section">
+    <div class="hero-bg">
+      <!-- Provide a large banner image for the "Arbeiten" page (1920x1080 or bigger) -->
+      <img src="./assets/img/53b204a5-1cd3-401c-b055-8a5d2da1c40f.jpg" alt="Arbeiten Banner" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <h1>Mit uns arbeiten</h1>
+      <p class="hero-subtitle">Werden Sie Teil unseres Netzwerks</p>
+    </div>
+    <svg class="hero-diagonal" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+      <!-- An angled cut at the bottom of the hero section -->
+      <polygon fill="#ffffff" points="0,10 100,0 100,10"/>
+    </svg>
+  </section>
 
     <!-- =========================
          WORKFLOW (EN)
@@ -485,6 +507,25 @@
               <li>Regular feedback &amp; improvements</li>
             </ul>
           </div>
+  <!-- ========== ANGLED SEPARATOR ========== -->
+  <svg class="angled-separator" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true">
+    <polygon fill="#fbfbfc" points="0,0 100,10 0,10"/>
+  </svg>
+
+  <!-- ========== TEAM SECTION ========== -->
+  <section class="team-section fade-section">
+    <h2>Arbeitskräfte</h2>
+    <p class="team-intro">
+      Unser Team besteht aus erfahrenen Fachleuten, die sich leidenschaftlich für die Personalvermittlung einsetzen.
+      Jeder von uns bringt einzigartige Fähigkeiten und Erfahrungen mit, um sicherzustellen, dass wir die besten
+      Lösungen für Sie finden.
+    </p>
+    <div class="team-grid">
+      <!-- You can add more or fewer members as you wish -->
+      <div class="team-card tilt" data-tilt>
+        <div class="team-card__img">
+          <!-- Replace with real person or symbolic image -->
+          <img src="./assets/img/team-placeholder.jpg" alt="Team Member 1" />
         </div>
       </div>
     </section>
@@ -514,6 +555,9 @@
               <li>Optional specialized training material</li>
             </ul>
           </div>
+      <div class="team-card tilt" data-tilt>
+        <div class="team-card__img">
+          <img src="./assets/img/hero-bg-1.jpg" alt="Team Member 2" />
         </div>
       </div>
     </section>
@@ -554,6 +598,9 @@
             A small IT team provides remote first-level support,
             easily scaled up or down as workloads change.
           </p>
+      <div class="team-card tilt" data-tilt>
+        <div class="team-card__img">
+          <img src="./assets/img/6e43835c-4060-4962-a739-4177c972dbde.jpg" alt="Team Member 3" />
         </div>
       </div>
     </section>
@@ -635,5 +682,7 @@
       langBtn.textContent = isGerman ? 'English' : 'Deutsch';
     });
   </script>
+  <!-- ========== JS ========== -->
+  <script src="./js/arbeiten.js"></script>
 </body>
 </html>
