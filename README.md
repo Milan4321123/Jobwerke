@@ -56,7 +56,9 @@ A modern, bilingual (German/English) website featuring:
 ### Backend (Optional)
 - **Node.js** - Server functionality (`server/`)
 - **Express** - Web framework for form handling
-- **Contact Forms** - Email integration and data processing
+- **MongoDB** - Database for storing appointments and newsletter subscriptions
+- **Nodemailer** - Email integration for contact forms and newsletters
+- **Environment Variables** - Secure configuration management
 
 ## 📁 Project Structure
 
