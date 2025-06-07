@@ -22,13 +22,17 @@ const PORT = process.env.PORT || 3000;
    ================================================ */
 async function connectDB() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("Connected to MongoDB Atlas");
-  } catch (err) {
-    console.error("Error connecting to MongoDB:", err);
+    const conn = await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
     process.exit(1);
   }
-}
+};
+
 connectDB();
 
 /* ================================================
