@@ -35,28 +35,50 @@ document.addEventListener('DOMContentLoaded', () => {
     fadeElems.forEach(el => observer.observe(el));
   
     // ======================================================================
-    // 3) TABS SWITCHING LOGIC (.svc-step)
+    // 3) TABS SWITCHING LOGIC (.svc-step) - Supports all languages
     // ======================================================================
     const steps = document.querySelectorAll('.svc-step');
     const panels = document.querySelectorAll('.svc-step-panel');
   
     steps.forEach(step => {
       step.addEventListener('click', () => {
-        // Remove 'active' from all steps/panels
-        steps.forEach(s => s.classList.remove('active'));
-        panels.forEach(p => p.classList.remove('active'));
+        // Get the current language section we're in
+        const currentSection = step.closest('.german, .english, .croatian');
+        
+        if (currentSection) {
+          // Remove 'active' from all steps/panels within this language section
+          const sectionSteps = currentSection.querySelectorAll('.svc-step');
+          const sectionPanels = currentSection.querySelectorAll('.svc-step-panel');
+          
+          sectionSteps.forEach(s => s.classList.remove('active'));
+          sectionPanels.forEach(p => p.classList.remove('active'));
   
-        // Mark this step active
-        step.classList.add('active');
+          // Mark this step active
+          step.classList.add('active');
   
-        // Build panel ID from data-step attribute
-        const stepNumber = step.getAttribute('data-step'); 
-        const panelId = `panel-${stepNumber}`;
+          // Build panel ID from data-step attribute
+          const stepNumber = step.getAttribute('data-step'); 
+          const panelId = `panel-${stepNumber}`;
   
-        // Activate the target panel
-        const targetPanel = document.getElementById(panelId);
-        if (targetPanel) {
-          targetPanel.classList.add('active');
+          // Activate the target panel within the same language section
+          const targetPanel = currentSection.querySelector(`#${panelId}`);
+          if (targetPanel) {
+            targetPanel.classList.add('active');
+          }
+        } else {
+          // Fallback to original behavior for backward compatibility
+          steps.forEach(s => s.classList.remove('active'));
+          panels.forEach(p => p.classList.remove('active'));
+
+          step.classList.add('active');
+          
+          const stepNumber = step.getAttribute('data-step'); 
+          const panelId = `panel-${stepNumber}`;
+          
+          const targetPanel = document.getElementById(panelId);
+          if (targetPanel) {
+            targetPanel.classList.add('active');
+          }
         }
       });
     });
@@ -142,9 +164,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     })();
+
+    // ======================================================================
+    // 5b) TESTIMONIALS SLIDER – CROATIAN
+    // ======================================================================
+    (function initCroatianSlider() {
+      const slidesHr = document.querySelectorAll('#testimonialSliderHr .testimonial-slide');
+      const arrowLeftHr = document.getElementById('arrowLeftHr');
+      const arrowRightHr = document.getElementById('arrowRightHr');
+      const dotsHr = document.querySelectorAll('#dotsHr .dot');
+  
+      let currentSlideHr = 0;
+  
+      function showSlideHr(index) {
+        slidesHr.forEach(s => s.classList.remove('active'));
+        slidesHr[index].classList.add('active');
+        dotsHr.forEach(d => d.classList.remove('active'));
+        dotsHr[index].classList.add('active');
+      }
+  
+      if (slidesHr.length > 0) {
+        showSlideHr(currentSlideHr);
+      }
+  
+      if (arrowLeftHr && arrowRightHr) {
+        arrowLeftHr.addEventListener('click', () => {
+          currentSlideHr = (currentSlideHr - 1 + slidesHr.length) % slidesHr.length;
+          showSlideHr(currentSlideHr);
+        });
+        arrowRightHr.addEventListener('click', () => {
+          currentSlideHr = (currentSlideHr + 1) % slidesHr.length;
+          showSlideHr(currentSlideHr);
+        });
+      }
+  
+      dotsHr.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          currentSlideHr = idx;
+          showSlideHr(idx);
+        });
+      });
+    })();
   
     // ======================================================================
-    // 6) LANGUAGE TOGGLE WITH SCROLL PRESERVATION
+    // 6) THREE-LANGUAGE TOGGLE WITH SCROLL PRESERVATION (German -> English -> Croatian)
     // ======================================================================
     const params = new URLSearchParams(window.location.search);
     let currentLang = params.get('lang') || 'de'; // default to German
@@ -159,24 +222,41 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 50);
     }
   
-    // Show/hide .german / .english
+    // Show/hide language sections based on current language
     const germanDivs = document.querySelectorAll('.german');
     const englishDivs = document.querySelectorAll('.english');
-    let isGerman = (currentLang !== 'en');
-  
-    if (isGerman) {
-      germanDivs.forEach(el => el.classList.remove('hidden'));
-      englishDivs.forEach(el => el.classList.add('hidden'));
-    } else {
+    const croatianDivs = document.querySelectorAll('.croatian');
+    
+    function updateLanguageDisplay(lang) {
+      // Hide all languages first
       germanDivs.forEach(el => el.classList.add('hidden'));
-      englishDivs.forEach(el => el.classList.remove('hidden'));
+      englishDivs.forEach(el => el.classList.add('hidden'));
+      croatianDivs.forEach(el => el.classList.add('hidden'));
+
+      // Show current language
+      if (lang === 'de') {
+        germanDivs.forEach(el => el.classList.remove('hidden'));
+      } else if (lang === 'en') {
+        englishDivs.forEach(el => el.classList.remove('hidden'));
+      } else if (lang === 'hr') {
+        croatianDivs.forEach(el => el.classList.remove('hidden'));
+      }
     }
+
+    // Initialize display
+    updateLanguageDisplay(currentLang);
   
     // Grab the toggle button
     const langBtn = document.getElementById('toggleLang');
     if (langBtn) {
-      // Initial text
-      langBtn.textContent = isGerman ? 'English' : 'Deutsch';
+      // Set initial button text
+      if (currentLang === 'de') {
+        langBtn.textContent = 'English';
+      } else if (currentLang === 'en') {
+        langBtn.textContent = 'Hrvatski';
+      } else if (currentLang === 'hr') {
+        langBtn.textContent = 'Deutsch';
+      }
   
       langBtn.addEventListener('click', () => {
         // 1) store current scroll ratio
@@ -184,9 +264,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const docHeight = Math.max(document.body.scrollHeight, 1);
         const scrollRatio = currentScrollY / docHeight;
   
-        // 2) flip language
-        isGerman = !isGerman;
-        const newLang = isGerman ? 'de' : 'en';
+        // 2) cycle through languages: de -> en -> hr -> de
+        let newLang;
+        if (currentLang === 'de') {
+          newLang = 'en';
+        } else if (currentLang === 'en') {
+          newLang = 'hr';
+        } else {
+          newLang = 'de';
+        }
   
         // 3) update params
         params.set('lang', newLang);
