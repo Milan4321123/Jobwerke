@@ -61,6 +61,14 @@
         <a href="arbeiten.html?lang=en">Work With Us</a>
         <a href="kontakt.html?lang=en">Contact</a>
       </div>
+      <!-- CROATIAN NAV LINKS -->
+      <div class="navbar__links croatian hidden">
+        <a href="index.html?lang=hr" class="active">Početna</a>
+        <a href="uber-uns.html?lang=hr">O nama</a>
+        <a href="dienstleistungen.html?lang=hr">Usluge</a>
+        <a href="arbeiten.html?lang=hr">Radite s nama</a>
+        <a href="kontakt.html?lang=hr">Kontakt</a>
+      </div>
   
       <!-- Language Toggle Button -->
       <button id="toggleLang" class="lang-btn">
@@ -465,15 +473,19 @@
       <!-- 'action="/subscribe"' => Submits directly to your server
            'method="POST"' => Must be POST to match app.post("/subscribe") -->
       <form action="/subscribe" method="POST" id="newsletterFormDe" style="margin-top: 1rem;">
-        <label for="newsletterEmail" class="sr-only">E-Mail-Adresse</label>
-        <!-- IMPORTANT: 'name="email"' so the server can read req.body.email -->
-        <input 
-          id="newsletterEmail"
-          name="email"
-          type="email"
-          placeholder="Ihre E-Mail-Adresse" 
-          required
-        >
+        <!-- Newsletter Input Row -->
+        <div class="newsletter-input-row">
+          <label for="newsletterEmail" class="sr-only">E-Mail-Adresse</label>
+          <!-- IMPORTANT: 'name="email"' so the server can read req.body.email -->
+          <input 
+            id="newsletterEmail"
+            name="email"
+            type="email"
+            placeholder="Ihre E-Mail-Adresse" 
+            required
+          >
+          <button type="submit">Abonnieren</button>
+        </div>
     
         <!-- Optional: set a hidden language field if you want to pass "de" -->
         <input 
@@ -496,7 +508,33 @@
     </label>
   </div>
 
-        <button type="submit">Abonnieren</button>
+        <!-- CAPTCHA Section (German Newsletter) -->
+        <div class="newsletter-captcha-container" id="newsletter-captcha-container-de">
+          <div class="newsletter-captcha-display">
+            <img id="newsletter-captcha-image-de" class="newsletter-captcha-image" src="/captcha" alt="CAPTCHA-Bild" />
+            <div class="newsletter-captcha-controls">
+              <button type="button" class="newsletter-captcha-refresh" onclick="refreshNewsletterCaptcha('de')">🔄 Neu laden</button>
+              <button type="button" class="newsletter-captcha-audio" onclick="playNewsletterCaptchaAudio('de')">🔊 Audio</button>
+            </div>
+          </div>
+          <div class="newsletter-captcha-input-group">
+            <label for="newsletter-captcha-input-de">CAPTCHA Code <span style="color:red;">*</span></label>
+            <input 
+              type="text" 
+              id="newsletter-captcha-input-de" 
+              name="captcha" 
+              class="newsletter-captcha-input" 
+              placeholder="Code eingeben"
+              required
+              maxlength="6"
+              autocomplete="off"
+            />
+            <div class="newsletter-captcha-error" id="newsletter-captcha-error-de"></div>
+            <div class="newsletter-captcha-help">Geben Sie die Zeichen aus dem Bild ein</div>
+          </div>
+          <!-- reCAPTCHA container (if enabled) -->
+          <div class="newsletter-recaptcha-container" id="newsletter-recaptcha-container-de" style="display: none;"></div>
+        </div>
       </form>
     </section>
     <!-- APPOINTMENT CTA (GER) -->
@@ -888,14 +926,18 @@
     
       <!-- CLASSIC HTML FORM (English) -->
       <form action="/subscribe" method="POST" id="newsletterFormEn" style="margin-top: 1rem;">
-        <label for="newsletterEmailEn" class="sr-only">Email Address</label>
-        <input 
-          id="newsletterEmailEn"
-          name="email"
-          type="email"
-          placeholder="Your Email Address" 
-          required
-        >
+        <!-- Newsletter Input Row -->
+        <div class="newsletter-input-row">
+          <label for="newsletterEmailEn" class="sr-only">Email Address</label>
+          <input 
+            id="newsletterEmailEn"
+            name="email"
+            type="email"
+            placeholder="Your Email Address" 
+            required
+          >
+          <button type="submit">Subscribe</button>
+        </div>
         <!-- Hidden field to pass language=en -->
         <input 
           type="hidden"
@@ -917,7 +959,33 @@
         </label>
   </div>
 
-        <button type="submit">Subscribe</button>
+        <!-- CAPTCHA Section (English Newsletter) -->
+        <div class="newsletter-captcha-container" id="newsletter-captcha-container-en">
+          <div class="newsletter-captcha-display">
+            <img id="newsletter-captcha-image-en" class="newsletter-captcha-image" src="/captcha" alt="CAPTCHA Image" />
+            <div class="newsletter-captcha-controls">
+              <button type="button" class="newsletter-captcha-refresh" onclick="refreshNewsletterCaptcha('en')">🔄 Refresh</button>
+              <button type="button" class="newsletter-captcha-audio" onclick="playNewsletterCaptchaAudio('en')">🔊 Audio</button>
+            </div>
+          </div>
+          <div class="newsletter-captcha-input-group">
+            <label for="newsletter-captcha-input-en">CAPTCHA Code <span style="color:red;">*</span></label>
+            <input 
+              type="text" 
+              id="newsletter-captcha-input-en" 
+              name="captcha" 
+              class="newsletter-captcha-input" 
+              placeholder="Enter code"
+              required
+              maxlength="6"
+              autocomplete="off"
+            />
+            <div class="newsletter-captcha-error" id="newsletter-captcha-error-en"></div>
+            <div class="newsletter-captcha-help">Enter the characters shown in the image</div>
+          </div>
+          <!-- reCAPTCHA container (if enabled) -->
+          <div class="newsletter-recaptcha-container" id="newsletter-recaptcha-container-en" style="display: none;"></div>
+        </div>
       </form>
     </section>
       </script>
@@ -935,6 +1003,450 @@
     </section>
   </div><!-- End .english -->
 
+  <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+       CROATIAN CONTENT (HOME)
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+  <div class="croatian hidden">
+    <!-- ========== HERO SECTION (HR) ========== -->
+    <section class="hero fade-in" id="heroHr">
+      <video class="hero-video" autoplay muted loop>
+        <source src="assets/img/connect.mp4" type="video/mp4" />
+        Vaš preglednik ne podržava pozadinski video.
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Vaš pružatelj usluga i partner za zapošljavanje</h1>
+        <p>
+          Uspješni diljem Europe: kombiniramo stručnost naše 
+          matične tvrtke <strong>Remix</strong> (Hrvatska), poznate po 
+          nagrađivanim građevinskim uslugama, s pouzdanošću 
+          <strong>Trinity</strong> (Slovenija) za besprijekorne vizne i A1 procese.  
+          Trebate li <strong>izravne zaposlene</strong> ili 
+          <strong>potpuni ugovor o uslugama</strong>, pružamo 
+          vrhunsku izvedbu u građevinarstvu, ugostiteljstvu, uredima i više.
+        </p>
+        <a href="#whyHr" class="btn-primary">Saznajte više</a>
+      </div>
+    </section>
+
+    <!-- ========== WHY SECTION (HR) ========== -->
+    <section class="why-jobwerke revamp-section croatian hidden" id="whyHr">
+      <div class="wave-bg"></div>
+      <div class="why-container">
+        <div class="why-content">
+          <div class="why-image">
+            <img src="assets/img/u.jpg" alt="Job Werke - Ilustracija" />
+          </div>
+          <div class="why-text">
+            <h2>Zašto Job Werke d.o.o.?</h2>
+            <p class="lead">
+              Mi smo <strong>visoko ocijenjeni</strong>, 
+              povezani diljem Europe i specijalizirani za 
+              <em>dva glavna pristupa</em>:
+              <strong>zapošljavanje</strong> (izravno zapošljavanje) 
+              i <strong>ugovore o uslugama</strong> (preuzimamo potpunu odgovornost za projekt).
+              S Remix i Trinity, osiguravamo da se sva vizna 
+              i radna dokumentacija obrađuje glatko 
+              i legalno, tako da se možete usredotočiti na svoj osnovni posao.
+            </p>
+          </div>
+        </div>
+
+        <!-- USP GRID (HR) -->
+        <div class="usp-grid">
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/2mVW.mp4" type="video/mp4" />
+              Vaš pregljednik ne podržava HTML5 video.
+            </video>
+            <h3>Snažna mreža</h3>
+            <p>
+              Remix (Hrvatska) + Trinity (Slovenija) + Job Werke (Njemačka):
+              dokazani trojac za pouzdane dozvole, osiguranje 
+              i A1 certifikate.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/vertrag.mp4" type="video/mp4" />
+              Vaš pregljednik ne podržava HTML5 video.
+            </video>
+            <h3>Usluge i zapošljavanje</h3>
+            <p>
+              Ili prepustite nam cijeli projekt ili 
+              da regrutiramo vrhunske stručnjake izravno 
+              u vašu tvrtku.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/4q43.mp4" type="video/mp4" />
+              Vaš pregljednik ne podržava HTML5 video.
+            </video>
+            <h3>Brzo i fleksibilno</h3>
+            <p>
+              Kratki komunikacijski kanali, pojednostavljeni procesi: 
+              od prvog kontakta do pokretanja projekta u minimalnom vremenu.
+            </p>
+          </div>
+          <div class="usp-card">
+            <video autoplay muted loop playsinline class="usp-video">
+              <source src="assets/img/7LD.mp4" type="video/mp4" />
+              Vaš pregljednik ne podržava HTML5 video.
+            </video>
+            <h3>Pravna sigurnost</h3>
+            <p>
+              Svi ugovori, osiguranje i pitanja radnih dozvola 
+              pokriveni su našom opsežnom stručnošću.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== HISTORY TEASER (HR) ========== -->
+    <section class="history-teaser fade-in">
+      <h2>Od Hrvatske do Njemačke</h2>
+      <p>
+        Nastali smo u građevinskom sektoru s Remix, 
+        ali sada služimo više industrija: 
+        od hotela i gastronomije do uredskih usluga i logistike. 
+        Kvaliteta vodi povjerenju – zahvaljujući 
+        <strong>istinskom radu</strong>, 
+        <strong>vrhunskim referencama</strong>, 
+        i <strong>motiviranom timu</strong>.
+      </p>
+      <a href="uber-uns.html?lang=hr#time-hr" class="btn-learn-more">
+        Naša priča
+      </a>
+    </section>
+
+    <!-- ========== PROCESS (HR) ========== -->
+    <section class="process fade-in">
+      <h2>Kako funkcionira</h2>
+      <div class="process-steps">
+        <div class="step">
+          <h3>1. Konzultacija</h3>
+          <p>
+            Recite nam što trebate: 
+            Želite li izravne zaposlene 
+            ili potpuno povjereni ugovor o uslugama od Job Werke?
+          </p>
+        </div>
+        <div class="step">
+          <h3>2. Stručnjaci i papirnati rad</h3>
+          <p>
+            Pristupamo našoj opsežnoj mreži, rješavamo vize 
+            i osiguranje (u suradnji s Trinity i Remix), 
+            osiguravajući glatki proces.
+          </p>
+        </div>
+        <div class="step">
+          <h3>3. Implementacija</h3>
+          <p>
+            <strong>Pod zapošljavanjem</strong>, novi osoblje pridružuje se vašoj platnoj listi.  
+            <strong>Pod ugovorom o uslugama</strong>, naš tim ostaje u Job Werke, 
+            isporučujući gotov rezultat.
+          </p>
+        </div>
+        <div class="step">
+          <h3>4. Kontinuirana podrška</h3>
+          <p>
+            Ostajemo uz vas, prilagođavamo se novim potrebama, 
+            i osiguravamo da sve funkcionira besprijekorno od početka do kraja.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAIN SERVICES (HR) ========== -->
+    <section class="main-services-steps fade-in" id="servicesHr">
+      <h2>Naša osnovna područja</h2>
+      <div class="svc-step-header">
+        <div class="svc-step active" data-step="1-hr">1. Građevinarstvo i renoviranje</div>
+        <div class="svc-step" data-step="2-hr">2. Hoteli i restorani</div>
+        <div class="svc-step" data-step="3-hr">3. Ured i recepcija</div>
+        <div class="svc-step" data-step="4-hr">4. Druge industrije</div>
+      </div>
+      <div class="svc-step-content">
+        <!-- Panel 1 -->
+        <div class="svc-step-panel active" id="panel-1-hr">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Građevinarstvo i renoviranje</h3>
+              <p>
+                Nadograđujući na Remix-ov track record, 
+                opskrbljujemo iskusne radnike ili rukujemo vašim cijelim 
+                projektom renoviranja—što god vam više odgovara.
+              </p>
+              <ul>
+                <li>Usluga ili izravno zapošljavanje</li>
+                <li>Iskusne ekipe za brze početke</li>
+                <li>Dokazani uspjeh u njemačkom građevinarstvu</li>
+              </ul>
+              <button class="btn-cta"
+                onclick="window.location.href='kontakt.html?lang=hr#name-hr';">
+                Zatražite sada
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/hr.mp4" type="video/mp4" />
+                Vaš pregljednik ne podržava HTML5 video.
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- Panel 2 -->
+        <div class="svc-step-panel" id="panel-2-hr">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Hoteli i restorani</h3>
+              <p>
+                Kuhinjski pomoćnici, održavanje, ili kompletan 
+                tim za upravljanje hotelom – naši međunarodni talenti 
+                su pripremljeni oduševiti vaše goste.
+              </p>
+              <ul>
+                <li>Jezična obuka i fokus na uslugu</li>
+                <li>Ili izravno zapošljavanje ili vanjska usluga</li>
+                <li>Brzo prilagodljivo za sezonske vrhunce</li>
+              </ul>
+              <button class="btn-cta"
+                onclick="window.location.href='arbeiten.html?lang=hr#info-hr';">
+                Saznajte više
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/bereistellung.mp4" type="video/mp4" />
+                Vaš pregljednik ne podržava HTML5 video.
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- Panel 3 -->
+        <div class="svc-step-panel" id="panel-3-hr">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Ured i recepcija</h3>
+              <p>
+                Oslobodite svoj glavni tim i 
+                unesite kompetentno osoblje u ured 
+                ili prepustite nam pojedine procese, 
+                npr. recepciju, back office ili telefonske usluge.
+              </p>
+              <ul>
+                <li>Moguće dugoročne uslužne ugovore</li>
+                <li>Profesionalni, osigurani radnici</li>
+                <li>Sve formalnosti rješavamo mi</li>
+              </ul>
+              <button class="btn-cta"
+                onclick="window.location.href='kontakt.html?lang=hr#name-hr';">
+                Stupite u kontakt
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <video autoplay muted loop playsinline class="usp-video">
+                <source src="assets/img/internat.mp4" type="video/mp4" />
+                Vaš pregljednik ne podržava HTML5 video.
+              </video>
+            </div>
+          </div>
+        </div>
+        <!-- Panel 4 -->
+        <div class="svc-step-panel" id="panel-4-hr">
+          <div class="svc-panel-inner">
+            <div class="svc-text-side">
+              <h3>Druge industrije</h3>
+              <p>
+                Bilo logistika, trgovina na malo, poljoprivreda ili IT podrška:
+                Izgradili smo široku mrežu i 
+                pružamo individualna rješenja za svaki projekt – 
+                putem zapošljavanja radnika ili punog servisa.
+              </p>
+              <ul>
+                <li>Veliki izbor stručnjaka</li>
+                <li>Brzo skalabilno s rastućim potrebama</li>
+                <li>Partnerstva za besprijekorne vize i dozvole</li>
+              </ul>
+              <button class="btn-cta"
+                onclick="window.location.href='dienstleistungen.html?lang=hr#kernleistungenSection-hr';">
+                Otkrijte uslugu
+              </button>
+            </div>
+            <div class="svc-image-side">
+              <img src="assets/img/onboarding.jpg" alt="Druge industrije" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURVED SECTIONS (HR) -->
+    <section class="curved-section curved-left" id="curvedBlock1">
+      <div class="curved-bg"></div>
+      <div class="curved-content croatian hidden">
+        <h2>Zajedno s Remix i Trinity.</h2>
+        <p>
+          Zahvaljujući našim europskim partnerima, svaki projekt 
+          se odvija brzo i legalno – od azijskih talenta 
+          do sveobuhvatnih projektnih timova.
+        </p>
+      </div>
+    </section>
+
+    <section class="curved-section curved-right" id="curvedBlock2">
+      <div class="curved-bg"></div>
+      <div class="curved-content croatian hidden">
+        <h2>Europska stručnost.</h2>
+        <p>
+          Brojni projekti diljem Njemačke, Hrvatske i Slovenije 
+          pokazuju kako kombiniramo kvalitetu i brzinu 
+          za maksimalan utjecaj.
+        </p>
+      </div>
+    </section>
+
+    <section class="curved-section curved-left" id="curvedBlock3">
+      <div class="curved-bg"></div>
+      <div class="curved-content croatian hidden">
+        <h2>Dokazani uspjeh.</h2>
+        <p>
+          Bilo da se radi o građevinskim nagradama ili zadovoljnim gastro klijentima –
+          imamo reference da zadobijemo vaše povjerenje.
+        </p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (HR) -->
+    <section class="testimonials-slider-section fade-in croatian hidden">
+      <h2>Što kažu naši klijenti</h2>
+      <div class="testimonial-slider" id="testimonialSliderHr">
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              "U građevinarstvu smo već imali odlična iskustva s Remix. 
+               Sada koristimo Job Werke za naše hotelijerstvo 
+               – i funkcionira jednako dobro."
+            </p>
+            <span class="client-name">– Hotelska menadžerica K.- Katarina (Kata)</span>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              "Kombinacija ugovora o uslugama i A1 podrške 
+               vrijedi zlata – mogli smo brzo početi bez stresa s formalnostima."
+            </p>
+            <span class="client-name">– Voditelj logistike P. - Petar (Pero)</span>
+          </div>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">
+              "Naši novi zaposlenici iz Nepala su super integrirani, 
+               hvala timu na vrhunskoj pratnji!"
+            </p>
+            <span class="client-name">– Građevinski poduzetnik R.- Roko (Rok)</span>
+          </div>
+        </div>
+        <!-- Slider Arrows & Dots -->
+        <button class="slider-arrow left-arrow" id="arrowLeftHr">&#10094;</button>
+        <button class="slider-arrow right-arrow" id="arrowRightHr">&#10095;</button>
+        <div class="slider-dots" id="dotsHr">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER CTA (HR) -->
+    <section class="newsletter-cta fade-in">
+      <h3>Znatiželjan za saznavanje više?</h3>
+      <p>
+        Redovito saznajte o novim projektima, 
+        inovativnim rješenjima i stručnjacima 
+        koje možemo ponuditi.
+      </p>      <!-- CLASSIC HTML FORM (Croatian) -->
+      <form action="/subscribe" method="POST" id="newsletterFormHr" style="margin-top: 1rem;">
+        <!-- Newsletter Input Row -->
+        <div class="newsletter-input-row">
+          <label for="newsletterEmailHr" class="sr-only">E-mail adresa</label>
+          <input 
+            id="newsletterEmailHr"
+            name="email"
+            type="email"
+            placeholder="Vaša e-mail adresa"
+            required
+          >
+          <button type="submit">Pretplatite se</button>
+        </div>
+    
+        <input 
+          type="hidden"
+          name="language"
+          value="hr"
+        >
+         <!-- Datens. Checkbox -->
+        <div class="form-group">
+          <input
+            type="checkbox"
+            id="privacyNewsletterHr"
+            name="privacyNewsletter"
+            required
+          />
+          <label for="privacyNewsletterHr">
+            Pročitao sam 
+            <a href="datenschutz.html?lang=hr" target="_blank" style="color: blue; text-decoration: underline;">Izjavu o privatnosti</a> 
+            i prihvaćam obradu mojih podataka.
+          </label>
+        </div>
+
+        <!-- CAPTCHA Section (Croatian Newsletter) -->
+        <div class="newsletter-captcha-container" id="newsletter-captcha-container-hr">
+          <div class="newsletter-captcha-display">
+            <img id="newsletter-captcha-image-hr" class="newsletter-captcha-image" src="/captcha" alt="CAPTCHA slika" />
+            <div class="newsletter-captcha-controls">
+              <button type="button" class="newsletter-captcha-refresh" onclick="refreshNewsletterCaptcha('hr')">🔄 Osvježi</button>
+              <button type="button" class="newsletter-captcha-audio" onclick="playNewsletterCaptchaAudio('hr')">🔊 Audio</button>
+            </div>
+          </div>
+          <div class="newsletter-captcha-input-group">
+            <label for="newsletter-captcha-input-hr">CAPTCHA kod <span style="color:red;">*</span></label>
+            <input 
+              type="text" 
+              id="newsletter-captcha-input-hr" 
+              name="captcha" 
+              class="newsletter-captcha-input" 
+              placeholder="Unesite kod"
+              required
+              maxlength="6"
+              autocomplete="off"
+            />
+            <div class="newsletter-captcha-error" id="newsletter-captcha-error-hr"></div>
+            <div class="newsletter-captcha-help">Unesite znakove prikazane na slici</div>
+          </div>
+          <!-- reCAPTCHA container (if enabled) -->
+          <div class="newsletter-recaptcha-container" id="newsletter-recaptcha-container-hr" style="display: none;"></div>
+        </div>
+      </form>
+    </section>
+
+    <!-- APPOINTMENT CTA (HR) -->
+    <section class="appointment-cta fade-in" id="kontaktHr">
+      <h2>Spremni za sljedeći korak?</h2>
+      <p>
+        Kontaktirajte nas za neobvezujući razgovor. 
+        Zajedno ćemo pronaći najbolje rješenje – 
+        bilo usluga ili izravno zapošljavanje. 
+        Radujemo se vama!
+      </p>
+      <a href="kontakt.html?lang=hr#name-hr" class="btn-large">Dogovorite termin</a>
+    </section>
+  </div><!-- End .croatian -->
+
   <!-- ========== FOOTER ========== -->
   <footer class="footer">
     <p>
@@ -945,6 +1457,9 @@
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
+  <!-- CAPTCHA JavaScript -->
+  <script src="js/captcha.js"></script>
+  
   <!-- Link to your external JS file -->
   <script src="js/index.js"></script>
 
@@ -957,22 +1472,58 @@
       navbarMenu.classList.toggle('nav-open');
     });
 
-    // 2) LANGUAGE SWITCH
+    // 2) THREE-LANGUAGE TOGGLE (German -> English -> Croatian -> German...)
     const langBtn = document.getElementById('toggleLang');
     const germanDivs = document.querySelectorAll('.german');
     const englishDivs = document.querySelectorAll('.english');
-    let isGerman = true; // Start in German mode
+    const croatianDivs = document.querySelectorAll('.croatian');
+    
+    // Languages: 0=German, 1=English, 2=Croatian
+    let currentLang = 0;
+
+    // Check URL parameter to set initial language
+    const params = new URLSearchParams(window.location.search);
+    const langParam = params.get('lang');
+    if (langParam === 'en') {
+      currentLang = 1;
+    } else if (langParam === 'hr') {
+      currentLang = 2;
+    } else {
+      currentLang = 0; // default to German
+    }
+
+    // Function to update language display
+    function updateLanguageDisplay() {
+      // Hide all languages first
+      germanDivs.forEach(el => el.classList.add('hidden'));
+      englishDivs.forEach(el => el.classList.add('hidden'));
+      croatianDivs.forEach(el => el.classList.add('hidden'));
+
+      // Show current language and update button text
+      if (currentLang === 0) {
+        germanDivs.forEach(el => el.classList.remove('hidden'));
+        langBtn.textContent = 'English';
+      } else if (currentLang === 1) {
+        englishDivs.forEach(el => el.classList.remove('hidden'));
+        langBtn.textContent = 'Hrvatski';
+      } else if (currentLang === 2) {
+        croatianDivs.forEach(el => el.classList.remove('hidden'));
+        langBtn.textContent = 'Deutsch';
+      }
+    }
+
+    // Initialize display
+    updateLanguageDisplay();
 
     langBtn.addEventListener('click', () => {
       const scrollY = window.pageYOffset;
       const docHeight = document.body.scrollHeight;
       const ratio = docHeight ? (scrollY / docHeight) : 0;
 
-      isGerman = !isGerman;
-      germanDivs.forEach(el => el.classList.toggle('hidden', !isGerman));
-      englishDivs.forEach(el => el.classList.toggle('hidden', isGerman));
-
-      langBtn.textContent = isGerman ? 'English' : 'Deutsch';
+      // Cycle through languages: German -> English -> Croatian -> German
+      currentLang = (currentLang + 1) % 3;
+      
+      updateLanguageDisplay();
 
       // Recalc doc height & restore scroll position
       setTimeout(() => {
