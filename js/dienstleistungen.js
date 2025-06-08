@@ -1,6 +1,6 @@
 /**************************************************************
-  (Updated) SomePage.js
-  Incorporates scroll-ratio preservation for language toggle
+  dienstleistungen.js
+  Incorporates three-language support: German, English, Croatian
 **************************************************************/
 
 // 1) NAV TOGGLE (HAMBURGER)
@@ -13,9 +13,14 @@ if (mobileToggle && navbarMenu) {
   });
 }
 
-// 2) DETECT & APPLY CURRENT LANGUAGE VIA ?lang=de / ?lang=en + optional scrollRatio
+// 2) DETECT & APPLY CURRENT LANGUAGE VIA ?lang=de / ?lang=en / ?lang=hr + optional scrollRatio
 const params = new URLSearchParams(window.location.search);
-let currentLang = params.get('lang') || 'de';  // default to 'de' if none
+let currentLangParam = params.get('lang') || 'de';  // default to 'de' if none
+
+// Map URL parameters to currentLang index
+let currentLang = 0; // 0 = German, 1 = English, 2 = Croatian
+if (currentLangParam === 'en') currentLang = 1;
+else if (currentLangParam === 'hr') currentLang = 2;
 
 // If there's a scrollRatio param, parse and scroll there
 if (params.has('scrollRatio')) {
@@ -27,25 +32,27 @@ if (params.has('scrollRatio')) {
   }, 50);
 }
 
-// Find all German & English sections
+// Find all German, English & Croatian sections
 const germanDivs = document.querySelectorAll('.german');
 const englishDivs = document.querySelectorAll('.english');
+const croatianDivs = document.querySelectorAll('.croatian');
 
-// If the user has ?lang=en, hide German, show English; else show German
-let isGerman = (currentLang !== 'en');
-if (isGerman) {
-  germanDivs.forEach(el => el.classList.remove('hidden'));
-  englishDivs.forEach(el => el.classList.add('hidden'));
-} else {
-  germanDivs.forEach(el => el.classList.add('hidden'));
-  englishDivs.forEach(el => el.classList.remove('hidden'));
+// Function to update language display
+function updateLanguageDisplay() {
+  germanDivs.forEach(el => el.classList.toggle('hidden', currentLang !== 0));
+  englishDivs.forEach(el => el.classList.toggle('hidden', currentLang !== 1));
+  croatianDivs.forEach(el => el.classList.toggle('hidden', currentLang !== 2));
 }
+
+// Initial language display
+updateLanguageDisplay();
 
 // 3) LANGUAGE TOGGLE BUTTON
 const langToggleBtn = document.getElementById('toggleLang');
 if (langToggleBtn) {
-  // Update button text
-  langToggleBtn.textContent = isGerman ? 'English' : 'Deutsch';
+  // Set initial button text based on current language
+  const buttonTexts = ['English', 'Hrvatski', 'Deutsch'];
+  langToggleBtn.textContent = buttonTexts[currentLang];
 
   langToggleBtn.addEventListener('click', () => {
     // (a) Remember current scroll ratio
@@ -53,9 +60,12 @@ if (langToggleBtn) {
     const docHeight = Math.max(document.body.scrollHeight, 1);
     const ratio = currentScrollY / docHeight;
 
-    // (b) Flip language
-    isGerman = !isGerman;
-    const newLang = isGerman ? 'de' : 'en';
+    // (b) Cycle to next language
+    currentLang = (currentLang + 1) % 3;
+    
+    // Map currentLang to URL parameter
+    const langParams = ['de', 'en', 'hr'];
+    const newLang = langParams[currentLang];
 
     // (c) Update URL param => ?lang= & ?scrollRatio=
     params.set('lang', newLang);
@@ -66,23 +76,7 @@ if (langToggleBtn) {
   });
 }
 
-// 4) OPTIONAL: UPDATE NAV LINKS FOR THE CURRENT LANG
-// If you want your links to keep the same ?lang= param
-const navLinks = document.querySelectorAll('[data-nav-link]');
-navLinks.forEach(link => {
-  const linkPage = link.getAttribute('data-nav-link');
-  // e.g., "home", "services", etc. => adapt to your real filenames
-  let baseUrl = '#';
-  if (linkPage === 'home') baseUrl = 'index.html';
-  else if (linkPage === 'services') baseUrl = 'dienstleistungen.html';
-  // ...and so on...
-
-  const newParams = new URLSearchParams(window.location.search);
-  newParams.set('lang', isGerman ? 'de' : 'en');
-  link.href = baseUrl + '?' + newParams.toString();
-});
-
-// 5) TYPING EFFECT (GERMAN + ENGLISH)
+// 4) TYPING EFFECT (GERMAN + ENGLISH + CROATIAN)
 // ================== GERMAN ===================
 const textArrayDe = [
   "Qualität & Verantwortung.",
@@ -161,27 +155,72 @@ function typeEffectEn() {
 }
 typeEffectEn(); // start English typing
 
-// 6) SHOW MORE/LESS (KERNLEISTUNGEN) – BOTH GERMAN & EN
+// ================== CROATIAN ===================
+const textArrayHr = [
+  "Kvaliteta i odgovornost.",
+  "Uslužni timovi zaposleni kod nas.",
+  "Bez iznajmljivanja radnika.",
+  "Prilagođeno vašim potrebama."
+];
+const typingTextElHr = document.getElementById("typingTextHr");
+let indexHr = 0, charHr = 0;
+let currentHr = textArrayHr[indexHr];
+let deletingHr = false;
+let delayHr = 120;
+
+function typeEffectHr() {
+  if (!typingTextElHr) return;
+  if (!deletingHr && charHr < currentHr.length) {
+    typingTextElHr.textContent = currentHr.substring(0, charHr + 1);
+    charHr++;
+    setTimeout(typeEffectHr, delayHr);
+  } else if (deletingHr && charHr > 0) {
+    typingTextElHr.textContent = currentHr.substring(0, charHr - 1);
+    charHr--;
+    setTimeout(typeEffectHr, 40);
+  } else {
+    if (!deletingHr && charHr === currentHr.length) {
+      setTimeout(() => {
+        deletingHr = true;
+        typeEffectHr();
+      }, 1200);
+    } else if (deletingHr && charHr === 0) {
+      deletingHr = false;
+      indexHr = (indexHr + 1) % textArrayHr.length;
+      currentHr = textArrayHr[indexHr];
+      setTimeout(typeEffectHr, 300);
+    }
+  }
+}
+typeEffectHr(); // start Croatian typing
+
+// 5) SHOW MORE/LESS (KERNLEISTUNGEN) – ALL THREE LANGUAGES
 const toggleButtons = document.querySelectorAll('.kl-text-col .btn-toggle');
 toggleButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     const extraText = btn.parentElement.querySelector('.extra-text');
     if (!extraText) return;
+    
+    const showMoreTexts = ['Mehr anzeigen', 'Show more', 'Prikaži više'];
+    const showLessTexts = ['Weniger anzeigen', 'Show less', 'Prikaži manje'];
+    
     if (extraText.style.display === 'block') {
       extraText.style.display = 'none';
-      btn.textContent = isGerman ? 'Mehr anzeigen' : 'Show more';
+      btn.textContent = showMoreTexts[currentLang];
     } else {
       extraText.style.display = 'block';
-      btn.textContent = isGerman ? 'Weniger anzeigen' : 'Show less';
+      btn.textContent = showLessTexts[currentLang];
     }
   });
 });
 
-// 7) FAQ ITEM TOGGLE
+// 6) FAQ ITEM TOGGLE
 const faqItems = document.querySelectorAll(".faq-item");
 faqItems.forEach(item => {
   const question = item.querySelector(".faq-question");
-  question.addEventListener("click", () => {
-    item.classList.toggle("active");
-  });
+  if (question) {
+    question.addEventListener("click", () => {
+      item.classList.toggle("active");
+    });
+  }
 });

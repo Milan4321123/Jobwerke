@@ -1,7 +1,6 @@
 /***************************************************************************
   arbeiten.js (for "Mit uns arbeiten" page)
-  Place this <script> at the bottom of arbeiten.html or via an external file,
-  with scroll-position preservation on language toggle.
+  Updated to support three languages: German, English, Croatian
 ***************************************************************************/
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -31,11 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     // =======================================================================
-    // 3) DETECT & APPLY CURRENT LANGUAGE VIA ?lang=de / ?lang=en
+    // 3) DETECT & APPLY CURRENT LANGUAGE VIA ?lang=de / ?lang=en / ?lang=hr
     //    AND RESTORE SCROLL RATIO IF EXISTS
     // =======================================================================
     const params = new URLSearchParams(window.location.search);
-    let currentLang = params.get('lang') || 'de'; // default to German
+    let currentLangParam = params.get('lang') || 'de'; // default to German
+
+    // Map URL parameters to currentLang index
+    let currentLang = 0; // 0 = German, 1 = English, 2 = Croatian
+    if (currentLangParam === 'en') currentLang = 1;
+    else if (currentLangParam === 'hr') currentLang = 2;
   
     // If there's a scrollRatio param, parse and scroll to that ratio
     if (params.has('scrollRatio')) {
@@ -47,27 +51,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 50); 
     }
   
-    // Grab references to your .german/.english containers
+    // Grab references to your .german/.english/.croatian containers
     const germanContent = document.querySelectorAll('.german');
     const englishContent = document.querySelectorAll('.english');
-  
-    // Decide which to hide
-    let isGerman = (currentLang !== 'en');
-    if (isGerman) {
-      germanContent.forEach(el => el.classList.remove('hidden'));
-      englishContent.forEach(el => el.classList.add('hidden'));
-    } else {
-      germanContent.forEach(el => el.classList.add('hidden'));
-      englishContent.forEach(el => el.classList.remove('hidden'));
+    const croatianContent = document.querySelectorAll('.croatian');
+
+    // Function to update language display
+    function updateLanguageDisplay() {
+      germanContent.forEach(el => el.classList.toggle('hidden', currentLang !== 0));
+      englishContent.forEach(el => el.classList.toggle('hidden', currentLang !== 1));
+      croatianContent.forEach(el => el.classList.toggle('hidden', currentLang !== 2));
     }
+
+    // Initial language display
+    updateLanguageDisplay();
   
     // =======================================================================
     // 4) LANGUAGE TOGGLE BUTTON (Preserve scroll ratio)
     // =======================================================================
     const langBtn = document.getElementById('toggleLang');
     if (langBtn) {
-      // Initial button text
-      langBtn.textContent = isGerman ? 'English' : 'Deutsch';
+      // Set initial button text based on current language
+      const buttonTexts = ['English', 'Hrvatski', 'Deutsch'];
+      langBtn.textContent = buttonTexts[currentLang];
   
       langBtn.addEventListener('click', () => {
         // 1) Capture current scroll ratio
@@ -75,9 +81,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const docHeight = Math.max(document.body.scrollHeight, 1);
         const ratio = currentScrollY / docHeight;
   
-        // 2) Flip isGerman
-        isGerman = !isGerman;
-        const newLang = isGerman ? 'de' : 'en';
+        // 2) Cycle to next language
+        currentLang = (currentLang + 1) % 3;
+        
+        // Map currentLang to URL parameter
+        const langParams = ['de', 'en', 'hr'];
+        const newLang = langParams[currentLang];
   
         // 3) Set updated params => ?lang=newLang & ?scrollRatio=...
         params.set('lang', newLang);
@@ -127,7 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
       newParams.delete('scrollRatio');
   
       // Ensure we keep the correct language
-      newParams.set('lang', isGerman ? 'de' : 'en');
+      const langParams = ['de', 'en', 'hr'];
+      newParams.set('lang', langParams[currentLang]);
   
       // Apply to link
       link.href = `${baseUrl}?${newParams.toString()}`;
