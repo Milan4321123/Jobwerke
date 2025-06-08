@@ -66,6 +66,14 @@
         <a href="arbeiten.html?lang=en">Work With Us</a>
         <a href="kontakt.html?lang=en" class="active">Contact</a>
       </div>
+      <!-- CROATIAN NAV LINKS -->
+      <div class="navbar__links croatian hidden">
+        <a href="index.html?lang=hr">Početna</a>
+        <a href="uber-uns.html?lang=hr">O nama</a>
+        <a href="dienstleistungen.html?lang=hr">Usluge</a>
+        <a href="arbeiten.html?lang=hr">Radite s nama</a>
+        <a href="kontakt.html?lang=hr" class="active">Kontakt</a>
+      </div>
 
       <!-- Language Toggle Button -->
       <button id="toggleLang" class="lang-btn">
@@ -274,6 +282,34 @@
               </label>
             </div>
 
+            <!-- CAPTCHA Section (German) -->
+            <div class="captcha-container" id="captcha-container-de">
+              <div class="captcha-display">
+                <img id="captcha-image-de" class="captcha-image" src="/captcha" alt="CAPTCHA-Bild" />
+                <div class="captcha-controls">
+                  <button type="button" class="captcha-refresh" onclick="refreshCaptcha('de')">🔄 Neu laden</button>
+                  <button type="button" class="captcha-audio" onclick="playCaptchaAudio('de')">🔊 Audio</button>
+                </div>
+              </div>
+              <div class="captcha-input-group">
+                <label for="captcha-input-de">CAPTCHA Code eingeben <span style="color:red;">*</span></label>
+                <input 
+                  type="text" 
+                  id="captcha-input-de" 
+                  name="captcha" 
+                  class="captcha-input" 
+                  placeholder="Code hier eingeben"
+                  required
+                  maxlength="6"
+                  autocomplete="off"
+                />
+                <div class="captcha-error" id="captcha-error-de"></div>
+                <div class="captcha-help">Geben Sie die Zeichen aus dem Bild ein</div>
+              </div>
+              <!-- reCAPTCHA container (if enabled) -->
+              <div class="recaptcha-container" id="recaptcha-container-de" style="display: none;"></div>
+            </div>
+
              <!-- Language field (Deutsch) -->
             <input type="hidden" name="language" value="de" />
             <!-- SUBMIT -->
@@ -407,7 +443,7 @@
               <i class="fas fa-envelope info-icon"></i>
               <div class="info-text">
                 <strong>Email:</strong><br />
-                <a href="mailto:job.werke@web.de">job.werke@web.de</a>
+                <a href="mailto:job.werke@web.de">info@jobwerke.com</a>
               </div>
             </li>
             <!-- WHATSAPP 1 -->
@@ -541,6 +577,35 @@
                 and consent to the processing of my data.
               </label>
             </div>
+
+            <!-- CAPTCHA Section (English) -->
+            <div class="captcha-container" id="captcha-container-en">
+              <div class="captcha-display">
+                <img id="captcha-image-en" class="captcha-image" src="/captcha" alt="CAPTCHA Image" />
+                <div class="captcha-controls">
+                  <button type="button" class="captcha-refresh" onclick="refreshCaptcha('en')">🔄 Refresh</button>
+                  <button type="button" class="captcha-audio" onclick="playCaptchaAudio('en')">🔊 Audio</button>
+                </div>
+              </div>
+              <div class="captcha-input-group">
+                <label for="captcha-input-en">Enter CAPTCHA Code <span style="color:red;">*</span></label>
+                <input 
+                  type="text" 
+                  id="captcha-input-en" 
+                  name="captcha" 
+                  class="captcha-input" 
+                  placeholder="Enter code here"
+                  required
+                  maxlength="6"
+                  autocomplete="off"
+                />
+                <div class="captcha-error" id="captcha-error-en"></div>
+                <div class="captcha-help">Enter the characters shown in the image</div>
+              </div>
+              <!-- reCAPTCHA container (if enabled) -->
+              <div class="recaptcha-container" id="recaptcha-container-en" style="display: none;"></div>
+            </div>
+
             <button type="submit" class="btn-submit">Send</button>
           </form>
         </div>
@@ -612,12 +677,306 @@
     </section>
   </div><!-- End .english -->
 
+  <!-- =================================
+       CROATIAN CONTENT
+  ================================== -->
+  <div class="croatian hidden">
+    <!-- HERO (HR) -->
+    <section id="parallaxHero" class="hero-section fade-section">
+      <img src="assets/img/appointment (1).jpg" alt="Kontakt Hero Slika" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Kontakt</h1>
+        <p>Pošaljite nam poruku ili zakazivajte termin već danas.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT INTRO (HR) -->
+    <section class="contact-intro fade-section">
+      <div class="intro-wrapper">
+        <div class="intro-image">
+          <img src="assets/img/appointment.jpg" alt="Kontakt Ilustracija" />
+        </div>
+        <div class="intro-content">
+          <h2>Zakazivanje Termina</h2>
+          <p>
+            Bilo da imate pitanja o našim uslugama ili već
+            imate konkretne ideje – tu smo za vas.
+            Pozovite nas, pošaljite e-mail ili
+            koristite naš kontakt obrazac.
+          </p>
+          <p class="highlight">
+            Zajedno ćemo pronaći najbolje rješenje za vaše
+            kadrovske potrebe i vodit ćemo vas korak po korak.
+          </p>
+          <a href="#yourname-hr" class="btn-cta">Kontaktirajte nas sada</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION (HR) -->
+    <section class="contact-section">
+      <div class="contact-heading" id="name-hr">
+        <h1>Kontakt</h1>
+        <p>
+          Imate li pitanja ili želite zakazati termin odmah?
+          Rado smo tu za vas.
+          Jednostavno koristite kontakt obrazac ili nam pošaljite poruku putem WhatsApp-a.
+        </p>
+      </div>
+
+      <div class="contact-container">
+        <div class="info-column">
+          <h2>Kontakt Informacije</h2>
+          <ul class="info-list">
+            <!-- EMAIL -->
+            <li class="info-item">
+              <i class="fas fa-envelope info-icon"></i>
+              <div class="info-text">
+                <strong>E-mail:</strong><br />
+                <a href="mailto:job.werke@web.de">job.werke@web.de</a>
+              </div>
+            </li>
+            <!-- WHATSAPP 1 -->
+            <li class="info-item">
+              <i class="fab fa-whatsapp info-icon"></i>
+              <div class="info-text">
+                <strong>WhatsApp (1):</strong><br />
+                <a
+                  href="https://wa.me/385995321237?text=Pozdrav%20Job%20Werke!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="whatsapp-btn"
+                >
+                  +385 (99) 532 1237
+                </a>
+              </div>
+            </li>
+            <!-- WHATSAPP 2 -->
+            <li class="info-item">
+              <i class="fab fa-whatsapp info-icon"></i>
+              <div class="info-text">
+                <strong>WhatsApp (2):</strong><br />
+                <a
+                  href="https://wa.me/385992088076?text=Pozdrav%20Job%20Werke!"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="whatsapp-btn"
+                >
+                  +385 (99) 208 8076
+                </a>
+              </div>
+            </li>
+          </ul>
+          <div class="watermark-container">
+            <video class="watermark-video" autoplay muted loop playsinline>
+              <source src="assets/img/logog.mp4" type="video/mp4" />
+              <!-- fallback text -->
+              Vaš pregljednik ne podržava video oznaku.
+            </video>
+          </div>
+        </div>
+
+        <!-- HR form -->
+        <div class="form-column" id="yourname-hr">
+          <h2>Kontakt Obrazac</h2>
+          <form
+            class="contact-form"
+            action="/send-email"
+            method="POST"
+            style="margin-top: 1rem;"
+          >
+            <div class="form-group">
+              <label for="yourname-hr">Ime <span style="color:red;">*</span></label>
+              <input
+                type="text"
+                id="yourname-hr"
+                name="name"
+                placeholder="Vaše ime"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email-hr">E-mail adresa <span style="color:red;">*</span></label>
+              <input
+                type="email"
+                id="email-hr"
+                name="email"
+                placeholder="Vaša e-mail adresa"
+                required
+              />
+            </div>
+            <!-- Radio: message vs. appointment -->
+            <div class="form-group">
+              <label>Vaša molba</label>
+              <div>
+                <input
+                  type="radio"
+                  id="hr-anliegen-message"
+                  name="wantsAppointment"
+                  value=""
+                  checked
+                />
+                <label for="hr-anliegen-message">Samo poslati poruku</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="hr-anliegen-appointment"
+                  name="wantsAppointment"
+                  value="on"
+                />
+                <label for="hr-anliegen-appointment">Zakazati termin</label>
+              </div>
+            </div>
+            <div id="appointment-fields">
+              <div class="form-group">
+                <label for="terminDate-hr">Željeni datum</label>
+                <input type="date" id="terminDate-hr" name="terminDate" />
+              </div>
+              <div class="form-group">
+                <label for="terminTime-hr">Željeno vrijeme</label>
+                <input type="time" id="terminTime-hr" name="terminTime" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="msg-hr">Poruka <span style="color:red;">*</span></label>
+              <textarea
+                id="msg-hr"
+                name="message"
+                rows="5"
+                placeholder="Vaša poruka..."
+                required
+              ></textarea>
+            </div>
+            <div style="display:none;">
+              <label for="hp-hr">Honeypot:</label>
+              <input type="text" id="hp-hr" name="hp" />
+            </div>
+            <!-- Language field (Croatian) -->
+            <input type="hidden" name="language" value="hr" />
+            <div class="form-group">
+              <input
+                type="checkbox"
+                id="privacyNewsletterHr"
+                name="privacyNewsletter"
+                required
+              />
+              <label for="privacyNewsletterHr">
+                Pročitao/la sam 
+                <a href="datenschutz.html?lang=hr" target="_blank" style="color: blue; text-decoration: underline;">Pravila o privatnosti</a> 
+                i pristajem na obradu mojih podataka.
+              </label>
+            </div>
+
+            <!-- CAPTCHA Section (Croatian) -->
+            <div class="captcha-container" id="captcha-container-hr">
+              <div class="captcha-display">
+                <img id="captcha-image-hr" class="captcha-image" src="/captcha" alt="CAPTCHA slika" />
+                <div class="captcha-controls">
+                  <button type="button" class="captcha-refresh" onclick="refreshCaptcha('hr')">🔄 Osvježi</button>
+                  <button type="button" class="captcha-audio" onclick="playCaptchaAudio('hr')">🔊 Audio</button>
+                </div>
+              </div>
+              <div class="captcha-input-group">
+                <label for="captcha-input-hr">Unesite CAPTCHA kod <span style="color:red;">*</span></label>
+                <input 
+                  type="text" 
+                  id="captcha-input-hr" 
+                  name="captcha" 
+                  class="captcha-input" 
+                  placeholder="Unesite kod ovdje"
+                  required
+                  maxlength="6"
+                  autocomplete="off"
+                />
+                <div class="captcha-error" id="captcha-error-hr"></div>
+                <div class="captcha-help">Unesite znakove prikazane na slici</div>
+              </div>
+              <!-- reCAPTCHA container (if enabled) -->
+              <div class="recaptcha-container" id="recaptcha-container-hr" style="display: none;"></div>
+            </div>
+
+            <button type="submit" class="btn-submit">Pošaljite</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADDRESS SECTION (HR) -->
+    <section class="address-section fade-section">
+      <h2>Naše Lokacije</h2>
+      <div class="address-container">
+        <!-- Germany -->
+        <div class="address-box">
+          <h3>Adresa (Njemačka)</h3>
+          <p>
+            Job Werke d.o.o.<br/>
+            Industriestraße 27<br/>
+            61381 Friedrichsdorf<br/>
+            Njemačka
+          </p>
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=Industriestra%C3%9Fe+27+61381+Friedrichsdorf+Deutschland"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pokretanje navigacije
+          </a>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2551.238816847897!2d8.63693149060038!3d50.25012379821035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd071724ca921f%3A0x77d381e970bc2d2d!2sIndustriestra%C3%9Fe%2027%2C%2061381%20Friedrichsdorf!5e0!3m2!1sen!2sde!4v1735644093405!5m2!1sen!2sde"
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+        <!-- Croatia -->
+        <div class="address-box">
+          <h3>Adresa (Hrvatska)</h3>
+          <p>
+            Job Werke d.o.o.<br/>
+            Marije Grbac 14<br/>
+            51000 Rijeka<br/>
+            Hrvatska
+          </p>
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=Marije+Grbac+14+51000+Rijeka+Croatia"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Pokretanje navigacije
+          </a>
+          <div class="map-container">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2803.9498217151754!2d14.375826776450756!3d45.34982517107221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4764a6f16fbd36df%3A0x5c6fb0f9e9b1d632!2sUl.%20Marije%20Grbac%2014%2C%2051000%2C%20Rijeka%2C%20Croatia!5e0!3m2!1sen!2sde!4v1735648157157!5m2!1sen!2sde"
+              width="600"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+ 
+    </section>
+  </div><!-- End .croatian -->
+
   <!-- ========== FOOTER ========== -->
   <footer class="footer fade-section">
     <p>Impressum &bull; Datenschutz &bull; Cookie-Einstellungen</p>
     <p>&copy; 2024 Job Werke d.o.o. Alle Rechte vorbehalten.</p>
   </footer>
 
+  <!-- CAPTCHA JavaScript -->
+  <script src="js/captcha.js"></script>
+  
   <!-- Link to external JS file -->
   <script src="js/kontakt.js"></script>
 </body>

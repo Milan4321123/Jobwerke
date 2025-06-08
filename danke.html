@@ -70,6 +70,11 @@
       const isAppointment= params.get("appointment");
       const isSubscribe  = params.get("subscribe");
       const isAlreadySub = params.get("subscribed");
+      // New security-related error parameters
+      const isCaptchaError = params.get("captcha");
+      const isValidationError = params.get("validation");
+      const isSpamError = params.get("spam");
+      const isDuplicateError = params.get("duplicate");
       // Language (default to "de" if missing)
       const userLang     = params.get("lang") || "de";
 
@@ -166,21 +171,54 @@
         return;
       }
 
-      // e) Error
+      // e) Specific error handling
       if (isError) {
-        if (userLang === "en") {
-          setHeadlineAndMessage(
-            "Error",
-            "An error occurred. Please try again later.",
-            true
-          );
+        let errorTitle, errorMessage;
+        
+        if (isCaptchaError) {
+          if (userLang === "en") {
+            errorTitle = "CAPTCHA Verification Failed";
+            errorMessage = "The CAPTCHA code you entered was incorrect. Please try again.";
+          } else {
+            errorTitle = "CAPTCHA-Verifizierung fehlgeschlagen";
+            errorMessage = "Der eingegebene CAPTCHA-Code war falsch. Bitte versuchen Sie es erneut.";
+          }
+        } else if (isValidationError) {
+          if (userLang === "en") {
+            errorTitle = "Validation Error";
+            errorMessage = "Please check your input fields and try again.";
+          } else {
+            errorTitle = "Validierungsfehler";
+            errorMessage = "Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut.";
+          }
+        } else if (isSpamError) {
+          if (userLang === "en") {
+            errorTitle = "Message Blocked";
+            errorMessage = "Your message was flagged by our security system. Please review your content and try again.";
+          } else {
+            errorTitle = "Nachricht blockiert";
+            errorMessage = "Ihre Nachricht wurde von unserem Sicherheitssystem markiert. Bitte überprüfen Sie Ihren Inhalt und versuchen Sie es erneut.";
+          }
+        } else if (isDuplicateError) {
+          if (userLang === "en") {
+            errorTitle = "Duplicate Submission";
+            errorMessage = "This submission appears to be a duplicate. Please wait a moment before submitting again.";
+          } else {
+            errorTitle = "Doppelte Übermittlung";
+            errorMessage = "Diese Übermittlung scheint ein Duplikat zu sein. Bitte warten Sie einen Moment, bevor Sie erneut senden.";
+          }
         } else {
-          setHeadlineAndMessage(
-            "Fehler beim Senden",
-            "Es gab ein Problem. Bitte versuchen Sie es später erneut.",
-            true
-          );
+          // Generic error
+          if (userLang === "en") {
+            errorTitle = "Error";
+            errorMessage = "An error occurred. Please try again later.";
+          } else {
+            errorTitle = "Fehler beim Senden";
+            errorMessage = "Es gab ein Problem. Bitte versuchen Sie es später erneut.";
+          }
         }
+        
+        setHeadlineAndMessage(errorTitle, errorMessage, true);
         return;
       }
 
