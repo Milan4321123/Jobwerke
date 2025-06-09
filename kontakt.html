@@ -29,11 +29,20 @@
     <div class="navbar__logo">
       <a href="index.html?lang=de">
         <video 
-        class="navbar-logo-video"
-        autoplay
+        class="navbar-logo-vide  <!-- CAPTCHA JavaScript -->
+  <script src="js/captcha.js"></script>
+  
+  <!-- Video Controls Remover (must load first) -->
+  <script src="js/video-controls-remover.js"></script>
+  
+  <!-- Link to your external JS file -->
+  <script src="js/kontakt.js"></script>      autoplay
         muted
         loop
         playsinline
+        controls="false"
+        disablepictureinpicture
+        preload="metadata"
       >
         <source src="assets/img/logogo.mp4" type="video/mp4" />
         <!-- Fallback text if video fails to load -->
