@@ -42,10 +42,26 @@
             // Prevent any touch/click events that might trigger controls
             video.addEventListener('touchstart', function(e) {
                 e.preventDefault();
-            });
+                e.stopPropagation();
+                return false;
+            }, { passive: false });
+            
+            video.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, { passive: false });
             
             video.addEventListener('click', function(e) {
                 e.preventDefault();
+                e.stopPropagation();
+                return false;
+            });
+            
+            video.addEventListener('dblclick', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
             });
             
             // Override any attempts to show controls via JavaScript
@@ -109,6 +125,7 @@
                     -ms-user-select: none !important;
                     user-select: none !important;
                     outline: none !important;
+                    pointer-events: none !important;
                 }
                 
                 .no-controls-video::-webkit-media-controls-enclosure,
@@ -116,7 +133,32 @@
                     display: none !important;
                     visibility: hidden !important;
                     opacity: 0 !important;
+                    width: 0 !important;
+                    height: 0 !important;
                 }
+                
+                .no-controls-video:focus {
+                    outline: none !important;
+                    border: none !important;
+                }
+                
+                .no-controls-video:hover {
+                    cursor: default !important;
+                }
+            }
+            
+            /* Universal overrides for all devices */
+            video.no-controls-video {
+                outline: none !important;
+                border: none !important;
+                cursor: default !important;
+                -webkit-appearance: none !important;
+            }
+            
+            video.no-controls-video:focus,
+            video.no-controls-video:active {
+                outline: none !important;
+                border: none !important;
             }
         `;
         document.head.appendChild(style);

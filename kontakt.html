@@ -29,25 +29,20 @@
     <div class="navbar__logo">
       <a href="index.html?lang=de">
         <video 
-        class="navbar-logo-vide  <!-- CAPTCHA JavaScript -->
-  <script src="js/captcha.js"></script>
-  
-  <!-- Video Controls Remover (must load first) -->
-  <script src="js/video-controls-remover.js"></script>
-  
-  <!-- Link to your external JS file -->
-  <script src="js/kontakt.js"></script>      autoplay
-        muted
-        loop
-        playsinline
-        controls="false"
-        disablepictureinpicture
-        preload="metadata"
-      >
-        <source src="assets/img/logogo.mp4" type="video/mp4" />
-        <!-- Fallback text if video fails to load -->
-        Your browser does not support the video tag.
-      </video>
+          class="navbar-logo-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+          controls="false"
+          disablepictureinpicture
+          preload="none"
+        >
+          <source src="assets/img/logogo.mp4" type="video/mp4" />
+          <!-- Fallback text if video fails to load -->
+          Your browser does not support the video tag.
+        </video>
       </a>
     </div>
 
@@ -130,7 +125,7 @@
 
     <!-- CONTACT SECTION (GER) -->
     <section class="contact-section">
-      <div class="contact-heading" id="name">
+      <div class="contact-heading" id="yourname">
         <h1>Kontakt</h1>
         <p>
           Haben Sie Fragen oder möchten direkt einen Termin vereinbaren?
@@ -148,7 +143,7 @@
               <i class="fas fa-envelope info-icon"></i>
               <div class="info-text">
                 <strong>E-Mail:</strong><br />
-                <a href="mailto:job.werke@web.de">job.werke@web.de</a>
+                <a href="mailto:info@jobwerke.com">info@jobwerke.com</a>
               </div>
             </li>
             <li class="info-item">
@@ -181,7 +176,7 @@
             </li>
           </ul>
           <div class="watermark-container">
-            <video class="watermark-video" autoplay muted loop playsinline controls="false" disablepictureinpicture preload="metadata">
+            <video class="watermark-video" autoplay muted loop playsinline webkit-playsinline controls="false" disablepictureinpicture preload="none">
               <source src="assets/img/logog.mp4" type="video/mp4" />
               <!-- fallback text -->
               Your browser does not support the video tag.
@@ -190,7 +185,7 @@
         </div>
 
         <!-- FORM COLUMN -->
-        <div class="form-column" id="yourname">
+        <div class="form-column" id="yourname-form">
           <h2>Kontaktformular</h2>
           <!-- CLASSIC FORM: posts to /send-email -->
           <form
@@ -434,7 +429,7 @@
 
     <!-- CONTACT SECTION (EN) -->
     <section class="contact-section">
-      <div class="contact-heading" id="name-en">
+      <div class="contact-heading" id="yourname-en">
         <h1>Contact</h1>
         <p>
           Do you have questions or want to schedule an appointment right away?
@@ -452,7 +447,7 @@
               <i class="fas fa-envelope info-icon"></i>
               <div class="info-text">
                 <strong>Email:</strong><br />
-                <a href="mailto:job.werke@web.de">info@jobwerke.com</a>
+                <a href="mailto:info@jobwerke.com">info@jobwerke.com</a>
               </div>
             </li>
             <!-- WHATSAPP 1 -->
@@ -487,7 +482,7 @@
             </li>
           </ul>
           <div class="watermark-container">
-            <video class="watermark-video" autoplay muted loop playsinline controls="false" disablepictureinpicture preload="metadata">
+            <video class="watermark-video" autoplay muted loop playsinline webkit-playsinline controls="false" disablepictureinpicture preload="none">
               <source src="assets/img/logog.mp4" type="video/mp4" />
               <!-- fallback text -->
               Your browser does not support the video tag.
@@ -496,7 +491,7 @@
         </div>
 
         <!-- EN form -->
-        <div class="form-column" id="yourname-en">
+        <div class="form-column" id="yourname-en-form">
           <h2>Contact Form</h2>
           <form
             class="contact-form"
@@ -725,7 +720,7 @@
 
     <!-- CONTACT SECTION (HR) -->
     <section class="contact-section">
-      <div class="contact-heading" id="name-hr">
+      <div class="contact-heading" id="yourname-hr">
         <h1>Kontakt</h1>
         <p>
           Imate li pitanja ili želite zakazati termin odmah?
@@ -778,7 +773,7 @@
             </li>
           </ul>
           <div class="watermark-container">
-            <video class="watermark-video" autoplay muted loop playsinline controls="false" disablepictureinpicture preload="metadata">
+            <video class="watermark-video" autoplay muted loop playsinline webkit-playsinline controls="false" disablepictureinpicture preload="none">
               <source src="assets/img/logog.mp4" type="video/mp4" />
               <!-- fallback text -->
               Vaš pregljednik ne podržava video oznaku.
@@ -985,6 +980,12 @@
 
   <!-- CAPTCHA JavaScript -->
   <script src="js/captcha.js"></script>
+  
+  <!-- Video Performance Optimizer (load before other video scripts) -->
+  <script src="js/video-performance-optimizer.js"></script>
+  
+  <!-- Video Controls Remover (must load first) -->
+  <script src="js/video-controls-remover.js"></script>
   
   <!-- Link to external JS file -->
   <script src="js/kontakt.js"></script>
