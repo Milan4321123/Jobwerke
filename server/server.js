@@ -89,21 +89,22 @@ const svgCaptchaConfig = {
 // Security headers
 app.use(helmet());
 
-// Rate limiting for general requests
+// Rate limiting for general requests - DISABLED FOR DEVELOPMENT
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: 10000, // Very high limit to essentially disable during development
   message: {
     error: "Too many requests from this IP, please try again later."
   },
   standardHeaders: true,
   legacyHeaders: false,
+  skip: () => true, // Skip rate limiting entirely during development
 });
 
-// Rate limiting for contact form
+// Rate limiting for contact form - Reasonable protection
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 3, // limit each IP to 3 contact form submissions per 15 minutes
+  max: 10, // limit each IP to 10 contact form submissions per 15 minutes (increased from 3)
   message: {
     error: "Too many contact form submissions from this IP, please try again later."
   },
@@ -112,10 +113,10 @@ const contactLimiter = rateLimit({
   skipSuccessfulRequests: false,
 });
 
-// Rate limiting for newsletter subscription
+// Rate limiting for newsletter subscription - Reasonable protection
 const newsletterLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 2, // limit each IP to 2 newsletter subscriptions per hour
+  max: 5, // limit each IP to 5 newsletter subscriptions per hour (increased from 2)
   message: {
     error: "Too many newsletter subscriptions from this IP, please try again later."
   },
@@ -123,17 +124,39 @@ const newsletterLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// Slow down repeated requests
+// Slow down repeated requests - DISABLED FOR DEVELOPMENT
 const speedLimiter = slowDown({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  delayAfter: 5, // allow 5 requests per 15 minutes at full speed, then...
-  delayMs: () => 500, // add 500ms delay per request after delayAfter (updated for v2)
-  validate: { delayMs: false } // disable warning message
+  delayAfter: 1000, // Very high threshold to disable during development
+  delayMs: () => 0, // No delay during development
+  validate: { delayMs: false }, // disable warning message
+  skip: () => true, // Skip slow down entirely during development
 });
 
-// Apply general rate limiting to all requests
-app.use(generalLimiter);
-app.use(speedLimiter);
+// Apply rate limiting only to API endpoints, not static files
+// Skip rate limiting for static files (CSS, JS, images, etc.)
+const skipStaticFiles = (req, res) => {
+  return req.path.startsWith('/css/') || 
+         req.path.startsWith('/js/') || 
+         req.path.startsWith('/assets/') ||
+         req.path.match(/\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/);
+};
+
+// TEMPORARILY DISABLED - Apply general rate limiting to non-static requests only
+// app.use((req, res, next) => {
+//   if (skipStaticFiles(req, res)) {
+//     return next();
+//   }
+//   generalLimiter(req, res, next);
+// });
+
+// TEMPORARILY DISABLED - Apply speed limiting to non-static requests only
+// app.use((req, res, next) => {
+//   if (skipStaticFiles(req, res)) {
+//     return next();
+//   }
+//   speedLimiter(req, res, next);
+// });
 
 // Input validation functions
 const emailValidation = [
