@@ -1171,3 +1171,116 @@ video:active {
 /***************************************************************
   END ENHANCED VIDEO CONTROLS HIDING
 ***************************************************************/
+
+/***************************************************************
+  PERFORMANCE OPTIMIZATIONS
+***************************************************************/
+
+/* Improve page loading performance */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize video rendering */
+video {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Enhanced mobile video control prevention */
+@media screen and (max-width: 1024px) {
+  video {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    pointer-events: none !important;
+  }
+  
+  /* Force hide all possible video control elements */
+  video::-webkit-media-controls,
+  video::-webkit-media-controls-panel,
+  video::-webkit-media-controls-play-button,
+  video::-webkit-media-controls-start-playback-button,
+  video::-webkit-media-controls-volume-panel,
+  video::-webkit-media-controls-mute-button,
+  video::-webkit-media-controls-timeline,
+  video::-webkit-media-controls-current-time-display,
+  video::-webkit-media-controls-time-remaining-display,
+  video::-webkit-media-controls-fullscreen-button,
+  video::-webkit-media-controls-rewind-button,
+  video::-webkit-media-controls-return-to-realtime-button,
+  video::-webkit-media-controls-toggle-closed-captions-button,
+  video::-webkit-media-controls-enclosure,
+  video::-webkit-media-controls-overlay-play-button,
+  video::-webkit-media-controls-wireless-playback-picker-button,
+  video::-webkit-media-controls-picture-in-picture-button {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    z-index: -9999 !important;
+  }
+  
+  /* Additional iOS Safari specific hiding */
+  video::-webkit-media-controls-overlay-enclosure {
+    display: none !important;
+  }
+  
+  video:hover,
+  video:focus,
+  video:active {
+    cursor: default !important;
+    outline: none !important;
+  }
+}
+
+/* Button loading states for better UX */
+.btn-cta {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-cta.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.btn-cta.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/***************************************************************
+  END PERFORMANCE OPTIMIZATIONS
+*********************************************************/

@@ -76,7 +76,7 @@
         const videos = document.querySelectorAll('video');
         
         videos.forEach(video => {
-            // Only preload navbar video
+            // Only preload navbar video immediately
             if (video.classList.contains('navbar-logo-video')) {
                 video.preload = 'metadata';
             } else {
@@ -89,6 +89,19 @@
             video.setAttribute('controls', 'false');
             video.setAttribute('disablepictureinpicture', '');
             video.controls = false;
+            
+            // Add performance optimization for slow connections
+            video.addEventListener('loadstart', function() {
+                if (video.readyState === 0) {
+                    // If video isn't loading properly, add a timeout
+                    setTimeout(() => {
+                        if (video.readyState === 0) {
+                            console.log('Video loading timeout, skipping:', video.src);
+                            video.style.display = 'none';
+                        }
+                    }, 3000);
+                }
+            });
         });
     }
     

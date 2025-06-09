@@ -1467,3 +1467,95 @@ video:active {
 /***************************************************************
   END ENHANCED VIDEO CONTROLS HIDING
 ***************************************************************/
+
+/***************************************************************
+  PERFORMANCE OPTIMIZATIONS FOR INDEX PAGE
+***************************************************************/
+
+/* Improve page loading performance */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize video rendering performance */
+video {
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Enhanced button performance and loading states */
+.btn-cta {
+  position: relative;
+  transition: all 0.3s ease;
+  will-change: transform;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.btn-cta.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.btn-cta.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* Enhanced mobile video control prevention */
+@media screen and (max-width: 1024px) {
+  /* Additional iOS Safari and Chrome mobile specific hiding */
+  video::-webkit-media-controls-overlay-enclosure,
+  video::-webkit-media-controls-wireless-playback-picker-button,
+  video::-webkit-media-controls-picture-in-picture-button {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    left: -9999px !important;
+    z-index: -9999 !important;
+  }
+  
+  /* Prevent any tap/touch interactions on videos */
+  video {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    pointer-events: none !important;
+  }
+}
+
+/***************************************************************
+  END PERFORMANCE OPTIMIZATIONS
+*********************************************************/

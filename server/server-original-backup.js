@@ -283,7 +283,7 @@ Industriestraße 27
 
 WhatsApp: +385 (99) 532 1237  
 WhatsApp: +385 (99) 208 8076  
-Email: job.werke@web.de  
+Email: info@jobwerke.com  
 Website: www.jobwerke.com  
 
 Head Office:  
@@ -319,7 +319,7 @@ Industriestraße 27
 
 WhatsApp: +385 (99) 532 1237  
 WhatsApp: +385 (99) 208 8076  
-E-Mail: job.werke@web.de  
+E-Mail: info@jobwerke.com  
 Web: www.jobwerke.com  
 
 Hauptsitz:  
@@ -495,7 +495,7 @@ Industriestraße 27
 
 WhatsApp: +385 (99) 532 1237  
 WhatsApp: +385 (99) 208 8076  
-Email: job.werke@web.de  
+Email: info@jobwerke.com  
 Website: www.jobwerke.com  
 
 Head Office:  
@@ -533,7 +533,7 @@ Industriestraße 27
 
 WhatsApp: +385 (99) 532 1237  
 WhatsApp: +385 (99) 208 8076  
-E-Mail: job.werke@web.de  
+E-Mail: info@jobwerke.com  
 Web: www.jobwerke.com  
 
 Hauptsitz:  

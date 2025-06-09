@@ -52,6 +52,12 @@
                 return false;
             }, { passive: false });
             
+            video.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, { passive: false });
+            
             video.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -63,6 +69,25 @@
                 e.stopPropagation();
                 return false;
             });
+            
+            // Additional mobile-specific event prevention
+            video.addEventListener('gesturestart', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, { passive: false });
+            
+            video.addEventListener('gesturechange', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, { passive: false });
+            
+            video.addEventListener('gestureend', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }, { passive: false });
             
             // Override any attempts to show controls via JavaScript
             Object.defineProperty(video, 'controls', {
@@ -119,6 +144,49 @@
             @media screen and (max-width: 1024px) {
                 .no-controls-video {
                     -webkit-touch-callout: none !important;
+                    -webkit-user-select: none !important;
+                    -khtml-user-select: none !important;
+                    -moz-user-select: none !important;
+                    -ms-user-select: none !important;
+                    user-select: none !important;
+                    outline: none !important;
+                    border: none !important;
+                }
+                
+                .no-controls-video::-webkit-media-controls-enclosure,
+                .no-controls-video::-webkit-media-controls {
+                    display: none !important;
+                    visibility: hidden !important;
+                    opacity: 0 !important;
+                    width: 0 !important;
+                    height: 0 !important;
+                    position: absolute !important;
+                    left: -9999px !important;
+                }
+                
+                .no-controls-video:hover,
+                .no-controls-video:focus,
+                .no-controls-video:active {
+                    cursor: default !important;
+                    outline: none !important;
+                }
+                
+                /* Force disable video controls on all mobile browsers */
+                .no-controls-video::-webkit-media-controls-overlay-play-button {
+                    display: none !important;
+                    -webkit-appearance: none !important;
+                    opacity: 0 !important;
+                    visibility: hidden !important;
+                }
+                
+                /* Additional Safari iOS specific hiding */
+                .no-controls-video::-webkit-media-controls-wireless-playback-picker-button {
+                    display: none !important;
+                }
+                
+                .no-controls-video::-webkit-media-controls-picture-in-picture-button {
+                    display: none !important;
+                }
                     -webkit-user-select: none !important;
                     -khtml-user-select: none !important;
                     -moz-user-select: none !important;
